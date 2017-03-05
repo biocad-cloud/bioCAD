@@ -17,12 +17,21 @@ class Strings {
 	// 假若能够查找得到，则会返回以1为准的位置
 	public static function InStr(string $str, string $find_subString, int $begin) {
 
-		$pos = strpos($str, $find_subString, $begin)
+		$pos = strpos($str, $find_subString, $begin);
 
-		if ($pos === false ) {
+		// Note our use of ===.  Simply == would not work as expected
+		// because the position of 'a' was the 0th (first) character.
+		if ($pos === false) {
+
+    		// echo "The string '$findme' was not found in the string '$mystring'";
 			// not found, return ZERO in visualbasic
 			return 0;
+
 		} else {
+
+    		// echo "The string '$findme' was found in the string '$mystring'";
+    		// echo " and exists at position $pos";
+
 			// found sub string, returns the 1 base position
 			return ($p + $begin + 1);
 		}
@@ -44,7 +53,11 @@ class Strings {
 	}
 
 	public static function LCase($str) {
-		return strtolower($str)
+		return strtolower($str);
+	}
+
+	public static function Reverse($str) {
+		return strrev($str);
 	}
 }
 
