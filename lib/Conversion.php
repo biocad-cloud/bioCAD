@@ -1,5 +1,6 @@
 <?php 
 
+// visualbasic之中的一些简单的数据类型转换关键词
 class Conversion {
 
     public static function CInt($str) {
@@ -15,7 +16,7 @@ class Conversion {
     }
 
     public static function CStr($str) {
-
+        return (string) $str;
     }
 
     public static function CSng($str) {
