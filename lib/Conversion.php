@@ -7,11 +7,11 @@ class Conversion {
     }
 
     public static function CDbl($str) {
-
+        return doubleval($str);
     }
 
     public static function CBool($str) {
-
+        return boolval($str);
     }
 
     public static function CStr($str) {
@@ -19,7 +19,7 @@ class Conversion {
     }
 
     public static function CSng($str) {
-        
+        return floatval($str);
     }
 
 }
