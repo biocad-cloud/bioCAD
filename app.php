@@ -4,7 +4,7 @@
 include "./mod/dotnet/package.php";
 
 dotnet::AutoLoad("./etc/config.php");
-dotnet::HandleRequest(new app(), "./html/Application/");
+dotnet::HandleRequest(new app(), "./html/Application");
 // dotnet::printMySqlTransaction();
 dotnet::writeMySqlLogs(TRUE);
 
