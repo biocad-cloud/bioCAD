@@ -4,7 +4,7 @@
             <li class="name">
                 <h1 style="font-size: 42px;">
                     <a href="/">
-                        <img src="./favicon.png" class="logo" style="height:72px;" /> bioCAD</a>
+                        <img src="/favicon.png" class="logo" style="height:72px;" /> bioCAD</a>
                 </h1>
             </li>
         </ul>
@@ -13,18 +13,19 @@
             <!-- Right Nav Section -->
             <ul class="right">
                 <li class="">
-                    <a href="./app.php">Application</a>
+                    <a href="{index/apps}">Application</a>
                 </li>
                 <li class="">
-                    <a href="./download.html">Downloads</a>
+                    <a href="{index/downloads}">Downloads</a>
                 </li>
                 <li class="">
-                    <a href="./about.html">About</a>
+                    <a href="{index/about}">About</a>
                 </li>
                 <li class="has-form">
-                    <form action="./search.php" method="get">
+                    <form action="{index/search}" method="get">
                         <div class="row collapse">
                             <div class="large-8 small-9 columns">
+                                <input type="text" name="app" value="search" style="display:none;">
                                 <input type="text" name="q" placeholder="Search..">
                             </div>
                             <div class="large-4 small-3 columns">

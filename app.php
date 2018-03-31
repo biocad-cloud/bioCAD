@@ -11,4 +11,5 @@ dotnet::writeMySqlLogs(TRUE);
 class app {
 
 }
+
 ?>
