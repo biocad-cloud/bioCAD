@@ -18,11 +18,11 @@ class app {
 	}
 
 	public function downloads() {
-
+		view::Display(array("title" => "Download GCModeller"));
 	}
 
 	public function about() {
-
+		view::Display(array("title" => "About bioCAD"));
 	}
 
 	public function search() {
