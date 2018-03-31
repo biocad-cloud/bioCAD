@@ -9,6 +9,11 @@ dotnet::HandleRequest(new app());
 
 class app {
 
+	/**
+	 * 在这里的所有的页面都不需要进行身份验证 
+	 * 
+	 */
+
 	public function index() {
 		view::Display(array("title" => "bioCAD cloud platform"));
 	}

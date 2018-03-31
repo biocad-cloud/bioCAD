@@ -10,6 +10,11 @@ dotnet::writeMySqlLogs(TRUE);
 
 class app {
 
+	// Load user info from php session
+	private function userInfo() {
+
+	}
+
     public function project() {
 
     }
