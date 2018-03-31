@@ -25,6 +25,14 @@ class app {
 		view::Display(array("title" => "About bioCAD"));
 	}
 
+	/**
+	 * 用户设置中心
+	 * 
+	 */
+	public function me() {
+		view::Display(array("title" => "My Settings"));
+	}
+
 	public function search() {
 		$term = $_GET["q"];
 		$result = "";

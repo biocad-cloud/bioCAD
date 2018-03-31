@@ -10,6 +10,13 @@ dotnet::writeMySqlLogs(TRUE);
 
 class app {
 
+    public function project() {
+
+    }
+
+    public function task() {
+        
+    }
 }
 
 ?>
