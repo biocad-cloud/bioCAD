@@ -14,7 +14,7 @@ class app {
 	}
 
 	public function apps() {
-
+		view::Display(array("title" => "bioCAD Applications"));
 	}
 
 	public function downloads() {
