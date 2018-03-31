@@ -10,7 +10,7 @@ dotnet::HandleRequest(new app());
 class app {
 
 	public function index() {
-		view::Display(NULL);
+		view::Display(array("title" => "bioCAD cloud platform"));
 	}
 }
 
