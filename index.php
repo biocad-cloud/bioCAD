@@ -41,13 +41,24 @@ class app {
 		}
 
 		$_GET["result"] = $result;
-		$_GET["title"] = "Search Result";
+		$_GET["title"]  = "Search Result";
 
 		view::Display($_GET);
 	}
 
+	/*
+	 * 根据所给定的词条返回在整个网站内的通用的搜索结果
+	 */
 	private function searchInternal($term) {
-		return "search";
+		$result_list = "";
+		$display_container = "./html/search_result.html";
+		
+		return view::Load(
+			$display_container, 
+			array(
+					"list" => $result_list, 
+					"term" => $term
+		));
 	}
 }
 
