@@ -42,7 +42,22 @@ class api {
 
             // 向session之中写入用户的记录信息，然后返回成功消息
             // 从数据库之中读取用户的配置数据信息
-            $settings = (new Table("user_settings"))->where(array("user_id" => $user["id"]))->find();
+            $configs = new Table("user_settings");
+            $settings = $configs->where(array("user_id" => $user["id"]))->find();
+
+            if (!$settings) {
+
+                # 没有从数据库之中找到对应的配置信息？？？
+                # 则加载默认的用户配置信息数据，然后保存到数据库之中
+                $settings = include "./etc/default_user_settings.php";
+                $settings["user_id"] = $user["id"];
+
+                $configs->add($settings);
+
+            }
+
+            $_SESSION["user"]     = $user;
+            $_SESSION["settings"] = $settings;
 
             echo dotnet::successMsg("success");
 
