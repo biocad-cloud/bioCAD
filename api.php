@@ -64,6 +64,19 @@ class api {
         }
     }
 
+    public function modifyPassword() {
+        $user     = $_SESSION["password"];
+        $password = $_POST["password"];
+
+        if (!$user || $user["password"] != $password) {
+            echo dotnet::errorMsg(self::CredentialVerifyError);
+            die;
+        } else {
+            # 发送电子邮件
+            $email = $user["email"];
+        }
+    }
+
     // 允许用户进行匿名登陆，使用cookie来记录session的编号而获取服务器的计算资源
     // 在这个函数之中为用户初始化后台的session的数据记录信息
     public function anonymous_login() {
@@ -72,6 +85,14 @@ class api {
 
     public function logout() {
 
+        // 清除session信息之后对用户进行重定向至首页
+        $_SESSION["user"] = NULL;
+        $_SESSION["settings"] = NULL;
+
+        unset($_SESSION);
+        session_destroy();
+
+        Redirect("http://bioCAD.cloud/index.php");        
     }
 }
 
