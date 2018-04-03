@@ -35,27 +35,15 @@
                     </form>
                 </li>
 
-                <li id="user-menu" class="has-dropdown not-click">
+				<!-- has-dropdown -->
+				
+                <li id="user-menu" class="{$has_dropdown}">
                     <a href="#">
                         <i class="fa fa-user"></i> {$username}
                     </a>
-                    <ul class="dropdown">
-                        <li class="title back js-generated">
-                            <h5>
-                                <a href="#">Back</a>
-                            </h5>
-                        </li>
-                        <li>
-                            <a href="{app/me}">
-                                <i class="fa fa-cogs" aria-hidden="true"></i> Settings
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{api/logout}">
-                                <i class="fa fa-sign-out" aria-hidden="true"></i> Log out
-                            </a>
-                        </li>
-                    </ul>
+
+					{$menu_dropdown}
+					
                 </li>
 
             </ul>
