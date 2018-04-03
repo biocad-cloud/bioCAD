@@ -2,6 +2,7 @@
 
 # Module file for handling HTML user interface
 include "./mod/dotnet/package.php";
+include "./html/view_common.php";
 
 dotnet::AutoLoad("./etc/config.php");
 dotnet::HandleRequest(new app(), "./html/Application");
@@ -32,6 +33,12 @@ class app {
 		// 而注册用户则可以依靠数据库之中的唯一标识符来保持记录状态
 		$user = $_SESSION["user"];
 
+		if (!$user) {
+			$user = ViewCommon::AnonymousUserMenu(array());
+		} else {
+			$user = ViewCommon::DisplayDropDownMenu($user);
+		}
+
 		return $user;
 	}
 
@@ -48,7 +55,10 @@ class app {
 	}
 
     public function project() {
-		view::Display(array("title" => "My Projects"));
+		$vars = $this->userInfo();
+		$vars["title"] = "My Projects";
+
+		view::Display($vars);
     }
 
     public function task() {
@@ -62,12 +72,10 @@ class app {
 
 		// 首先需要从session之中读取在服务器后台所保存的临时信息
 		// 
-		$user          = $this->userInfo();
-		$user["title"] = "My Settings";
+		$vars          = $this->userInfo();
+		$vars["title"] = "My Settings";
 
-
-
-		view::Display($user);
+		view::Display($vars);
 	}
 }
 
