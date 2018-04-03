@@ -48,7 +48,7 @@ class app {
 	}
 
     public function project() {
-
+		view::Display(array("title" => "My Projects"));
     }
 
     public function task() {
