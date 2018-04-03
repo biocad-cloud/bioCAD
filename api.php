@@ -92,7 +92,7 @@ class api {
         unset($_SESSION);
         session_destroy();
 
-        Redirect("http://bioCAD.cloud/index.php");        
+        Redirect("/");        
     }
 }
 
