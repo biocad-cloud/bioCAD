@@ -3,6 +3,7 @@
 # home page
 
 include "./mod/dotnet/package.php";
+include "./html/view_common.php";
 include "./user_info.php";
 
 dotnet::AutoLoad("./etc/config.php");
