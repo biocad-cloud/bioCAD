@@ -12,9 +12,11 @@
     <script>
         function openDialog() {
             Avgrund.show("#default-popup");
+            $("#default-popup").show();
         }
         function closeDialog() {
             Avgrund.hide();
+            $("#default-popup").hide();
         }
     </script>
 
@@ -27,22 +29,6 @@
 
 <body class="index">
     ${../includes/nav.html}
-
-    <aside id="default-popup" class="avgrund-popup">
-        <h2>That's all, folks</h2>
-        <p>
-            You can hit ESC or click outside to close the modal. Give it a go to see the reverse transition.
-        </p>
-        <p>
-            If you like this you would probably enjoy
-            <a href="http://lab.hakim.se/meny">Meny</a>,
-            <a href="http://lab.hakim.se/reveal-js">reveal.js</a> and
-            <a href="http://lab.hakim.se/scroll-effects">stroll.js</a>.
-        </p>
-        <button onclick="javascript:closeDialog();">Close</button>
-    </aside>
-
-    <div class="avgrund-cover"></div>
 
     <div id="wrapper">
         <div class="hero">
@@ -85,6 +71,24 @@
     </div>
 
     <script type="text/javascript" src="/lib/Avgrund/avgrund.js"></script> ${../includes/footer.html}
+
+    <aside id="default-popup" class="avgrund-popup" style="display:none;">
+            <h2>That's all, folks</h2>
+            <p>
+                You can hit ESC or click outside to close the modal. Give it a go to see the reverse transition.
+            </p>
+            <p>
+                If you like this you would probably enjoy
+                <a href="http://lab.hakim.se/meny">Meny</a>,
+                <a href="http://lab.hakim.se/reveal-js">reveal.js</a> and
+                <a href="http://lab.hakim.se/scroll-effects">stroll.js</a>.
+            </p>
+
+            <hr />
+            <button onclick="javascript:closeDialog();">Close</button>
+        </aside>
+    
+        <div class="avgrund-cover"></div>
 
 </body>
 

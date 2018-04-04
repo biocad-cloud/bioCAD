@@ -3,10 +3,11 @@
  * try and use Avgrund in your project, don't include these.
  */
 
+ /*
 * {
 	margin: 0;
 	padding: 0;
-}
+}*/
 
 html,
 body {
@@ -14,23 +15,25 @@ body {
 	overflow: hidden;
 }
 
+/*
 html {
 	background-color: #222;
 	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAGklEQVQIW2NkYGD4D8SMQAwGcAY2AbBKDBUAVuYCBQPd34sAAAAASUVORK5CYII=);
 	background-repeat: repeat;
-}
+}*/
 
+/*
 h1,
 h2 {
 	font-size: 24px;
-}
-
+}*/
+/*
 p {
 	margin: 10px 0 10px 0;
 	font-size: 16px;
 	line-height: 1.32;
-}
-
+}*/
+/*
 a {
 	color: #7aa76d;
 	text-decoration: none;
@@ -44,6 +47,7 @@ a {
 	a:hover {
 		color: #91cd85;
 	}
+*/
 
 small {
 	display: block;
@@ -56,7 +60,7 @@ small {
 	-webkit-text-size-adjust: none;
 }
 
-button {
+aside > button {
 	border: 0px;
 	padding: 8px 10px;
 	margin: 5px 0px;
@@ -85,14 +89,11 @@ button {
 		margin-left: 5px;
 	}
 
-.sharing {
-	margin-top: 50px;
-}
-
+/*
 body {
 	background: #fff;
 
 	font-family: 'Lato', Helvetica, sans-serif;
 	font-size: 16px;
 	color: #222;
-}
+}*/

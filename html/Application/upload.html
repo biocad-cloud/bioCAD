@@ -1,0 +1,263 @@
+﻿<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="Generator" content="EditPlus?">
+	<meta name="Author" content="">
+	<meta name="Keywords" content="">
+	<meta name="Description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+
+	<title>原始文件上传</title>
+
+	<link rel="stylesheet" href="styles/bootstrap.min.css">
+	<link rel="stylesheet" href="styles/jquery.fileupload.css">
+	<link rel="stylesheet" href="styles/jquery.fileupload-ui.css">
+	<link rel="shortcut icon" href="favion.png">
+
+	<noscript>
+		<link rel="stylesheet" href="styles/jquery.fileupload-noscript.css">
+	</noscript>
+	<noscript>
+		<link rel="stylesheet" href="styles/jquery.fileupload-ui-noscript.css">
+	</noscript>
+	<style>
+		.black_overlay {
+			display: none;
+			position: absolute;
+			top: 0%;
+			left: 0%;
+			width: 100%;
+			height: 100%;
+			background-color: black;
+			z-index: 1001;
+			-moz-opacity: 0.8;
+			opacity: .80;
+			filter: alpha(opacity=80);
+		}
+
+		.itips {
+			position: absolute;
+			width: 90px;
+			background-color: #f0ad4e;
+			top: -20px;
+			right: -72px;
+			padding: 5px;
+			text-align: center;
+			font-size: 80%;
+			color: #fff;
+		}
+
+		.itips:after {
+			display: block;
+			content: '';
+			border-width: 8px 8px 8px 8px;
+			border-style: solid;
+			border-color: #f0ad4e transparent transparent transparent;
+			position: absolute;
+			right: 72px;
+			top: 100%;
+		}
+
+		/*去除iframe横向滚动条*/
+
+		html {
+			overflow-x: hidden;
+		}
+	</style>
+
+	<link rel="stylesheet" href="styles/font-awesome.min.css">
+	<link rel="stylesheet" href="styles/jquery-ui.css">
+	<link rel="stylesheet" href="styles/style.css">
+
+	<script src="lib/jquery.min.js"></script>
+	<script src="lib/jquery-ui.js"></script>
+	<script src="lib/jquery.ui.widget.js"></script>
+
+	<!-- 引入layer框架 -->
+	<link href="styles/layui/theme/default/layer.css" rel="stylesheet" />
+	<script src="styles/layui/layer.js"></script>
+</head>
+
+<body>
+	<div id="content" style="padding: -50px 0px 0px 0px; margin-top:-50px;">
+		<form id="fileupload" action="{API/receive}&id={$id}&flag=1&type={$type}" method="post" enctype="multipart/form-data">
+
+			<div class="row fileupload-buttonbar" style="margin-left: 0px;">
+				<div class="col-lg-5" style="margin-top:1px;">
+					<!-- The fileinput-button span is used to style the file input field as button -->
+					<span class="btn btn-success fileinput-button">
+						<i class="glyphicon glyphicon-plus"></i>
+						<span>添加文件...</span>
+						<input type="file" name="files[]" multiple accept="*.wiff *.scan">
+						<!-- accept=".mzXML, .raw, .wiff, .scan, .mzXML, .mgf" -->
+					</span>
+					<button type="submit" class="btn btn-primary start">
+						<i class="glyphicon glyphicon-upload"></i>
+						<span>开始批量上传</span>
+					</button>
+
+					<!-- The global file processing state -->
+					<span class="fileupload-process"></span>
+				</div>
+				<!-- The global progress state -->
+				<div class="col-lg-5 fileupload-progress fade" style="margin-left: 450px;width:300px;margin-top:-30px;">
+					<!-- The global progress bar -->
+					<div class="progress active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+						<div class="progress-bar" style="width:0%;"></div>
+					</div>
+					<!-- The extended global progress state -->
+					<div class="progress-extended">&nbsp;</div>
+				</div>
+			</div>
+			<!-- The table listing the files available for upload/download -->
+			<table role="presentation" id="filelist-table" class="table table-striped">
+				<tbody class="files" style="font-size:0.95em;"></tbody>
+			</table>
+
+		</form>
+	</div>
+</body>
+
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+
+<!-- The Templates plugin is included to render the upload/download listings -->
+<script src="lib/tmpl.min.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="lib/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="lib/jquery.fileupload.js/jquery.fileupload.js"></script>
+<!-- The File Upload processing plugin -->
+<script src="lib/jquery.fileupload.js/jquery.fileupload-process.js"></script>
+<!-- The File Upload validation plugin -->
+<script src="lib/jquery.fileupload.js/jquery.fileupload-validate.js"></script>
+<!-- The File Upload user interface plugin -->
+<script src="lib/jquery.fileupload.js/jquery.fileupload-ui.js"></script>
+
+<!-- The main application script -->
+<script type="text/javascript">
+
+	var success_counts = 0;
+	var type = "{$type}";
+	var allUpload = false;
+
+	parent.checkUpload(type);
+
+	/* global $, window */
+	$(function () {
+		'use strict';
+
+		$('#fileupload').fileupload({
+			url: "{API/receive}&id={$id}&flag=1&type={$type}",
+			stop: function (e, data) {
+
+			},
+			change: function (e, data) {
+
+			},
+			getFilesFromResponse: function (e) {
+
+				var code = e.result['code'];
+				var result = e.result['info'];
+				var file_counts = $('#filelist-table tr').length;
+
+				if (code == 0) {
+					if (++success_counts == file_counts) {
+						allUpload = true;
+						layer.msg(result, { icon: 1 }, function () {
+							parent.checkUpload(type);
+						});
+					}
+				} else {
+					layer.msg(result, { icon: 5 }, function () {
+
+					});
+				}
+			}
+		});
+
+		$('#fileupload').addClass('fileupload-processing');
+		$.ajax({
+			// Uncomment the following to send cross-domain cookies:
+			//xhrFields: {withCredentials: true},
+			url: $('#fileupload').fileupload('option', 'url'),
+			dataType: 'json',
+			context: $('#fileupload')[0]
+		}).always(function () {
+			$(this).removeClass('fileupload-processing');
+		}).done(function (result) {
+
+		});
+	});
+</script>
+
+<!-- The template to display files available for upload -->
+<script id="template-upload" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-upload fade" style="height: 20px !important;">       
+						<td>
+							<p class="name">{%=file.name%}</p>
+							<!-- <strong class="error text-danger"></strong> -->
+						</td>
+						<td>
+							<p class="size">Processing...</p>
+							<div class="progress  active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+								<div class="progress-bar" style="width:0%;"></div>
+							</div>
+						</td>
+						<td>
+							{% if (!i && !o.options.autoUpload) { %}
+							<button class="btn btn-primary start" disabled style="display:none;">
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>开始</span>
+                </button> {% } %} {% if (!i) { %}
+							<button class="btn btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>取消</span>
+                </button> {% } %}
+						</td>
+						</tr>
+						{% } %}
+</script>
+<!-- The template to display files available for download -->
+<script id="template-download" type="text/x-tmpl">
+							{% for (var i=0, file; file=o.files[i]; i++) { %}
+							<tr class="template-download fade">
+								<td>
+									<span class="preview">
+                {% if (file.thumbnailUrl) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
+                {% } %}
+            </span>
+								</td>
+								<td>
+									<p class="name">
+										{% if (file.url) { %}
+										<a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl? 'data-gallery': ''%}>{%=file.name%}</a>										{% } else { %}
+										<span>{%=file.name%}</span> {% } %}
+									</p>
+									{% if (file.error) { %}
+									<div><span class="label label-danger">Error</span> {%=file.error%}</div>
+									{% } %}
+								</td>
+								<td>
+									<span class="size">{%=o.formatFileSize(file.size)%}</span>
+								</td>
+								<td>
+									{% if (file.deleteUrl) { %}
+									<button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}" {% if (file.deleteWithCredentials)
+									 { %} data-xhr-fields='{"withCredentials":true}' {% } %}>
+                    <i class="glyphicon glyphicon-trash"></i>
+                    <span>删除</span>
+                </button>
+									<input type="checkbox" name="delete" value="1" class="toggle"> {% } else { %}
+									<button class="btn btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>取消</span>
+                </button> {% } %}
+								</td>
+							</tr>
+							{% } %}
+</script>
+
+</html>
