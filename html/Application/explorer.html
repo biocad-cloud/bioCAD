@@ -72,23 +72,15 @@
 
     <script type="text/javascript" src="/lib/Avgrund/avgrund.js"></script> ${../includes/footer.html}
 
-    <aside id="default-popup" class="avgrund-popup" style="display:none;">
-            <h2>That's all, folks</h2>
-            <p>
-                You can hit ESC or click outside to close the modal. Give it a go to see the reverse transition.
-            </p>
-            <p>
-                If you like this you would probably enjoy
-                <a href="http://lab.hakim.se/meny">Meny</a>,
-                <a href="http://lab.hakim.se/reveal-js">reveal.js</a> and
-                <a href="http://lab.hakim.se/scroll-effects">stroll.js</a>.
-            </p>
+    <aside id="default-popup" class="avgrund-popup" style="display:none;">       
+            <iframe width="800" height="450" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"
+            src="/html/Application/upload.html">
+        </iframe>
+      <br />
+        <button onclick="javascript:closeDialog();" style="float: right;">Close</button>
+    </aside>
 
-            <hr />
-            <button onclick="javascript:closeDialog();">Close</button>
-        </aside>
-    
-        <div class="avgrund-cover"></div>
+    <div class="avgrund-cover"></div>
 
 </body>
 
