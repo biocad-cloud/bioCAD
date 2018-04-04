@@ -3,6 +3,8 @@
 # home page
 
 include "./mod/dotnet/package.php";
+include "./html/view_common.php";
+include "./user_info.php";
 
 dotnet::AutoLoad("./etc/config.php");
 dotnet::HandleRequest(new app());
@@ -15,19 +17,27 @@ class app {
 	 */
 
 	public function index() {
-		view::Display(array("title" => "bioCAD cloud platform"));
+		$vars          = userInfo::getUserInfo();
+		$vars["title"] = "bioCAD cloud platform";
+		view::Display($vars);
 	}
 
 	public function apps() {
-		view::Display(array("title" => "bioCAD Applications"));
+		$vars          = userInfo::getUserInfo();
+		$vars["title"] = "bioCAD Applications";
+		view::Display($vars);
 	}
 
 	public function downloads() {
-		view::Display(array("title" => "Download GCModeller"));
+		$vars          = userInfo::getUserInfo();
+		$vars["title"] = "Download GCModeller";
+		view::Display($vars);
 	}
 
 	public function about() {
-		view::Display(array("title" => "About bioCAD"));
+		$vars          = userInfo::getUserInfo();
+		$vars["title"] = "About bioCAD";
+		view::Display($vars);
 	}
 
 	public function search() {
@@ -40,10 +50,10 @@ class app {
 			$result = $this->searchInternal($term);
 		}
 
-		$_GET["result"] = $result;
-		$_GET["title"]  = "Search Result";
-
-		view::Display($_GET);
+		$vars          = userInfo::getUserInfo();
+		$vars["title"] = "Search Result";
+		$vars["result"] = $result;
+		view::Display($vars);
 	}
 
 	/*
