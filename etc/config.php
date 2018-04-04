@@ -5,8 +5,8 @@
         'DB_TYPE' => 'mysql',
         'DB_HOST' => '127.0.0.1',
         'DB_NAME' => 'biocad',
-        'DB_USER' => 'root',
-        'DB_PWD'  => 'root',
+        'DB_USER' => 'bioCAD',
+        'DB_PWD'  => 'biocad.cloud',
         'DB_PORT' => '3306',
         // 'DB_PREFIX' => 'xcms_',
         //密钥
