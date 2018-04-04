@@ -8,8 +8,8 @@
 
     <script type="text/javascript">
         // 客户的数据库编号，以及是否注册？
-        var user_id = {$user_id};
-        var is_certified = {$is_certified};
+        var user_id = { $user_id };
+        var is_certified = { $is_certified };
     </script>
 </head>
 
@@ -43,7 +43,14 @@
             </div>
             <div class="row">
                 <div class="large-12 columns">
-                    {$projects}
+                    <span style="font-size:2em;">
+                        <a href="#" onclick="">
+                            <i class="fa fa-cloud-upload"></i> Upload</a>
+                    </span>
+
+                    <div>
+                        {$files}
+                    </div>
                 </div>
             </div>
         </div>
