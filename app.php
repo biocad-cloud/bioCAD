@@ -5,6 +5,8 @@ include "./mod/dotnet/package.php";
 include "./html/view_common.php";
 include "./user_info.php";
 
+Imports("Microsoft.VisualBasic.Conversion");
+
 dotnet::AutoLoad("./etc/config.php");
 dotnet::HandleRequest(new app(), "./html/Application");
 // dotnet::printMySqlTransaction();
@@ -46,17 +48,35 @@ class app {
 		$action = $_GET["action"];
 		$page = $_COOKIE["project_page"];
 		# 每一个分页的所显示的项目数量
-		$pagen = 5;
+		$pagen = 3;
 		$start = 0;
 
-		if (!$page || $page == 0) {
-			$page = 0;
-		} else {
+		echo $page . ">>>>>>";
+
+		if ($action) {
+
+			if (!$page) {
+				$page = 0;
+			}
+
 			if (Strings::LCase($action) == "next") {
-				$page++;
-				$start = $page * $pagen;
+				$page++;				
+			} elseif (Strings::LCase($action) == "previous") {
+				$page--;
+			}
+		} elseif (array_key_exists("page", $_GET)) {
+			$page = Conversion::CInt($_GET["page"]);
+		} else {
+			# display current page
+			# page = page
+			if (!$page) {
+				$page = 0;
 			}
 		}
+
+		$start = $page * $pagen;
+
+		echo "$start = $page * $pagen";
 
 		// select limit a,b;
 		$projects = (new Table("project"))->select($start, $pagen);
