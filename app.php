@@ -50,6 +50,7 @@ class app {
 		echo $config;
 	}
 
+	// 登录页面
 	public function login() {
 
 	}
@@ -57,6 +58,30 @@ class app {
     public function project() {
 		$vars = $this->userInfo();
 		$vars["title"] = "My Projects";
+		# 当前的页面的编号
+		$page = $_COOKIE["project_page"];
+		# 每一个分页的所显示的项目数量
+		$pagen = 5;
+		$start = $page * $pagen;
+
+		// select limit a,b;
+		$projects = (new Table("projects"))->select($start, $pagen);
+
+		// 循环显示出来
+		$template = View::Load("./html/Application/project_template.html");
+		$projectlist = new StringBuilder();
+
+		if ($projects) {
+			foreach ($projects as $project) {
+				$projectlist->AppendLine(View::InterpolateTemplate($template, $project));
+			}
+		} else {
+			$projectlist->AppendLine("No project avaliable!");
+		}
+
+		setcookie("project_page", $pagen + 1, time() + 1000000);
+
+		$vars["projects"] = $projectlist->ToString();
 
 		view::Display($vars);
     }
