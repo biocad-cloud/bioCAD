@@ -43,13 +43,23 @@ class app {
 		$vars = userInfo::getUserInfo();
 		$vars["title"] = "My Projects";
 		# 当前的页面的编号
+		$action = $_GET["action"];
 		$page = $_COOKIE["project_page"];
 		# 每一个分页的所显示的项目数量
 		$pagen = 5;
-		$start = $page * $pagen;
+		$start = 0;
+
+		if (!$page || $page == 0) {
+			$page = 0;
+		} else {
+			if (Strings::LCase($action) == "next") {
+				$page++;
+				$start = $page * $pagen;
+			}
+		}
 
 		// select limit a,b;
-		$projects = (new Table("projects"))->select($start, $pagen);
+		$projects = (new Table("project"))->select($start, $pagen);
 
 		// 循环显示出来
 		$template = View::Load("./html/Application/project_template.html");
@@ -63,7 +73,7 @@ class app {
 			$projectlist->AppendLine("No project avaliable!");
 		}
 
-		setcookie("project_page", $pagen + 1, time() + 1000000);
+		setcookie("project_page", $page, time() + 1000000);
 
 		$vars["projects"] = $projectlist->ToString();
 
