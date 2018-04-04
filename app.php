@@ -14,6 +14,10 @@ dotnet::writeMySqlLogs(TRUE);
 
 class app {
 
+	public function index() {
+		Redirect("/index.php?app=apps");
+	}
+
 	/*
 		Session之中所保存的临时信息的数据结构大致如下：
 
@@ -87,6 +91,9 @@ class app {
 
 		if ($projects) {
 			foreach ($projects as $project) {
+				$name = $project["name"];
+				$projID = $project["id"];
+				$project["name"] = "<a href='/app.php?app=explorer&proj=$projID'>$name</a>";
 				$projectlist->AppendLine(View::InterpolateTemplate($template, $project));
 			}
 		} else {
@@ -99,6 +106,13 @@ class app {
 
 		view::Display($vars);
     }
+
+	public function explorer() {
+		$vars = userInfo::getUserInfo();
+		$vars["title"] = "File Explorer";
+
+		view::Display($vars);
+	}
 
 	# 一些需要执行比较久的数据分析任务的列表
 	# 功能富集
