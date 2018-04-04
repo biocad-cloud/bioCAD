@@ -3,6 +3,7 @@
 # Module file for handling HTML user interface
 include "./mod/dotnet/package.php";
 include "./html/view_common.php";
+include "./user_info.php";
 
 dotnet::AutoLoad("./etc/config.php");
 dotnet::HandleRequest(new app(), "./html/Application");
@@ -25,23 +26,6 @@ class app {
 	
 	*/
 
-	// Load user info from php session
-	private function userInfo() {
-		// 用户的标识信息是从服务器后台的session数据之中读取出来的
-		// 如果客户是匿名的非注册客户，则当浏览器被清除掉cookie之后，
-		// session关联信息将会丢失
-		// 而注册用户则可以依靠数据库之中的唯一标识符来保持记录状态
-		$user = $_SESSION["user"];
-
-		if (!$user) {
-			$user = ViewCommon::AnonymousUserMenu(array());
-		} else {
-			$user = ViewCommon::DisplayDropDownMenu($user);
-		}
-
-		return $user;
-	}
-
 	// 获取当前的用户的配置信息
 	public function getMySettings() {
 		$config = $_SESSION["settings"];
@@ -56,7 +40,7 @@ class app {
 	}
 
     public function project() {
-		$vars = $this->userInfo();
+		$vars = userInfo::getUserInfo();
 		$vars["title"] = "My Projects";
 		# 当前的页面的编号
 		$page = $_COOKIE["project_page"];
@@ -86,6 +70,9 @@ class app {
 		view::Display($vars);
     }
 
+	# 一些需要执行比较久的数据分析任务的列表
+	# 功能富集
+	# 功能注释
     public function task() {
         
     }
@@ -97,7 +84,7 @@ class app {
 
 		// 首先需要从session之中读取在服务器后台所保存的临时信息
 		// 
-		$vars          = $this->userInfo();
+		$vars          = userInfo::getUserInfo();
 		$vars["title"] = "My Settings";
 
 		view::Display($vars);
