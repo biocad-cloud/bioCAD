@@ -92,7 +92,7 @@ class app {
 			foreach ($projects as $project) {
 				$name = $project["name"];
 				$projID = $project["id"];
-				$project["name"] = "<a href='/app.php?app=explorer&proj=$projID'>$name</a>";
+				$project["name"] = "<a href='/app.php?app=explorer&project_id=$projID'>$name</a>";
 				$projectlist->AppendLine(View::InterpolateTemplate($template, $project));
 			}
 		} else {
@@ -108,14 +108,14 @@ class app {
 
 	public function explorer() {
 		$vars = Common::getUserInfo();
-		$vars["title"] = "File Explorer";
-
+		$vars["title"]      = "File Explorer";
+		$vars["project_id"] = $_GET["project_id"];
+		
 		view::Display($vars);
 	}
 
 	public function upload() {
-		$vars["title"] = "File Explorer Upload";
-		view::Display($vars);
+		view::Display($_GET);
 	}
 
 	# 一些需要执行比较久的数据分析任务的列表

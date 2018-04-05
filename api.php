@@ -29,6 +29,7 @@ class api {
         $source     = $file["tmp_name"][0];	
         $directory  = DotNetRegistry::Read(api::OSS, api::OSSDefault) . $workspace;
         $uniqueName = Utils::RandomASCIIString(16);
+        $suffix     = Utils::GetExtensionSuffix($file_name);
         $path       = "$directory/$uniqueName.dat";        
 						
         if (strlen($file_name) == 0) {
@@ -58,7 +59,8 @@ class api {
                 "upload_time" => Utils::Now(), 
                 "size"        => filesize($path), 
                 "md5"         => md5_file($path),
-                "uri"         => $uri
+                "uri"         => $uri,
+                "suffix"      => $suffix
             );
 
             (new Table("data_files"))->add($file);

@@ -71,7 +71,7 @@
 
 <body>
 	<div id="content" style="padding: 0px 0px 0px 0px; margin-top:0px;">
-		<form id="fileupload" action="{API/receive}&id={$id}&flag=1&type={$type}" method="post" enctype="multipart/form-data">
+		<form id="fileupload" action="{api/upload}&project={$project_id}&flag=1" method="post" enctype="multipart/form-data">
 
 			<div class="row fileupload-buttonbar" style="margin-left: 0px;">
 				<div class="col-lg-5" style="margin-top:1px;">
@@ -127,8 +127,7 @@
 <!-- The main application script -->
 <script type="text/javascript">
 
-	var success_counts = 0;
-	var type = "{$type}";
+	var success_counts = 0;	
 	var allUpload = false;
 
 	/* global $, window */
@@ -136,7 +135,7 @@
 		'use strict';
 
 		$('#fileupload').fileupload({
-			url: "{API/receive}&id={$id}&flag=1&type={$type}",
+			url: "{api/upload}&project={$project_id}&flag=1",
 			stop: function (e, data) {
 
 			},
