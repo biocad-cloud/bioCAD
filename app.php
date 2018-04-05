@@ -14,7 +14,7 @@ dotnet::writeMySqlLogs(TRUE);
 class app {
 
 	public function index() {
-		Redirect("/index.php?app=apps");
+		Redirect("{index/apps}&test=false");
 	}
 
 	/*
