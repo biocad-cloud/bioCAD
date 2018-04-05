@@ -114,6 +114,16 @@ class app {
 		$project_files      = (new Table("project_files"))->where(array("project_id" => $project_id))->select();
 		$project_files      = Enumerable::Select($project_files, "file_id");
 		$project_files      = Strings::Join($project_files, ", ");
+		$project_files      = (new Table("data_files"))->where("`id` IN ($project_files)")->select();
+		$project_files      = Common::Table($project_files, array(
+			"name"        => "Name", 
+			"size"        => "Size", 
+			"upload_time" => "Upload Time", 
+			"md5"         => "CheckSum", 
+			"description" => "Description"
+		));
+
+		$vars["files"] = $project_files;
 
 		view::Display($vars);
 	}
