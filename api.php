@@ -50,7 +50,9 @@ class api {
             echo dotnet::errorMsg("filesystem write permission denied!");
         } else {
 
-            $uri  = "$workspace/$uniqueName.dat"; 
+            $uri = "$workspace/$uniqueName.dat"; 
+            $uri = Strings::Replace($uri, "//", "/");
+
             # 文件上传成功了
             # 同时还需要添加数据库记录            
             $file = array(
