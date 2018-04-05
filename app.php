@@ -109,6 +109,8 @@ class app {
 		$vars["title"]      = "File Explorer";
 		$vars["project_id"] = $_GET["project_id"];
 		
+		echo json_encode($vars);
+
 		view::Display($vars);
 	}
 
