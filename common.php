@@ -73,7 +73,7 @@ class Common {
 		foreach ($table as $tr) {
 			$html->AppendLine('<tr class="row100 body">');
 
-			for ($i = 0; $ < count($theads); $i++) {
+			for ($i = 0; $i < count($theads); $i++) {
 				$value = $tr[$theads[$i]];
 				$index = $i + 1;
 
