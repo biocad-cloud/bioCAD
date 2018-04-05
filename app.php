@@ -114,6 +114,11 @@ class app {
 		view::Display($vars);
 	}
 
+	public function upload() {
+		$vars["title"] = "File Explorer Upload";
+		view::Display($vars);
+	}
+
 	# 一些需要执行比较久的数据分析任务的列表
 	# 功能富集
 	# 功能注释
