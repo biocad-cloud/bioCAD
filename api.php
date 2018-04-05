@@ -62,8 +62,8 @@ class api {
                 "uri"         => $uri,
                 "suffix"      => $suffix
             );
-
-            (new Table("data_files"))->add($file);
+            
+            $file_id = (new Table("data_files"))->add($file);
 
             echo dotnet::successMsg("success!");
         }
