@@ -2,8 +2,7 @@
 
 # Module file for handling HTML user interface
 include "./mod/dotnet/package.php";
-include "./html/view_common.php";
-include "./user_info.php";
+include "./common.php";
 
 Imports("Microsoft.VisualBasic.Conversion");
 
@@ -46,7 +45,7 @@ class app {
 	}
 
     public function project() {
-		$vars = userInfo::getUserInfo();
+		$vars = Common::getUserInfo();
 		$vars["title"] = "My Projects";
 		# 当前的页面的编号
 		$action = $_GET["action"];
@@ -108,7 +107,7 @@ class app {
     }
 
 	public function explorer() {
-		$vars = userInfo::getUserInfo();
+		$vars = Common::getUserInfo();
 		$vars["title"] = "File Explorer";
 
 		view::Display($vars);
@@ -133,7 +132,7 @@ class app {
 
 		// 首先需要从session之中读取在服务器后台所保存的临时信息
 		// 
-		$vars          = userInfo::getUserInfo();
+		$vars          = Common::getUserInfo();
 		$vars["title"] = "My Settings";
 
 		view::Display($vars);
