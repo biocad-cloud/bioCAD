@@ -3,8 +3,7 @@
 # home page
 
 include "./mod/dotnet/package.php";
-include "./html/view_common.php";
-include "./user_info.php";
+include "./common.php";
 
 dotnet::AutoLoad("./etc/config.php");
 dotnet::HandleRequest(new app());
@@ -17,25 +16,25 @@ class app {
 	 */
 
 	public function index() {
-		$vars          = userInfo::getUserInfo();
+		$vars          = Common::getUserInfo();
 		$vars["title"] = "bioCAD cloud platform";
 		view::Display($vars);
 	}
 
 	public function apps() {
-		$vars          = userInfo::getUserInfo();
+		$vars          = Common::getUserInfo();
 		$vars["title"] = "bioCAD Applications";
 		view::Display($vars);
 	}
 
 	public function downloads() {
-		$vars          = userInfo::getUserInfo();
+		$vars          = Common::getUserInfo();
 		$vars["title"] = "Download GCModeller";
 		view::Display($vars);
 	}
 
 	public function about() {
-		$vars          = userInfo::getUserInfo();
+		$vars          = Common::getUserInfo();
 		$vars["title"] = "About bioCAD";
 		view::Display($vars);
 	}
@@ -50,9 +49,10 @@ class app {
 			$result = $this->searchInternal($term);
 		}
 
-		$vars          = userInfo::getUserInfo();
-		$vars["title"] = "Search Result";
+		$vars           = Common::getUserInfo();
+		$vars["title"]  = "Search Result";
 		$vars["result"] = $result;
+		
 		view::Display($vars);
 	}
 
