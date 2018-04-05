@@ -52,9 +52,7 @@ class app {
 		$page = $_COOKIE["project_page"];
 		# 每一个分页的所显示的项目数量
 		$pagen = 3;
-		$start = 0;
-
-		echo $page . ">>>>>>";
+		$start = 0;		
 
 		if ($action) {
 
@@ -67,6 +65,7 @@ class app {
 			} elseif (Strings::LCase($action) == "previous") {
 				$page--;
 			}
+
 		} elseif (array_key_exists("page", $_GET)) {
 			$page = Conversion::CInt($_GET["page"]);
 		} else {
@@ -78,8 +77,7 @@ class app {
 		}
 
 		$start = $page * $pagen;
-
-		echo "$start = $page * $pagen";
+		# echo "$start = $page * $pagen";
 
 		// select limit a,b;
 		$projects = (new Table("project"))->select($start, $pagen);
