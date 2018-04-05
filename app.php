@@ -4,7 +4,9 @@
 include "./mod/dotnet/package.php";
 include "./common.php";
 
+Imports("System.Linq.Enumerable");
 Imports("Microsoft.VisualBasic.Conversion");
+Imports("Microsoft.VisualBasic.Strings");
 
 dotnet::AutoLoad("./etc/config.php");
 dotnet::HandleRequest(new app(), "./html/Application");
@@ -105,11 +107,13 @@ class app {
     }
 
 	public function explorer() {
-		$vars = Common::getUserInfo();
+		$vars               = Common::getUserInfo();
 		$vars["title"]      = "File Explorer";
-		$vars["project_id"] = $_GET["project_id"];
-		
-		echo json_encode($vars);
+		$project_id         = $_GET["project_id"];
+		$vars["project_id"] = $project_id;
+		$project_files      = (new Table("project_files"))->where(array("project_id" => $project_id))->select();
+		$project_files      = Enumerable::Select($project_files, "file_id");
+		$project_files      = Strings::Join($project_files, ", ");
 
 		view::Display($vars);
 	}
