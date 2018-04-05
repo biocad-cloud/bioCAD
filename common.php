@@ -34,6 +34,59 @@ class Common {
 
 		return $user;
 	}
+
+	/**
+	 * 
+	 * @param table: 最多只能够展示5列数据
+	 * 
+	*/
+	public static function Table($table, $columns = NULL) {
+		$template = View::Load("./html/includes/table.html");
+		$html     = new StringBuilder();
+		$theads   = NULL;
+		$tnames   = NULL;
+
+		if (!$columns) {
+			$theads = array_keys($table[0]);
+			$tnames = $theads;
+		} else {
+			$theads = array_keys($columns);
+			$tnames = array();
+			
+			foreach ($theads as $key) {
+				array_push($tnames, $columns[$key]);
+			}
+		}
+
+		# <th class="cell100 column1">column name</th>
+		for ($i = 0; $i < count($tnames); $i++) {
+			$name  = $tnames[$i];
+			$index = $i + 1;
+			$html->AppendLine("<th class='cell100 column$index'>$name</th>");
+		}
+		
+		$vars = array(
+			"theads" => $html->ToString()
+		);
+		$html->Clear();
+
+		foreach ($table as $tr) {
+			$html->AppendLine('<tr class="row100 body">');
+
+			for ($i = 0; $ < count($theads); $i++) {
+				$value = $tr[$theads[$i]];
+				$index = $i + 1;
+
+				$html->AppendLine("<td class='cell100 column$index'>$value</td>");
+			}			
+			
+			$html->AppendLine("</tr>");
+		}
+
+		$vars["rows"] = $html->ToString();
+
+		return View::InterpolateTemplate($template, $vars);
+	}
 }
 
 ?>
