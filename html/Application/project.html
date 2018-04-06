@@ -95,18 +95,18 @@
             });
 
             function cancel() {
-                $("#name").value = "";
-                $("#type").value = 0;
-                $("#note").value = "";
+                $("#name").val("");
+                $("select[name=type]").val(project_types[0].id);
+                $("#note").val("");
 
                 closeDialog();
             }
 
             function submit() {
                 var project = {
-                    "name": $("#name").value,
-                    "type": $("#type").value,
-                    "note": $("#note").value
+                    "name": $("#name").val(),
+                    "type": $("select[name=type]").val(),
+                    "note": $("#note").val()
                 };
 
                 $.post("{api/new_project}", project, function(json) {
