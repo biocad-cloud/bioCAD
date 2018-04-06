@@ -101,7 +101,10 @@ class app {
 
 		setcookie("project_page", $page, time() + 1000000);
 
+		$project_types = (new Table("project_types"))->all();
+
 		$vars["projects"] = $projectlist->ToString();
+		$vars["project_types"] = json_encode($project_types);
 
 		view::Display($vars);
     }
