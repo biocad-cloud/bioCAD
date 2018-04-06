@@ -1,5 +1,7 @@
 <?php
 
+Imports("System.Text.StringBuilder");
+
 class Common {
 
     public static function DisplayDropDownMenu($vars) {
