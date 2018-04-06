@@ -66,14 +66,17 @@ class api {
             );
             
             $file_id   = (new Table("data_files"))->add($file);
-            $associate = array(
-                "user_id"    => $user_id, 
-                "project_id" => $projID, 
-                "file_id"    => $file_id, 
-                "join_time"  => Utils::Now()
-            ); 
 
-            (new Table("project_files"))->add($associate);
+            if ($projID > -1) {
+                $associate = array(
+                    "user_id"    => $user_id, 
+                    "project_id" => $projID, 
+                    "file_id"    => $file_id, 
+                    "join_time"  => Utils::Now()
+                ); 
+    
+                (new Table("project_files"))->add($associate);
+            }
 
             echo dotnet::successMsg("success!");
         }

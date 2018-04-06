@@ -110,14 +110,22 @@ class app {
     }
 
 	public function explorer() {
-		$vars               = Common::getUserInfo();
-		$vars["title"]      = "File Explorer";
-		$project_id         = $_GET["project_id"];
-		$vars["project_id"] = $project_id;
-		$project_files      = (new Table("project_files"))->where(array("project_id" => $project_id))->select();
-		$project_files      = Enumerable::Select($project_files, "file_id");
-		$project_files      = Strings::Join($project_files, ", ");
-		$project_files      = (new Table("data_files"))->where("`id` IN ($project_files)")->select();
+		$vars              = Common::getUserInfo();
+		$vars["title"]     = "File Explorer";
+		$project_id        = $_GET["project_id"];
+		$user_id           = $_SESSION["user"]["id"];
+
+		if (!$project_id) {
+			$project_id    = -1;
+			$project_files = (new Table("data_files"))->where(array("user_id" => $user_id))->select();
+		} else {
+			$project_files = (new Table("project_files"))->where(array("project_id" => $project_id))->select();
+			$project_files = Enumerable::Select($project_files, "file_id");
+			$project_files = Strings::Join($project_files, ", ");
+			$project_files = (new Table("data_files"))->where("`id` IN ($project_files)")->select();
+		}
+
+		$vars["project_id"] = $project_id;		
 		$project_files      = Common::Table($project_files, array(
 			"name"        => "Name", 
 			"size"        => "Size", 
