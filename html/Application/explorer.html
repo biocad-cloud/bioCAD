@@ -4,21 +4,10 @@
 <html lang="en">
 
 <head>
-    <meta name="viewport" content="width=800, user-scalable=no"> ${../includes/head.html}
-
-    <link rel="stylesheet" href="/lib/Avgrund/modal.css">
-    <link rel="stylesheet" href="/lib/Avgrund/avgrund.css">
-
-    <script>
-        function openDialog() {
-            Avgrund.show("#default-popup");
-            $("#default-popup").show();
-        }
-        function closeDialog() {
-            Avgrund.hide();
-            $("#default-popup").hide();
-        }
-    </script>
+    <meta name="viewport" content="width=800, user-scalable=no"> 
+    
+    ${../includes/head.html} 
+    ${../includes/avgrund.html}
 
     <script type="text/javascript">
         // 客户的数据库编号，以及是否注册？
@@ -70,13 +59,15 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="/lib/Avgrund/avgrund.js"></script> ${../includes/footer.html}
+    ${../includes/footer.html}
 
-    <aside id="default-popup" class="avgrund-popup" style="display:none;">       
-            <iframe width="750" height="400" frameborder="no" border="0" style="margin-top:-190px;" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"
-            src="{app/upload}&project_id={$project_id}">
+   
+
+    <aside id="default-popup" class="avgrund-popup" style="display:none;">
+        <iframe width="750" height="400" frameborder="no" border="0" style="margin-top:-190px;" marginwidth="0" marginheight="0"
+            scrolling="no" allowtransparency="yes" src="{app/upload}&project_id={$project_id}">
         </iframe>
-      <br />
+        <br />
         <button onclick="javascript:closeDialog();" style="float: right;">Close</button>
     </aside>
 

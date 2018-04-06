@@ -2,12 +2,13 @@
 <html lang="en">
 
 <head>
-    ${../includes/head.html}
+    ${../includes/head.html} ${../includes/avgrund.html}
+
 
     <script type="text/javascript">
         // 客户的数据库编号，以及是否注册？
-        var user_id = {$user_id};
-        var is_certified = {$is_certified};
+        var user_id = { $user_id };
+        var is_certified = { $is_certified };
     </script>
 </head>
 
@@ -41,13 +42,55 @@
             </div>
             <div class="row">
                 <div class="large-12 columns">
-                    {$projects}
+                    <span style="font-size:2em;">
+                        <a href="#" onclick="javascript:openDialog();">
+                            <i class="fa fa-file"></i>New Project</a>
+                    </span>
+
+                    <div>
+                        {$projects}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     ${../includes/footer.html}
+
+    <aside id="default-popup" class="avgrund-popup" style="display:none;">
+        <form>
+            <p>
+                Project Name:
+                <input type="text" id="name" name="name"></input>
+            </p>
+            <p>
+                Project Type:
+                <input type="text" id="type" name="type"></input>
+            </p>
+            <p>
+                Note:
+                <textarea id="note" name="note"></textarea>
+            </p>
+        </form>
+        <br />
+        <button onclick="javascript:cancel();" style="float: right;">Cancel</button>
+        <button onclick="javascript:submit();" style="float: right;">Submit</button>
+        <script type="text/javascript">
+            function cancel() {
+                $("#name").value = "";
+                $("#type").value = 0;
+                $("#note").value = "";
+
+                closeDialog();
+            }
+
+            function submit() {
+
+            }
+        </script>
+    </aside>
+
+    <div class="avgrund-cover"></div>
 
 </body>
 

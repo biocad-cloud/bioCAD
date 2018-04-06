@@ -78,6 +78,10 @@ class api {
             echo dotnet::successMsg("success!");
         }
     }
+
+    public function new_project() {
+
+    }
 }
 
 ?>
