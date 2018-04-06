@@ -80,7 +80,21 @@ class api {
     }
 
     public function new_project() {
+        $user_id   = $_SESSION["user"]["id"];
+        $project  = $_POST;
+        $project["user_id"] = $user_id;
+        $project["description"] = $project["note"];
+        $project["create_time"] = Utils::Now();
+        $project["workspace"] = "/";
+        $projects = new Table("project");
+        $type = $project["type"];
 
+        $pid = $projects->add($project);
+        $project["workspace"] = "/projects/$type/$user_id/$pid/";
+
+        $projects->where(array("id" => $pid))->save($project);
+
+        echo dotnet::successMsg("Added!");
     }
 }
 

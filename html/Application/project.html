@@ -85,7 +85,23 @@
             }
 
             function submit() {
+                var project = {
+                    "name": $("#name").value
+                };
 
+                $.post("{api/new_project}", project, function(json) {
+                    var result = $.parseJSON(json);
+
+                    if (result.code != 0) {
+                        layer.msg(result.info, { icon: 5 }, function () {
+
+                        });
+                    } else {
+                        layer.msg(result.info, { icon: 1 }, function () {
+							location.reload();
+						});
+                    }
+                });
             }
         </script>
     </aside>
