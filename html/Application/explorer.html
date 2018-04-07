@@ -4,10 +4,7 @@
 <html lang="en">
 
 <head>
-    <meta name="viewport" content="width=800, user-scalable=no"> 
-    
-    ${../includes/head.html} 
-    ${../includes/avgrund.html}
+    <meta name="viewport" content="width=800, user-scalable=no"> ${../includes/head.html} ${../includes/avgrund.html}
 
     <script type="text/javascript">
         // 客户的数据库编号，以及是否注册？
@@ -50,18 +47,20 @@
                         <a href="#" onclick="javascript:openDialog();">
                             <i class="fa fa-cloud-upload"></i> Upload</a>
                     </span>
-
-                    <div>
-                        {$files}
-                    </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-12 columns">
+                {$files}
             </div>
         </div>
     </div>
 
     ${../includes/footer.html}
 
-   
+
 
     <aside id="default-popup" class="avgrund-popup" style="display:none;">
         <iframe width="750" height="450" frameborder="no" border="0" style="margin-top:-190px;" marginwidth="0" marginheight="0"
