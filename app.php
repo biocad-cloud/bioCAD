@@ -97,7 +97,8 @@ class app {
 				$projectlist->AppendLine(View::InterpolateTemplate($template, $project));
 			}
 		} else {
-			$projectlist->AppendLine("No project avaliable!");
+			$projectlist->AppendLine("No project avaliable!")
+						->AppendLine("Goto your <a href='app.php?app=explorer'>file pool explorer</a>.");
 		}
 
 		setcookie("project_page", $page, time() + 1000000);
