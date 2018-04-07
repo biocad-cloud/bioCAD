@@ -5,6 +5,7 @@ include "./mod/dotnet/package.php";
 include "./common.php";
 
 Imports("System.Linq.Enumerable");
+Imports("System.Text.StringBuilder");
 Imports("Microsoft.VisualBasic.Conversion");
 Imports("Microsoft.VisualBasic.Strings");
 
