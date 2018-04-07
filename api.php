@@ -3,6 +3,7 @@
 # Module file for handling biostack data analysis API
 include "./mod/dotnet/package.php";
 
+Imports("System.DateTime");
 Imports("Microsoft.VisualBasic.Strings");
 Imports("php.Utils");
 
@@ -20,13 +21,19 @@ class api {
         
         $file      = $_FILES["files"];
         $projID    = $_GET["project"];
-        $workspace = (new Table("project"))->where(array("id" => $projID))->findfield("workspace");
-        $workspace = "/$workspace/raw/";
+
+        // 所上传的文件都被统一的放置在用户的文件池之中
         $user_id   = $_SESSION["user"]["id"];        
+        $yy = System\DateTime::year();
+        $mm = System\DateTime::month();
+        $dd = System\DateTime::day();
+        $workspace = "/$user_id/data_files/$yy/$mm/$dd/";
         
+        # echo var_dump($_FILES);
+
         # DATA/$workspace/{fileName}      
-        $file_name  = $file["name"][0];
-        $source     = $file["tmp_name"][0];	
+        $file_name  = $file["name"];
+        $source     = $file["tmp_name"];	
         $directory  = DotNetRegistry::Read(api::OSS, api::OSSDefault) . $workspace;
         $uniqueName = Utils::RandomASCIIString(16);
         $suffix     = Utils::GetExtensionSuffix($file_name);
@@ -43,6 +50,9 @@ class api {
         if (file_exists($path)) {
             unlink($path);
         }
+
+        # echo $source . "\n";
+        # echo $path . "\n";
 
         move_uploaded_file($source, $path);
 
