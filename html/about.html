@@ -14,20 +14,51 @@
         <br />
         <br />
 
-        <div id="php7-banner" class="row panel">
+        <div class="row panel">
             <div class="row">
 
                 <div class="large-12 columns">
-                    <a href="https://github.com/SMRUCC/GCModeller/releases">
-                        <h3>Download GCModeller</h3>
-                    </a>
+                    <span style="font-size: 42px;">
+                        <strong>
+                            <i class="fa fa-windows"></i>
+                        </strong>
+                    </span>
+                    <button type="button" class="btn btn-primary" data-toggle="button" onclick="open_downloadPage();">
+                        <span style="font-size: 42px;">
+                            <i class="fa fa-download"></i>
+                        </span>
+                        <strong>Download GCModeller</strong>
+                    </button>
+
+                    <script type="text/javascript">
+                        function open_downloadPage() {
+                            var url = "https://github.com/SMRUCC/GCModeller/releases";
+                            var win = window.open(url, '_blank');
+                            win.focus();
+                        }                    
+                    </script>
                 </div>
 
             </div>
         </div>
-        <div id="breaking" class="row panel">
-            <div class="large-12 columns clearfix">
-                System Requirements:
+        <div id="" class="row panel">
+            <div class="large-12 columns">
+                <p>GCModeller is developed using latest VisualStudio and writen in VB.NET language.</p>
+                <p>System Requirements:
+
+                    <ul>
+                        <li>x64 based system.</li>
+                        <li>.NET Framework 4.7</li>
+                    </ul>
+
+                    Recommend for build GCModeller micro-services local computing cluster backend:
+
+                    <ul>
+                        <li>Windows Server 2016 (X64)</li>
+                        <li>i7 7700 / E3-1285 v4 and 16GB memory</li>
+                    </ul>
+                </p>
+
             </div>
         </div>
 
@@ -48,7 +79,7 @@
                 </p>
                 <p>
                     bioCAD and GCModeller was developed by master
-                    <a href="https://github.com/xieguigang">@xieguigang</a> and project funding by bionovogene corporation.
+                    <a href="https://github.com/xieguigang">@xieguigang</a> and project was funding by <a href="http://www.bionovogene.com/">BioNovoGene™</a> Corporation.
                 </p>
             </div>
         </div>

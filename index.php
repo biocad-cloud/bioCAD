@@ -29,13 +29,19 @@ class app {
 
 	public function biostack() {
 		$vars          = Common::getUserInfo();
-		$vars["title"] = "Map of current biostack";
+		$vars["title"] = "Map of Biostack";
 		view::Display($vars);
 	}
 
 	public function about() {
 		$vars          = Common::getUserInfo();
 		$vars["title"] = "About bioCAD";
+		view::Display($vars);
+	}
+
+	public function privacy_policy() {
+		$vars          = Common::getUserInfo();
+		$vars["title"] = "Privacy Policy";
 		view::Display($vars);
 	}
 
