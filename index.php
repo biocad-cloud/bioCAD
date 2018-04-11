@@ -27,9 +27,9 @@ class app {
 		view::Display($vars);
 	}
 
-	public function downloads() {
+	public function biostack() {
 		$vars          = Common::getUserInfo();
-		$vars["title"] = "Download GCModeller";
+		$vars["title"] = "Map of current biostack";
 		view::Display($vars);
 	}
 
