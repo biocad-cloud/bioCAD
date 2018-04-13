@@ -141,6 +141,13 @@ class app {
 		view::Display($vars);
 	}
 
+	public function imports() {
+		$vars = $_GET;
+		$vars["title"] = "Imports files";
+
+		view::Display($vars);
+	}
+
 	public function upload() {
 		view::Display($_GET);
 	}
