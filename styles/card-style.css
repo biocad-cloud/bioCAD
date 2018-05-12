@@ -15,31 +15,31 @@
 }
 
 .education {
-  --bg-color: #ffd861;
-  --bg-color-light: #ffeeba;
-  --text-color-hover: #4C5656;
-  --box-shadow-color: rgba(255, 215, 97, 0.48);
-}
-
-.credentialing {
-  --bg-color: #B8F9D3;
+  --bg-color: rgb(184, 249, 211);
   --bg-color-light: #e2fced;
   --text-color-hover: #4C5656;
   --box-shadow-color: rgba(184, 249, 211, 0.48);
 }
 
-.wallet {
-  --bg-color: #CEB2FC;
-  --bg-color-light: #F0E7FF;
+.credentialing {
+  --bg-color: rgb(255, 216, 97);
+  --bg-color-light: #ffeeba;
   --text-color-hover: #4C5656;
-  --box-shadow-color: rgba(206, 178, 252, 0.48);
+  --box-shadow-color: rgba(255, 216, 97, 0.48);
+}
+
+.wallet {
+  --bg-color: #001fac;
+  --bg-color-light: rgb(85, 0, 221);
+  --text-color-hover: #4C5656;
+  --box-shadow-color: rgba(0, 53, 151, 0.37);
 }
 
 .human-resources {
   --bg-color: #DCE9FF;
   --bg-color-light: #f1f7ff;
   --text-color-hover: #4C5656;
-  --box-shadow-color: rgba(220, 233, 255, 0.48);
+  --box-shadow-color: rgba(48, 214, 189, 0.48);
 }
 
 .card {
