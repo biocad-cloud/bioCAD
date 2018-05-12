@@ -8,8 +8,8 @@ function addSymbol() {
     if (rowNew || edit_lock) {
         // 不添加
         layer.msg("Can not add new row which edit data <br /> is not committed yet!", { icon: 5, time: 2000 });
-    } else {        
-        $('#symbol-table').append($('#hidden-template').html());        
+    } else {
+        $('#symbol-table').append($('#hidden-template').html());
     }
 
     edit_lock = true;
@@ -107,15 +107,31 @@ function edit_write(i) {
 
 function tableData(id) {
     var table = {};
-    var tr = $("#" + id + " tr").each(function () {
-        var row = [];
+    var names = [];
+    var headers = document.getElementById(id) // tbody
+        .parentNode                           // table
+        .childNodes[1]                        // thead
+        .childNodes[1]                        // tr
+        .childNodes.forEach(function (td) {
 
-        $(this).children("td").each(function () {
-            row.push($(this).text());
+            if (td.innerText) {
+                names.push(td.innerText);
+            }
         });
 
-        row.pop();
-        table[row[0]] = row;
+    console.log(names);
+
+    var tr = $("#" + id + " tr").each(function () {
+        var row = {};
+        var i = 0;
+
+        $(this).children("td").each(function () {
+            if (i < names.length - 1) {
+                row[names[i++]] = $(this).text();
+            }
+        });
+
+        table[row[names[0]]] = row;
     });
 
     console.log(table);
