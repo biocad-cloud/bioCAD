@@ -1,4 +1,4 @@
-<link href="http://www.biodeep.cn/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="http://www.biodeep.cn/css/bootstrap.min.css" rel="stylesheet" />
 <link href="http://gcmodeller.org/styles/font-awesome.css" rel="stylesheet" type="text/css">
 
 <script src="http://www.biodeep.cn/js/jquery.min.js"></script>
@@ -30,25 +30,33 @@
 
             <center>
 
-                <table style="width: 80%;">
-                    <thead>
-                        <tr>
-                            <th>NO.</th>
-                            <th>Symbol</th>
-                            <th>SampleID</th>
-                            <th>Operation</th>
-                        </tr>
-                    </thead>
-                    <tbody id="symbol-table">
+                <div class="table-responsive">
+                    <table style="width: 85%;" class="table">
+                        <thead>
+                            <tr>
+                                <th style="width:10%;">NO.</th>
+                                <th style="width:30%;">Symbol</th>
+                                <th style="width:30%;">SampleID</th>
+                                <th style="width:30%;">Operation</th>
+                            </tr>
+                        </thead>
+                        <tbody id="symbol-table">
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
 
                 <hr />
 
-                <a href="#" onclick="addSymbol();">
-                    <i class="fa fa-plus"></i> Add Symbol
-                </a>
+                <div style="width:100%; text-align: left;">
+
+                    <span style="margin-left: 5em;">
+                        <a href="#" onclick="addSymbol();">
+                            <i class="fa fa-plus"></i> Add Symbol
+                        </a>
+                    </span>
+
+                </div>
 
                 <script id="hidden-template" type="text/x-custom-template">
                     <tr>
@@ -68,6 +76,14 @@
                                 <a href="#" onclick="remove(this);">
                                     <span class="label label-warning">Remove</span>
                                 </a>
+                                <a href="#" onclick="edit(this);">
+                                    <span class="label label-info">Edit</span>
+                                </a>
+                            </div>
+                            <div class="edit-button" style="display:none;">
+                                <a href="#" onclick="edit_write(this.parentNode);">
+                                    <span class="label label-success">OK</span>
+                                </a>                                
                             </div>
                         </td>
                     <tr>
@@ -76,12 +92,13 @@
                 <script type="text/javascript">
 
                     var symbols = 0;
+                    var edit_lock = false;
 
                     function addSymbol() {
                         // 先检查是否存在没有写入数据的row
                         var rowNew = document.getElementById("row-new");
 
-                        if (rowNew) {
+                        if (rowNew || edit_lock) {
                             // 不添加
                         } else {
                             $('#symbol-table').append($('#hidden-template').html());
@@ -98,39 +115,101 @@
                         if (!$("#input-symbol").val() || !$("#input-sampleID").val()) {
                             // 给出输入不为空的警告
                         } else {
-                            var td = i.parentNode;    
+                            var td = i.parentNode;
                             var tr = td.parentNode;
 
-                            td.removeChild(i);  
+                            td.removeChild(i);
 
                             $(".remove-button").show();
-                            
+
                             var NO = ++symbols;
                             var symbol = $("#input-symbol").val();
                             var sampleID = $("#input-sampleID").val();
 
                             var childs = tr.childNodes;
 
-                            console.log(childs);
-
                             childs[1].innerText = NO;
                             childs[1].id = NO;
                             childs[3].innerText = symbol;
                             childs[5].innerText = sampleID;
-                        }                        
+
+                            tableData("symbol-table");
+                        }
                     }
 
                     function remove(i) {
                         var tr = i.parentNode  // div
-                                  .parentNode  // td
-                                  .parentNode; // tr
-
-                        console.log(tr);
+                            .parentNode  // td
+                            .parentNode; // tr                       
 
                         tr.parentNode.removeChild(tr);
                     }
+
+                    function edit(i) {
+                        var td = i.parentNode.parentNode;
+                        var tr = td.parentNode; // tr
+
+                        var childs = tr.childNodes;
+
+                        // console.log(childs);
+
+                        var symbol = childs[3].innerText;
+                        var sampleID = childs[5].innerText;
+
+                        childs[3].innerHTML = '<input id="input-symbol" type="text" style="width: 65%" class="form-control" value="' + symbol + '"></input>';
+                        childs[5].innerHTML = '<input id="input-sampleID" type="text" style="width: 65%" class="form-control" value="' + sampleID + '"></input>';
+
+                        i.parentNode.style.display = "none";
+
+                        var div = td.childNodes;
+
+                        div[4].style.display = "block";
+
+                        edit_lock = true;
+                    }
+
+                    function edit_write(i) {
+                        var td = i.parentNode;
+                        var tr = td.parentNode; // tr
+
+                        var childs = tr.childNodes;
+                        var symbol = $("#input-symbol").val();
+                        var sampleID = $("#input-sampleID").val();
+
+                        console.log(childs);
+
+                        childs[3].innerText = symbol;
+                        childs[5].innerText = sampleID;
+
+                        $(".remove-button").show();
+                        $(".edit-button").hide();
+
+                        edit_lock = false;
+
+                        tableData("symbol-table");
+                    }                    
                 </script>
 
+                <script language="javascript" type="text/javascript">
+                    function tableData(id) {
+                        var table = {};
+                        var tr = $("#" + id + " tr").each(function () {
+                            var row = [];
+
+                            $(this).children("td").each(function () {
+                                row.push($(this).text());
+                            });
+
+                            row.pop();
+                            table[row[0]] = row;
+                        });
+
+                        console.log(table);
+
+                        $(".remove-button").show();
+
+                    }                    
+                </script>
             </center>
 
         </div>
