@@ -8,20 +8,25 @@ function addSymbol() {
     if (rowNew || edit_lock) {
         // 不添加
         layer.msg("Can not add new row which edit data <br /> is not committed yet!", { icon: 5, time: 2000 });
-    } else {
-        $('#symbol-table').append($('#hidden-template').html());
+    } else {        
+        $('#symbol-table').append($('#hidden-template').html());        
     }
+
+    edit_lock = true;
 }
 
 function newRowCancel() {
     console.log("--");
     $('#symbol-table tr:last').remove();
     $('#symbol-table tr:last').remove();
+
+    edit_lock = false;
 }
 
 function newRowWrite(i) {
     if (!$("#input-symbol").val() || !$("#input-sampleID").val()) {
         // 给出输入不为空的警告
+        layer.msg("This row has empty column content!", { icon: 5, time: 2000 });
     } else {
         var td = i.parentNode;
         var tr = td.parentNode;
@@ -41,6 +46,8 @@ function newRowWrite(i) {
         childs[3].innerText = symbol;
         childs[5].innerText = sampleID;
 
+        edit_lock = false;
+
         tableData("symbol-table");
     }
 }
@@ -54,6 +61,11 @@ function remove(i) {
 }
 
 function edit(i) {
+
+    if (edit_lock) {
+        return;
+    }
+
     var td = i.parentNode.parentNode;
     var tr = td.parentNode; // tr
     var childs = tr.childNodes;

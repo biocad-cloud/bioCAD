@@ -24,42 +24,43 @@
         </li>
     </ul>
 
-    <div class="tab-content">
-        <div id="home" class="tab-pane fade in active">
+    <div class="row">
+        <div class="col-lg-12">
 
-            <br />
+            <div class="tab-content">
+                <div id="home" class="tab-pane fade in active">
 
-            <center>
+                    <br />
 
-                <div class="table-responsive">
-                    <table style="width: 85%;" class="table">
-                        <thead>
-                            <tr>
-                                <th style="width:10%;">NO.</th>
-                                <th style="width:30%;">Symbol</th>
-                                <th style="width:30%;">SampleID</th>
-                                <th style="width:30%;">Operation</th>
-                            </tr>
-                        </thead>
-                        <tbody id="symbol-table">
+                    <center>
 
-                        </tbody>
-                    </table>
-                </div>
+                        <div class="table-responsive">
+                            <table style="width: 85%;" class="table">
+                                <thead>
+                                    <tr>
+                                        <th style="width:10%;">NO.</th>
+                                        <th style="width:30%;">Symbol</th>
+                                        <th style="width:30%;">SampleID</th>
+                                        <th style="width:30%;">Operation</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="symbol-table">
 
-                <hr />
+                                </tbody>
+                            </table>
+                        </div>
 
-                <div style="width:100%; text-align: left;">
+                        <div style="width:100%; text-align: left;">
 
-                    <span style="margin-left: 5em;">
-                        <a href="#" onclick="addSymbol();">
-                            <i class="fa fa-plus"></i> Add Symbol
-                        </a>
-                    </span>
+                            <span style="margin-left: 5em;">
+                                <a href="#" onclick="addSymbol();">
+                                    <i class="fa fa-plus"></i> Add Symbol
+                                </a>
+                            </span>
 
-                </div>
+                        </div>
 
-                <script id="hidden-template" type="text/x-custom-template">
+                        <script id="hidden-template" type="text/x-custom-template">
                     <tr>
                         <td id="row-new"></td>
                         <td><input id="input-symbol" type="text" style="width: 65%" class="form-control"></input></td>
@@ -90,19 +91,160 @@
                     <tr>
                 </script>
 
-                <script src="./tableEditor.js" type="text/javascript">                    
-                </script>
-            </center>
+                        <script src="./tableEditor.js" type="text/javascript">                    
+                        </script>
+                    </center>
+
+                </div>
+                <div id="menu1" class="tab-pane fade">
+
+                    <br />
+
+                    <center>
+
+                        <div class="table-responsive">
+                            <table style="width: 100%;" class="table">
+                                <thead>
+                                    <tr>
+                                        <th style="width:5%;">NO.</th>
+                                        <th style="width:15%;">Sample ID</th>
+                                        <th style="width:15%;">Color</th>
+                                        <th style="width:15%;">Shape Type</th>
+                                        <th style="width:15%;">Sample Name</th>
+                                        <th style="width:15%;">Operation</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="sample-table">
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div style="width:100%; text-align: left;">
+
+                            <span style="margin-left: 5em;">
+                                <a href="#" onclick="addSymbol();">
+                                    <i class="fa fa-plus"></i> Add Symbol
+                                </a>
+                            </span>
+
+                        </div>
+
+                        <script id="hidden-template" type="text/x-custom-template">
+                        <tr>
+                            <td id="row-new"></td>
+                            <td><input id="input-symbol" type="text" style="width: 65%" class="form-control"></input></td>
+                            <td><input id="input-sampleID" type="text" style="width: 65%" class="form-control"></input></td>
+                            <td>
+                                <div id="row-new-pending">
+                                    <a href="#" onclick="newRowWrite(this.parentNode);">
+                                        <span class="label label-success">OK</span>
+                                    </a>&nbsp;
+                                    <a href="#" onclick="newRowCancel();">
+                                        <span class="label label-warning">Cancel</span>
+                                    </a>
+                                </div>
+                                <div class="remove-button" style="display:none;">
+                                    <a href="#" onclick="remove(this);">
+                                        <span class="label label-warning">Remove</span>
+                                    </a>
+                                    <a href="#" onclick="edit(this);">
+                                        <span class="label label-info">Edit</span>
+                                    </a>
+                                </div>
+                                <div class="edit-button" style="display:none;">
+                                    <a href="#" onclick="edit_write(this.parentNode);">
+                                        <span class="label label-success">OK</span>
+                                    </a>                                
+                                </div>
+                            </td>
+                        <tr>
+                    </script>
+
+                    </center>
+
+                </div>
+                <div id="menu2" class="tab-pane fade">
+
+                    <br />
+
+                    <center>
+
+                        <div class="table-responsive">
+                            <table style="width: 85%;" class="table">
+                                <thead>
+                                    <tr>
+                                        <th style="width:10%;">NO.</th>
+                                        <th style="width:30%;">Controls</th>
+                                        <th style="width:30%;">Treatment</th>
+                                        <th style="width:30%;">Note</th>
+                                        <th style="width:15%;">Operation</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="designer-table">
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div style="width:100%; text-align: left;">
+
+                            <span style="margin-left: 5em;">
+                                <a href="#" onclick="addSymbol();">
+                                    <i class="fa fa-plus"></i> Add Symbol
+                                </a>
+                            </span>
+
+                        </div>
+
+                        <script id="hidden-template" type="text/x-custom-template">
+                        <tr>
+                            <td id="row-new"></td>
+                            <td><input id="input-symbol" type="text" style="width: 65%" class="form-control"></input></td>
+                            <td><input id="input-sampleID" type="text" style="width: 65%" class="form-control"></input></td>
+                            <td>
+                                <div id="row-new-pending">
+                                    <a href="#" onclick="newRowWrite(this.parentNode);">
+                                        <span class="label label-success">OK</span>
+                                    </a>&nbsp;
+                                    <a href="#" onclick="newRowCancel();">
+                                        <span class="label label-warning">Cancel</span>
+                                    </a>
+                                </div>
+                                <div class="remove-button" style="display:none;">
+                                    <a href="#" onclick="remove(this);">
+                                        <span class="label label-warning">Remove</span>
+                                    </a>
+                                    <a href="#" onclick="edit(this);">
+                                        <span class="label label-info">Edit</span>
+                                    </a>
+                                </div>
+                                <div class="edit-button" style="display:none;">
+                                    <a href="#" onclick="edit_write(this.parentNode);">
+                                        <span class="label label-success">OK</span>
+                                    </a>                                
+                                </div>
+                            </td>
+                        <tr>
+                    </script>
+
+                    </center>
+
+                </div>
+            </div>
+
+            <hr />
+
+            <button type="button" style="padding-top: 0.85rem; padding-bottom: 0.25rem;" class="btn btn-primary" data-toggle="button"
+                onclick="open_downloadPage();">
+                <span>
+                    <i class="fa fa-eye"></i>
+                </span>
+                <strong>Previews</strong>
+            </button>
 
         </div>
-        <div id="menu1" class="tab-pane fade">
-            <h3>Menu 1</h3>
-            <p>Some content in menu 1.</p>
-        </div>
-        <div id="menu2" class="tab-pane fade">
-            <h3>Menu 2</h3>
-            <p>Some content in menu 2.</p>
-        </div>
     </div>
+
 
 </body>
