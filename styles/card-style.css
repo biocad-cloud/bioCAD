@@ -10,7 +10,7 @@
 }
 
 .icon-image {
-  width: 200px;
+  width: 180px;
   z-index: 20000;
 }
 
@@ -31,7 +31,7 @@
 .wallet {
   --bg-color: #CEB2FC;
   --bg-color-light: #F0E7FF;
-  --text-color-hover: #fff;
+  --text-color-hover: #4C5656;
   --box-shadow-color: rgba(206, 178, 252, 0.48);
 }
 
