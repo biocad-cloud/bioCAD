@@ -9,6 +9,11 @@
   margin-top: 20px;
 }
 
+.icon-image {
+  width: 200px;
+  z-index: 20000;
+}
+
 .education {
   --bg-color: #ffd861;
   --bg-color-light: #ffeeba;
@@ -61,7 +66,7 @@
 }
 
 .card:hover .overlay {
-  transform: scale(4) translateZ(0);
+  transform: scale(4) translateZ(-100);
 }
 
 .card:hover .circle {
@@ -131,6 +136,6 @@
   background: var(--bg-color);
   top: 70px;
   left: 50px;
-  z-index: 0;
+  z-index: -1;
   transition: transform 0.3s ease-out;
 }
