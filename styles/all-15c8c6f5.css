@@ -13,10 +13,6 @@ ol.no-number {
   list-style: none;
   margin-left: 0; }
 
-/* line 31, /Users/agugar/Projects/xampp/apachefriends-web/source/stylesheets/all.scss */
-code {
-  white-space: pre-line; }
-
 /* line 37, /Users/agugar/Projects/xampp/apachefriends-web/source/stylesheets/all.scss */
 ol.separate > li, ul.separate > li {
   border-bottom: 1px solid #ddd;
