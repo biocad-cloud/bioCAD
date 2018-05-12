@@ -1,6 +1,5 @@
 <?php
 
-# Module file for handling HTML user interface
 include "./mod/dotnet/package.php";
 include "./common.php";
 
@@ -11,9 +10,10 @@ Imports("Microsoft.VisualBasic.Strings");
 
 dotnet::AutoLoad("./etc/config.php");
 dotnet::HandleRequest(new app(), "./html/Application");
-// dotnet::printMySqlTransaction();
-dotnet::writeMySqlLogs(TRUE);
 
+/**
+ * Module file for handling HTML user interface
+*/
 class app {
 
 	public function index() {
@@ -128,13 +128,13 @@ class app {
 		}
 
 		$vars["project_id"] = $project_id;		
-		$project_files      = Common::Table($project_files, array(
+		$project_files      = Common::Table($project_files, [
 			"name"        => "Name", 
 			"size"        => "Size", 
 			"upload_time" => "Upload Time", 
 			"md5"         => "CheckSum", 
 			"description" => "Description"
-		));
+		]);
 
 		$vars["files"] = $project_files;
 

@@ -45,6 +45,12 @@ class app {
 		view::Display($vars);
 	}
 
+	public function login() {
+		$vars          = Common::getUserInfo();
+		$vars["title"] = "Login";
+		view::Display($vars);
+	}
+
 	public function search() {
 		$term = $_GET["q"];
 		$result = "";

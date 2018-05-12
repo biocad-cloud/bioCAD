@@ -1,6 +1,5 @@
 <?php
 
-# Module file for handling biostack data analysis API
 include "./mod/dotnet/package.php";
 
 Imports("System.DateTime");
@@ -9,9 +8,10 @@ Imports("php.Utils");
 
 dotnet::AutoLoad("./etc/config.php");
 dotnet::HandleRequest(new api());
-// dotnet::printMySqlTransaction();
-// dotnet::writeMySqlLogs(TRUE);
 
+/**
+ * Module file for handling biostack data analysis API
+*/
 class api {
 
     const OSS        = "bioCAD_OSS";
@@ -65,7 +65,7 @@ class api {
 
             # 文件上传成功了
             # 同时还需要添加数据库记录            
-            $file = array(
+            $file = [
                 "user_id"     => $user_id, 
                 "name"        => $file_name, 
                 "upload_time" => Utils::Now(), 
@@ -73,17 +73,17 @@ class api {
                 "md5"         => md5_file($path),
                 "uri"         => $uri,
                 "suffix"      => $suffix
-            );
+            ];
             
             $file_id   = (new Table("data_files"))->add($file);
 
             if ($projID > -1) {
-                $associate = array(
+                $associate = [
                     "user_id"    => $user_id, 
                     "project_id" => $projID, 
                     "file_id"    => $file_id, 
                     "join_time"  => Utils::Now()
-                ); 
+                ]; 
     
                 (new Table("project_files"))->add($associate);
             }
@@ -105,7 +105,7 @@ class api {
         $pid = $projects->add($project);
         $project["workspace"] = "/projects/$type/$user_id/$pid/";
 
-        $projects->where(array("id" => $pid))->save($project);
+        $projects->where(["id" => $pid])->save($project);
 
         echo dotnet::successMsg("Added!");
     }
