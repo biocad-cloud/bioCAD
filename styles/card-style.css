@@ -4,9 +4,9 @@
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-  height: 50vh;
+  height: 35vh;
   /* font-family: "Open Sans"; */
-  margin-top: 20px;
+  margin-top: 0px;
 }
 
 .icon-image {

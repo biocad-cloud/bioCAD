@@ -8071,7 +8071,7 @@ th.hide-for-touch {
   /* line 347, /Users/agugar/Projects/xampp/apachefriends-web/source/stylesheets/asciidoctor.css */
   .asciidoctor #footer {
     max-width: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: #333;
     padding: 1.25em; }
   /* line 349, /Users/agugar/Projects/xampp/apachefriends-web/source/stylesheets/asciidoctor.css */
   .asciidoctor #footer-text {
