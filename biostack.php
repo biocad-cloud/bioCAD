@@ -1,16 +1,17 @@
 <?php
 
-# Module file for handling biostack data analysis API
 include "./mod/dotnet/package.php";
+include "./common.php";
 
 Imports("Microsoft.VisualBasic.Strings");
 Imports("php.Utils");
 
 dotnet::AutoLoad("./etc/config.php");
-dotnet::HandleRequest(new biostack());
-// dotnet::printMySqlTransaction();
-// dotnet::writeMySqlLogs(TRUE);
+dotnet::HandleRequest(new biostack(), "./html/Application/");
 
+/**
+ * 数据分析模块的用户界面
+*/
 class biostack {
 
     public function index() {
@@ -25,6 +26,12 @@ class biostack {
         
     }
 
+    public function iTraq() {
+        $vars           = Common::getUserInfo();
+		$vars["title"]  = "iTraq data";		
+		
+		View::Show("./html/Application/proteomics/iTraq.html", $vars);
+    }
 }
 
 ?>

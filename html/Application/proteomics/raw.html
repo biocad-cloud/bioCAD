@@ -1,0 +1,147 @@
+<link href="http://www.biodeep.cn/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="http://gcmodeller.org/styles/font-awesome.css" rel="stylesheet" type="text/css">
+
+<script src="http://www.biodeep.cn/js/jquery.min.js"></script>
+<script src="http://www.biodeep.cn/js/bootstrap.min.js"></script>
+
+<body>
+
+    <!--
+            假设iTraq输入的原始矩阵数据任然是使用同位素的通道数字id来标记的
+            则这里就是将
+        -->
+
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a data-toggle="tab" href="#home">iTraq Symbols</a>
+        </li>
+        <li>
+            <a data-toggle="tab" href="#menu1">SampleInfo</a>
+        </li>
+        <li>
+            <a data-toggle="tab" href="#menu2">Experiment Designer</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+
+            <br />
+
+            <center>
+
+                <table style="width: 80%;">
+                    <thead>
+                        <tr>
+                            <th>NO.</th>
+                            <th>Symbol</th>
+                            <th>SampleID</th>
+                            <th>Operation</th>
+                        </tr>
+                    </thead>
+                    <tbody id="symbol-table">
+
+                    </tbody>
+                </table>
+
+                <hr />
+
+                <a href="#" onclick="addSymbol();">
+                    <i class="fa fa-plus"></i> Add Symbol
+                </a>
+
+                <script id="hidden-template" type="text/x-custom-template">
+                    <tr>
+                        <td id="row-new"></td>
+                        <td><input id="input-symbol" type="text" style="width: 65%" class="form-control"></input></td>
+                        <td><input id="input-sampleID" type="text" style="width: 65%" class="form-control"></input></td>
+                        <td>
+                            <div id="row-new-pending">
+                                <a href="#" onclick="newRowWrite(this.parentNode);">
+                                    <span class="label label-success">OK</span>
+                                </a>&nbsp;
+                                <a href="#" onclick="newRowCancel();">
+                                    <span class="label label-warning">Cancel</span>
+                                </a>
+                            </div>
+                            <div class="remove-button" style="display:none;">
+                                <a href="#" onclick="remove(this);">
+                                    <span class="label label-warning">Remove</span>
+                                </a>
+                            </div>
+                        </td>
+                    <tr>
+                </script>
+
+                <script type="text/javascript">
+
+                    var symbols = 0;
+
+                    function addSymbol() {
+                        // 先检查是否存在没有写入数据的row
+                        var rowNew = document.getElementById("row-new");
+
+                        if (rowNew) {
+                            // 不添加
+                        } else {
+                            $('#symbol-table').append($('#hidden-template').html());
+                        }
+                    }
+
+                    function newRowCancel() {
+                        console.log("--");
+                        $('#symbol-table tr:last').remove();
+                        $('#symbol-table tr:last').remove();
+                    }
+
+                    function newRowWrite(i) {
+                        if (!$("#input-symbol").val() || !$("#input-sampleID").val()) {
+                            // 给出输入不为空的警告
+                        } else {
+                            var td = i.parentNode;    
+                            var tr = td.parentNode;
+
+                            td.removeChild(i);  
+
+                            $(".remove-button").show();
+                            
+                            var NO = ++symbols;
+                            var symbol = $("#input-symbol").val();
+                            var sampleID = $("#input-sampleID").val();
+
+                            var childs = tr.childNodes;
+
+                            console.log(childs);
+
+                            childs[1].innerText = NO;
+                            childs[1].id = NO;
+                            childs[3].innerText = symbol;
+                            childs[5].innerText = sampleID;
+                        }                        
+                    }
+
+                    function remove(i) {
+                        var tr = i.parentNode  // div
+                                  .parentNode  // td
+                                  .parentNode; // tr
+
+                        console.log(tr);
+
+                        tr.parentNode.removeChild(tr);
+                    }
+                </script>
+
+            </center>
+
+        </div>
+        <div id="menu1" class="tab-pane fade">
+            <h3>Menu 1</h3>
+            <p>Some content in menu 1.</p>
+        </div>
+        <div id="menu2" class="tab-pane fade">
+            <h3>Menu 2</h3>
+            <p>Some content in menu 2.</p>
+        </div>
+    </div>
+
+</body>
