@@ -16,24 +16,30 @@
 
         <center>
 
+            <div>
+                <h1>Login bioCAD Cloud</h1>
+            </div>
+
             <div style="width:25%; min-width: 200px;">
+                <hr />
+
                 <form>
 
-                    <table style="width:100%;">
-                        <tr>
-                            <td>
-                                <label for="account">bioCAD Account: </label>
+                    <table style="width:100%; background-color:white;">
+                        <tr style="background-color:white;">
+                            <td width="20%">
+                                <label for="account">Passport: </label>
                             </td>
                             <td>
-                                <input name="account" type="text" placeholder="Account or E-mail"></input>
+                                <input name="account" class="form-control" type="text" placeholder="Account or E-mail"></input>
                             </td>
                         </tr>
-                        <tr>
+                        <tr style="background-color:white;">
                             <td>
                                 <label for="password">Password: </label>
                             </td>
                             <td>
-                                <input name="password" type="password" placeholder="Account password"></input>
+                                <input name="password" class="form-control" type="password" placeholder="Account password"></input>
                             </td>
                         </tr>
                     </table>
@@ -42,7 +48,6 @@
 
                         <span style="text-align: left;">
                             <a href="{index/forget_password}">Forget password?</a>
-
                         </span>
 
                         <span style="text-align: right;">

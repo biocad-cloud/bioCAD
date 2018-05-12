@@ -82,6 +82,13 @@ class app {
 					"term" => $term
 		));
 	}
+
+	public function change_log() {
+		$vars           = Common::getUserInfo();
+		$vars["title"]  = "bioCAD changelog";		
+		
+		view::Display($vars);
+	}
 }
 
 ?>
