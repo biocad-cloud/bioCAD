@@ -5,6 +5,7 @@
   align-items: center;
   flex-wrap: wrap;
   height: 30vh;
+  min-height: 350px;
   /* font-family: "Open Sans"; */
   margin-top: 0px;
 }
