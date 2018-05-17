@@ -5,7 +5,7 @@
     private tbody: HTMLElement;
 
     public edit_lock: boolean;
-    public warningEditLock: any;
+    public warningEditLock: VoidFunction;
 
     /**
      * 这个构造函数将会创建一个新的table对象
@@ -15,10 +15,12 @@
     constructor(headers: string[], id: string,
         style: string = null,
         className: string = null,
-        tdWidth: string[] = null) {
+        tdWidth: string[] = null,
+        warning: VoidFunction = null) {
 
         this.headers = headers;
         this.rowNumbers = 0;
+        this.warningEditLock = warning;
 
         var table = document.createElement("table");
         var thead = document.createElement("thead");
@@ -54,7 +56,7 @@
     public addNew(): editor {
         if (this.edit_lock) {
             if (!this.warningEditLock) {
-                this.warningEditLock;
+                this.warningEditLock();
             }
 
             return null;

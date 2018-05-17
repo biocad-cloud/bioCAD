@@ -56,11 +56,10 @@
                                 "itraq-symbols",
                                 "width: 85%;",
                                 "table",
-                                ["width: 10%", "width: 30%", "width: 30%"]);
-
-                            iTraqSymbols.warningEditLock = function() {
-                                console.log("please commit current change");
-                            }
+                                ["width: 10%", "width: 30%", "width: 30%"],
+                                function () {
+                                    console.log("please commit current change");
+                                });
 
                             function addSymbol() {
                                 iTraqSymbols.addNew();
