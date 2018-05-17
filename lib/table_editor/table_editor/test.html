@@ -1,0 +1,14 @@
+<script type="text/javascript" src="bin/table_editor.js"></script>
+
+
+<div id="test-table">
+
+</div>
+
+<a href="#" id="add-new-row">Add New</a>
+
+<script type="text/javascript">
+    var test_tableEditor = new tableEditor(["a1", "a2", "dd", "gg"], "test-table");
+
+    document.getElementById("add-new-row").onclick = test_tableEditor.addNew;
+</script>

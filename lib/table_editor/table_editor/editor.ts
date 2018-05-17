@@ -1,4 +1,4 @@
-﻿class table {
+﻿class tableEditor {
 
     public headers: string[];
     public rowNumbers: number;
@@ -12,6 +12,9 @@
     constructor(headers: string[], id: string) {
         this.headers = headers;
         this.rowNumbers = 0;
+
+        console.log(this.headers);
+        console.log(headers);
 
         var table = document.createElement("table");
         var thead = document.createElement("thead");
@@ -39,6 +42,8 @@
         var i = this.rowNumbers++;
 
         tr.id = `row-${i}`;
+
+        console.log(this.headers);
 
         this.headers.forEach((name) => {
             var td = document.createElement("td");
