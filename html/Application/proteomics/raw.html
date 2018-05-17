@@ -64,6 +64,10 @@
                             function addSymbol() {
                                 iTraqSymbols.addNew();
                             }
+
+                            function preview_iTraqSymbols() {
+                                console.log(iTraqSymbols.TableData());
+                            }
                         </script>
                     </center>
 
@@ -208,12 +212,18 @@
             <hr />
 
             <button type="button" style="padding-top: 0.85rem; padding-bottom: 0.25rem;" class="btn btn-primary" data-toggle="button"
-                onclick="open_downloadPage();">
+                onclick="previews();">
                 <span>
                     <i class="fa fa-eye"></i>
                 </span>
                 <strong>Previews</strong>
             </button>
+
+            <script type="text/javascript">
+                function previews() {
+                    preview_iTraqSymbols();
+                }
+            </script>
 
         </div>
     </div>
