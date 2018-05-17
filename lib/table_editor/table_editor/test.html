@@ -10,5 +10,9 @@
 <script type="text/javascript">
     var test_tableEditor = new tableEditor(["a1", "a2", "dd", "gg"], "test-table");
 
-    document.getElementById("add-new-row").onclick = test_tableEditor.addNew;
+    console.log(test_tableEditor);
+
+    document.getElementById("add-new-row").onclick = function() {
+        test_tableEditor.addNew();
+    }
 </script>

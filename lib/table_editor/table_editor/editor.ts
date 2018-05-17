@@ -1,8 +1,8 @@
 ﻿class tableEditor {
 
-    public headers: string[];
-    public rowNumbers: number;
-    public tbody: HTMLElement;
+    private headers: string[];
+    private rowNumbers: number;
+    private tbody: HTMLElement;
 
     /**
      * 这个构造函数将会创建一个新的table对象
@@ -12,9 +12,6 @@
     constructor(headers: string[], id: string) {
         this.headers = headers;
         this.rowNumbers = 0;
-
-        console.log(this.headers);
-        console.log(headers);
 
         var table = document.createElement("table");
         var thead = document.createElement("thead");
@@ -43,8 +40,6 @@
 
         tr.id = `row-${i}`;
 
-        console.log(this.headers);
-
         this.headers.forEach((name) => {
             var td = document.createElement("td");
             var text = document.createElement("div");
@@ -69,6 +64,8 @@
 
         tr.appendChild(editor_td);
         var NULL = new editor(editor_td);
+
+        this.tbody.appendChild(tr);
     }
 }
 
@@ -105,11 +102,11 @@ class editor {
         this.edit_lock = false;
 
         // 进行按钮的事件绑定
-        this.getElementById("confirm").onclick = this.confirmNew;
-        this.getElementById("cancel").onclick = this.cancelAddNew;
-        this.getElementById("remove").onclick = this.removeCurrent;
-        this.getElementById("edit").onclick = this.editThis;
-        this.getElementById("ok").onclick = this.confirmEdit;
+        this.getElementById("confirm").onclick = () => { this.confirmNew() };
+        this.getElementById("cancel").onclick = () => { this.cancelAddNew() };
+        this.getElementById("remove").onclick = () => { this.removeCurrent() };
+        this.getElementById("edit").onclick = () => { this.editThis() };
+        this.getElementById("ok").onclick = () => { this.confirmEdit() };
     }
 
     public getElementById(id: string): HTMLElement {
