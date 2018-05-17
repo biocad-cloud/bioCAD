@@ -25,7 +25,7 @@
         }
 
         this.headers = headers;
-        this.rowNumbers = 0;
+        this.rowNumbers = 1;
         this.warningEditLock = warning;
         this.showRowNumber = showRowNumber;
 
@@ -109,6 +109,32 @@
         this.edit_lock = true;
 
         return new editor(tr, this.tbody, this);
+    }
+
+    public TableData(): Object[] {
+        var table: Object[] = [];
+        var trList = this.tbody.getElementsByTagName("tr");
+
+        for (var i = 0; i < trList.length; i++) {
+            var tr = trList[i];
+            var tdList = tr.getElementsByTagName("td");
+            var row: Object = {};
+
+            for (var j = 0; j < tdList.length - 1; j++) {
+                var td = tdList[j];
+                var text: HTMLElement = td.getElementsByTagName("div")[0];
+
+                if (text) {
+                    row[this.headers[j]] = text.innerText;
+                } else {
+                    row[this.headers[j]] = td.innerText;
+                }
+            }
+
+            table.push(row);
+        }
+
+        return table;
     }
 }
 
@@ -207,7 +233,7 @@ class editor {
             if (textDisplay && inputBox) {
                 textDisplay.innerText = inputBox.value;
                 textDisplay.style.display = "block";
-    
+
                 inputBox.style.display = "none";
             }
         }
@@ -226,7 +252,7 @@ class editor {
             if (textDisplay && inputBox) {
                 inputBox.value = textDisplay.innerText;
                 inputBox.style.display = "block";
-    
+
                 textDisplay.style.display = "none";
             }
         }
