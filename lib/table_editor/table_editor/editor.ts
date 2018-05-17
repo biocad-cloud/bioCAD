@@ -134,9 +134,17 @@ class editor {
         return null;
     }
 
+    public show(id: string) {
+        this.getElementById(id).style.display = "block";
+    }
+
+    public hide(id: string) {
+        this.getElementById(id).style.display = "none";
+    }
+
     public confirmNew() {
-        this.getElementById("row-new-pending").style.display = "none";
-        this.getElementById("remove-button").style.display = "block";
+        this.hide("row-new-pending");
+        this.show("remove-button");
         this.edit_lock = false;
     }
 
