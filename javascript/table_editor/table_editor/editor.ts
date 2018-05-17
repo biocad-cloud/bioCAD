@@ -12,7 +12,11 @@
      * 
      * @param id id value of a <div> tag. 
     */
-    constructor(headers: string[], id: string) {
+    constructor(headers: string[], id: string,
+        style: string = null,
+        className: string = null,
+        tdWidth: string[] = null) {
+
         this.headers = headers;
         this.rowNumbers = 0;
 
@@ -24,13 +28,24 @@
         table.appendChild(thead);
         table.appendChild(tbody);
 
+        if (style) {
+            table.setAttribute("style", style);
+        }
+        if (className) {
+            table.className = className;
+        }
+
         var tr = document.createElement("tr");
         thead.appendChild(tr);
 
-        headers.forEach(header => {
+        headers.forEach((header, i) => {
             var th = document.createElement("th");
             th.innerText = header;
             thead.appendChild(th);
+
+            if (tdWidth) {
+                th.setAttribute("style", tdWidth[i]);
+            }
         });
 
         this.tbody = tbody;
@@ -39,13 +54,13 @@
     public addNew(): editor {
         if (this.edit_lock) {
             if (!this.warningEditLock) {
-                this.warningEditLock();
+                this.warningEditLock;
             }
 
             return null;
         } else {
             return this.addNewInternal();
-        }       
+        }
     }
 
     private addNewInternal(): editor {
@@ -190,9 +205,9 @@ class editor {
             var textDisplay: HTMLElement = td.getElementsByTagName("div")[0];
             var inputBox: HTMLElement = td.getElementsByTagName("input")[0];
 
-            inputBox.value = textDisplay.innerText;            
+            inputBox.value = textDisplay.innerText;
             inputBox.style.display = "block";
-            
+
             textDisplay.style.display = "none";
         }
     }

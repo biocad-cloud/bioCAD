@@ -5,6 +5,8 @@
 <script src="http://www.biodeep.cn/js/bootstrap.min.js"></script>
 <script src="http://www.biodeep.cn/js/layer-v2.1/layer/layer.js"></script>
 
+<script src="/javascript/table_editor/table_editor/bin/table_editor.js"></script>
+
 <body>
 
     <!--
@@ -34,20 +36,8 @@
 
                     <center>
 
-                        <div class="table-responsive">
-                            <table style="width: 85%;" class="table">
-                                <thead>
-                                    <tr>
-                                        <th style="width:10%;">NO.</th>
-                                        <th style="width:30%;">Symbol</th>
-                                        <th style="width:30%;">SampleID</th>
-                                        <th style="width:30%;">Operation</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="symbol-table">
+                        <div id="itraq-symbols" class="table-responsive">
 
-                                </tbody>
-                            </table>
                         </div>
 
                         <div style="width:100%; text-align: left;">
@@ -60,38 +50,21 @@
 
                         </div>
 
-                        <script id="hidden-template" type="text/x-custom-template">
-                    <tr>
-                        <td id="row-new"></td>
-                        <td><input id="input-symbol" type="text" style="width: 65%" class="form-control"></input></td>
-                        <td><input id="input-sampleID" type="text" style="width: 65%" class="form-control"></input></td>
-                        <td>
-                            <div id="row-new-pending">
-                                <a href="#" onclick="newRowWrite(this.parentNode);">
-                                    <span class="label label-success">OK</span>
-                                </a>&nbsp;
-                                <a href="#" onclick="newRowCancel();">
-                                    <span class="label label-warning">Cancel</span>
-                                </a>
-                            </div>
-                            <div class="remove-button" style="display:none;">
-                                <a href="#" onclick="remove(this);">
-                                    <span class="label label-warning">Remove</span>
-                                </a>
-                                <a href="#" onclick="edit(this);">
-                                    <span class="label label-info">Edit</span>
-                                </a>
-                            </div>
-                            <div class="edit-button" style="display:none;">
-                                <a href="#" onclick="edit_write(this.parentNode);">
-                                    <span class="label label-success">OK</span>
-                                </a>                                
-                            </div>
-                        </td>
-                    <tr>
-                </script>
+                        <script type="text/javascript">
+                            var iTraqSymbols = new tableEditor(
+                                ["NO.", "Symbol", "Sample ID"],
+                                "itraq-symbols",
+                                "width: 85%;",
+                                "table",
+                                ["width: 10%", "width: 30%", "width: 30%"]);
 
-                        <script src="./tableEditor.js" type="text/javascript">                    
+                            iTraqSymbols.warningEditLock = function() {
+                                console.log("please commit current change");
+                            }
+
+                            function addSymbol() {
+                                iTraqSymbols.addNew();
+                            }
                         </script>
                     </center>
 
