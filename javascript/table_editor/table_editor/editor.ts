@@ -3,6 +3,7 @@
     private headers: string[];
     private rowNumbers: number;
     private tbody: HTMLElement;
+    private showRowNumber: boolean;
 
     public edit_lock: boolean;
     public warningEditLock: VoidFunction;
@@ -16,11 +17,17 @@
         style: string = null,
         className: string = null,
         tdWidth: string[] = null,
-        warning: VoidFunction = null) {
+        warning: VoidFunction = null,
+        showRowNumber: boolean = true) {
+
+        if (showRowNumber) {
+            headers = ["NO."].concat(headers);
+        }
 
         this.headers = headers;
         this.rowNumbers = 0;
         this.warningEditLock = warning;
+        this.showRowNumber = showRowNumber;
 
         var table = document.createElement("table");
         var thead = document.createElement("thead");
@@ -69,24 +76,31 @@
         // 根据header的数量来生成对应的列
         var tr = document.createElement("tr");
         var i = this.rowNumbers++;
+        var displayRowNumber: boolean = this.showRowNumber;
 
         tr.id = `row-${i}`;
 
         this.headers.forEach((name) => {
             var td = document.createElement("td");
-            var text = document.createElement("div");
 
-            text.id = "text";
-            td.appendChild(text);
+            if (displayRowNumber) {
+                displayRowNumber = false;
+                td.innerText = i.toString();
+            } else {
+                var text = document.createElement("div");
 
-            // <input id="input-symbol" type="text" style="width: 65%" class="form-control"></input>
-            var input = document.createElement("input");
-            input.id = `input-${name}`;
-            input.type = "text";
-            input.style.width = "65%";
-            input.className = "form-control";
+                text.id = "text";
+                td.appendChild(text);
 
-            td.appendChild(input);
+                // <input id="input-symbol" type="text" style="width: 65%" class="form-control"></input>
+                var input = document.createElement("input");
+                input.id = `input-${name}`;
+                input.type = "text";
+                input.style.width = "85%";
+                input.className = "form-control";
+
+                td.appendChild(input);
+            }
 
             tr.appendChild(td);
         });
@@ -190,10 +204,12 @@ class editor {
             var textDisplay: HTMLElement = td.getElementsByTagName("div")[0];
             var inputBox: HTMLElement = td.getElementsByTagName("input")[0];
 
-            textDisplay.innerText = inputBox.value;
-            textDisplay.style.display = "block";
-
-            inputBox.style.display = "none";
+            if (textDisplay && inputBox) {
+                textDisplay.innerText = inputBox.value;
+                textDisplay.style.display = "block";
+    
+                inputBox.style.display = "none";
+            }
         }
     }
 
@@ -207,10 +223,12 @@ class editor {
             var textDisplay: HTMLElement = td.getElementsByTagName("div")[0];
             var inputBox: HTMLElement = td.getElementsByTagName("input")[0];
 
-            inputBox.value = textDisplay.innerText;
-            inputBox.style.display = "block";
-
-            textDisplay.style.display = "none";
+            if (textDisplay && inputBox) {
+                inputBox.value = textDisplay.innerText;
+                inputBox.style.display = "block";
+    
+                textDisplay.style.display = "none";
+            }
         }
     }
 
