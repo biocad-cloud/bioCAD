@@ -10,6 +10,10 @@
 <script type="text/javascript">
     var test_tableEditor = new tableEditor(["a1", "a2", "dd", "gg"], "test-table");
 
+    test_tableEditor.warningEditLock = function() {
+        console.log("Please perfance later after commit current edit");
+    }
+
     console.log(test_tableEditor);
 
     document.getElementById("add-new-row").onclick = function() {

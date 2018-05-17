@@ -4,6 +4,9 @@
     private rowNumbers: number;
     private tbody: HTMLElement;
 
+    public edit_lock: boolean;
+    public warningEditLock: any;
+
     /**
      * 这个构造函数将会创建一个新的table对象
      * 
@@ -33,7 +36,19 @@
         this.tbody = tbody;
     }
 
-    public addNew() {
+    public addNew(): editor {
+        if (this.edit_lock) {
+            if (!this.warningEditLock) {
+                this.warningEditLock();
+            }
+
+            return null;
+        } else {
+            return this.addNewInternal();
+        }       
+    }
+
+    private addNewInternal(): editor {
         // 根据header的数量来生成对应的列
         var tr = document.createElement("tr");
         var i = this.rowNumbers++;
@@ -59,47 +74,53 @@
             tr.appendChild(td);
         });
 
-        var editor_td = document.createElement("td");
-        editor_td.innerHTML = editor_template;
-
-        tr.appendChild(editor_td);
-        var NULL = new editor(editor_td);
-
         this.tbody.appendChild(tr);
+        this.edit_lock = true;
+
+        return new editor(tr, this.tbody, this);
     }
 }
-
-const editor_template: string = '\
-    <div id="row-new-pending">\
-        <a href="#" id="confirm" onclick="newRowWrite(this.parentNode);" >\
-            <span class="label label-success">OK</span>\
-        </a>&nbsp;\
-        <a href="#" id="cancel" onclick="newRowCancel();">\
-            <span class="label label-warning">Cancel</span>\
-        </a>\
-    </div>\
-    <div id="remove-button" style="display:none;">\
-        <a href="#" id="remove" onclick="remove(this);">\
-            <span class="label label-warning">Remove</span>\
-        </a>\
-        <a href="#" id="edit" onclick="edit(this);">\
-            <span class="label label-info">Edit</span>\
-        </a>\
-    </div>\
-    <div id="edit-button" style="display:none;">\
-        <a href="#" id="ok" onclick="edit_write(this.parentNode);">\
-            <span class="label label-success">OK</span>\
-        </a>\
-    </div>';
 
 class editor {
 
     private td: HTMLElement;
-    private edit_lock: boolean;
+    private tr: HTMLElement;
+    private tbody: HTMLElement;
+    private table: tableEditor;
 
-    constructor(td: HTMLElement) {
+    public static readonly editor_template: string = '\
+        <div id="row-new-pending">\
+            <a href="#" id="confirm" onclick="newRowWrite(this.parentNode);" >\
+                <span class="label label-success">OK</span>\
+            </a>&nbsp;\
+            <a href="#" id="cancel" onclick="newRowCancel();">\
+                <span class="label label-warning">Cancel</span>\
+            </a>\
+        </div>\
+        <div id="remove-button" style="display:none;">\
+            <a href="#" id="remove" onclick="remove(this);">\
+                <span class="label label-warning">Remove</span>\
+            </a>\
+            <a href="#" id="edit" onclick="edit(this);">\
+                <span class="label label-info">Edit</span>\
+            </a>\
+        </div>\
+        <div id="edit-button" style="display:none;">\
+            <a href="#" id="ok" onclick="edit_write(this.parentNode);">\
+                <span class="label label-success">OK</span>\
+            </a>\
+        </div>';
+
+    constructor(tr: HTMLElement, tbody: HTMLElement, table: tableEditor) {
+        var td = document.createElement("td");
+
+        td.innerHTML = editor.editor_template;
+        tr.appendChild(td);
+
+        this.tr = tr;
+        this.tbody = tbody;
         this.td = td;
-        this.edit_lock = false;
+        this.table = table;
 
         // 进行按钮的事件绑定
         this.getElementById("confirm").onclick = () => { this.confirmNew() };
@@ -142,26 +163,68 @@ class editor {
         this.getElementById(id).style.display = "none";
     }
 
+    public hideInputs() {
+        var tdList = this.tr.getElementsByTagName("td");
+
+        // 最后一个td是editor的td，没有输入框
+        // 所以在这里-1跳过最后一个td
+        for (var i = 0; i < tdList.length - 1; i++) {
+            var td = tdList[i];
+            var textDisplay: HTMLElement = td.getElementsByTagName("div")[0];
+            var inputBox: HTMLElement = td.getElementsByTagName("input")[0];
+
+            textDisplay.innerText = inputBox.value;
+            textDisplay.style.display = "block";
+
+            inputBox.style.display = "none";
+        }
+    }
+
+    public showInputs() {
+        var tdList = this.tr.getElementsByTagName("td");
+
+        // 最后一个td是editor的td，没有输入框
+        // 所以在这里-1跳过最后一个td
+        for (var i = 0; i < tdList.length - 1; i++) {
+            var td = tdList[i];
+            var textDisplay: HTMLElement = td.getElementsByTagName("div")[0];
+            var inputBox: HTMLElement = td.getElementsByTagName("input")[0];
+
+            inputBox.value = textDisplay.innerText;            
+            inputBox.style.display = "block";
+            
+            textDisplay.style.display = "none";
+        }
+    }
+
     public confirmNew() {
         this.hide("row-new-pending");
         this.show("remove-button");
-        this.edit_lock = false;
+        this.hideInputs();
+        this.table.edit_lock = false;
     }
 
     public cancelAddNew() {
-
+        this.tr.remove();
+        this.table.edit_lock = false;
     }
 
     public removeCurrent() {
-
+        this.tr.remove();
     }
 
     public editThis() {
-
+        this.showInputs();
+        this.hide("remove-button");
+        this.show("edit-button");
+        this.table.edit_lock = true;
     }
 
     public confirmEdit() {
-
+        this.hideInputs();
+        this.show("remove-button");
+        this.hide("edit-button");
+        this.table.edit_lock = false;
     }
 }
 
