@@ -42,11 +42,6 @@ class app {
 		echo $config;
 	}
 
-	// 登录页面
-	public function login() {
-
-	}
-
     public function project() {
 		$vars = Common::getUserInfo();
 		$vars["title"] = "My Projects";
