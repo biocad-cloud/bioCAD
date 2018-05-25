@@ -2,7 +2,7 @@
 
 # home page
 
-include "./mod/dotnet/package.php";
+include "./modules/dotnet/package.php";
 include "./common.php";
 
 dotnet::AutoLoad("./etc/config.php");

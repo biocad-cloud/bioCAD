@@ -1,6 +1,6 @@
 <?php
 
-include "./mod/dotnet/package.php";
+include "./modules/dotnet/package.php";
 include "./common.php";
 
 Imports("Microsoft.VisualBasic.Strings");

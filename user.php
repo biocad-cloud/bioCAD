@@ -1,7 +1,7 @@
 <?php
 
 # Module file for handling biostack data analysis API
-include "./mod/dotnet/package.php";
+include "./modules/dotnet/package.php";
 
 Imports("Microsoft.VisualBasic.Strings");
 

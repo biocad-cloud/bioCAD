@@ -1,6 +1,6 @@
 <?php
 
-include "./mod/dotnet/package.php";
+include "./modules/dotnet/package.php";
 
 Imports("System.DateTime");
 Imports("Microsoft.VisualBasic.Strings");
