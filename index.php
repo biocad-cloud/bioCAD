@@ -22,14 +22,11 @@ class app {
 	}
 
 	public function apps() {
-		$vars          = Common::getUserInfo();
-		$vars["title"] = "bioCAD Applications";
-
-		$breadcrumb = [
-			["link" => "{index/apps}", "icon" => "fa-app", "title" => "Applications"]
+		$vars               = Common::getUserInfo();
+		$vars["title"]      = "bioCAD Applications";
+		$vars["breadcrumb"] = [
+			["link" => "{index/apps}", "icon" => "fa-project-diagram", "title" => "Applications"]
 		];
-
-		$vars["breadcrumb"] = $breadcrumb;
 
 		view::Display($vars);
 	}
