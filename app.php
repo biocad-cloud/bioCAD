@@ -102,6 +102,10 @@ class app {
 
 		$vars["projects"] = $projectlist->ToString();
 		$vars["project_types"] = json_encode($project_types);
+		$vars["breadcrumb"] = [
+			["link" => "{index/apps}",  "icon" => "fa-project-diagram", "title" => "Applications"],
+			["link" => "{app/project}", "icon" => "fa-project-diagram", "title" => "Projects"]
+		];
 
 		view::Display($vars);
     }

@@ -15,40 +15,28 @@
 <body class="index">
     ${../includes/nav.html}
 
+
     <div id="wrapper">
-        <div class="hero">
-            <div class="row">
-                <div class="large-12 columns">
 
-                    <!-- 
-                       对于注册用户而言，项目是持久性存在的，因为可以从数据库之中找得到一个永久的唯一标识符来标记项目的关系 
-                       但是对于非注册用户而言，项目与用户的关联主要是依赖于session数据，所以假若非注册客户将浏览器的cookie
-                       清除掉了的话则会丢失前面所建立的所有的分析项目。
+        <br />
+        <br />
 
-                       如果是非注册用户的话，在这里给出一条警告信息
-                    -->
-
-                    <script type="text/javascript">
-                        $(function () {
-
-                            if (!is_certified) {
-                                // warning to non-certified user, if the setting turn on the warning option.
-                            }
-
-                        })
-                    </script>
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="large-12 columns">
-                    <span style="font-size:2em;">
-                        <a href="#" onclick="javascript:openDialog();">
-                            <i class="fa fa-file"></i>New Project</a>
-                    </span>
-                </div>
+        <div class="row">
+            <div class="col-lg-12">
+                ${../includes/breadcrumb.html}
             </div>
         </div>
+
+        <div class="row">
+            <div class="large-12 columns">
+                <span style="font-size:2em;">
+                    <a href="#" onclick="javascript:openDialog();">
+                        <i class="fa fa-file"></i> &nbsp;New Project</a>
+                </span>
+            </div>
+        </div>
+
+        <br />
 
         <div class="row">
             <div class="large-12 columns">
@@ -63,7 +51,7 @@
         <form>
             <p>
                 Project Name:
-                <input type="text" id="name" name="name"></input>
+                <input type="text" class="form-control" id="name" name="name"></input>
             </p>
             <p>
                 Project Type:
