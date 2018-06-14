@@ -34,11 +34,14 @@ class Common {
 			$user = self::DisplayDropDownMenu($user);
 		}
 
+		# 因为在进行字符串替换的时候，false会被直接替换为空白字符串
+		# 可能会导致脚本语法错误，所以逻辑值都需要转换为文本之后才可以
+
 		if (isset($_SESSION["dismiss"])) {
-			$user["dismiss"] = $_SESSION["dismiss"];
+			$user["dismiss_banner"] = $_SESSION["dismiss"] ? "true" : "false";
 		} else {
-			$user["dismiss"]     = false;
-			$_SESSION["dismiss"] = false;
+			$user["dismiss_banner"] = "false";
+			$_SESSION["dismiss"]    =  false;
 		}
 				
 		return $user;
