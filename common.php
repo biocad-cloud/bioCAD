@@ -34,6 +34,13 @@ class Common {
 			$user = self::DisplayDropDownMenu($user);
 		}
 
+		if (isset($_SESSION["dismiss"])) {
+			$user["dismiss"] = $_SESSION["dismiss"];
+		} else {
+			$user["dismiss"]     = false;
+			$_SESSION["dismiss"] = false;
+		}
+				
 		return $user;
 	}
 

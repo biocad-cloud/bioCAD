@@ -1,3 +1,5 @@
+<?php if (!{$dismiss}) : ?>
+
 <!-- InstanceEnd -->
 
 <style type="text/css">
@@ -50,7 +52,15 @@
       <a target="_blank" href="https://www.ebi.ac.uk/data-protection/privacy-notice/chebi" class="white-color">Privacy Notice</a> and
       <a target="_blank" href="https://www.ebi.ac.uk/about/terms-of-use" class="white-color">Terms of Use</a>.</div>
     <div class="columns medium-4 large-3 text-right white-color">
-      <a id="data-protection-agree" class="">I agree, dismiss this banner</a>
+      <a id="data-protection-agree" href="#" onclick="">I agree, dismiss this banner</a>
+
+      <script type="text/javascript">
+        function dismiss() {
+          $.post("{user/dismiss_dataprotection}");
+        }
+      </script>
     </div>
   </div>
 </div>
+
+<?php endif ?>

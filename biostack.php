@@ -32,6 +32,13 @@ class biostack {
 		
 		View::Show("./html/Application/proteomics/iTraq.html", $vars);
     }
+
+    public function enrichment() {
+        $vars           = Common::getUserInfo();
+		$vars["title"]  = "GeneSet Enrichment Analysis";		
+		
+		View::Show("./html/Application/analysis/enrichment.html", $vars);
+    }
 }
 
 ?>
