@@ -47,6 +47,10 @@
                 input.onkeypress = function () {
                     update(input.value);
                 };
+
+                // 初始化完毕之后，显示默认值，人类基因组
+                // 否则界面太空旷了
+                update("Homo sapiens");
             });
 
         </script>
