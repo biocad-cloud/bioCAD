@@ -1,9 +1,11 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "amd",
     "target": "es5",
-    "lib": ["es5"],
-    "sourceMap": true
+    "lib": [ "dom", "es5", "dom.iterable", "scripthost" ],
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "outFile": "bin/table_editor.js"
   },
   "exclude": [
     "node_modules"
