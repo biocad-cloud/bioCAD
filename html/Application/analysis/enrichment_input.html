@@ -21,22 +21,31 @@
         <script type="text/javascript" src="/javascript/suggestion_list.js"></script>
         <script type="text/javascript">
 
+			var selected;
+		
             loadKEGGOrganism("/repository/br08601.json", function (organisms) {
                 var terms = [];
 
-				console.log(organisms);
+				// console.log(organisms);
 				
                 organisms.forEach(function (org) {
                     terms.push(new term(org.id, org.name));
                 });
 
+				console.log(terms);
+				
+				var input = document.getElementById("species");
                 // makeSuggestions(terms: term[], div: string, click: (term: term) => void)
                 var update = makeSuggestions(terms, "suggestions", function (term) {
                     console.log(term);
-                });
-                var input = document.getElementById("species");
-
-                input.onkeypress = update;
+					
+					selected = term.id;
+					input.value = term.term;
+                });    
+				
+				input.onkeypress = function() {
+					update(input.value);
+				};
             });
 
         </script>
@@ -51,4 +60,11 @@
     <!-- 进行提交按钮点击之后就会在后台产生一个数据库的搜索计算任务和结果绘图的任务 -->
     <button type="button" class="btn btn-primary" data-toggle="button" onclick="submit();">Submit</button>
 
+	<script type="text/javascript">
+	
+		function submit() {
+		
+		}
+	
+	</script>
 </body>

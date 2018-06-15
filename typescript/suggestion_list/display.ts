@@ -4,6 +4,7 @@ function makeSuggestions(terms: term[], div: string, click: (term: term) => void
     var suggestions: suggestion = new suggestion(terms);
 
     return (input: string) => {
+        // console.log(input);
         showSuggestions(suggestions, input, div, click);
     };
 }
