@@ -1,17 +1,38 @@
-<h2>Input</h2>
+<link href="http://cdn.biodeep.cn/styles/bootstrap.min.css" rel="stylesheet" />
+<link href="http://cdn.biodeep.cn/styles/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-<p>
-    <span>Select Species: </span>
-    <input type="text" id="species" name="species" class="form-control" />
+<script src="http://cdn.biodeep.cn/vendor/jquery.min.js"></script>
+<script src="http://www.biodeep.cn/js/bootstrap.min.js"></script>
+<script src="http://www.biodeep.cn/js/layer-v2.1/layer/layer.js"></script>
 
-    <div id="suggestions">
+<body>
 
-    </div>
-</p>
+    <h2>Input</h2>
 
-<p>
-    <input type="textarea" id="idlist" name="idlist" />
-</p>
+    <p>
+        <span>Select Species: </span>
+        <input type="text" id="species" name="species" class="form-control" />
 
-<!-- 进行提交按钮点击之后就会在后台产生一个数据库的搜索计算任务和结果绘图的任务 -->
-<button>Submit</button>
+        <div id="suggestions">
+
+        </div>
+
+        <script type="text/javascript" src="/javascript/kegg_organism.js"></script>
+        <script type="text/javascript" src="/javascript/suggestion_list.js"></script>
+        <script type="text/javascript">
+        
+        
+
+        </script>
+    </p>
+
+    <h3>Input GeneID list</h3>
+
+    <p>
+        <textarea id="idlist" name="idlist" rows="3" cols="10" class="form-control"></textarea>
+    </p>
+
+    <!-- 进行提交按钮点击之后就会在后台产生一个数据库的搜索计算任务和结果绘图的任务 -->
+    <button type="button" class="btn btn-primary" data-toggle="button" onclick="submit();">Submit</button>
+
+</body>

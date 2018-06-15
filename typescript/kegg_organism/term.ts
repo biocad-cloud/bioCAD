@@ -25,3 +25,27 @@
         return x;
     }
 }
+
+function parseTree(tree: object): organismTerm[] {
+
+}
+
+function loadKEGGOrganism(jsonURL: string, load: (terms: organismTerm[]) => void) {
+    var xhr = new XMLHttpRequest();
+
+    xhr.open("GET", jsonURL, true);
+    xhr.onload = function (e) {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                var tree = parseTree(JSON.parse(xhr.responseText));
+                load(tree);
+            } else {
+                console.error(xhr.statusText);
+            }
+        }
+    };
+    xhr.onerror = function (e) {
+        console.error(xhr.statusText);
+    };
+    xhr.send();
+}
