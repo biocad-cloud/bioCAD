@@ -19,7 +19,18 @@ class term {
      * 使用动态规划算法计算出当前的这个term和用户输入之间的相似度
     */
     public dist(input: string): number {
-        return leven.compute(this.term, input);
+        // return leven.compute(this.term, input);
+        return term.indexOf(this.term, input);
+    }
+
+    public static indexOf(term: string, input: string): number {
+        var i = term.indexOf(input);
+
+        if (i == -1) {
+            return 1000000;
+        } else {
+            return Math.abs(input.length - term.length);
+        }
     }
 }
 
@@ -38,11 +49,12 @@ class suggestion {
         var scores: scoreTerm[] = [];
         var lowerInput: string = input.toLowerCase();
 
-        this.terms.forEach(term => {
+        this.terms.forEach(q => {
             if (caseInsensitive) {
-                scores.push(new scoreTerm(term, leven.compute(term.term.toLowerCase(), lowerInput)));
+                var score: number = term.indexOf(q.term.toLowerCase(), lowerInput);
+                scores.push(new scoreTerm(q, score));
             } else {
-                scores.push(new scoreTerm(term, term.dist(input)));
+                scores.push(new scoreTerm(q, q.dist(input)));
             }
         });
 
@@ -62,7 +74,7 @@ class suggestion {
 }
 
 class scoreTerm {
-    
+
     public score: number;
     public term: term;
 
