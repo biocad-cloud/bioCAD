@@ -7,11 +7,12 @@
 
 <body>
 
-    <h2>Input</h2>
+    <h1>GeneSet Enrichment Analysis</h1>
 
-    <p>
-        <span>Select Species: </span>
-        <input type="text" id="species" name="species" class="form-control" />
+    <h3>Select Organism</h3>
+
+    <p>        
+        <input type="text" id="species" name="species" class="form-control" placeholder="Type the scientific name here" />
 
         <div id="suggestions">
 
@@ -21,31 +22,31 @@
         <script type="text/javascript" src="/javascript/suggestion_list.js"></script>
         <script type="text/javascript">
 
-			var selected;
-		
+            var selected;
+
             loadKEGGOrganism("/repository/br08601.json", function (organisms) {
                 var terms = [];
 
-				// console.log(organisms);
-				
+                // console.log(organisms);
+
                 organisms.forEach(function (org) {
                     terms.push(new term(org.id, org.name));
                 });
 
-				console.log(terms);
-				
-				var input = document.getElementById("species");
+                console.log(terms);
+
+                var input = document.getElementById("species");
                 // makeSuggestions(terms: term[], div: string, click: (term: term) => void)
                 var update = makeSuggestions(terms, "suggestions", function (term) {
                     console.log(term);
-					
-					selected = term.id;
-					input.value = term.term;
-                }, 10, true);    
-				
-				input.onkeypress = function() {
-					update(input.value);
-				};
+
+                    selected = term.id;
+                    input.value = term.term;
+                }, 10, true);
+
+                input.onkeypress = function () {
+                    update(input.value);
+                };
             });
 
         </script>
@@ -53,18 +54,21 @@
 
     <h3>Input GeneID list</h3>
 
+    <p>Input
+        <span style="color:red;">UniProtKB AC</span>, one id in one line:</p>
+
     <p>
-        <textarea id="idlist" name="idlist" rows="3" cols="10" class="form-control"></textarea>
+        <textarea id="idlist" name="idlist" rows="6" cols="10" class="form-control"></textarea>
     </p>
 
     <!-- 进行提交按钮点击之后就会在后台产生一个数据库的搜索计算任务和结果绘图的任务 -->
     <button type="button" class="btn btn-primary" data-toggle="button" onclick="submit();">Submit</button>
 
-	<script type="text/javascript">
-	
-		function submit() {
-		
-		}
-	
-	</script>
+    <script type="text/javascript">
+
+        function submit() {
+
+        }
+
+    </script>
 </body>
