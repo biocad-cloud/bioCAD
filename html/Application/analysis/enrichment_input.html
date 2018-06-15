@@ -20,8 +20,22 @@
         <script type="text/javascript" src="/javascript/kegg_organism.js"></script>
         <script type="text/javascript" src="/javascript/suggestion_list.js"></script>
         <script type="text/javascript">
-        
-        
+
+            loadKEGGOrganism("/repository/br08601.json", function (organisms) {
+                var terms = [];
+
+                organisms.forEach(function (org) {
+                    terms.push(new term(org.id, org.name));
+                });
+
+                // makeSuggestions(terms: term[], div: string, click: (term: term) => void)
+                var update = makeSuggestions(terms, "suggestions", function (term) {
+                    console.log(term);
+                });
+                var input = document.getElementById("species");
+
+                input.onkeypress = update;
+            });
 
         </script>
     </p>
