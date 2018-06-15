@@ -26,8 +26,47 @@
     }
 }
 
-function parseTree(tree: object): organismTerm[] {
+class JsonTreeParser {
 
+    /**
+     * 通过递归来获取树
+    */
+    public static parseTree(tree: any): organismTerm[] {
+        var terms: organismTerm[] = [];
+
+        tree.children.forEach(child => {
+            JsonTreeParser.parseInternal(child, [child.name])
+                .forEach(term => {
+                    terms.push(term);
+                });
+        });
+
+        return terms;
+    }
+
+    private static parseInternal(node: any, lineage: string[]): organismTerm[] {
+        if (node.children) {
+
+            var terms: organismTerm[] = [];
+
+            lineage = [...lineage];
+            lineage.push(node.name);
+
+            node.children.forEach(child => {
+                JsonTreeParser.parseInternal(child, lineage)
+                    .forEach(term => {
+                        terms.push(term);
+                    });
+            });
+
+            return terms;
+
+        } else {
+            var name: string = node.name;
+            var term = new organismTerm(name, lineage);
+            return [term];
+        }
+    }
 }
 
 function loadKEGGOrganism(jsonURL: string, load: (terms: organismTerm[]) => void) {
@@ -37,7 +76,8 @@ function loadKEGGOrganism(jsonURL: string, load: (terms: organismTerm[]) => void
     xhr.onload = function (e) {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
-                var tree = parseTree(JSON.parse(xhr.responseText));
+                var json: any = JSON.parse(xhr.responseText);
+                var tree = JsonTreeParser.parseTree(json);
                 load(tree);
             } else {
                 console.error(xhr.statusText);
