@@ -6,7 +6,7 @@
     public lineage: string[];
 
     constructor(name: string, lineage: string[]) {
-        var parts = name.split("\s{2}");
+        var parts = name.split("  ");
 
         this.code = parts[0];
         this.name = parts[1];
@@ -35,7 +35,7 @@ class JsonTreeParser {
         var terms: organismTerm[] = [];
 
         tree.children.forEach(child => {
-            JsonTreeParser.parseInternal(child, [child.name])
+            JsonTreeParser.parseInternal(child, ["/"])
                 .forEach(term => {
                     terms.push(term);
                 });

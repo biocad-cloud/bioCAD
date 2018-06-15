@@ -24,6 +24,8 @@
             loadKEGGOrganism("/repository/br08601.json", function (organisms) {
                 var terms = [];
 
+				console.log(organisms);
+				
                 organisms.forEach(function (org) {
                     terms.push(new term(org.id, org.name));
                 });
