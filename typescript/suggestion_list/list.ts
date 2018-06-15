@@ -59,8 +59,9 @@ class suggestion {
         });
 
         scores.sort(function (a, b) {
-            // 降序排序的
-            return b.score - a.score;
+            // 升序排序的
+            // 值越小越相似
+            return a.score - b.score;
         });
 
         var out: term[] = [];

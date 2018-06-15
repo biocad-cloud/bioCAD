@@ -41,7 +41,7 @@
 					
 					selected = term.id;
 					input.value = term.term;
-                });    
+                }, 10, true);    
 				
 				input.onkeypress = function() {
 					update(input.value);
