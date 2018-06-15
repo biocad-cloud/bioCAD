@@ -5,7 +5,7 @@
     "lib": [ "dom", "es5", "dom.iterable", "scripthost" ],
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
-    "outFile": "bin/table_editor.js"
+    "outFile": "../../javascript/table_editor.js"
   },
   "exclude": [
     "node_modules"

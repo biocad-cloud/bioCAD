@@ -30,3 +30,6 @@ nytprof.out
 bin/
 obj/
 *.map
+/javascript/login_script.js
+/javascript/suggestion_list.js
+/javascript/table_editor.js
