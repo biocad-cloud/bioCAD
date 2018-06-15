@@ -27,10 +27,10 @@ function listItem(term: term, click: (term: term) => void): HTMLElement {
     var div = document.createElement("div");
     var a = document.createElement("a");
 
-    a.href = "#";
-    a.onclick = () => {
+    a.onclick = function() {
         click(term);
     }
+    a.href = "#";
     a.text = term.term;
     a.title = term.term;
 
