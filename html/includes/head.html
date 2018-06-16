@@ -28,6 +28,16 @@
 
 <!-- 引入layer框架 -->
 <script src="http://www.biodeep.cn/js/layer-v2.1/layer/layer.js"></script>
+<script type="text/javascript">
+    function msgbox(msg, icon, callback) {
+        layer.msg(msg, { icon: icon }, function () {
+            if (callback) {
+                callback();
+            }
+        });
+    }
+</script>
+
 
 <link rel="alternate" type="application/rss+xml" title="bioCAD RSS Feed" href="https://www.bioCAD.cloud/feed.xml" />
 <link href="/favicon.png" rel="icon" type="image/png" />

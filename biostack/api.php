@@ -21,6 +21,7 @@ class biostack {
     */
     public function enrichment_task() {
 
+        echo dotnet::successMsg(Router::AssignController("{<biostack>web/}"));
     }
 }
 ?>

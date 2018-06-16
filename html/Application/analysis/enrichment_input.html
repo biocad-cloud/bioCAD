@@ -72,6 +72,15 @@
 
         function submit() {
             var geneSet = $("#idlist").val().split("\n");
+
+            if (!organism_background) {
+                parent.msgbox("Please select a genome background!", 5);
+                return;
+            } else if (geneSet.length == 0 || $("#idlist").val().length == 0) {
+                parent.msgbox("GeneSet should contains at least on gene!", 5);
+                return;
+            }
+
             var package = {
                 "org_id": organism_background.id,
                 "org_name": organism_background.term,
@@ -82,7 +91,18 @@
 
             // post请求提交新的计算任务
             $.post("{<biostack>api/enrichment_task}", package, function(data) {
-                console.log(data);
+                var info = JSON.parse(data);
+                var url  = info.info; 
+
+                console.log(info);
+
+                if (info.code == 0) {
+                    parent.msgbox("Task submit!", 0, function() {
+                        parent.window.location = url;
+                    });
+                } else {
+                    parent.msgbox(info.info, 5);
+                }
             });
         }
 

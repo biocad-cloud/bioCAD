@@ -39,14 +39,20 @@ class biostack {
     }
 
     public function enrichment() {
+        $type           = Utils::ReadValue($_GET, "type", "input");
         $vars           = Common::getUserInfo();
-		$vars["title"]  = "GeneSet Enrichment Analysis";		
-		
+		$vars["title"]  = "GeneSet Enrichment Analysis";        
+        $vars["iframe"] = Router::AssignController("{<biostack>web/enrichment_$type}"); 
+
 		View::Show(WEB_APP . "/analysis/enrichment.html", $vars);
     }
 
     public function enrichment_input() {
-        View::Show(WEB_APP . "/analysis/enrichment_input.html", null);
+        View::Show(WEB_APP . "/analysis/enrichment_input.html");
+    }
+
+    public function enrichment_result() {
+        View::Show(WEB_APP . "/analysis/enrichment_result.html");
     }
 }
 
