@@ -11,7 +11,7 @@
 
     <h3>Select Organism</h3>
 
-    <p>        
+    <p>
         <input type="text" id="species" name="species" class="form-control" placeholder="Type the scientific name here" />
 
         <div id="suggestions">
@@ -22,7 +22,7 @@
         <script type="text/javascript" src="/javascript/suggestion_list.js"></script>
         <script type="text/javascript">
 
-            var selected;
+            var organism_background;
 
             loadKEGGOrganism("/repository/br08601.json", function (organisms) {
                 var terms = [];
@@ -40,7 +40,7 @@
                 var update = makeSuggestions(terms, "suggestions", function (term) {
                     console.log(term);
 
-                    selected = term.id;
+                    organism_background = term;
                     input.value = term.term;
                 }, 10, true);
 
@@ -71,7 +71,19 @@
     <script type="text/javascript">
 
         function submit() {
+            var geneSet = $("#idlist").val().split("\n");
+            var package = {
+                "org_id": organism_background.id,
+                "org_name": organism_background.term,
+                "geneSet": geneSet
+            };
 
+            console.log(package);
+
+            // post请求提交新的计算任务
+            $.post("{<api>biostack/enrichment_task}", package, function(data) {
+                console.log(data);
+            });
         }
 
     </script>
