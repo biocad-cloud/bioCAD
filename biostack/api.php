@@ -16,5 +16,11 @@ dotnet::HandleRequest(new biostack(), WEB_APP);
 
 class biostack {
 
+    /**
+     * 创建一个基因列表富集分析的后台任务
+    */
+    public function enrichment_task() {
+
+    }
 }
 ?>
