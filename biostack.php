@@ -39,6 +39,10 @@ class biostack {
 		
 		View::Show("./html/Application/analysis/enrichment.html", $vars);
     }
+
+    public function enrichment_input() {
+        View::Show("./html/Application/analysis/enrichment_input.html", null);
+    }
 }
 
 ?>
