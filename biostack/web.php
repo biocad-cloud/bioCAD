@@ -4,12 +4,16 @@ include "../modules/dotnet/package.php";
 include "../common.php";
 
 Imports("Microsoft.VisualBasic.Strings");
+Imports("MVC.view");
 Imports("php.Utils");
 
 /**
  * Biostack webapp的html文件的文件夹相对路径
 */
 define("WEB_APP", "../html/Application");
+define("APP_PATH", dirname(dirname(__FILE__)));
+
+View::Push("dismiss_banner", Common::BannerDismissStatus());
 
 dotnet::AutoLoad("../etc/config.php");
 dotnet::HandleRequest(new biostack(), WEB_APP);
@@ -52,6 +56,12 @@ class biostack {
     }
 
     public function enrichment_result() {
+        $task_id = Utils::ReadValue($_GET, "id");
+
+        if (!$task_id) {
+            dotnet::PageNotFound("No task ID provided!");
+        }
+
         View::Show(WEB_APP . "/analysis/enrichment_result.html");
     }
 }
