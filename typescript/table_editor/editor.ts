@@ -5,33 +5,10 @@
     private tbody: HTMLElement;
     private table: tableEditor;
 
-    public static readonly editor_template: string = '\
-        <div id="row-new-pending">\
-            <a href="#" id="confirm" onclick="newRowWrite(this.parentNode);" >\
-                <span class="label label-success">OK</span>\
-            </a>&nbsp;\
-            <a href="#" id="cancel" onclick="newRowCancel();">\
-                <span class="label label-warning">Cancel</span>\
-            </a>\
-        </div>\
-        <div id="remove-button" style="display:none;">\
-            <a href="#" id="remove" onclick="remove(this);">\
-                <span class="label label-warning">Remove</span>\
-            </a>\
-            <a href="#" id="edit" onclick="edit(this);">\
-                <span class="label label-info">Edit</span>\
-            </a>\
-        </div>\
-        <div id="edit-button" style="display:none;">\
-            <a href="#" id="ok" onclick="edit_write(this.parentNode);">\
-                <span class="label label-success">OK</span>\
-            </a>\
-        </div>';
-
     constructor(tr: HTMLElement, tbody: HTMLElement, table: tableEditor) {
         var td = document.createElement("td");
 
-        td.innerHTML = editor.editor_template;
+        td.innerHTML = template.editor_template;
         tr.appendChild(td);
 
         this.tr = tr;

@@ -3,7 +3,6 @@ declare class editor {
     private tr;
     private tbody;
     private table;
-    static readonly editor_template: string;
     constructor(tr: HTMLElement, tbody: HTMLElement, table: tableEditor);
     getElementById(id: string): HTMLElement;
     show(id: string): void;
@@ -32,4 +31,7 @@ declare class tableEditor {
     addNew(): editor;
     private addNewInternal();
     TableData(): Object[];
+}
+declare module template {
+    const editor_template: string;
 }
