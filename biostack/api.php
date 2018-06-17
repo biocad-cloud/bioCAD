@@ -38,12 +38,15 @@ class biostack {
             $userID = $user["id"];
         }
 
-        $args = ["organism" => $orgID];
+        $args = [
+            "organism"     => $orgID,
+            "organismName" => $orgName
+        ];
         $task = [
             "user_id"     => $userID,
             "project_id"  => -1,
             "app_id"      => $appID,
-            "title"       => $orgName,
+            "title"       => "GeneSet enrichment analysis for: " . $orgName,
             "create_time" => Utils::Now(),
             "status"      => -1,
             "note"        => "",
@@ -54,8 +57,8 @@ class biostack {
         $workspace = "/data/upload/$userID/$appID/$taskID/";
 
         # save geneset list as text file into workspace
-        $taskID  = base64_encode($taskID);
-        $taskID  = urlencode($taskID);
+        $taskID  = base64_encode(strval($taskID));    
+        $taskID  = urlencode($taskID);   
         $geneSet = implode("\n", $geneSet);
         $txt     = APP_PATH . $workspace . "geneSet.txt";
         $url     = "{<biostack>web/enrichment}&type=result&id=$taskID";
