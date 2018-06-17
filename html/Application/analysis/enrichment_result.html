@@ -1,0 +1,21 @@
+${../../includes/data_view.html}
+
+<body>
+    <?php if ({$task_success}) : ?>
+
+    <!-- 任务成功则显示结果表格，下载按钮和富集的结果图片 -->
+
+
+
+    <!--在这里只包含有GO富集和KEGG富集的结果可视化图片-->
+
+
+
+    <?php else ?>
+
+    <blockquote>
+        Your task is still running, please wait for a while...
+    </blockquote>
+
+    <?php endif ?>
+</body>
