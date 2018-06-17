@@ -14,6 +14,7 @@ define("WEB_APP", "../html/Application");
 define("APP_PATH", dirname(dirname(__FILE__)));
 
 View::Push("dismiss_banner", Common::BannerDismissStatus());
+View::Push("*", Common::getUserInfo());
 
 dotnet::AutoLoad("../etc/config.php");
 dotnet::HandleRequest(new biostack(), WEB_APP);
@@ -44,9 +45,14 @@ class biostack {
 
     public function enrichment() {
         $type           = Utils::ReadValue($_GET, "type", "input");
+        $task_ID        = Utils::ReadValue($_GET, "id", "");
         $vars           = Common::getUserInfo();
 		$vars["title"]  = "GeneSet Enrichment Analysis";        
-        $vars["iframe"] = Router::AssignController("{<biostack>web/enrichment_$type}"); 
+        $vars["iframe"] = Router::AssignController("{<biostack>web/enrichment_$type}&id=$task_ID"); 
+
+        if ($type == "result" && Strings::Len($task_ID) === 0) {
+            dotnet::PageNotFound("No <strong>&lt;task ID></strong> is provided!");
+        }
 
 		View::Show(WEB_APP . "/analysis/enrichment.html", $vars);
     }
