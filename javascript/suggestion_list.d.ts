@@ -12,6 +12,15 @@ declare class leven {
     static compute(a: string, b: string): number;
     private static levelInternal(a, b, aLen, bLen, start);
 }
+declare class suggestion {
+    private terms;
+    constructor(terms: term[]);
+    /**
+     * 返回最相似的前5个结果
+    */
+    populateSuggestion(input: string, top?: number, caseInsensitive?: boolean): term[];
+    private static getScore(q, input, lowerInput, caseInsensitive);
+}
 /**
  * Term for suggestion
 */
@@ -27,15 +36,6 @@ declare class term {
     */
     dist(input: string): number;
     static indexOf(term: string, input: string): number;
-}
-declare class suggestion {
-    private terms;
-    constructor(terms: term[]);
-    /**
-     * 返回最相似的前5个结果
-    */
-    populateSuggestion(input: string, top?: number, caseInsensitive?: boolean): term[];
-    private static getScore(q, input, lowerInput, caseInsensitive);
 }
 declare class scoreTerm {
     score: number;

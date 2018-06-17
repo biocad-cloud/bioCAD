@@ -11,7 +11,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>3f6bd7c0-0131-4329-b4a6-020597ea06ab</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>list.ts</StartupFile>
+    <StartupFile>terms.ts</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -32,7 +32,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="list.ts" />
+    <TypeScriptCompile Include="terms.ts" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="tsconfig.json" />
@@ -40,6 +40,9 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="display.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="list.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
   </ItemGroup>
