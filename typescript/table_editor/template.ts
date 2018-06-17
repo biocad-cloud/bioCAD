@@ -1,5 +1,8 @@
 ﻿module template {
 
+    /**
+     * 定义了如何生成表格之中的行数据进行编辑操作的按钮的html用户界面
+    */
     export const editor_template: string = '\
         <div id="row-new-pending">\
             <a href="#" id="confirm" onclick="newRowWrite(this.parentNode);" >\
