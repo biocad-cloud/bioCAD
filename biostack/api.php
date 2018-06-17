@@ -54,6 +54,8 @@ class biostack {
         $workspace = "/data/upload/$userID/$appID/$taskID/";
 
         # save geneset list as text file into workspace
+        $taskID  = base64_encode($taskID);
+        $taskID  = urlencode($taskID);
         $geneSet = implode("\n", $geneSet);
         $txt     = APP_PATH . $workspace . "geneSet.txt";
         $url     = "{<biostack>web/enrichment}&type=result&id=$taskID";

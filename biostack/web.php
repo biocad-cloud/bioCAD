@@ -68,7 +68,9 @@ class biostack {
         if (!$task_id) {
             RFC7231Error::err404("No task ID provided!", false);
         } else {
-            $task = (new Table("task"))
+
+            $task_id = urldecode(base64_decode($task_id));
+            $task    = (new Table("task"))
                 ->where(["id" => $task_id])
                 ->find();
 
