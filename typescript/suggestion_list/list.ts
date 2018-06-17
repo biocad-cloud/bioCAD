@@ -57,7 +57,7 @@ class suggestion {
             .Select(rank => rank.term)
             .ToArray();
 
-        console.log(caseInsensitive);
+        // console.log(caseInsensitive);
 
         return result;
     }

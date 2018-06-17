@@ -1,52 +1,3 @@
-declare function From<T>(source: T[]): IEnumerator<T>;
-declare class binaryTree<T, V> {
-    root: node<T, V>;
-    compares: (a: T, b: T) => number;
-    constructor(comparer: (a: T, b: T) => number);
-    add(term: T, value?: V): void;
-    find(term: T): V;
-    ToArray(): node<T, V>[];
-    AsEnumerable(): IEnumerator<node<T, V>>;
-}
-declare module binaryTreeExtensions {
-    function populateNodes<T, V>(tree: node<T, V>): node<T, V>[];
-}
-declare class node<T, V> {
-    key: T;
-    value: V;
-    left: node<T, V>;
-    right: node<T, V>;
-    constructor(key: T, value?: V, left?: node<T, V>, right?: node<T, V>);
-}
-interface IEnumerable<T> {
-    readonly Count: number;
-    readonly [index: number]: T;
-    /**
-     * This function should returns a clone copy of the source sequence.
-    */
-    ToArray(): T[];
-}
-declare class Group<TKey, T> extends IEnumerator<T> {
-    Key: TKey;
-    /**
-     * Group members, readonly property.
-    */
-    readonly Group: T[];
-    constructor(key: TKey, group: T[]);
-}
-declare module Enumerable {
-    function Select<T, TOut>(source: T[], project: (e: T) => TOut): IEnumerator<TOut>;
-    function OrderBy<T>(source: T[], key: (e: T) => number): IEnumerator<T>;
-    function OrderByDescending<T>(source: T[], key: (e: T) => number): IEnumerator<T>;
-    function Take<T>(source: T[], n: number): IEnumerator<T>;
-    function Skip<T>(source: T[], n: number): IEnumerator<T>;
-    function TakeWhile<T>(source: T[], predicate: (e: T) => boolean): IEnumerator<T>;
-    function Where<T>(source: T[], predicate: (e: T) => boolean): IEnumerator<T>;
-    function SkipWhile<T>(source: T[], predicate: (e: T) => boolean): IEnumerator<T>;
-    function All<T>(source: T[], predicate: (e: T) => boolean): boolean;
-    function Any<T>(source: T[], predicate: (e: T) => boolean): boolean;
-    function GroupBy<T, TKey>(source: T[], getKey: (e: T) => TKey, compares: (a: TKey, b: TKey) => number): IEnumerator<Group<TKey, T>>;
-}
 /**
  * Provides a set of static (Shared in Visual Basic) methods for querying
  * objects that implement ``System.Collections.Generic.IEnumerable<T>``.
@@ -125,4 +76,53 @@ declare class IEnumerator<T> implements IEnumerable<T> {
      * This function returns a clone copy of the source sequence.
     */
     ToArray(): T[];
+}
+declare function From<T>(source: T[]): IEnumerator<T>;
+declare class binaryTree<T, V> {
+    root: node<T, V>;
+    compares: (a: T, b: T) => number;
+    constructor(comparer: (a: T, b: T) => number);
+    add(term: T, value?: V): void;
+    find(term: T): V;
+    ToArray(): node<T, V>[];
+    AsEnumerable(): IEnumerator<node<T, V>>;
+}
+declare module binaryTreeExtensions {
+    function populateNodes<T, V>(tree: node<T, V>): node<T, V>[];
+}
+declare class node<T, V> {
+    key: T;
+    value: V;
+    left: node<T, V>;
+    right: node<T, V>;
+    constructor(key: T, value?: V, left?: node<T, V>, right?: node<T, V>);
+}
+interface IEnumerable<T> {
+    readonly Count: number;
+    readonly [index: number]: T;
+    /**
+     * This function should returns a clone copy of the source sequence.
+    */
+    ToArray(): T[];
+}
+declare class Group<TKey, T> extends IEnumerator<T> {
+    Key: TKey;
+    /**
+     * Group members, readonly property.
+    */
+    readonly Group: T[];
+    constructor(key: TKey, group: T[]);
+}
+declare module Enumerable {
+    function Select<T, TOut>(source: T[], project: (e: T) => TOut): IEnumerator<TOut>;
+    function OrderBy<T>(source: T[], key: (e: T) => number): IEnumerator<T>;
+    function OrderByDescending<T>(source: T[], key: (e: T) => number): IEnumerator<T>;
+    function Take<T>(source: T[], n: number): IEnumerator<T>;
+    function Skip<T>(source: T[], n: number): IEnumerator<T>;
+    function TakeWhile<T>(source: T[], predicate: (e: T) => boolean): IEnumerator<T>;
+    function Where<T>(source: T[], predicate: (e: T) => boolean): IEnumerator<T>;
+    function SkipWhile<T>(source: T[], predicate: (e: T) => boolean): IEnumerator<T>;
+    function All<T>(source: T[], predicate: (e: T) => boolean): boolean;
+    function Any<T>(source: T[], predicate: (e: T) => boolean): boolean;
+    function GroupBy<T, TKey>(source: T[], getKey: (e: T) => TKey, compares: (a: TKey, b: TKey) => number): IEnumerator<Group<TKey, T>>;
 }

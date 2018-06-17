@@ -9,7 +9,10 @@ function makeSuggestions(terms: term[], div: string,
 
     return (input: string) => {
         // console.log(input);
-        showSuggestions(suggestions, input, div, click);
+        showSuggestions(suggestions, input,
+            div, click,
+            top, caseInsensitive
+        );
     };
 }
 
@@ -28,6 +31,8 @@ function showSuggestions(suggestion: suggestion,
     } else {
         node.innerHTML = "";
     }
+
+    // console.log(caseInsensitive);
 
     suggestion.populateSuggestion(input, top, caseInsensitive)
         .forEach(term => {
