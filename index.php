@@ -47,10 +47,12 @@ class app {
 		view::Display(["title" => "Privacy Policy"]);
 	}
 
+	public function terms_of_use() {
+		view::Display(["title" => "Terms of Use for bioCAD"]);
+	}
+
 	public function login() {
-		$vars          = Common::getUserInfo();
-		$vars["title"] = "Login";
-		view::Display($vars);
+		view::Display(["title" => "Login"]);
 	}
 
 	public function search() {
@@ -62,27 +64,24 @@ class app {
 		} else {
 			$result = $this->searchInternal($term);
 		}
-
-		$vars           = Common::getUserInfo();
-		$vars["title"]  = "Search Result";
-		$vars["result"] = $result;
-		
-		view::Display($vars);
+			
+		view::Display([
+			"title"  => "Search Result", 
+			"result" => $result
+		]);
 	}
 
 	/*
 	 * 根据所给定的词条返回在整个网站内的通用的搜索结果
 	 */
 	private function searchInternal($term) {
-		$result_list = "";
-		$display_container = "./html/search_result.html";
+		$result_list = "";		
 		
-		return view::Load(
-			$display_container, 
-			array(
-					"list" => $result_list, 
-					"term" => $term
-		));
+		return view::Load("./html/search_result.html", 
+			[
+				"list" => $result_list, 
+				"term" => $term
+			]);
 	}
 
 	public function change_log() {		
