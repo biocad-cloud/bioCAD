@@ -5,7 +5,8 @@
     "lib": [ "dom", "es5", "dom.iterable", "scripthost" ],
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
-    "outFile": "../../javascript/suggestion_list.js"
+    "outFile": "../../javascript/suggestion_list.js",
+    "declaration": true
   },
   "exclude": [
     "node_modules"

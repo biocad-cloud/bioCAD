@@ -1,4 +1,5 @@
-﻿
+﻿/// <reference path="../../javascript/linq.d.ts" />
+
 /**
  * Term for suggestion
 */
@@ -46,31 +47,38 @@ class suggestion {
      * 返回最相似的前5个结果
     */
     public populateSuggestion(input: string, top: number = 5, caseInsensitive: boolean = false): term[] {
-        var scores: scoreTerm[] = [];
         var lowerInput: string = input.toLowerCase();
+        var result = From(this.terms)
+            .Select(q => {
+                var score: number = suggestion.getScore(q, input, lowerInput, caseInsensitive);
+                return new scoreTerm(q, score);
+            }).OrderBy(rank => rank.score)
+            .Take(top)
+            .Select(rank => rank.term)
+            .ToArray();
 
-        this.terms.forEach(q => {
-            if (caseInsensitive) {
-                var score: number = term.indexOf(q.term.toLowerCase(), lowerInput);
-                scores.push(new scoreTerm(q, score));
-            } else {
-                scores.push(new scoreTerm(q, q.dist(input)));
-            }
-        });
+        console.log(caseInsensitive);
 
-        scores.sort(function (a, b) {
-            // 升序排序的
-            // 值越小越相似
-            return a.score - b.score;
-        });
+        return result;
+    }
 
-        var out: term[] = [];
+    private static getScore(q: term,
+        input: string,
+        lowerInput: string,
+        caseInsensitive: boolean): number {
 
-        scores.slice(0, top).forEach(score => {
-            out.push(score.term);
-        });
+        if (caseInsensitive) {
+            // 大小写不敏感的模式下，都转换为小写
+            var lowerTerm: string = q.term.toLowerCase();
 
-        return out;
+            return term.indexOf(
+                lowerTerm,
+                lowerInput
+            );
+
+        } else {
+            return q.dist(input);
+        }
     }
 }
 
