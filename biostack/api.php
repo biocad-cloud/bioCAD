@@ -27,10 +27,12 @@ class biostack {
         $user    = Common::getUserInfo();
         $userID  = 0;
 
+        # echo var_dump($user);
+
         //
         $appID = 100;
 
-        if (!$user) {
+        if (!$user || !array_key_exists("id", $user)) {
             $userID = -1;
         } else {
             $userID = $user["id"];
