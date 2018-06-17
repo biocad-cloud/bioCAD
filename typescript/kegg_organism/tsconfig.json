@@ -5,7 +5,8 @@
     "lib": [ "dom", "es5", "dom.iterable", "scripthost" ],
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
-    "outFile": "../../javascript/kegg_organism.js"
+    "outFile": "../../javascript/kegg_organism.js",
+    "declaration": true
   },
   "exclude": [
     "node_modules"
