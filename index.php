@@ -23,13 +23,10 @@ class app {
 	 */
 
 	public function index() {
-		$vars          = Common::getUserInfo();
-		$vars["title"] = "bioCAD cloud platform";
-		view::Display($vars);
+		view::Display(["title" => "bioCAD cloud platform"]);
 	}
 
-	public function apps() {
-		$vars               = Common::getUserInfo();
+	public function apps() {		
 		$vars["title"]      = "bioCAD Applications";
 		$vars["breadcrumb"] = [
 			["link" => "{index/apps}", "icon" => "fa-project-diagram", "title" => "Applications"]
@@ -38,23 +35,16 @@ class app {
 		view::Display($vars);
 	}
 
-	public function biostack() {
-		$vars          = Common::getUserInfo();
-		$vars["title"] = "Map of Biostack";	
-
-		view::Display($vars);
+	public function biostack() {		
+		view::Display(["title" => "Introduce Biostack"]);
 	}
 
 	public function about() {
-		$vars          = Common::getUserInfo();
-		$vars["title"] = "About bioCAD";
-		view::Display($vars);
+		view::Display(["title" => "About bioCAD"]);
 	}
 
-	public function privacy_policy() {
-		$vars          = Common::getUserInfo();
-		$vars["title"] = "Privacy Policy";
-		view::Display($vars);
+	public function privacy_policy() {		
+		view::Display(["title" => "Privacy Policy"]);
 	}
 
 	public function login() {
@@ -95,11 +85,8 @@ class app {
 		));
 	}
 
-	public function change_log() {
-		$vars           = Common::getUserInfo();
-		$vars["title"]  = "bioCAD changelog";		
-		
-		view::Display($vars);
+	public function change_log() {		
+		view::Display(["title" => "bioCAD changelog"]);
 	}
 }
 
