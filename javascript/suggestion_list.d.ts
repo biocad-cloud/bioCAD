@@ -21,6 +21,7 @@ declare class suggestion {
     populateSuggestion(input: string, top?: number, caseInsensitive?: boolean): term[];
     private static getScore(q, input, lowerInput, caseInsensitive);
 }
+declare const NA: number;
 /**
  * Term for suggestion
 */

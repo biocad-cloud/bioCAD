@@ -1,4 +1,6 @@
-﻿/**
+﻿const NA: number = 100000000000;
+
+/**
  * Term for suggestion
 */
 class term {
@@ -26,7 +28,7 @@ class term {
         var i = term.indexOf(input);
 
         if (i == -1) {
-            return 1000000;
+            return NA;
         } else {
             return Math.abs(input.length - term.length);
         }
