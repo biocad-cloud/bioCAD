@@ -20,7 +20,9 @@ class Common {
         return $vars;
     }
 
-    // Load user info from php session
+    /**
+	 * Load user info from php session
+	*/ 
 	public static function getUserInfo() {
 		// 用户的标识信息是从服务器后台的session数据之中读取出来的
 		// 如果客户是匿名的非注册客户，则当浏览器被清除掉cookie之后，
@@ -38,13 +40,15 @@ class Common {
 	}
 
 	public static function BannerDismissStatus() {		
+		// echo var_dump($_SESSION);
+
 		# 因为在进行字符串替换的时候，false会被直接替换为空白字符串
 		# 可能会导致脚本语法错误，所以逻辑值都需要转换为文本之后才可以
 
-		if (isset($_SESSION["dismiss"])) {
-			return $_SESSION["dismiss"] ? "true" : "false";
+		if (isset($_SESSION["dismiss_banner"])) {
+			return $_SESSION["dismiss_banner"] ? "true" : "false";
 		} else {			
-			$_SESSION["dismiss"] = false;
+			$_SESSION["dismiss_banner"] = false;
 		}
 
 		return "false";
