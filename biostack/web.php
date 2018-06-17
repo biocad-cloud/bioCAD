@@ -66,14 +66,19 @@ class biostack {
         $task    = null;
 
         if (!$task_id) {
-            dotnet::PageNotFound("No task ID provided!");
+            RFC7231Error::err404("No task ID provided!", false);
         } else {
             $task = (new Table("task"))
                 ->where(["id" => $task_id])
                 ->find();
 
             if (!$task) {
-                dotnet::PageNotFound("No task could be found based on the taskID that you provided!");
+                $trace = StackTrace::GetCallStack();
+		        $exc   = dotnetException::FormatOutput(
+                    "No task could be found based on the <strong>taskID</strong> that you provided!", 
+                    $trace
+                );
+                RFC7231Error::err500($exc, false);
             }
         }
 
