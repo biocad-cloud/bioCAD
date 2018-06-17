@@ -44,6 +44,7 @@ class biostack {
         ];
         $task = [
             "user_id"     => $userID,
+            "sha1"        => Utils::Now() . $appID . $userID,
             "project_id"  => -1,
             "app_id"      => $appID,
             "title"       => "GeneSet enrichment analysis for: " . $orgName,
@@ -57,11 +58,12 @@ class biostack {
         $workspace = "/data/upload/$userID/$appID/$taskID/";
 
         # save geneset list as text file into workspace
-        $taskID  = base64_encode(strval($taskID));    
-        $taskID  = urlencode($taskID);   
+        $taskIDHash = md5(strval($taskID));    
+        (new Table("task"))->where(["id" => $taskID])->save(["sha1" => $taskIDHash]);  
+
         $geneSet = implode("\n", $geneSet);
         $txt     = APP_PATH . $workspace . "geneSet.txt";
-        $url     = "{<biostack>web/enrichment}&type=result&id=$taskID";
+        $url     = "{<biostack>web/enrichment}&type=result&id=$taskIDHash";
 
         FileSystem::WriteAllText($txt, $geneSet);
 
