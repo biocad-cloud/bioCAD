@@ -51,10 +51,6 @@ class app {
 		view::Display(["title" => "Terms of Use for bioCAD"]);
 	}
 
-	public function login() {
-		view::Display(["title" => "Login"]);
-	}
-
 	public function search() {
 		$term = $_GET["q"];
 		$result = "";
