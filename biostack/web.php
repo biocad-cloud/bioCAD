@@ -63,9 +63,24 @@ class biostack {
 
     public function enrichment_result() {
         $task_id = Utils::ReadValue($_GET, "id");
+        $task    = null;
 
         if (!$task_id) {
             dotnet::PageNotFound("No task ID provided!");
+        } else {
+            $task = (new Table("task"))
+                ->where(["id" => $task_id])
+                ->find();
+
+            if (!$task) {
+                dotnet::PageNotFound("No task could be found based on the taskID that you provided!");
+            }
+        }
+
+        if ($task["status"] == 200 || $task["status"] == 500) {
+            View::Push("task_success", "true");
+        } else {
+            View::Push("task_success", "false");
         }
 
         View::Show(WEB_APP . "/analysis/enrichment_result.html");
