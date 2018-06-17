@@ -8,6 +8,13 @@ Imports("System.Text.StringBuilder");
 Imports("Microsoft.VisualBasic.Conversion");
 Imports("Microsoft.VisualBasic.Strings");
 
+Imports("MVC.view");
+
+define("APP_PATH", dirname(dirname(__FILE__)));
+
+View::Push("dismiss_banner", Common::BannerDismissStatus());
+View::Push("*", Common::getUserInfo());
+
 dotnet::AutoLoad("./etc/config.php");
 dotnet::HandleRequest(new app(), "./html/Application");
 
