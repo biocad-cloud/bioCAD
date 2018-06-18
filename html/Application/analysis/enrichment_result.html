@@ -30,7 +30,7 @@ ${../../includes/data_view.html}
                 <div class="box clearfix">
                     <h3>Enrichment Terms</h3>
 
-                    <table class="table table-hover" id="bootstrap-table">
+                    <table class="table table-hover" id="bootstrap-table" data-page-length='15'>
                         <thead>
                             <tr>
                                 <th>term</th>
@@ -42,7 +42,7 @@ ${../../includes/data_view.html}
                                 <th>geneIDs</th>
                             </tr>
                         </thead>
-                        <tbody id="terms">
+                        <tbody id="terms" style="font-size: 0.8em;">
 
                         </tbody>
                     </table>
@@ -80,9 +80,12 @@ ${../../includes/data_view.html}
                     });
 
                     $('#bootstrap-table').bdt({
-                        showSearchForm: 1,
-                        showEntriesPerPageField: 0
+                        "showSearchForm": 1,
+                        "showEntriesPerPageField": 0,
+                        "pageRowCount": 15
                     });
+
+                    parent.setPageHeight("900");
                 });
             });
         </script>
