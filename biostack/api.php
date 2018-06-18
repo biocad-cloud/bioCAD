@@ -49,7 +49,7 @@ class biostack {
             "app_id"      => $appID,
             "title"       => "GeneSet enrichment analysis for: " . $orgName,
             "create_time" => Utils::Now(),
-            "status"      => -1,
+            "status"      => 0,
             "note"        => "",
             "parameters"  => json_encode($args)
         ];
