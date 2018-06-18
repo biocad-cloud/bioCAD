@@ -90,7 +90,8 @@ class biostack {
         $vars = [
             "title"       => $task["title"],
             "organism"    => $organism,
-            "status_text" => $status
+            "status_text" => $status,
+            "taskID"      => $task_id
         ];
 
         if ($task["status"] == 200 || $task["status"] == 500) {

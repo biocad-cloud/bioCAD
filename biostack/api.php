@@ -69,5 +69,20 @@ class biostack {
 
         echo dotnet::successMsg(Router::AssignController($url));
     }
+
+    public function enrichment_terms() {
+        $task_id = $_GET["id"];
+        $task = (new Table("task"))
+            ->where(["sha1" => $task_id])
+            ->find();
+            
+        $appID     = 100;
+        $userID    = $task["user_id"];
+        $taskID    = $task["id"];
+        $workspace = "/data/upload/$userID/$appID/$taskID/";
+        $csv       = APP_PATH . $workspace . "/enrichment[1].csv";
+
+        echo file_get_contents($csv);
+    }
 }
 ?>

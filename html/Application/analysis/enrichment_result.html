@@ -12,10 +12,22 @@ ${../../includes/data_view.html}
             </p>
         </div>
 
+        <script type="text/javascript">        
+            var taskID = "{$taskID}";
+        </script>
+
         <?php if ({$task_success}) : ?>
 
         <!-- 任务成功则显示结果表格，下载按钮和富集的结果图片 -->
+        <script type="text/javascript">        
+            $(function () {
+                $.get("{<biostack>api/enrichment_terms}&id=" + taskID, function (data) {
+                    var all = $.csv.toObjects(data);
 
+                    console.log(all);
+                });
+            });
+        </script>
 
 
         <!--在这里只包含有GO富集和KEGG富集的结果可视化图片-->
@@ -34,4 +46,5 @@ ${../../includes/data_view.html}
 
         <?php endif ?>
     </div>
+    
 </body>
