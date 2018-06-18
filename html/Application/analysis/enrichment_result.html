@@ -1,8 +1,13 @@
 ${../../includes/data_view.html}
 
+<link href="http://cdn.biodeep.cn/vendor/bootstrap-data-table/jquery.bdt.min.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="http://cdn.biodeep.cn/vendor/jquery.sortelements.js"></script>
+<script type="text/javascript" src="http://cdn.biodeep.cn/vendor/bootstrap-data-table/jquery.bdt.min.js"></script>
+
 <body>
 
-    <div id="wrapper" style="margin: 50px; min-height: 400px;">
+    <div id="wrapper" style="margin: 20px; min-height: 400px;">
         <div class="row">
             <h3>{$title}</h3>
 
@@ -19,12 +24,60 @@ ${../../includes/data_view.html}
         <?php if ({$task_success}) : ?>
 
         <!-- 任务成功则显示结果表格，下载按钮和富集的结果图片 -->
+
+        <div class="container">
+            <div class="row">
+                <div class="box clearfix">
+                    <h3>Enrichment Terms</h3>
+
+                    <table class="table table-hover" id="bootstrap-table">
+                        <thead>
+                            <tr>
+                                <th>term</th>
+                                <th>score</th>
+                                <th>pvalue</th>
+                                <th>FDR</th>
+                                <th>cluster</th>
+                                <th>enriched</th>
+                                <th>geneIDs</th>
+                            </tr>
+                        </thead>
+                        <tbody id="terms">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
         <script type="text/javascript">        
             $(function () {
                 $.get("{<biostack>api/enrichment_terms}&id=" + taskID, function (data) {
                     var all = $.csv.toObjects(data);
+                    var headers = Object.keys(all[0]);
+                    var tbody = document.getElementById("terms");
 
+                    console.log(headers);
                     console.log(all);
+
+                    all.forEach(function (term) {
+                        var tr = document.createElement("tr");
+                        var append = function (s) {
+                            var td = document.createElement("td");
+                            td.innerHTML = s;
+                            tr.appendChild(td);
+                        }
+
+                        append(term.term);
+                        append(term.score);
+                        append(term.pvalue);
+                        append(term.FDR);
+                        append(term.cluster);
+                        append(term.enriched);
+                        append(term.geneIDs);
+
+                        tbody.appendChild(tr);
+                    });
                 });
             });
         </script>
@@ -46,5 +99,5 @@ ${../../includes/data_view.html}
 
         <?php endif ?>
     </div>
-    
+
 </body>
