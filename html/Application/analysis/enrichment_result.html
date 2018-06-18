@@ -114,8 +114,6 @@ ${../../includes/data_view.html}
                                                 "showEntriesPerPageField": 0,
                                                 "pageRowCount": 15
                                             });
-
-                                            parent.setPageHeight("1100");
                                         });
                                     });
                                 </script>
@@ -155,7 +153,7 @@ ${../../includes/data_view.html}
                                                 <br />
 
                                                 <center>
-                                                    <img id="kegg-plot" src="{<biostack>api/enrichment_png}&type=kegg&id={$taskID}" />
+                                                    <img id="kegg-plot" width="90%" src="{<biostack>api/enrichment_png}&type=kegg&id={$taskID}" />
                                                 </center>
 
                                             </div>
@@ -164,7 +162,7 @@ ${../../includes/data_view.html}
                                                 <br />
 
                                                 <center>
-                                                    <img id="go-plot" src="{<biostack>api/enrichment_png}&type=go&id={$taskID}" />
+                                                    <img id="go-plot" width="90%" src="{<biostack>api/enrichment_png}&type=go&id={$taskID}" />
                                                 </center>
 
                                             </div>
@@ -177,6 +175,16 @@ ${../../includes/data_view.html}
                         </div>
                     </div>
                 </div>
+
+                <script type="text/javascript">
+
+                    parent.setPageHeight("1100");
+
+                    $(function () {
+
+                        $('#collapseOne').collapse('show')
+                    });
+                </script>
 
                 <!--在这里只包含有GO富集和KEGG富集的结果可视化图片-->
 
