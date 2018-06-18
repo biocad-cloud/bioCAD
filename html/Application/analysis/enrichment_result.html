@@ -50,7 +50,7 @@ ${../../includes/data_view.html}
             </div>
         </div>
 
-        <script type="text/javascript">        
+        <script type="text/javascript">
             $(function () {
                 $.get("{<biostack>api/enrichment_terms}&id=" + taskID, function (data) {
                     var all = $.csv.toObjects(data);
@@ -69,8 +69,8 @@ ${../../includes/data_view.html}
                         }
 
                         append(term.term);
-                        append(term.score);
-                        append(term.pvalue);
+                        append(new Number(term.score).toFixed(4));
+                        append(new Number(term.pvalue).toExponential(3).toUpperCase());
                         append(term.FDR);
                         append(term.cluster);
                         append(term.enriched);
@@ -80,20 +80,17 @@ ${../../includes/data_view.html}
                     });
 
                     $('#bootstrap-table').bdt({
-                        "showSearchForm": 1,
+                        "showSearchForm": 0,
                         "showEntriesPerPageField": 0,
                         "pageRowCount": 15
                     });
 
-                    parent.setPageHeight("900");
+                    parent.setPageHeight("950");
                 });
             });
         </script>
 
-
         <!--在这里只包含有GO富集和KEGG富集的结果可视化图片-->
-
-
 
         <?php else : ?>
 
