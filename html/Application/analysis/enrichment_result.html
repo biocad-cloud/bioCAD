@@ -7,7 +7,7 @@ ${../../includes/data_view.html}
 
 <body>
 
-    <div id="wrapper" style="margin: 20px; min-height: 400px;">
+    <div id="wrapper" style="margin: 15px; min-height: 400px;">
         <div class="row">
             <h3>{$title}</h3>
 
@@ -25,7 +25,7 @@ ${../../includes/data_view.html}
 
         <!-- 任务成功则显示结果表格，下载按钮和富集的结果图片 -->
 
-        <div class="container">
+        <div class="container" style="margin-left: -10;">
             <div class="row">
                 <div class="box clearfix">
                     <h3>Enrichment Terms</h3>
@@ -47,6 +47,13 @@ ${../../includes/data_view.html}
                         </tbody>
                     </table>
                 </div>
+            </div>
+
+            <div class="row">
+                <hr />
+
+                <a href="{<biostack>api/download}&id={$taskID}" target="__blank">
+                    <i class="fa fa-download"></i> Download zip</a>
             </div>
         </div>
 
@@ -85,7 +92,7 @@ ${../../includes/data_view.html}
                         "pageRowCount": 15
                     });
 
-                    parent.setPageHeight("950");
+                    parent.setPageHeight("1100");
                 });
             });
         </script>

@@ -84,5 +84,20 @@ class biostack {
 
         echo file_get_contents($csv);
     }
+
+    public function download() {
+        $task_id = $_GET["id"];
+        $task = (new Table("task"))
+            ->where(["sha1" => $task_id])
+            ->find();
+            
+        $appID     = 100;
+        $userID    = $task["user_id"];
+        $taskID    = $task["id"];
+        $workspace = "/data/upload/$userID/$appID/$taskID/";
+        $zip       = APP_PATH . $workspace . "/result.zip";
+
+        Utils::PushDownload($zip, -1, "application/zip");
+    }
 }
 ?>
