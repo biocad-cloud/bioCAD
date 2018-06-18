@@ -2,6 +2,7 @@
 
 include "../modules/dotnet/package.php";
 include "../common.php";
+include "../platform/task.php";
 
 Imports("Microsoft.VisualBasic.Strings");
 Imports("php.Utils");
@@ -71,30 +72,16 @@ class biostack {
     }
 
     public function enrichment_terms() {
-        $task_id = $_GET["id"];
-        $task = (new Table("task"))
-            ->where(["sha1" => $task_id])
-            ->find();
-            
-        $appID     = 100;
-        $userID    = $task["user_id"];
-        $taskID    = $task["id"];
-        $workspace = "/data/upload/$userID/$appID/$taskID/";
+        $task_id   = $_GET["id"];
+        $workspace = taskMgr::GetTaskWorkspace($task_id);
         $csv       = APP_PATH . $workspace . "/enrichment[1].csv";
 
         echo file_get_contents($csv);
     }
 
     public function download() {
-        $task_id = $_GET["id"];
-        $task = (new Table("task"))
-            ->where(["sha1" => $task_id])
-            ->find();
-            
-        $appID     = 100;
-        $userID    = $task["user_id"];
-        $taskID    = $task["id"];
-        $workspace = "/data/upload/$userID/$appID/$taskID/";
+        $task_id   = $_GET["id"];
+        $workspace = taskMgr::GetTaskWorkspace($task_id);
         $zip       = APP_PATH . $workspace . "/result.zip";
 
         Utils::PushDownload($zip, -1, "application/zip");
