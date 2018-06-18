@@ -2,6 +2,7 @@
 
 include "../modules/dotnet/package.php";
 include "../common.php";
+include "../platform/task.php";
 
 Imports("Microsoft.VisualBasic.Strings");
 Imports("MVC.view");
@@ -83,13 +84,22 @@ class biostack {
             }
         }
 
+        $organism = json_decode($task["parameters"]);
+        $organism = $organism->organismName;
+        $status   = taskMgr::$status[strval($task["status"])];
+        $vars = [
+            "title"       => $task["title"],
+            "organism"    => $organism,
+            "status_text" => $status
+        ];
+
         if ($task["status"] == 200 || $task["status"] == 500) {
             View::Push("task_success", "true");
         } else {
             View::Push("task_success", "false");
         }
 
-        View::Show(WEB_APP . "/analysis/enrichment_result.html");
+        View::Show(WEB_APP . "/analysis/enrichment_result.html", $vars);
     }
 }
 
