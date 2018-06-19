@@ -54,20 +54,51 @@ ${../../includes/data_view.html}
                                                 <br />
 
                                                 <form>
-                                                    <p>Label align:
-                                                        <input type="checkbox">Right</input>
-                                                    </p>
-                                                    <p>Gray scale:
-                                                        <input type="checkbox">Yes</input>
-                                                    </p>
-                                                    <p>Tick:
-                                                        <input type="text" placeholder="default = -1" />
-                                                        <span>default=-1, means measure ticks internal automaticlly.</span>
-                                                    </p>
-                                                    <p>Size: [width, height] =
-                                                        <input type="text" placeholder="2200" /> x
-                                                        <input type="text" placeholder="1600" />
-                                                    </p>
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th width="10%">Label align:</th>
+                                                                <td width="30%">
+                                                                    <input type="checkbox">Right</input>
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Gray scale:</th>
+                                                                <td>
+                                                                    <input type="checkbox">Yes</input>
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Tick:</th>
+                                                                <td>
+                                                                    <input type="text" class="form-control" placeholder="default = -1" />
+                                                                </td>
+                                                                <td>
+                                                                    <span>default=-1, means measure ticks internal automaticlly.</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Size: </th>
+                                                                <td>
+                                                                    <div class="row">
+                                                                        <div class="col-sm-3">[width, height] =</div>
+                                                                        <div class="col-sm-4">
+                                                                            <input type="text" class="form-control" width="20px"
+                                                                                placeholder="2200" />
+                                                                        </div>
+                                                                        <div class="col-sm-1"> x</div>
+                                                                        <div class="col-sm-4">
+                                                                            <input type="text" class="form-control" width="20px"
+                                                                                placeholder="1600" />
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
                                                 </form>
 
                                                 <button type="button" class="btn btn-primary" data-toggle="button" onclick="apply();">Apply</button>
