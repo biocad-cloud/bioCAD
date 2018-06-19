@@ -18,7 +18,7 @@ View::Push("dismiss_banner", Common::BannerDismissStatus());
 View::Push("*", Common::getUserInfo());
 
 dotnet::AutoLoad("../etc/config.php");
-dotnet::HandleRequest(new biostack(), WEB_APP);
+dotnet::HandleRequest(new biostack(), WEB_APP . "/analysis/");
 
 /**
  * 数据分析模块的用户界面
@@ -55,11 +55,11 @@ class biostack {
             dotnet::PageNotFound("No <strong>&lt;task ID></strong> is provided!");
         }
 
-		View::Show(WEB_APP . "/analysis/enrichment.html", $vars);
+		View::Display($vars);
     }
 
     public function enrichment_input() {
-        View::Show(WEB_APP . "/analysis/enrichment_input.html");
+        View::Display();
     }
 
     public function enrichment_result() {
@@ -100,11 +100,11 @@ class biostack {
             View::Push("task_success", "false");
         }
 
-        View::Show(WEB_APP . "/analysis/enrichment_result.html", $vars);
+        View::Display($vars);
     }
 
     public function custom_enrichment_plot() {
-        
+        View::Display(["title" => "Customize enrichment plot"]);
     }
 }
 
