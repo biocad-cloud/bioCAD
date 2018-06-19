@@ -12,6 +12,10 @@ Imports("php.Utils");
  * Biostack webapp的html文件的文件夹相对路径
 */
 define("WEB_APP", "../html/Application");
+/**
+ * 公共框架页面文件
+*/
+define("BOOTSTRAP", WEB_APP . "/analysis/bootstrap.html");
 define("APP_PATH", dirname(dirname(__FILE__)));
 
 View::Push("dismiss_banner", Common::BannerDismissStatus());
@@ -55,7 +59,7 @@ class biostack {
             dotnet::PageNotFound("No <strong>&lt;task ID></strong> is provided!");
         }
 
-		View::Display($vars);
+		View::Show(BOOTSTRAP, $vars);
     }
 
     public function enrichment_input() {
@@ -104,7 +108,23 @@ class biostack {
     }
 
     public function custom_enrichment_plot() {
-        View::Display(["title" => "Customize enrichment plot"]);
+        $type   = $_GET["type"];
+        $taskID = $_GET["id"];
+        
+        View::Show(BOOTSTRAP, [
+            "title"  => "Customize enrichment plot",
+            "iframe" => "{<biostack>web/custom_enrichment_plot_page}&type=$type&id=$taskID"
+        ]);
+    }
+
+    public function custom_enrichment_plot_page() {
+        $type   = $_GET["type"];
+        $taskID = $_GET["id"];
+
+        View::Display([
+            "taskID" => $taskID, 
+            "type"   => $type
+        ]);
     }
 }
 
