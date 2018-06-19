@@ -59,21 +59,21 @@ ${../../includes/data_view.html}
                                                             <tr>
                                                                 <th width="10%">Label align:</th>
                                                                 <td width="30%">
-                                                                    <input type="checkbox">Right</input>
+                                                                    <input type="checkbox" name="label-align-right" id="label-align-right">Right</input>
                                                                 </td>
                                                                 <td></td>
                                                             </tr>
                                                             <tr>
                                                                 <th>Gray scale:</th>
                                                                 <td>
-                                                                    <input type="checkbox">Yes</input>
+                                                                    <input type="checkbox" name="plot-gray-scale" id="plot-gray-scale">Yes</input>
                                                                 </td>
                                                                 <td></td>
                                                             </tr>
                                                             <tr>
                                                                 <th>Tick:</th>
                                                                 <td>
-                                                                    <input type="text" class="form-control" placeholder="default = -1" />
+                                                                    <input type="text" class="form-control" id="tick" placeholder="default = -1" />
                                                                 </td>
                                                                 <td>
                                                                     <span>default=-1, means measure ticks internal automaticlly.</span>
@@ -85,13 +85,11 @@ ${../../includes/data_view.html}
                                                                     <div class="row">
                                                                         <div class="col-sm-3">[width, height] =</div>
                                                                         <div class="col-sm-4">
-                                                                            <input type="text" class="form-control" width="20px"
-                                                                                placeholder="2200" />
+                                                                            <input type="text" class="form-control" width="20px" placeholder="2200" id="px-width" />
                                                                         </div>
                                                                         <div class="col-sm-1"> x</div>
                                                                         <div class="col-sm-4">
-                                                                            <input type="text" class="form-control" width="20px"
-                                                                                placeholder="1600" />
+                                                                            <input type="text" class="form-control" width="20px" placeholder="1600" id="px-height" />
                                                                         </div>
                                                                     </div>
                                                                 </td>
@@ -107,7 +105,9 @@ ${../../includes/data_view.html}
                                                     var taskID = "{$taskID}";
 
                                                     function apply() {
-
+                                                        parent.becomesBusy("Apply parameters...");
+                                                        
+                                                        var labelAlign = $("#label-align-right").val();
                                                     }
                                                 </script>
 

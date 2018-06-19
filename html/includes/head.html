@@ -37,6 +37,16 @@
         });
     }
 
+    function becomesBusy(msg) {
+        layer.msg(msg, {
+            icon: 16, shade: 0.01
+        });
+    }
+
+    function endBusy() {
+        layer.closeAll('loading');
+    }
+
     function gotoURL(url) {
         window.location = url;
     }
