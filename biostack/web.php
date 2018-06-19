@@ -102,6 +102,10 @@ class biostack {
 
         View::Show(WEB_APP . "/analysis/enrichment_result.html", $vars);
     }
+
+    public function custom_enrichment_plot() {
+        
+    }
 }
 
 ?>

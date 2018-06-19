@@ -153,8 +153,12 @@ ${../../includes/data_view.html}
                                                 <br />
 
                                                 <center>
-                                                    <img id="kegg-plot" width="90%" src="{<biostack>image/enrichment}&type=kegg&id={$taskID}" />
+                                                    <img id="kegg-plot" width="95%" src="{<biostack>image/enrichment}&type=kegg&id={$taskID}" />
                                                 </center>
+
+                                                <hr />
+                                                <a href="#" onclick="custom_kegg();">
+                                                    <i class="fa fa-pencil"></i> &nbsp; Customize</a>
 
                                             </div>
                                             <div id="menu1" class="tab-pane fade">
@@ -162,8 +166,12 @@ ${../../includes/data_view.html}
                                                 <br />
 
                                                 <center>
-                                                    <img id="go-plot" width="90%" src="{<biostack>image/enrichment}&type=go&id={$taskID}" />
+                                                    <img id="go-plot" width="95%" src="{<biostack>image/enrichment}&type=go&id={$taskID}" />
                                                 </center>
+
+                                                <hr />
+                                                <a href="#" onclick="custom_go();">
+                                                    <i class="fa fa-pencil"></i> &nbsp; Customize</a>
 
                                             </div>
 
@@ -177,11 +185,19 @@ ${../../includes/data_view.html}
                 </div>
 
                 <script type="text/javascript">
-                    parent.setPageHeight("1100");
+                    parent.setPageHeight("1200");
 
                     $(function () {
                         $('#collapseOne').collapse('show')
                     });
+
+                    function custom_go() {
+                        parent.gotoURL("{<biostack>web/custom_enrichment_plot}&type=go&id={$taskID}");
+                    }
+
+                    function custom_kegg() {
+                        parent.gotoURL("{<biostack>web/custom_enrichment_plot}&type=kegg&id={$taskID}");
+                    }
                 </script>
 
                 <!--在这里只包含有GO富集和KEGG富集的结果可视化图片-->
