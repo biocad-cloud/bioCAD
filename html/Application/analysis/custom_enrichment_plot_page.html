@@ -135,7 +135,14 @@ ${../../includes/data_view.html}
 
                                                         console.log(tweaks);
 
+                                                        $.post("http://biocad.cloud:83/biostack/CustomEnrichmentPlot.vbs?type={$type}&id={$taskID}", tweaks, function (rtvl) {
+                                                            console.log(rtvl);
 
+                                                            $("#home").attr("class", "tab-pane fade in active");
+                                                            $("#menu1").attr("class", "tab-pane fade");
+
+                                                            $("#kegg-plot").attr("src", "{<biostack>image/enrichment}&type={$type}&id={$taskID}&" + Math.random());
+                                                        });
                                                     }
                                                 </script>
 

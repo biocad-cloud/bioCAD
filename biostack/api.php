@@ -86,5 +86,10 @@ class biostack {
 
         Utils::PushDownload($zip, -1, "application/zip");
     }    
+
+    public function customEnrichmentPlot() {
+        $task_id   = $_GET["id"];
+        $workspace = taskMgr::GetTaskWorkspace($task_id);
+    }
 }
 ?>
