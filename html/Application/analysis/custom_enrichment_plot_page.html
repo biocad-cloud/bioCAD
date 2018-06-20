@@ -1,5 +1,7 @@
 ${../../includes/data_view.html}
 
+<link href="http://cdn.biodeep.cn/styles/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet" type="text/css">
+
 <body>
 
     <div id="wrapper" style="margin: 50px; min-height: 400px;">
@@ -58,15 +60,25 @@ ${../../includes/data_view.html}
                                                         <tbody>
                                                             <tr>
                                                                 <th width="10%">Label align:</th>
-                                                                <td width="30%">
-                                                                    <input type="checkbox" name="label-align-right" id="label-align-right">Right</input>
+                                                                <td width="20%">
+                                                                    <div class="checkbox checkbox-primary">
+                                                                        <input id="label-align-right" class="styled" type="checkbox">
+                                                                        <label for="label-align-right">
+                                                                            Align right
+                                                                        </label>
+                                                                    </div>
                                                                 </td>
                                                                 <td></td>
                                                             </tr>
                                                             <tr>
                                                                 <th>Gray scale:</th>
                                                                 <td>
-                                                                    <input type="checkbox" name="plot-gray-scale" id="plot-gray-scale">Yes</input>
+                                                                    <div class="checkbox checkbox-primary">
+                                                                        <input id="plot-gray-scale" class="styled" type="checkbox">
+                                                                        <label for="plot-gray-scale">
+                                                                            Yes
+                                                                        </label>
+                                                                    </div>
                                                                 </td>
                                                                 <td></td>
                                                             </tr>
@@ -76,24 +88,25 @@ ${../../includes/data_view.html}
                                                                     <input type="text" class="form-control" id="tick" placeholder="default = -1" />
                                                                 </td>
                                                                 <td>
-                                                                    <span>default=-1, means measure ticks internal automaticlly.</span>
+                                                                    &nbsp;&nbsp;
+                                                                    <span style="color:gray;">
+                                                                        <code>default = -1</code>, means measure ticks internal automaticlly.</span>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <th>Size: </th>
-                                                                <td>
-                                                                    <div class="row">
-                                                                        <div class="col-sm-3">[width, height] =</div>
-                                                                        <div class="col-sm-4">
+                                                                <td colspan="2">
+                                                                    <div class="row" style="width:50%;padding-top:1.25em;padding-bottom:0px;">
+                                                                        <div class="col-sm-4">[width, height] =</div>
+                                                                        <div class="col-sm-3">
                                                                             <input type="text" class="form-control" width="20px" placeholder="2200" id="px-width" />
                                                                         </div>
                                                                         <div class="col-sm-1"> x</div>
-                                                                        <div class="col-sm-4">
+                                                                        <div class="col-sm-3">
                                                                             <input type="text" class="form-control" width="20px" placeholder="1600" id="px-height" />
                                                                         </div>
                                                                     </div>
                                                                 </td>
-                                                                <td></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -106,8 +119,23 @@ ${../../includes/data_view.html}
 
                                                     function apply() {
                                                         parent.becomesBusy("Apply parameters...");
-                                                        
-                                                        var labelAlign = $("#label-align-right").val();
+
+                                                        var labelAlign = $("#label-align-right").prop('checked');
+                                                        var grayScale = $("#plot-gray-scale").prop('checked');
+                                                        var ticks = $("#tick").val() || -1;
+                                                        var pxW = $("#px-width").val() || 2200;
+                                                        var pxH = $("#px-height").val() || 1600;
+
+                                                        var tweaks = {
+                                                            "label_align_right": labelAlign,
+                                                            "grayScale": grayScale,
+                                                            "ticks": ticks,
+                                                            "size": [pxW, pxH]
+                                                        };
+
+                                                        console.log(tweaks);
+
+
                                                     }
                                                 </script>
 
