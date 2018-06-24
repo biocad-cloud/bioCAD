@@ -11,6 +11,8 @@ Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "login_script", "login_scrip
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "kegg_organism", "kegg_organism\kegg_organism.njsproj", "{600D6FED-6512-4929-AD04-DD77E85824CE}"
 EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "bioCAD.core", "bioCAD.core\bioCAD.core.njsproj", "{1B688CEF-A264-44D6-83D0-D06B70273C80}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{600D6FED-6512-4929-AD04-DD77E85824CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{600D6FED-6512-4929-AD04-DD77E85824CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{600D6FED-6512-4929-AD04-DD77E85824CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B688CEF-A264-44D6-83D0-D06B70273C80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B688CEF-A264-44D6-83D0-D06B70273C80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B688CEF-A264-44D6-83D0-D06B70273C80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B688CEF-A264-44D6-83D0-D06B70273C80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
