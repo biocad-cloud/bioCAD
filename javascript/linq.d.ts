@@ -72,6 +72,7 @@ declare class IEnumerator<T> implements IEnumerable<T> {
     SkipWhile(predicate: (e: T) => boolean): IEnumerator<T>;
     All(predicate: (e: T) => boolean): boolean;
     Any(predicate?: (e: T) => boolean): boolean;
+    JoinBy(deli: string, toString?: (x: T) => String): string;
     /**
      * This function returns a clone copy of the source sequence.
     */
