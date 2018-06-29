@@ -34,11 +34,29 @@ class biostack {
     }
 
     public function log2FC() {
+        $vars           = Common::getUserInfo();
+		$vars["title"]  = "Expression FoldChange Analysis";       
 
+		View::Display($vars);
     }
 
     public function volcano() {
         
+    }
+
+    public function bootstrap() {
+        $vars           = Common::getUserInfo();
+        $loading        = Utils::ReadValue($_GET, "loading");
+        
+        if (empty($loading)) {
+            Redirect("{index/biostack}");
+            die;
+        }
+
+		$vars["title"]  = "Biostack Web Bootstrapping";        
+        $vars["iframe"] = "{<biostack>web/$loading}"; 
+
+		View::Show(BOOTSTRAP, $vars);
     }
 
     public function iTraq() {
