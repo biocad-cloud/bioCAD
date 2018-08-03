@@ -4,7 +4,7 @@ Imports("MVC.controller");
 
 class accessController extends controller {
 
-    public function accessControl() {
+    public function accessControl() {       
         if ($this->AccessByEveryOne()) {
             return true;
         }
