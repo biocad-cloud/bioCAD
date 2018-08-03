@@ -13,7 +13,13 @@ declare class IEnumerator<T> implements IEnumerable<T> {
     */
     protected sequence: T[];
     constructor(source: T[]);
+    /**
+     * Get the first element in this sequence
+    */
     First(): T;
+    /**
+     * Get the last element in this sequence
+    */
     Last(): T;
     /**
      * Projects each element of a sequence into a new form.
@@ -31,6 +37,9 @@ declare class IEnumerator<T> implements IEnumerable<T> {
      * Groups the elements of a sequence according to a key selector function.
      * The keys are compared by using a comparer and each group's elements
      * are projected by using a specified function.
+     *
+     * @param compares 注意，javascript在进行中文字符串的比较的时候存在bug，如果当key的类型是字符串的时候，
+     *                 在这里需要将key转换为数值进行比较，遇到中文字符串可能会出现bug
     */
     GroupBy<TKey>(keySelector: (o: T) => TKey, compares: (a: TKey, b: TKey) => number): IEnumerator<Group<TKey, T>>;
     /**
@@ -72,18 +81,70 @@ declare class IEnumerator<T> implements IEnumerable<T> {
     SkipWhile(predicate: (e: T) => boolean): IEnumerator<T>;
     All(predicate: (e: T) => boolean): boolean;
     Any(predicate?: (e: T) => boolean): boolean;
+    /**
+     * Performs the specified action for each element in an array.
+     *
+     * @param callbackfn  A function that accepts up to three arguments. forEach
+     * calls the callbackfn function one time for each element in the array.
+     *
+    */
+    ForEach(callbackfn: (x: T, index: number) => void): void;
     JoinBy(deli: string, toString?: (x: T) => String): string;
     /**
      * This function returns a clone copy of the source sequence.
     */
     ToArray(): T[];
 }
+/**
+ * Linq数据流程管线的起始函数
+ *
+ * @param source 需要进行数据加工的集合对象
+*/
 declare function From<T>(source: T[]): IEnumerator<T>;
+/**
+ * 判断目标对象集合是否是空的？
+*/
+declare function IsNullOrEmpty<T>(array: T[]): boolean;
+/**
+ * 通用数据拓展函数集合
+*/
+declare module DataExtensions {
+    /**
+     * 尝试将任意类型的目标对象转换为数值类型
+    */
+    function as_numeric(obj: any): number;
+}
+declare class NumericRange implements DoubleRange {
+    min: number;
+    max: number;
+    constructor(min: number, max: number);
+    IsInside(x: number): boolean;
+    static Create(min: number, max: number): NumericRange;
+    toString(): string;
+}
+/**
+ * 用于进行数据分组所需要的最基础的二叉树数据结构
+*/
 declare class binaryTree<T, V> {
+    /**
+     * 根节点，根节点的key值可能会对二叉树的构建造成很大的影响
+    */
     root: node<T, V>;
+    /**
+     * 这个函数指针描述了如何对两个``key``之间进行比较
+     *
+     * 返回结果值：
+     *
+     * + ``等于0`` 表示二者相等
+     * + ``大于0`` 表示a大于b
+     * + ``小于0`` 表示a小于b
+    */
     compares: (a: T, b: T) => number;
     constructor(comparer: (a: T, b: T) => number);
     add(term: T, value?: V): void;
+    /**
+     * 根据key值查找一个节点，然后获取该节点之中与key所对应的值
+    */
     find(term: T): V;
     ToArray(): node<T, V>[];
     AsEnumerable(): IEnumerator<node<T, V>>;

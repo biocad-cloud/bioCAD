@@ -38,3 +38,6 @@ obj/
 /javascript/changelog.bootstrap.js
 /typescript/javascript/bioCAD.FileSystem.Explorer.js
 /javascript/bioCAD.FileSystem.Explorer.js
+
+
+node_modules
