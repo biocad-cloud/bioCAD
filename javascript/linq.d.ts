@@ -1,6 +1,8 @@
 /**
  * Provides a set of static (Shared in Visual Basic) methods for querying
  * objects that implement ``System.Collections.Generic.IEnumerable<T>``.
+ *
+ * (这个枚举器类型是构建出一个Linq查询表达式所必须的基础类型)
 */
 declare class IEnumerator<T> implements IEnumerable<T> {
     readonly [index: number]: T;
@@ -46,9 +48,21 @@ declare class IEnumerator<T> implements IEnumerable<T> {
      * Filters a sequence of values based on a predicate.
     */
     Where(predicate: (e: T) => boolean): IEnumerator<T>;
+    /**
+     * 求取这个序列集合的最小元素，使用这个函数要求序列之中的元素都必须能够被转换为数值
+    */
     Min(project?: (e: T) => number): T;
+    /**
+     * 求取这个序列集合的最大元素，使用这个函数要求序列之中的元素都必须能够被转换为数值
+    */
     Max(project?: (e: T) => number): T;
+    /**
+     * 求取这个序列集合的平均值，使用这个函数要求序列之中的元素都必须能够被转换为数值
+    */
     Average(project?: (e: T) => number): number;
+    /**
+     * 求取这个序列集合的和，使用这个函数要求序列之中的元素都必须能够被转换为数值
+    */
     Sum(project?: (e: T) => number): number;
     /**
      * Sorts the elements of a sequence in ascending order according to a key.
@@ -79,7 +93,13 @@ declare class IEnumerator<T> implements IEnumerable<T> {
      * and then returns the remaining elements.
     */
     SkipWhile(predicate: (e: T) => boolean): IEnumerator<T>;
+    /**
+     * 判断这个序列之中的所有元素是否都满足特定条件
+    */
     All(predicate: (e: T) => boolean): boolean;
+    /**
+     * 判断这个序列之中的任意一个元素是否满足特定的条件
+    */
     Any(predicate?: (e: T) => boolean): boolean;
     /**
      * Performs the specified action for each element in an array.
@@ -166,13 +186,30 @@ declare class binaryTree<T, V> {
      * + ``小于0`` 表示a小于b
     */
     compares: (a: T, b: T) => number;
-    constructor(comparer: (a: T, b: T) => number);
+    /**
+     * 构建一个二叉树对象
+     *
+     * @param comparer 这个函数指针描述了如何进行两个对象之间的比较操作，如果这个函数参数使用默认值的话
+     *                 则只能够针对最基本的数值，逻辑变量进行操作
+    */
+    constructor(comparer?: (a: T, b: T) => number);
+    /**
+     * 向这个二叉树对象之中添加一个子节点
+    */
     add(term: T, value?: V): void;
     /**
      * 根据key值查找一个节点，然后获取该节点之中与key所对应的值
+     *
+     * @returns 如果这个函数返回空值，则表示可能未找到目标子节点
     */
     find(term: T): V;
+    /**
+     * 将这个二叉树对象转换为一个节点的数组
+    */
     ToArray(): node<T, V>[];
+    /**
+     * 将这个二叉树对象转换为一个Linq查询表达式所需要的枚举器类型
+    */
     AsEnumerable(): IEnumerator<node<T, V>>;
 }
 declare module binaryTreeExtensions {
