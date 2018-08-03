@@ -83,7 +83,7 @@ class editor {
         for (var i = 0; i < tdList.length - 1; i++) {
             var td = tdList[i];
             var textDisplay: HTMLElement = td.getElementsByTagName("div")[0];
-            var inputBox: HTMLElement = td.getElementsByTagName("input")[0];
+            var inputBox: HTMLInputElement = td.getElementsByTagName("input")[0];
 
             if (textDisplay && inputBox) {
                 textDisplay.innerText = inputBox.value;
@@ -105,7 +105,7 @@ class editor {
         for (var i = 0; i < tdList.length - 1; i++) {
             var td = tdList[i];
             var textDisplay: HTMLElement = td.getElementsByTagName("div")[0];
-            var inputBox: HTMLElement = td.getElementsByTagName("input")[0];
+            var inputBox: HTMLInputElement = td.getElementsByTagName("input")[0];
 
             if (textDisplay && inputBox) {
                 inputBox.value = textDisplay.innerText;
