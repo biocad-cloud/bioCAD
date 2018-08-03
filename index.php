@@ -4,6 +4,7 @@
 
 include "./modules/dotnet/package.php";
 include "./common.php";
+include "./accessController.php";
 
 Imports("MVC.view");
 
@@ -13,17 +14,21 @@ View::Push("dismiss_banner", Common::BannerDismissStatus());
 View::Push("*", Common::getUserInfo());
 
 dotnet::AutoLoad("./etc/config.php");
-dotnet::HandleRequest(new app());
+dotnet::HandleRequest(new app(), new accessController());
 
+/**
+ * 在这里的所有的页面都不需要进行身份验证	
+*/
 class app {
-
+	
 	/**
-	 * 在这里的所有的页面都不需要进行身份验证 
+	 * bioCAD cloud platform
 	 * 
-	 */
-
+	 * @access *
+	 * @uses view
+	*/
 	public function index() {
-		view::Display(["title" => "bioCAD cloud platform"]);
+		View::Display();
 	}
 
 	public function apps() {		
@@ -32,23 +37,47 @@ class app {
 			["link" => "{index/apps}", "icon" => "fa-project-diagram", "title" => "Applications"]
 		];
 
-		view::Display($vars);
+		View::Display($vars);
 	}
 
+	/**
+	 * Introduce Biostack
+	 * 
+	 * @access *
+	 * @uses view
+	*/
 	public function biostack() {		
-		view::Display(["title" => "Introduce Biostack"]);
+		View::Display();
 	}
 
+	/**
+	 * About bioCAD
+	 * 
+	 * @access *
+	 * @uses view
+	*/
 	public function about() {
-		view::Display(["title" => "About bioCAD"]);
+		View::Display();
 	}
 
+	/**
+	 * Privacy Policy
+	 * 
+	 * @access *
+	 * @uses view
+	*/
 	public function privacy_policy() {		
-		view::Display(["title" => "Privacy Policy"]);
+		View::Display();
 	}
 
+	/**
+	 * Terms of Use for bioCAD
+	 * 
+	 * @access *
+	 * @uses view
+	*/
 	public function terms_of_use() {
-		view::Display(["title" => "Terms of Use for bioCAD"]);
+		View::Display();
 	}
 
 	public function search() {
@@ -61,7 +90,7 @@ class app {
 			$result = $this->searchInternal($term);
 		}
 			
-		view::Display([
+		View::Display([
 			"title"  => "Search Result", 
 			"result" => $result
 		]);
@@ -73,15 +102,21 @@ class app {
 	private function searchInternal($term) {
 		$result_list = "";		
 		
-		return view::Load("./html/search_result.html", 
+		return View::Load("./html/search_result.html", 
 			[
 				"list" => $result_list, 
 				"term" => $term
 			]);
 	}
 
+	/**
+	 * bioCAD changelog
+	 * 
+	 * @access *
+	 * @uses view
+	*/
 	public function change_log() {		
-		view::Display(["title" => "bioCAD changelog"]);
+		View::Display();
 	}
 }
 
