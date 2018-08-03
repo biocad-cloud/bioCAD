@@ -103,6 +103,8 @@ declare class IEnumerator<T> implements IEnumerable<T> {
 declare function From<T>(source: T[]): IEnumerator<T>;
 /**
  * 判断目标对象集合是否是空的？
+ *
+ * @param array 如果这个数组对象是空值或者未定义，都会被判定为空，如果长度为零，则同样也会被判定为空值
 */
 declare function IsNullOrEmpty<T>(array: T[]): boolean;
 /**
@@ -114,12 +116,36 @@ declare module DataExtensions {
     */
     function as_numeric(obj: any): number;
 }
+/**
+ * 一个数值范围
+*/
 declare class NumericRange implements DoubleRange {
+    /**
+     * 这个数值范围的最小值
+    */
     min: number;
+    /**
+     * 这个数值范围的最大值
+    */
     max: number;
     constructor(min: number, max: number);
+    /**
+     * 判断目标数值是否在当前的这个数值范围之内
+    */
     IsInside(x: number): boolean;
-    static Create(min: number, max: number): NumericRange;
+    /**
+     * 从一个数值序列之中创建改数值序列的值范围
+    */
+    static Create(numbers: number[]): NumericRange;
+    toString(): string;
+}
+/**
+ * 描述了一个键值对集合
+*/
+declare class Map<K, V> {
+    Key: K;
+    value: V;
+    constructor(key?: K, value?: V);
     toString(): string;
 }
 /**

@@ -1,3 +1,4 @@
+/// <reference path="linq.d.ts" />
 /**
  * 文件模型
 */
@@ -54,4 +55,6 @@ declare class FileHandle {
 declare class Explorer {
     files: FileHandle[];
     divId: string;
+    constructor(div: string, files: FileHandle[]);
+    static show(div: string, files: bioCADFile[], size?: number[], icons?: Map<string, string>[]): Explorer;
 }

@@ -1,4 +1,6 @@
-﻿// 在这里构建出用于显示文件的UI部分的代码
+﻿/// <reference path="../../../javascript/linq.d.ts" />
+
+// 在这里构建出用于显示文件的UI部分的代码
 
 /**
  * 将文件呈现给用户的UI代码部分
@@ -25,4 +27,12 @@ class Explorer {
     public files: FileHandle[];
     public divId: string;
 
+    public constructor(div: string, files: FileHandle[]) {
+        this.divId = div;
+        this.files = files;
+    }
+
+    public static show(div: string, files: bioCADFile[], size: number[] = [100, 120], icons: Map<string, string>[] = null): Explorer {
+
+    }
 }
