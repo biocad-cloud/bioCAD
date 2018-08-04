@@ -55,6 +55,7 @@ declare class FileHandle {
 declare class Explorer {
     files: FileHandle[];
     divId: string;
-    constructor(div: string, files: FileHandle[]);
-    static show(div: string, files: bioCADFile[], size?: number[], icons?: Map<string, string>[]): Explorer;
+    container: HTMLDivElement;
+    constructor(div: HTMLDivElement, files: FileHandle[]);
+    static show(divId: string, files: bioCADFile[], size?: number[], icons?: Map<string, string>[]): Explorer;
 }

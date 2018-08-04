@@ -26,13 +26,30 @@ class Explorer {
 
     public files: FileHandle[];
     public divId: string;
+    public container: HTMLDivElement;
 
-    public constructor(div: string, files: FileHandle[]) {
-        this.divId = div;
+    public constructor(div: HTMLDivElement, files: FileHandle[]) {
+        this.divId = div.id;
         this.files = files;
+        this.container = div;
     }
 
-    public static show(div: string, files: bioCADFile[], size: number[] = [100, 120], icons: Map<string, string>[] = null): Explorer {
+    public static show(divId: string, files: bioCADFile[], size: number[] = [100, 120], icons: Map<string, string>[] = null): Explorer {
+        var div: HTMLDivElement = <HTMLDivElement>document.getElementById(divId);
+        var fileHandles: FileHandle[] = From(files)
+            .Select((file: bioCADFile) => {
+                var grid: HTMLDivElement = document.createElement("div");
+                var Id: string = `FILE_${file.id}`;
+                var handle: FileHandle = new FileHandle();
 
+                handle.divId = Id;
+                handle.file = file;
+                handle.div = grid;
+
+                return handle;
+            })
+            .ToArray();
+
+        return new Explorer(div, fileHandles);
     }
 }
