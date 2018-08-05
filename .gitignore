@@ -23,6 +23,7 @@ nytprof.out
 /.vs/Develop/v15
 /php-bigxhtml.html
 /data/
+data/
 *.suo
 *.sqlite
 
