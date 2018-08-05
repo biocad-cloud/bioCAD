@@ -16,5 +16,6 @@ return [
     "ERR_HANDLER_DISABLE" => "TRUE",
 
     // 自定义http错误页面的位置，例如404 500 403等
-    "RFC7231" => "html/http_errors"
+    "RFC7231" => "html/http_errors",
+    "CACHE"   => true
 ];
