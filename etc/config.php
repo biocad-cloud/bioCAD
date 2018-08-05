@@ -17,5 +17,6 @@ return [
 
     // 自定义http错误页面的位置，例如404 500 403等
     "RFC7231" => "html/http_errors",
-    "CACHE"   => true
+    "CACHE"   => true,
+    "APP_NAME" => "bioCAD"
 ];
