@@ -10,7 +10,7 @@ Imports("Microsoft.VisualBasic.Strings");
 
 Imports("MVC.view");
 
-define("APP_PATH", dirname(dirname(__FILE__)));
+define("APP_PATH", dirname(__FILE__));
 
 View::Push("dismiss_banner", Common::BannerDismissStatus());
 View::Push("*", Common::getUserInfo());
