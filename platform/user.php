@@ -95,9 +95,8 @@ class user {
         Redirect("/");        
     }
 
-    public function dismiss_dataprotection() {
-        $_SESSION["dismiss_banner"] = true;
-
+    public function dataprotection() {
+        $_SESSION["dismiss_banner"] = "true";
         echo dotnet::successMsg("dismiss");
     }
 }

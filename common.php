@@ -39,13 +39,14 @@ class Common {
 		return $user;
 	}
 
-	public static function BannerDismissStatus() {		
-		// echo var_dump($_SESSION);
+	public static function BannerDismissStatus() {
+		$hasOption = array_key_exists("dismiss_banner", $_SESSION);
+
+		console::log("<strong>dismiss_banner</strong> option exists? " . strval($hasOption));
 
 		# 因为在进行字符串替换的时候，false会被直接替换为空白字符串
 		# 可能会导致脚本语法错误，所以逻辑值都需要转换为文本之后才可以
-
-		if (isset($_SESSION["dismiss_banner"])) {
+		if ($hasOption) {
 			return $_SESSION["dismiss_banner"] ? "true" : "false";
 		} else {			
 			$_SESSION["dismiss_banner"] = false;
