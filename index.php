@@ -2,6 +2,8 @@
 
 # home page
 
+session_start();
+
 define("APP_PATH", dirname(__FILE__));
 define("APP_DEBUG", true);
 
