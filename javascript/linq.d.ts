@@ -1,4 +1,18 @@
 /**
+ * 描述了一个键值对集合
+*/
+declare class Map<K, V> {
+    Key: K;
+    value: V;
+    constructor(key?: K, value?: V);
+    toString(): string;
+}
+declare class Dictionary<V> extends IEnumerator<Map<string, V>> {
+    private maps;
+    constructor(maps: object);
+    static ObjectMaps<V>(maps: object): Map<string, V>[];
+}
+/**
  * Provides a set of static (Shared in Visual Basic) methods for querying
  * objects that implement ``System.Collections.Generic.IEnumerable<T>``.
  *
@@ -152,6 +166,7 @@ declare class NumericRange implements DoubleRange {
      * 这个数值范围的最大值
     */
     max: number;
+    readonly Length: number;
     constructor(min: number, max: number);
     /**
      * 判断目标数值是否在当前的这个数值范围之内
@@ -161,6 +176,7 @@ declare class NumericRange implements DoubleRange {
      * 从一个数值序列之中创建改数值序列的值范围
     */
     static Create(numbers: number[]): NumericRange;
+    PopulateNumbers(step?: number): number[];
     toString(): string;
 }
 /**
@@ -225,30 +241,19 @@ interface IEnumerable<T> {
     */
     ToArray(): T[];
 }
-declare class Group<TKey, T> extends IEnumerator<T> {
-    Key: TKey;
-    /**
-     * Group members, readonly property.
-    */
-    readonly Group: T[];
-    constructor(key: TKey, group: T[]);
-}
 /**
- * 描述了一个键值对集合
+ * The linq pipline implements at here.
 */
-declare class Map<K, V> {
-    Key: K;
-    value: V;
-    constructor(key?: K, value?: V);
-    toString(): string;
-}
-declare class Dictionary<V> extends IEnumerator<Map<string, V>> {
-    private maps;
-    constructor(maps: object);
-    static ObjectMaps<V>(maps: object): Map<string, V>[];
-}
 declare module Enumerable {
+    /**
+     * 进行数据序列的投影操作
+     *
+    */
     function Select<T, TOut>(source: T[], project: (e: T) => TOut): IEnumerator<TOut>;
+    /**
+     * 进行数据序列的排序操作
+     *
+    */
     function OrderBy<T>(source: T[], key: (e: T) => number): IEnumerator<T>;
     function OrderByDescending<T>(source: T[], key: (e: T) => number): IEnumerator<T>;
     function Take<T>(source: T[], n: number): IEnumerator<T>;
@@ -259,4 +264,12 @@ declare module Enumerable {
     function All<T>(source: T[], predicate: (e: T) => boolean): boolean;
     function Any<T>(source: T[], predicate: (e: T) => boolean): boolean;
     function GroupBy<T, TKey>(source: T[], getKey: (e: T) => TKey, compares: (a: TKey, b: TKey) => number): IEnumerator<Group<TKey, T>>;
+}
+declare class Group<TKey, T> extends IEnumerator<T> {
+    Key: TKey;
+    /**
+     * Group members, readonly property.
+    */
+    readonly Group: T[];
+    constructor(key: TKey, group: T[]);
 }
