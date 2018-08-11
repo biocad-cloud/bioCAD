@@ -45,6 +45,9 @@
     <TypeScriptCompile Include="Explorer.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="bioClassType.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="UI.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

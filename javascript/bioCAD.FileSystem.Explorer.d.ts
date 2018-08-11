@@ -1,33 +1,31 @@
 /// <reference path="linq.d.ts" />
-declare module "bioMimeTypes" {
-    export enum bioClassType {
-        /**
-         * The unknown class type
-        */
-        unknown = 0,
-        /**
-         * General text file
-        */
-        text = 1,
-        /**
-         * Image file
-        */
-        image = 2,
-        /**
-         * The data table is a kind of numeric matrix for gene expression data, or something.
-        */
-        data_table = 3,
-        /**
-         * The biological sequence data type, like fasta sequence file.
-        */
-        bioSequence = 4,
-    }
-    export module bioMimeTypes {
-        /**
-         * bio class type to font-awsome icon name
-        */
-        function classToFontAwsome(cls: bioClassType): string[];
-    }
+declare enum bioClassType {
+    /**
+     * The unknown class type
+    */
+    unknown = 0,
+    /**
+     * General text file
+    */
+    text = 1,
+    /**
+     * Image file
+    */
+    image = 2,
+    /**
+     * The data table is a kind of numeric matrix for gene expression data, or something.
+    */
+    data_table = 3,
+    /**
+     * The biological sequence data type, like fasta sequence file.
+    */
+    bioSequence = 4,
+}
+declare module bioMimeTypes {
+    /**
+     * bio class type to font-awsome icon name
+    */
+    function classToFontAwsome(cls: bioClassType): string[];
 }
 /**
  * 文件模型
@@ -67,7 +65,20 @@ declare class bioCADmimeType {
     constructor(data: any);
     toString(): string;
 }
-declare module "Explorer" {
+declare const containerClassName: string;
+/**
+ * 文件浏览器的模型，这个对象是一个文件的集合
+*/
+declare class Explorer {
+    files: FileHandle[];
+    divId: string;
+    container: HTMLDivElement;
+    constructor(div: HTMLDivElement, files: FileHandle[]);
+    /**
+     * @param divId 文件浏览器将会显示在这个div之中
+     * @param icons 将文件的mime type转换为大分类的映射数组
+    */
+    static show(divId: string, files: bioCADFile[], icons?: Map<string, bioClassType>[]): Explorer;
 }
 /**
  * 将文件呈现给用户的UI代码部分

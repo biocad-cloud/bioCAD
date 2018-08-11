@@ -1,8 +1,6 @@
 ﻿/// <reference path="../../../javascript/linq.d.ts" />
 /// <reference path="./Models.ts" />
 
-import { bioClassType, bioMimeTypes } from "./bioMimeTypes";
-
 const containerClassName: string = "file-preview-thumbnails";
 
 /**
