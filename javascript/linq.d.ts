@@ -1,18 +1,4 @@
 /**
- * 描述了一个键值对集合
-*/
-declare class Map<K, V> {
-    Key: K;
-    value: V;
-    constructor(key?: K, value?: V);
-    toString(): string;
-}
-declare class Dictionary<V> extends IEnumerator<Map<string, V>> {
-    private maps;
-    constructor(maps: object);
-    static ObjectMaps<V>(maps: object): Map<string, V>[];
-}
-/**
  * Provides a set of static (Shared in Visual Basic) methods for querying
  * objects that implement ``System.Collections.Generic.IEnumerable<T>``.
  *
@@ -242,6 +228,40 @@ interface IEnumerable<T> {
     ToArray(): T[];
 }
 /**
+ * 描述了一个键值对集合
+*/
+declare class Map<K, V> {
+    /**
+     * 键名称，一般是字符串
+    */
+    key: K;
+    /**
+     * 目标键名所映射的值
+    */
+    value: V;
+    /**
+     * 创建一个新的键值对集合
+     *
+    */
+    constructor(key?: K, value?: V);
+    toString(): string;
+}
+/**
+ * 键值对映射哈希表
+*/
+declare class Dictionary<V> extends IEnumerator<Map<string, V>> {
+    private maps;
+    Item(key: string): V;
+    /**
+     * 将目标对象转换为一个类型约束的映射序列集合
+    */
+    constructor(maps: object);
+    /**
+     * 将目标对象转换为一个类型约束的映射序列集合
+    */
+    static ObjectMaps<V>(maps: object): Map<string, V>[];
+}
+/**
  * The linq pipline implements at here.
 */
 declare module Enumerable {
@@ -272,4 +292,8 @@ declare class Group<TKey, T> extends IEnumerator<T> {
     */
     readonly Group: T[];
     constructor(key: TKey, group: T[]);
+    /**
+     * 创建一个键值对映射序列，这些映射都具有相同的键名
+    */
+    ToMaps(): Map<TKey, T>[];
 }

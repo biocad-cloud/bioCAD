@@ -17,8 +17,9 @@ class FileHandle {
         return this.file.id.toString();
     }
 
-    public constructor(file: bioCADFile) {
+    public constructor(file: bioCADFile, icon: string[]) {
         this.file = file;
+        this.mimeIcon = icon;
     }
 
     static classNames: string[] = [

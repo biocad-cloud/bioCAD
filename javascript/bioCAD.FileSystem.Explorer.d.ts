@@ -81,7 +81,7 @@ declare class FileHandle {
     div: HTMLDivElement;
     mimeIcon: string[];
     readonly fileId: string;
-    constructor(file: bioCADFile);
+    constructor(file: bioCADFile, icon: string[]);
     static classNames: string[];
     private footer();
     private actionButtons();

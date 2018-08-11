@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../javascript/linq.d.ts" />
 /// <reference path="./Models.ts" />
 
-import { bioClassType } from "./bioMimeTypes";
+import { bioClassType, bioMimeTypes } from "./bioMimeTypes";
 
 const containerClassName: string = "file-preview-thumbnails";
 
@@ -26,10 +26,13 @@ class Explorer {
     */
     public static show(divId: string, files: bioCADFile[], icons: Map<string, bioClassType>[] = null): Explorer {
         var div: HTMLDivElement = <HTMLDivElement>document.getElementById(divId);
-        var iconTypes: Dictionary<bioClassType> = From(icons).ToDictionary(map => map.Key, map => map.value);
+        var iconTypes: Dictionary<bioClassType> = From(icons).ToDictionary(map => map.key, map => map.value);
         var fileHandles: IEnumerator<FileHandle> = From(files)
             .Select((file: bioCADFile) => {
-                var handle: FileHandle = new FileHandle(file);
+                var cls: bioClassType = iconTypes.Item(file.mime.contentType);
+                var classNames: string[] = bioMimeTypes.classToFontAwsome(cls);
+                var handle: FileHandle = new FileHandle(file, classNames);
+
                 return handle;
             });
 
