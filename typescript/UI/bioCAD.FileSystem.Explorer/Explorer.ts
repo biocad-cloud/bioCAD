@@ -26,7 +26,7 @@ class Explorer {
     */
     public static show(divId: string, files: bioCADFile[], icons: Map<string, bioClassType>[] = null): Explorer {
         var div: HTMLDivElement = <HTMLDivElement>document.getElementById(divId);
-        var iconTypes = From(icons).ToDictionary(map => map.Key, map => map.value);
+        var iconTypes: Dictionary<bioClassType> = From(icons).ToDictionary(map => map.Key, map => map.value);
         var fileHandles: IEnumerator<FileHandle> = From(files)
             .Select((file: bioCADFile) => {
                 var handle: FileHandle = new FileHandle(file);

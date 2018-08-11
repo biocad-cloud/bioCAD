@@ -67,5 +67,26 @@ declare class bioCADmimeType {
     constructor(data: any);
     toString(): string;
 }
-declare module "UI" {
+declare module "Explorer" {
+}
+/**
+ * 将文件呈现给用户的UI代码部分
+*/
+declare class FileHandle {
+    divId: string;
+    /**
+     * 目标文件的数据模型对象
+    */
+    file: bioCADFile;
+    div: HTMLDivElement;
+    mimeIcon: string[];
+    readonly fileId: string;
+    constructor(file: bioCADFile);
+    static classNames: string[];
+    private footer();
+    private actionButtons();
+    /**
+     * @returns UI html string
+    */
+    toString(): string;
 }
