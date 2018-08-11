@@ -1,4 +1,5 @@
 ﻿/// <reference path="../../../javascript/linq.d.ts" />
+/// <reference path="./Models.ts" />
 
 // 在这里构建出用于显示文件的UI部分的代码
 
@@ -13,6 +14,10 @@ class FileHandle {
     */
     public file: bioCADFile;
     public div: HTMLDivElement;
+
+    public get fileId(): string {
+        return this.file.id.toString();
+    }
 
     public constructor(file: bioCADFile) {
         this.file = file;
@@ -42,7 +47,7 @@ class FileHandle {
                                 class="kv-file-remove btn btn-sm btn-kv btn-default btn-outline-secondary" 
                                 title="Delete file" 
                                 data-url="/site/file-delete" 
-                                data-key="11">
+                                data-key="${this.fileId}">
 
                             <i class="glyphicon glyphicon-trash">
                             </i>
@@ -59,8 +64,8 @@ class FileHandle {
     */
     public toString(): string {
         return `<div class="file-preview-frame krajee-default file-preview-initial file-sortable kv-preview-thumb" 
-                     id="preview-1533958654820_64-init_0" 
-                     data-fileindex="init_0" 
+                     id="${this.fileId}" 
+                     data-fileindex="${this.fileId}" 
                      data-template="image"
                      title="${this.file.fileName}">
 
@@ -119,6 +124,8 @@ class Explorer {
         div.innerHTML = fileHandles
             .Select(file => file.toString())
             .JoinBy("\n\n");
+
+        // 按照class查找对应的按钮注册处理事件
 
         return new Explorer(div, fileHandles.ToArray());
     }

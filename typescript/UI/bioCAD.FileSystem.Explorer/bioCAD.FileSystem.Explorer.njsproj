@@ -39,6 +39,9 @@
     <Content Include="tsconfig.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <TypeScriptCompile Include="bioMimeTypes.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="UI.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

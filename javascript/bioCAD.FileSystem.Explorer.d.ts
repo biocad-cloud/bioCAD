@@ -1,4 +1,34 @@
 /// <reference path="linq.d.ts" />
+declare module "bioMimeTypes" {
+    export module bioMimeTypes {
+        enum bioClassType {
+            /**
+             * The unknown class type
+            */
+            unknown = 0,
+            /**
+             * General text file
+            */
+            text = 1,
+            /**
+             * Image file
+            */
+            image = 2,
+            /**
+             * The data table is a kind of numeric matrix for gene expression data, or something.
+            */
+            data_table = 3,
+            /**
+             * The biological sequence data type, like fasta sequence file.
+            */
+            bioSequence = 4,
+        }
+        /**
+         * bio class type to font-awsome icon name
+        */
+        function classToFontAwsome(cls: bioClassType): string[];
+    }
+}
 /**
  * 文件模型
 */
@@ -47,6 +77,7 @@ declare class FileHandle {
     */
     file: bioCADFile;
     div: HTMLDivElement;
+    readonly fileId: string;
     constructor(file: bioCADFile);
     static classNames: string[];
     private footer();
