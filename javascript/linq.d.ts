@@ -117,6 +117,7 @@ declare class IEnumerator<T> implements IEnumerable<T> {
      * This function returns a clone copy of the source sequence.
     */
     ToArray(): T[];
+    ToDictionary<K, V>(keySelector: (x: T) => string, elementSelector?: (x: T) => V): Dictionary<V>;
 }
 /**
  * Linq数据流程管线的起始函数
@@ -160,15 +161,6 @@ declare class NumericRange implements DoubleRange {
      * 从一个数值序列之中创建改数值序列的值范围
     */
     static Create(numbers: number[]): NumericRange;
-    toString(): string;
-}
-/**
- * 描述了一个键值对集合
-*/
-declare class Map<K, V> {
-    Key: K;
-    value: V;
-    constructor(key?: K, value?: V);
     toString(): string;
 }
 /**
@@ -240,6 +232,20 @@ declare class Group<TKey, T> extends IEnumerator<T> {
     */
     readonly Group: T[];
     constructor(key: TKey, group: T[]);
+}
+/**
+ * 描述了一个键值对集合
+*/
+declare class Map<K, V> {
+    Key: K;
+    value: V;
+    constructor(key?: K, value?: V);
+    toString(): string;
+}
+declare class Dictionary<V> extends IEnumerator<Map<string, V>> {
+    private maps;
+    constructor(maps: object);
+    static ObjectMaps<V>(maps: object): Map<string, V>[];
 }
 declare module Enumerable {
     function Select<T, TOut>(source: T[], project: (e: T) => TOut): IEnumerator<TOut>;

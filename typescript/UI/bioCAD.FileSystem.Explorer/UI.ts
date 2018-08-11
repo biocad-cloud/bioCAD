@@ -1,6 +1,8 @@
 ﻿/// <reference path="../../../javascript/linq.d.ts" />
 /// <reference path="./Models.ts" />
 
+import { bioClassType } from "./bioMimeTypes";
+
 // 在这里构建出用于显示文件的UI部分的代码
 
 /**
@@ -14,6 +16,7 @@ class FileHandle {
     */
     public file: bioCADFile;
     public div: HTMLDivElement;
+    public mimeIcon: string[];
 
     public get fileId(): string {
         return this.file.id.toString();
@@ -63,6 +66,8 @@ class FileHandle {
      * @returns UI html string
     */
     public toString(): string {
+        var fa: string = this.mimeIcon.join(" ");
+
         return `<div class="file-preview-frame krajee-default file-preview-initial file-sortable kv-preview-thumb" 
                      id="${this.fileId}" 
                      data-fileindex="${this.fileId}" 
@@ -73,7 +78,7 @@ class FileHandle {
                         <div class="kv-preview-data file-preview-other-frame" style="width:auto;height:auto;max-width:100%;max-height:100%;">
                             <div class="file-preview-other">
                                 <span class="file-other-icon">
-                                    <i class="fa fa-file-photo-o text-danger"></i>
+                                    <i class="${fa}"></i>
                                 </span>
                             </div>
                         </div>
@@ -108,9 +113,11 @@ class Explorer {
 
     /**
      * @param divId 文件浏览器将会显示在这个div之中
+     * @param icons 将文件的mime type转换为大分类的映射数组
     */
-    public static show(divId: string, files: bioCADFile[], icons: Map<string, string>[] = null): Explorer {
+    public static show(divId: string, files: bioCADFile[], icons: Map<string, bioClassType>[] = null): Explorer {
         var div: HTMLDivElement = <HTMLDivElement>document.getElementById(divId);
+        var iconTypes = From(icons).ToDictionary()
         var fileHandles: IEnumerator<FileHandle> = From(files)
             .Select((file: bioCADFile) => {
                 var handle: FileHandle = new FileHandle(file);
