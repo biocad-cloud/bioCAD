@@ -49,7 +49,7 @@
 
         // 剩余时间
         var rest_time = ((evt.total - evt.loaded) / bspeed).toFixed(1);
-        progressBar.innerHTML = percentage + "%" + ' (' + speed.toFixed(1) + units + ', ETA: ' + rest_time + 's)';
+        progressBar.innerHTML = `${percentage}% (${speed.toFixed(1)}${units}, ETA: ${rest_time}s)`;
 
         $('#controlButton').progressSet(percentage);
     };
