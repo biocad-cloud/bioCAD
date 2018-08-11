@@ -13,7 +13,7 @@
     /**
      * 【上传进度调用方法实现】
     */
-    public ProgressFunction(xhr: XMLHttpRequest, evt: ProgressEvent): void {
+    public ProgressFunction(xhr: XMLHttpRequest, evt: ProgressEvent): any {
         var progressBar = $("#progressBar");
         var percentage: number = 0;
 
@@ -56,7 +56,9 @@
 
         progressBar.html(display);
 
-        $('#controlButton').progressSet(percentage);
+        (<any>$('#controlButton')).progressSet(percentage);
+
+        return null;
     };
 
     /**

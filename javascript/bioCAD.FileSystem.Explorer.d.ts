@@ -108,7 +108,7 @@ declare class EventHandler {
     /**
      * 【上传进度调用方法实现】
     */
-    ProgressFunction(xhr: XMLHttpRequest, evt: ProgressEvent): void;
+    ProgressFunction(xhr: XMLHttpRequest, evt: ProgressEvent): any;
     /**
      * 上传开始的时间
     */

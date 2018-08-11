@@ -58,7 +58,9 @@ module UploadHandler {
         xhr.open("post", url, true);
         xhr.onload = handler.UploadComplete;
         xhr.onerror = handler.UploadFailed;
-        xhr.upload.onprogress = handler.ProgressFunction;
+        xhr.upload.onprogress = function (this: XMLHttpRequest, evt: ProgressEvent) {
+            handler.ProgressFunction(this, evt);
+        };
         // 上传开始执行方法
         xhr.upload.onloadstart = () => {
             handler.onLoadStart();
