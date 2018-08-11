@@ -11,4 +11,12 @@ declare namespace login_script {
         url: string;
         readonly success: boolean;
     }
+    class registerDiv {
+        username: string;
+        email: string;
+        password: string;
+        checkTermsOfuse: string;
+        constructor(username: string, email: string, password: string, check: string);
+    }
+    function register(api: string, md5: (input: string) => string, divId?: registerDiv): msg;
 }

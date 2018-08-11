@@ -64,6 +64,11 @@ class user {
         }
     }
 
+    public function register() {
+
+        
+    }
+
     public function modifyPassword() {
         $user     = $_SESSION["password"];
         $password = $_POST["password"];
