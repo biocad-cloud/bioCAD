@@ -54,6 +54,9 @@
     <TypeScriptCompile Include="Uploader\EventHandler.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Uploader\ProgressMeter.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Uploader\Upload.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
