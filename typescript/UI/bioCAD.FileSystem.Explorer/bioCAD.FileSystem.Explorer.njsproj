@@ -57,6 +57,9 @@
     <TypeScriptCompile Include="Uploader\ProgressMeter.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Uploader\JQueryExtends.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Uploader\Upload.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
