@@ -49,7 +49,7 @@ class user {
 
                 # 没有从数据库之中找到对应的配置信息？？？
                 # 则加载默认的用户配置信息数据，然后保存到数据库之中
-                $settings = include "./etc/default_user_settings.php";
+                $settings = include "../etc/default_user_settings.php";
                 $settings["user_id"] = $user["id"];
 
                 $configs->add($settings);

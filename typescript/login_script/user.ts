@@ -14,7 +14,7 @@
             var xhr = new XMLHttpRequest();
             var formData = new FormData();
 
-            formData.append("login", this.account);
+            formData.append("account", this.account);
             formData.append("password", this.password);
 
             xhr.open("POST", api, false);
@@ -51,12 +51,28 @@
             this.password = password;
             this.checkTermsOfuse = check;
         }
+
+        public static DefaultId(): registerDiv {
+            return new registerDiv("username", "email", "password", "check_terms_of_use");
+        }
+    }
+
+    export function login(
+        api: string,
+        md5: (input: string) => string,
+        divId: registerDiv = registerDiv.DefaultId()): msg {
+
+        var username: string = (<HTMLInputElement>document.getElementById(divId.username)).value;
+        var password: string = (<HTMLInputElement>document.getElementById(divId.password)).value;
+        var userLogin = new user(username, password, md5);
+
+        return userLogin.login(api);
     }
 
     export function register(
         api: string,
         md5: (input: string) => string,
-        divId: registerDiv = new registerDiv("username", "email", "password", "check_terms_of_use")): msg {
+        divId: registerDiv = registerDiv.DefaultId()): msg {
 
         var username: string = (<HTMLInputElement>document.getElementById(divId.username)).value;
         var email: string = (<HTMLInputElement>document.getElementById(divId.email)).value;

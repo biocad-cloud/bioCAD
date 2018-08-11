@@ -17,6 +17,8 @@ declare namespace login_script {
         password: string;
         checkTermsOfuse: string;
         constructor(username: string, email: string, password: string, check: string);
+        static DefaultId(): registerDiv;
     }
+    function login(api: string, md5: (input: string) => string, divId?: registerDiv): msg;
     function register(api: string, md5: (input: string) => string, divId?: registerDiv): msg;
 }
