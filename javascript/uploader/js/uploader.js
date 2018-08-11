@@ -15,10 +15,10 @@ var droppedFiles = false;
 	var forms = document.querySelectorAll('.box');
 
 	Array.prototype.forEach.call(forms, function (form) {
-		var input     = form.querySelector('input[type="file"]'),
-			label     = form.querySelector('label'),
-			errorMsg  = form.querySelector('.box__error span'),
-			restart   = form.querySelectorAll('.box__restart'),
+		var input = form.querySelector('input[type="file"]'),
+			label = form.querySelector('label'),
+			errorMsg = form.querySelector('.box__error span'),
+			restart = form.querySelectorAll('.box__restart'),
 			showFiles = function (files) {
 				label.textContent = files.length > 1 ? (input.getAttribute('data-multiple-caption') || '').replace('{count}', files.length) : files[0].name;
 			},
@@ -44,7 +44,7 @@ var droppedFiles = false;
 		if (isAdvancedUpload) {
 
 			// letting the CSS part to know drag&drop is supported by the browser
-			form.classList.add('has-advanced-upload'); 
+			form.classList.add('has-advanced-upload');
 
 			['drag', 'dragstart', 'dragend', 'dragover', 'dragenter', 'dragleave', 'drop'].forEach(function (event) {
 				form.addEventListener(event, function (e) {
@@ -70,11 +70,11 @@ var droppedFiles = false;
 		}
 
 		// Firefox focus bug fix for file input
-		input.addEventListener('focus', function () { 
-			input.classList.add('has-focus'); 
+		input.addEventListener('focus', function () {
+			input.classList.add('has-focus');
 		});
-		input.addEventListener('blur', function () { 
-			input.classList.remove('has-focus'); 
+		input.addEventListener('blur', function () {
+			input.classList.remove('has-focus');
 		});
 	});
 }(document, window, 0));
@@ -86,8 +86,8 @@ var oloaded;
 function upload(url) {
 
 	// js 获取文件对象		
-	var fileObj = document.getElementById("file").files[0]; 	
-	var form = new FormData(); 
+	var fileObj = document.getElementById("file").files[0];
+	var form = new FormData();
 	var button = $('#controlButton');
 
 	if (xhr) {
@@ -106,7 +106,7 @@ function upload(url) {
 		if (droppedFiles) {
 			// 通过拖拽来选择文件
 			fileObj = droppedFiles[0];
-			form.append("files", fileObj); 
+			form.append("files", fileObj);
 		} else {
 
 			// 没有选择任何文件，则给出警告信息
@@ -119,14 +119,14 @@ function upload(url) {
 	} else {
 
 		// 将file input之中的文件添加进入POST的form data之中
-		form.append("files", fileObj); 
+		form.append("files", fileObj);
 	}
 
 	button.click(function (e) {
 		e.preventDefault();
 	});
 
-	xhr = new XMLHttpRequest();              
+	xhr = new XMLHttpRequest();
 	xhr.open("post", url, true);              // post方式，url为服务器请求地址，true 该参数规定请求是否异步处理。
 	xhr.onload = uploadComplete;              // 请求完成
 	xhr.onerror = uploadFailed;               // 请求失败
@@ -136,7 +136,7 @@ function upload(url) {
 		ot = new Date().getTime();   // 设置上传开始时间
 		oloaded = 0;                 // 设置上传开始时，已经上传的文件大小为0
 	};
-	xhr.send(form); 
+	xhr.send(form);
 }
 
 function progressFunction(evt) {
@@ -153,17 +153,17 @@ function progressFunction(evt) {
 		percentage = Math.round(evt.loaded / evt.total * 100);
 	}
 
-	var nt      = new Date().getTime(); // 获取当前时间
+	var nt = new Date().getTime(); // 获取当前时间
 	var pertime = (nt - ot) / 1000;     // 计算出上次调用该方法时到现在的时间差，单位为s
-	ot          = new Date().getTime(); // 重新赋值时间，用于下次计算
+	ot = new Date().getTime(); // 重新赋值时间，用于下次计算
 
 	var perload = evt.loaded - oloaded; // 计算该分段上传的文件大小，单位b       
-	oloaded     = evt.loaded;           // 重新赋值已上传文件大小，用以下次计算
+	oloaded = evt.loaded;           // 重新赋值已上传文件大小，用以下次计算
 
 	// 上传速度计算
-	var speed = perload / pertime; 
+	var speed = perload / pertime;
 	var bspeed = speed;
-	var units = 'b/s'; 
+	var units = 'b/s';
 
 	if (speed / 1024 > 1) {
 		speed = speed / 1024;
