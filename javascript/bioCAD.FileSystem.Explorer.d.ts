@@ -96,15 +96,18 @@ declare module Browser {
     */
     function isAdvancedUpload(): boolean;
 }
+/**
+ * 在这里进行自定义的成功以及失败事件的处理工作
+*/
 declare class EventHandler {
     /**
      * 请求完成
     */
-    UploadComplete: (this: XMLHttpRequest, event: Event) => any;
+    UploadComplete(this: XMLHttpRequest, event: Event): any;
     /**
      * 请求失败
     */
-    UploadFailed: (this: XMLHttpRequest, event: ErrorEvent) => any;
+    UploadFailed(this: XMLHttpRequest, event: ErrorEvent): any;
     /**
      * 【上传进度调用方法实现】
     */
@@ -133,6 +136,10 @@ declare module Uploader {
     function DroppedFiles(): FileList;
     /**
      * Applying the effect for every form
+     *
+     * @param divId 上传模块将会显示在这个div容器之中
+     * @param api 这个url是数据上传的数据api url
+     * @param upload 这个对象描述了如何处理上传过程之中的完成以及失败的事件
     */
-    function Register(): void;
+    function Register(divId: string, api: string, upload: EventHandler): void;
 }

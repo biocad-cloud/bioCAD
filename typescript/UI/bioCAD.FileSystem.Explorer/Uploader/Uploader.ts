@@ -1,5 +1,37 @@
 ﻿module Uploader {
 
+    /**
+     * 用户界面的HTML文档模板
+    */
+    const view: string = `
+        <form method="post" id="upload-box" action="#" enctype="multipart/form-data" novalidate class="box">
+			<div class="box__input">
+				<center>
+					<img src="./cloud.svg" />
+					<input type="file" name="files[]" id="file" class="box__file" data-multiple-caption="{count} files selected" multiple />
+					<div style="width: 50%;">
+						<p>
+							<label for="file">
+								<strong>Choose a file</strong>
+								<span class="box__dragndrop"> or drag it here</span>.
+							</label>
+						</p>
+						<div id="progressBar"></div>
+						<br />
+						<div>
+							<!-- 在onclick事件之中设置上传接受的url地址 -->
+							<a id="controlButton" href="#" class="progress-button" onclick="upload('/test/index.php')">
+								<img src="./upload.svg" />&nbsp;Upload
+							</a>
+						</div>
+
+						<br />
+						<div id="warning"></div>
+					</div>
+				</center>
+			</div>
+		</form>`;
+
     var droppedFiles: FileList;
     var isAdvancedUpload: boolean = Browser.isAdvancedUpload();
 
@@ -13,9 +45,19 @@
 
     /**
      * Applying the effect for every form
+     * 
+     * @param divId 上传模块将会显示在这个div容器之中
+     * @param api 这个url是数据上传的数据api url
+     * @param upload 这个对象描述了如何处理上传过程之中的完成以及失败的事件
     */
-    export function Register(): void {
+    export function Register(divId: string, api: string, upload: EventHandler): void {
+        var container = document.getElementById(divId);
+
+        container.innerHTML = view;
         document.querySelectorAll('.box').forEach(registerImpl);
+        document.getElementById("controlButton").onclick = function () {
+            UploadHandler.upload(api, upload, "file");
+        }
     }
 
     function getTitleUpdate(input: Element, files: FileList): string {

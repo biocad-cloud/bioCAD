@@ -1,14 +1,23 @@
-﻿class EventHandler {
+﻿/**
+ * 在这里进行自定义的成功以及失败事件的处理工作
+*/
+class EventHandler {
 
     /**
      * 请求完成
     */
-    public UploadComplete: (this: XMLHttpRequest, event: Event) => any;
+    public UploadComplete(this: XMLHttpRequest, event: Event): any {
+        // do nothing
+        console.log("Upload success");
+    }
 
     /**
      * 请求失败
     */
-    public UploadFailed: (this: XMLHttpRequest, event: ErrorEvent) => any;
+    public UploadFailed(this: XMLHttpRequest, event: ErrorEvent): any {
+        // do nothing
+        console.error("upload error");
+    }
 
     /**
      * 【上传进度调用方法实现】
