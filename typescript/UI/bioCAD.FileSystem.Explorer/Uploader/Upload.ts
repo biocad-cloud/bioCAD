@@ -56,8 +56,12 @@ module UploadHandler {
         // post方式，url为服务器请求地址，true 该参数规定请求是否异步处理。
         xhr = new XMLHttpRequest();
         xhr.open("post", url, true);
-        xhr.onload = handler.UploadComplete;
-        xhr.onerror = handler.UploadFailed;
+        xhr.onload = function (this: XMLHttpRequest, evt: Event) {
+            handler.UploadComplete(this, evt);
+        };
+        xhr.onerror = function (this: XMLHttpRequest, event: ErrorEvent) {
+            handler.UploadFailed(this, event);
+        };
         xhr.upload.onprogress = function (this: XMLHttpRequest, evt: ProgressEvent) {
             handler.ProgressFunction(this, evt);
         };

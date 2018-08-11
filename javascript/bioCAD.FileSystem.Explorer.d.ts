@@ -101,18 +101,6 @@ declare module Browser {
 */
 declare class EventHandler {
     /**
-     * 请求完成
-    */
-    UploadComplete(this: XMLHttpRequest, event: Event): any;
-    /**
-     * 请求失败
-    */
-    UploadFailed(this: XMLHttpRequest, event: ErrorEvent): any;
-    /**
-     * 【上传进度调用方法实现】
-    */
-    ProgressFunction(xhr: XMLHttpRequest, evt: ProgressEvent): any;
-    /**
      * 上传开始的时间
     */
     ot: number;
@@ -121,6 +109,21 @@ declare class EventHandler {
     */
     oloaded: number;
     onLoadStart(): void;
+    private complete;
+    private failed;
+    constructor(complete: (xhr: XMLHttpRequest, event: Event) => any, failed: (xhr: XMLHttpRequest, event: ErrorEvent) => any);
+    /**
+     * 请求完成
+    */
+    UploadComplete(xhr: XMLHttpRequest, event: Event): any;
+    /**
+     * 请求失败
+    */
+    UploadFailed(xhr: XMLHttpRequest, event: ErrorEvent): any;
+    /**
+     * 【上传进度调用方法实现】
+    */
+    ProgressFunction(xhr: XMLHttpRequest, evt: ProgressEvent): any;
 }
 /**
  * 在这个模块之中处理HTML上传事件

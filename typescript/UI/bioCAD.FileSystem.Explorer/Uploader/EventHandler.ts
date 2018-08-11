@@ -4,19 +4,55 @@
 class EventHandler {
 
     /**
+     * 上传开始的时间
+    */
+    public ot: number;
+    /**
+     * 已经上传的文件大小
+    */
+    public oloaded: number;
+
+    public onLoadStart(): void {
+        // 设置上传开始时间
+        this.ot = new Date().getTime();
+        // 设置上传开始时，已经上传的文件大小为0
+        this.oloaded = 0;
+    }
+
+    private complete: (xhr: XMLHttpRequest, event: Event) => any;
+    private failed: (xhr: XMLHttpRequest, event: ErrorEvent) => any;
+
+    public constructor(
+        complete: (xhr: XMLHttpRequest, event: Event) => any,
+        failed: (xhr: XMLHttpRequest, event: ErrorEvent) => any
+    ) {
+
+        this.complete = complete;
+        this.failed = failed;
+    }
+
+    /**
      * 请求完成
     */
-    public UploadComplete(this: XMLHttpRequest, event: Event): any {
-        // do nothing
-        console.log("Upload success");
+    public UploadComplete(xhr: XMLHttpRequest, event: Event): any {
+        if (this.complete) {
+            this.complete(xhr, event);
+        } else {
+            // do nothing
+            console.log("Upload success");
+        }
     }
 
     /**
      * 请求失败
     */
-    public UploadFailed(this: XMLHttpRequest, event: ErrorEvent): any {
-        // do nothing
-        console.error("upload error");
+    public UploadFailed(xhr: XMLHttpRequest, event: ErrorEvent): any {
+        if (this.failed) {
+            this.failed(xhr, event);
+        } else {
+            // do nothing
+            console.error("upload error");
+        }
     }
 
     /**
@@ -69,20 +105,4 @@ class EventHandler {
 
         return null;
     };
-
-    /**
-     * 上传开始的时间
-    */
-    public ot: number;
-    /**
-     * 已经上传的文件大小
-    */
-    public oloaded: number;
-
-    public onLoadStart(): void {
-        // 设置上传开始时间
-        this.ot = new Date().getTime();
-        // 设置上传开始时，已经上传的文件大小为0
-        this.oloaded = 0;
-    }
 }
