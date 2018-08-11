@@ -47,8 +47,16 @@ declare class FileHandle {
     */
     file: bioCADFile;
     div: HTMLDivElement;
+    constructor(file: bioCADFile);
+    static classNames: string[];
+    private footer();
+    private actionButtons();
+    /**
+     * @returns UI html string
+    */
     toString(): string;
 }
+declare const containerClassName: string;
 /**
  * 文件浏览器的模型，这个对象是一个文件的集合
 */
@@ -57,5 +65,8 @@ declare class Explorer {
     divId: string;
     container: HTMLDivElement;
     constructor(div: HTMLDivElement, files: FileHandle[]);
-    static show(divId: string, files: bioCADFile[], size?: number[], icons?: Map<string, string>[]): Explorer;
+    /**
+     * @param divId 文件浏览器将会显示在这个div之中
+    */
+    static show(divId: string, files: bioCADFile[], icons?: Map<string, string>[]): Explorer;
 }

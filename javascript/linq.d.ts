@@ -109,6 +109,9 @@ declare class IEnumerator<T> implements IEnumerable<T> {
      *
     */
     ForEach(callbackfn: (x: T, index: number) => void): void;
+    /**
+     * Contract the sequence to string
+    */
     JoinBy(deli: string, toString?: (x: T) => String): string;
     /**
      * This function returns a clone copy of the source sequence.
