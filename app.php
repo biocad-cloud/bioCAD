@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 include "./modules/dotnet/package.php";
 include "./common.php";
 
@@ -9,6 +11,7 @@ Imports("Microsoft.VisualBasic.Conversion");
 Imports("Microsoft.VisualBasic.Strings");
 
 Imports("MVC.view");
+Imports("MVC.router");
 
 define("APP_PATH", dirname(__FILE__));
 

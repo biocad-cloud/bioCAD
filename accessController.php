@@ -9,6 +9,12 @@ class accessController extends controller {
             return true;
         }
 
+        if (!empty($_SESSION)) {
+            if (array_key_exists("user", $_SESSION)) {
+                return true;
+            }
+        }
+
         return false;
     }
 

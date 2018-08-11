@@ -12,6 +12,7 @@ include "./common.php";
 include "./accessController.php";
 
 Imports("MVC.view");
+Imports("MVC.router");
 
 View::Push("dismiss_banner", Common::BannerDismissStatus());
 View::Push("*", Common::getUserInfo());
