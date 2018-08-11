@@ -90,3 +90,49 @@ declare class FileHandle {
     */
     toString(): string;
 }
+declare module Browser {
+    /**
+     * Feature detection for drag&drop upload
+    */
+    function isAdvancedUpload(): boolean;
+}
+declare class EventHandler {
+    /**
+     * 请求完成
+    */
+    UploadComplete: (this: XMLHttpRequest, event: Event) => any;
+    /**
+     * 请求失败
+    */
+    UploadFailed: (this: XMLHttpRequest, event: ErrorEvent) => any;
+    /**
+     * 【上传进度调用方法实现】
+    */
+    ProgressFunction(xhr: XMLHttpRequest, evt: ProgressEvent): void;
+    /**
+     * 上传开始的时间
+    */
+    ot: number;
+    /**
+     * 已经上传的文件大小
+    */
+    oloaded: number;
+    onLoadStart(): void;
+}
+/**
+ * 在这个模块之中处理HTML上传事件
+*/
+declare module UploadHandler {
+    /**
+     * @param inputId input html element id.
+    */
+    function upload(url: string, handler: EventHandler, inputId?: string): void;
+}
+declare module Uploader {
+    function hasDroppedFiles(): boolean;
+    function DroppedFiles(): FileList;
+    /**
+     * Applying the effect for every form
+    */
+    function Register(): void;
+}
