@@ -14,10 +14,77 @@ class FileHandle {
     public file: bioCADFile;
     public div: HTMLDivElement;
 
+    public constructor(file: bioCADFile) {
+        this.file = file;
+    }
+
+    static classNames: string[] = [
+        "file-preview-frame",
+        "krajee-default",
+        "file-preview-initial",
+        "file-sortable",
+        "kv-preview-thumb"
+    ];
+
+    private footer(): string {
+        return `<div class="file-footer-caption" title="${this.file.fileName}">
+                    <div class="file-caption-info">${this.file.fileName}</div>
+                    <div class="file-size-info">
+                        <samp>(${this.file.size})</samp>
+                    </div>
+                </div>`;
+    }
+
+    private actionButtons(): string {
+        return `<div class="file-actions">
+                    <div class="file-footer-buttons">
+                        <button type="button" 
+                                class="kv-file-remove btn btn-sm btn-kv btn-default btn-outline-secondary" 
+                                title="Delete file" 
+                                data-url="/site/file-delete" 
+                                data-key="11">
+
+                            <i class="glyphicon glyphicon-trash">
+                            </i>
+                        </button>
+                        <button type="button" class="kv-file-zoom btn btn-sm btn-kv btn-default btn-outline-secondary" title="View Details">
+                            <i class="glyphicon glyphicon-zoom-in"></i>
+                        </button>
+                    </div>
+                </div>`;
+    }
+
+    /**
+     * @returns UI html string
+    */
     public toString(): string {
-        return this.file.toString();
+        return `<div class="file-preview-frame krajee-default file-preview-initial file-sortable kv-preview-thumb" 
+                     id="preview-1533958654820_64-init_0" 
+                     data-fileindex="init_0" 
+                     data-template="image"
+                     title="${this.file.fileName}">
+
+                    <div class="kv-file-content">
+                        <div class="kv-preview-data file-preview-other-frame" style="width:auto;height:auto;max-width:100%;max-height:100%;">
+                            <div class="file-preview-other">
+                                <span class="file-other-icon">
+                                    <i class="fa fa-file-photo-o text-danger"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="file-thumbnail-footer">
+                        ${this.footer()}
+                        ${this.actionButtons()}
+
+                        <div class="clearfix"></div>
+                    </div>
+                </div>`;
     }
 }
+
+const containerClassName: string = "file-preview-thumbnails";
 
 /**
  * 文件浏览器的模型，这个对象是一个文件的集合
@@ -34,22 +101,25 @@ class Explorer {
         this.container = div;
     }
 
-    public static show(divId: string, files: bioCADFile[], size: number[] = [100, 120], icons: Map<string, string>[] = null): Explorer {
+    /**
+     * @param divId 文件浏览器将会显示在这个div之中
+    */
+    public static show(divId: string, files: bioCADFile[], icons: Map<string, string>[] = null): Explorer {
         var div: HTMLDivElement = <HTMLDivElement>document.getElementById(divId);
-        var fileHandles: FileHandle[] = From(files)
+        var fileHandles: IEnumerator<FileHandle> = From(files)
             .Select((file: bioCADFile) => {
-                var grid: HTMLDivElement = document.createElement("div");
-                var Id: string = `FILE_${file.id}`;
-                var handle: FileHandle = new FileHandle();
-
-                handle.divId = Id;
-                handle.file = file;
-                handle.div = grid;
-
+                var handle: FileHandle = new FileHandle(file);
                 return handle;
-            })
-            .ToArray();
+            });
 
-        return new Explorer(div, fileHandles);
+        // 初始化容器div对象
+        if (!div.classList.contains(containerClassName)) {
+            div.classList.add(containerClassName);
+        }
+        div.innerHTML = fileHandles
+            .Select(file => file.toString())
+            .JoinBy("\n\n");
+
+        return new Explorer(div, fileHandles.ToArray());
     }
 }
