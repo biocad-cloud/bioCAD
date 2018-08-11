@@ -32,10 +32,18 @@ ${imports.html}
 						<a target="_blank" href="{index/terms_of_use}">Terms of service.</a>
 					</label>
 				</div>
-				<button type="submit" class="submit" name="submit">Sign up</button>
+				<button type="submit" class="submit" name="submit" onclick="doRegister();">Sign up</button>
 				<div class="if-have">
 					<a href="#" onclick="gotoLogin();">Have account? Login.</a>
 				</div>
+
+				<script type="text/javascript">
+					function doRegister() {
+						var msg = login_script.register("{<platform>user/register}", md5);
+
+						console.log(msg);
+					}
+				</script>
 			</form>
 			${footer.html}
 		</div>

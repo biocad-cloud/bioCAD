@@ -12,13 +12,13 @@
 
         public login(api: string): msg {
             var xhr = new XMLHttpRequest();
+            var formData = new FormData();
+
+            formData.append("login", this.account);
+            formData.append("password", this.password);
 
             xhr.open("POST", api, false);
-            xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.send(JSON.stringify({
-                login: this.account,
-                password: this.password
-            }));
+            xhr.send(formData);
 
             var response = xhr.responseText;
             var data: msg = JSON.parse(response);
@@ -80,15 +80,16 @@
             return message;
         }
 
+        // 2018-08-12 php后台不识别json的post数据，必须要发送form数据才行？
         var xhr = new XMLHttpRequest();
+        var formData = new FormData();
+
+        formData.append("username", username);
+        formData.append("password", password);
+        formData.append("email", email);
 
         xhr.open("POST", api, false);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.send(JSON.stringify({
-            username: username,
-            password: md5(password),
-            email: email
-        }));
+        xhr.send(formData);
 
         var response = xhr.responseText;
         var data: msg = JSON.parse(response);

@@ -3,11 +3,11 @@
 session_start();
 
 # Module file for handling biostack data analysis API
-include "./modules/dotnet/package.php";
+include "../modules/dotnet/package.php";
 
 Imports("Microsoft.VisualBasic.Strings");
 
-dotnet::AutoLoad("./etc/config.php");
+dotnet::AutoLoad("../etc/config.php");
 dotnet::HandleRequest(new user());
 
 class user {
@@ -65,8 +65,8 @@ class user {
     }
 
     public function register() {
+        echo var_dump($_POST);
 
-        
     }
 
     public function modifyPassword() {
