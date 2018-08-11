@@ -85,7 +85,7 @@
         var formData = new FormData();
 
         formData.append("username", username);
-        formData.append("password", password);
+        formData.append("password", md5(password));
         formData.append("email", email);
 
         xhr.open("POST", api, false);

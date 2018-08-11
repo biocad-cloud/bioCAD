@@ -65,8 +65,17 @@ class user {
     }
 
     public function register() {
-        echo var_dump($_POST);
+        $id = (new Table("user"))->add([
+            "account"  => $_POST["username"],
+            "email"    => $_POST["email"], 
+            "password" => $_POST["password"]
+        ]);
 
+        if (!empty($id) && $id !== false) {
+            echo dotnet::successMsg("add=$id!");
+        } else {
+            echo dotnet::errorMsg("Not working!");
+        }        
     }
 
     public function modifyPassword() {
