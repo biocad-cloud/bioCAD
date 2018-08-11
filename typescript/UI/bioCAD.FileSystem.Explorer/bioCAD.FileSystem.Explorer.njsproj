@@ -48,6 +48,15 @@
     <TypeScriptCompile Include="UI.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Uploader\Browser.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Uploader\EventHandler.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Uploader\Upload.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Uploader\Uploader.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

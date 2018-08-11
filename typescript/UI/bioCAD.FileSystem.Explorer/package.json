@@ -7,9 +7,10 @@
     "name": "Administrator"
   },
   "devDependencies": {
-    "@types/node": "^6.0.116"
+    "@types/node": "^6.0.116",
+	"jquery": "^3.3.1"
   },
   "dependencies": {
-    "jquery": "^3.3.1"
+    
   }
 }
