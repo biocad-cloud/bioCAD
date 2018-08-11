@@ -4,10 +4,12 @@
      * 用户界面的HTML文档模板
     */
     const view: string = `
+        <link crossorigin="anonymous" media="all" rel="stylesheet" href="/typescript/UI/bioCAD.FileSystem.Explorer/Uploader/uploader.css" />
+
         <form method="post" id="upload-box" action="#" enctype="multipart/form-data" novalidate class="box">
 			<div class="box__input">
 				<center>
-					<img src="./cloud.svg" />
+					<img src="/typescript/UI/bioCAD.FileSystem.Explorer/Uploader/cloud.svg" />
 					<input type="file" name="files[]" id="file" class="box__file" data-multiple-caption="{count} files selected" multiple />
 					<div style="width: 50%;">
 						<p>
@@ -20,8 +22,8 @@
 						<br />
 						<div>
 							<!-- 在onclick事件之中设置上传接受的url地址 -->
-							<a id="controlButton" href="#" class="progress-button" onclick="upload('/test/index.php')">
-								<img src="./upload.svg" />&nbsp;Upload
+							<a id="controlButton" href="#" class="progress-button" onclick="">
+								<img src="/typescript/UI/bioCAD.FileSystem.Explorer/Uploader/upload.svg" />&nbsp;Upload
 							</a>
 						</div>
 
