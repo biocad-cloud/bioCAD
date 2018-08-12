@@ -2,6 +2,9 @@
 
 session_start();
 
+define("APP_PATH", dirname(__FILE__));
+define("APP_DEBUG", true);
+
 include "./modules/dotnet/package.php";
 include "./common.php";
 include "./accessController.php";
@@ -13,8 +16,6 @@ Imports("Microsoft.VisualBasic.Strings");
 
 Imports("MVC.view");
 Imports("MVC.router");
-
-define("APP_PATH", dirname(__FILE__));
 
 View::Push("dismiss_banner", Common::BannerDismissStatus());
 View::Push("*", Common::getUserInfo());
@@ -135,9 +136,15 @@ class app {
 	*/
 	public function explorer() {		
 		$user_id    = Common::getUserId();
-		$project_id = Utils::ReadValue($_GET, "project_id");
-
-		if (!$project_id) {
+		$project_id = Utils::ReadValue($_GET, "project_id", -1);
+        $types      = (new Table("content_types"))
+            ->left_join("file_class")->on([
+                "file_class"    => "classId", 
+                "content_types" => "class"
+            ])
+			->select();
+			
+		if (!$project_id || $project_id === -1) {
 			$project_id    = -1;
 			$project_files = (new Table("data_files"))
 				->where(["user_id" => $user_id])
@@ -154,8 +161,10 @@ class app {
 		}
 
 		$vars = [
-			"project_id" => $project_id,
-			"files"      => json_encode($project_files)
+			"project_id"   => $project_id,
+			"user_id"      => $user_id,
+			"files"        => json_encode($project_files),
+			"bioClassType" => json_encode($types)
 		];
 
 		View::Display($vars);
