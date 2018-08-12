@@ -4,6 +4,7 @@ session_start();
 
 include "./modules/dotnet/package.php";
 include "./common.php";
+include "./accessController.php";
 
 Imports("System.Linq.Enumerable");
 Imports("System.Text.StringBuilder");
@@ -19,7 +20,7 @@ View::Push("dismiss_banner", Common::BannerDismissStatus());
 View::Push("*", Common::getUserInfo());
 
 dotnet::AutoLoad("./etc/config.php");
-dotnet::HandleRequest(new app(), "./html/Application");
+dotnet::HandleRequest(new app(), "./html/Application", new accessController());
 
 /**
  * Module file for handling HTML user interface
@@ -44,7 +45,11 @@ class app {
 	
 	*/
 
-	// 获取当前的用户的配置信息
+	/**
+	 * 获取当前的用户的配置信息
+	 * 
+	 * @uses api
+	*/ 
 	public function getMySettings() {
 		$config = $_SESSION["settings"];
 		$config = json_encode($config);
@@ -52,9 +57,12 @@ class app {
 		echo $config;
 	}
 
-    public function project() {
-		$vars = Common::getUserInfo();
-		$vars["title"] = "My Projects";
+	/**
+	 * Analysis Projects
+	 * 
+	 * @uses view
+	*/
+    public function project() {		
 		# 当前的页面的编号
 		$action = $_GET["action"];
 		$page = $_COOKIE["project_page"];
@@ -110,14 +118,14 @@ class app {
 
 		$project_types = (new Table("project_types"))->all();
 
-		$vars["projects"] = $projectlist->ToString();
+		$vars = ["projects" => $projectlist->ToString()];
 		$vars["project_types"] = json_encode($project_types);
 		$vars["breadcrumb"] = [
 			["link" => "{index/apps}",  "icon" => "fa-project-diagram", "title" => "Applications"],
 			["link" => "{app/project}", "icon" => "fa-project-diagram", "title" => "Projects"]
 		];
 
-		view::Display($vars);
+		View::Display($vars);
     }
 
 	/**
@@ -125,10 +133,9 @@ class app {
 	 * 
 	 * @uses view
 	*/
-	public function explorer() {
-		$vars       = Common::getUserInfo();		
-		$project_id = Utils::ReadValue($_GET, "project_id");
+	public function explorer() {		
 		$user_id    = Common::getUserId();
+		$project_id = Utils::ReadValue($_GET, "project_id");
 
 		if (!$project_id) {
 			$project_id    = -1;
@@ -146,29 +153,23 @@ class app {
 				->select();
 		}
 
-		$vars["project_id"] = $project_id;		
-		$project_files      = Common::Table($project_files, [
-			"name"        => "Name", 
-			"size"        => "Size", 
-			"upload_time" => "Upload Time", 
-			"md5"         => "CheckSum", 
-			"description" => "Description"
-		]);
+		$vars = [
+			"project_id" => $project_id,
+			"files"      => json_encode($project_files)
+		];
 
-		$vars["files"] = $project_files;
-
-		view::Display($vars);
+		View::Display($vars);
 	}
 
 	public function imports() {
 		$vars = $_GET;
 		$vars["title"] = "Imports files";
 
-		view::Display($vars);
+		View::Display($vars);
 	}
 
 	public function upload() {
-		view::Display($_GET);
+		View::Display($_GET);
 	}
 
 	# 一些需要执行比较久的数据分析任务的列表
@@ -179,16 +180,12 @@ class app {
     }
 
     /**
-	 * 用户设置中心
-	 */
+	 * My Settings
+	 * 
+	 * @uses view
+	*/
 	public function me() {
-
-		// 首先需要从session之中读取在服务器后台所保存的临时信息
-		// 
-		$vars          = Common::getUserInfo();
-		$vars["title"] = "My Settings";
-
-		view::Display($vars);
+		View::Display();
 	}
 }
 
