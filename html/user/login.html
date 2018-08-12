@@ -33,7 +33,14 @@ ${imports.html}
 
 				<script type="text/javascript">
 					function doLogin() {
-						login_script.login("{<platform>user/login}", md5);
+						var response = login_script.login("{<platform>user/login}", md5);
+						var strMsg = response.info;
+						
+						if (response.code == 0) {
+							
+						} else {
+							parent.msgbox(strMsg, 1);
+						}						
 					}
 				</script>
 			</form>
