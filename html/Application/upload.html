@@ -25,12 +25,12 @@
 				"uploader-container",
 				"{api/upload}&project_id={$project_id}",
 				new EventHandler(function (xhr, event) {
-					var result = $.parseJSON(xhr.target.responseText);
+					var result = $.parseJSON(xhr.responseText);
 
 					// 上传成功响应
 					// 服务断接收完文件返回的结果
 					// alert(evt.target.responseText);
-					console.log(xhr.target.responseText);
+					console.log(xhr.responseText);
 
 					if (result.code != 0) {
 						// 上传失败

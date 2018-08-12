@@ -39,6 +39,17 @@ class Common {
 		return $user;
 	}
 
+	public static function getUserId() {
+		if (!isset($_SESSION)) {
+			return -1;
+		}		
+		if (!array_key_exists("user", $_SESSION)) {
+			return -1;
+		} else {
+			return Utils::ReadValue($_SESSION["user"], "id", -1);
+		}
+	}
+
 	public static function BannerDismissStatus() {
 		$hasOption = array_key_exists("dismiss_banner", $_SESSION);
 

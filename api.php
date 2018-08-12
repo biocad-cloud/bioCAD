@@ -1,6 +1,9 @@
 <?php
 
 include "./modules/dotnet/package.php";
+include "./common.php";
+
+session_start();
 
 Imports("System.DateTime");
 Imports("Microsoft.VisualBasic.Strings");
@@ -20,16 +23,17 @@ class api {
     public function upload() {
         
         $file      = $_FILES["files"];
-        $projID    = $_GET["project"];
+        $projID    = Utils::ReadValue($_GET, "project", -1);
 
         // 所上传的文件都被统一的放置在用户的文件池之中
-        $user_id   = $_SESSION["user"]["id"];        
+        $user_id   = Common::getUserId();        
         $yy = System\DateTime::year();
         $mm = System\DateTime::month();
         $dd = System\DateTime::day();
         $workspace = "/$user_id/data_files/$yy/$mm/$dd/";
         
         # echo var_dump($_FILES);
+        # echo var_dump($workspace);
 
         # DATA/$workspace/{fileName}      
         $file_name  = $file["name"];
@@ -75,7 +79,7 @@ class api {
                 "suffix"      => $suffix
             ];
             
-            $file_id   = (new Table("data_files"))->add($file);
+            $file_id = (new Table("data_files"))->add($file);
 
             if ($projID > -1) {
                 $associate = [

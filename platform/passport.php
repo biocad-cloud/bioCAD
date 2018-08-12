@@ -9,6 +9,7 @@ include "../modules/dotnet/package.php";
 include "../common.php";
 
 Imports("MVC.view");
+Imports("MVC.router");
 
 View::Push("dismiss_banner", Common::BannerDismissStatus());
 View::Push("*", Common::getUserInfo());
