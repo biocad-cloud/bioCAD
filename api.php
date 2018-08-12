@@ -2,6 +2,7 @@
 
 include "./modules/dotnet/package.php";
 include "./common.php";
+include "./accessController.php";
 
 session_start();
 
@@ -10,7 +11,7 @@ Imports("Microsoft.VisualBasic.Strings");
 Imports("php.Utils");
 
 dotnet::AutoLoad("./etc/config.php");
-dotnet::HandleRequest(new api());
+dotnet::HandleRequest(new api(), new accessController());
 
 /**
  * Module file for handling biostack data analysis API
@@ -20,6 +21,9 @@ class api {
     const OSS        = "bioCAD_OSS";
     const OSSDefault = "D:/temp/";
 
+    /**
+     * @uses api
+    */
     public function upload() {
         
         $file      = $_FILES["files"];
@@ -111,6 +115,10 @@ class api {
         echo json_encode($types);
     }
 
+    
+    /**
+     * @uses api
+    */
     public function new_project() {
         $user_id   = $_SESSION["user"]["id"];
         $project  = $_POST;
