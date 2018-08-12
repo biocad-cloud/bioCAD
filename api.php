@@ -101,10 +101,10 @@ class api {
      * @uses api
     */
     public function bioClassType() {
-        $types = (new Table("file_class"))
-            ->left_join("content_types")->on([
+        $types = (new Table("content_types"))
+            ->left_join("file_class")->on([
                 "file_class"    => "classId", 
-                "content_types" => "id"
+                "content_types" => "class"
             ])
             ->select();
 
