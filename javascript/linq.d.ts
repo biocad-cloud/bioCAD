@@ -132,6 +132,10 @@ declare function From<T>(source: T[]): IEnumerator<T>;
 */
 declare function IsNullOrEmpty<T>(array: T[]): boolean;
 /**
+ * HTML/Javascript: how to access JSON data loaded in a script tag.
+*/
+declare function LoadJson(id: string): any;
+/**
  * 通用数据拓展函数集合
 */
 declare module DataExtensions {
