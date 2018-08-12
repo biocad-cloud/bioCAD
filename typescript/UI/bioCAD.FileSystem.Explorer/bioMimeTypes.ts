@@ -28,23 +28,23 @@
     /**
      * bio class type to font-awsome icon name
     */
-    export function classToFontAwsome(cls: bioClassType): string {
+    export function classToFontAwsome(cls: bioClassType): string[] {
         switch (cls) {
 
             case bioClassType.text:
-                return fillSVG(iconText);
+                return [fillSVG(iconText), "green"];
 
             case bioClassType.image:
-                return fillSVG(iconImage);
+                return [fillSVG(iconImage), "red"];
 
             case bioClassType.matrix:
-                return fillSVG(iconExcel);
+                return [fillSVG(iconExcel), "blue"];
 
             case bioClassType.bioSequence:
-                return fillSVG(iconDNA);
+                return [fillSVG(iconDNA), "green"];
 
             default:
-                return fillSVG(iconUnknown);
+                return [fillSVG(iconUnknown), "gray"];
         }
     }
 

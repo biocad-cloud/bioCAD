@@ -39,7 +39,7 @@ class Explorer {
         var fileHandles: IEnumerator<FileHandle> = From(files)
             .Select((file: bioCADFile) => {
                 var cls: bioClassType = iconTypes.Item(file.mime.contentType);
-                var classNames: string[] = bioMimeTypes.classToFontAwsome(cls);
+                var svg: string[] = bioMimeTypes.classToFontAwsome(cls);
                 var handle: FileHandle = new FileHandle(file, classNames);
 
                 return handle;
