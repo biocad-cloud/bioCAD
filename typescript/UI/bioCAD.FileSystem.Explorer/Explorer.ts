@@ -40,7 +40,7 @@ class Explorer {
             .Select((file: bioCADFile) => {
                 var cls: bioClassType = iconTypes.Item(file.mime.contentType);
                 var svg: string[] = bioMimeTypes.classToFontAwsome(cls);
-                var handle: FileHandle = new FileHandle(file, classNames);
+                var handle: FileHandle = new FileHandle(file, svg);
 
                 return handle;
             });

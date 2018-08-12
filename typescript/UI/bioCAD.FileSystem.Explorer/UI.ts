@@ -11,6 +11,10 @@ class FileHandle {
     */
     public file: bioCADFile;
     public div: HTMLDivElement;
+
+    /**
+     * ``[svg, color]``
+    */
     public mimeIcon: string[];
 
     public get fileId(): string {
@@ -62,7 +66,8 @@ class FileHandle {
      * @returns UI html string
     */
     public toString(): string {
-        var fa: string = this.mimeIcon.join(" ");
+        var svg: string = this.mimeIcon[0];
+        var color: string = this.mimeIcon[1];
 
         return `<div class="file-preview-frame krajee-default file-preview-initial file-sortable kv-preview-thumb" 
                      id="${this.fileId}" 
@@ -74,7 +79,9 @@ class FileHandle {
                         <div class="kv-preview-data file-preview-other-frame" style="width:auto;height:auto;max-width:100%;max-height:100%;">
                             <div class="file-preview-other">
                                 <span class="file-other-icon">
-                                    <i class="${fa}"></i>
+                                    <div style="width: 128px; height: 128px; color: ${color};">
+                                        ${svg}
+                                    </div>
                                 </span>
                             </div>
                         </div>

@@ -113,6 +113,9 @@ declare class FileHandle {
     */
     file: bioCADFile;
     div: HTMLDivElement;
+    /**
+     * ``[svg, color]``
+    */
     mimeIcon: string[];
     readonly fileId: string;
     constructor(file: bioCADFile, icon: string[]);
