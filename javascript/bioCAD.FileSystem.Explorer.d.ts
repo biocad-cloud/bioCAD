@@ -25,7 +25,7 @@ declare module bioMimeTypes {
     /**
      * bio class type to font-awsome icon name
     */
-    function classToFontAwsome(cls: bioClassType): string[];
+    function classToFontAwsome(cls: bioClassType): string;
 }
 /**
  * 文件数据模型
