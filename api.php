@@ -96,6 +96,21 @@ class api {
         }
     }
 
+    /**
+     * @access *
+     * @uses api
+    */
+    public function bioClassType() {
+        $types = (new Table("file_class"))
+            ->left_join("content_types")->on([
+                "file_class"    => "classId", 
+                "content_types" => "id"
+            ])
+            ->select();
+
+        echo json_encode($types);
+    }
+
     public function new_project() {
         $user_id   = $_SESSION["user"]["id"];
         $project  = $_POST;

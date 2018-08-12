@@ -12,7 +12,7 @@
             case bioClassType.image:
                 return ["fa", "fa-file-photo-o", "text-danger"];
 
-            case bioClassType.data_table:
+            case bioClassType.matrix:
                 return [""];
 
             default:

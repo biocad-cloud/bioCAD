@@ -15,7 +15,7 @@ declare enum bioClassType {
     /**
      * The data table is a kind of numeric matrix for gene expression data, or something.
     */
-    data_table = 3,
+    matrix = 3,
     /**
      * The biological sequence data type, like fasta sequence file.
     */

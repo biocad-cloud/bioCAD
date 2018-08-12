@@ -2,21 +2,21 @@
     /**
      * The unknown class type
     */
-    unknown,
+    unknown = 0,
     /**
      * General text file
     */
-    text,
+    text = 1,
     /**
      * Image file
     */
-    image,
+    image = 2,
     /**
      * The data table is a kind of numeric matrix for gene expression data, or something.
     */
-    data_table,
+    matrix = 3,
     /**
      * The biological sequence data type, like fasta sequence file.
     */
-    bioSequence
+    bioSequence = 4
 }
