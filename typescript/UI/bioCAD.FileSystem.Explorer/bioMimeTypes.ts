@@ -3,11 +3,11 @@
     /**
      * bio class type to font-awsome icon name
     */
-    export function classToFontAwsome(cls: bioClassType): string[] {
+    export function classToFontAwsome(cls: bioClassType): string {
         switch (cls) {
 
             case bioClassType.text:
-                return ["fa", "fa-file-alt", "text-info"];
+                return ``;
 
             case bioClassType.image:
                 return ["fa", "fa-file-image", "text-danger"];
