@@ -8,8 +8,17 @@ const containerClassName: string = "file-preview-thumbnails";
 */
 class Explorer {
 
+    /**
+     * 文件列表
+    */
     public files: FileHandle[];
+    /**
+     * 用于显示文件列表的div容器的编号
+    */
     public divId: string;
+    /**
+     * div容器对象
+    */
     public container: HTMLDivElement;
 
     public constructor(div: HTMLDivElement, files: FileHandle[]) {
@@ -19,6 +28,8 @@ class Explorer {
     }
 
     /**
+     * 将文件显示在html用户界面之上
+     * 
      * @param divId 文件浏览器将会显示在这个div之中
      * @param icons 将文件的mime type转换为大分类的映射数组
     */
@@ -47,6 +58,9 @@ class Explorer {
         return new Explorer(div, fileHandles.ToArray());
     }
 
+    /**
+     * 加载script标签之中的json数据然后解析为所需要的映射关系
+    */
     public static getFaMaps(idClassTypes: string): Map<string, bioClassType>[] {
         var types: Map<string, bioClassType>[] = From(LoadJson(idClassTypes))
             .Select(c => {
@@ -62,6 +76,9 @@ class Explorer {
         return types;
     }
 
+    /**
+     * 加载script标签之中的json数据然后解析为文件数据模型
+    */
     public static getFiles(idFiles: string, idClassTypes: string): bioCADFile[] {
         var types: Dictionary<bioCADmimeType> = From(LoadJson(idClassTypes))
             .ToDictionary(

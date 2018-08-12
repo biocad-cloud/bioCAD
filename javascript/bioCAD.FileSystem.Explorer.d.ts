@@ -28,7 +28,7 @@ declare module bioMimeTypes {
     function classToFontAwsome(cls: bioClassType): string[];
 }
 /**
- * 文件模型
+ * 文件数据模型
 */
 declare class bioCADFile {
     /**
@@ -50,6 +50,9 @@ declare class bioCADFile {
     constructor(data: object, types: Dictionary<bioCADmimeType>);
     toString(): string;
 }
+/**
+ * 对文件格式信息的简要描述
+*/
 declare class bioCADmimeType {
     /**
      * 这种文件格式在数据库之中的唯一编号
@@ -71,15 +74,33 @@ declare const containerClassName: string;
  * 文件浏览器的模型，这个对象是一个文件的集合
 */
 declare class Explorer {
+    /**
+     * 文件列表
+    */
     files: FileHandle[];
+    /**
+     * 用于显示文件列表的div容器的编号
+    */
     divId: string;
+    /**
+     * div容器对象
+    */
     container: HTMLDivElement;
     constructor(div: HTMLDivElement, files: FileHandle[]);
     /**
+     * 将文件显示在html用户界面之上
+     *
      * @param divId 文件浏览器将会显示在这个div之中
      * @param icons 将文件的mime type转换为大分类的映射数组
     */
     static show(divId: string, files: bioCADFile[], icons?: Map<string, bioClassType>[]): Explorer;
+    /**
+     * 加载script标签之中的json数据然后解析为所需要的映射关系
+    */
+    static getFaMaps(idClassTypes: string): Map<string, bioClassType>[];
+    /**
+     * 加载script标签之中的json数据然后解析为文件数据模型
+    */
     static getFiles(idFiles: string, idClassTypes: string): bioCADFile[];
 }
 /**

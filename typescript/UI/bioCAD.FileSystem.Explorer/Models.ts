@@ -1,5 +1,5 @@
 ﻿/**
- * 文件模型
+ * 文件数据模型
 */
 class bioCADFile {
 
@@ -32,6 +32,9 @@ class bioCADFile {
     }
 }
 
+/**
+ * 对文件格式信息的简要描述
+*/
 class bioCADmimeType {
 
     /**
