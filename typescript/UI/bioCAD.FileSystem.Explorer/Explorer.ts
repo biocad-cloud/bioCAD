@@ -22,7 +22,7 @@ class Explorer {
      * @param divId 文件浏览器将会显示在这个div之中
      * @param icons 将文件的mime type转换为大分类的映射数组
     */
-    public static show(divId: string, files: bioCADFile[], icons: Map<string, bioClassType>[] = null): Explorer {
+    public static show(divId: string, files: bioCADFile[], icons: Map<string, bioClassType>[] = []): Explorer {
         var div: HTMLDivElement = <HTMLDivElement>document.getElementById(divId);
         var iconTypes: Dictionary<bioClassType> = From(icons).ToDictionary(map => map.key, map => map.value);
         var fileHandles: IEnumerator<FileHandle> = From(files)
@@ -45,6 +45,21 @@ class Explorer {
         // 按照class查找对应的按钮注册处理事件
 
         return new Explorer(div, fileHandles.ToArray());
+    }
+
+    public static getFaMaps(idClassTypes: string): Map<string, bioClassType>[] {
+        var types: Map<string, bioClassType>[] = From(LoadJson(idClassTypes))
+            .Select(c => {
+                var contentType: string = <string>c["content_type"];
+                var classId: number = <number>c["classId"];
+                var classType: bioClassType = <bioClassType>classId;
+
+                return new Map<string, bioClassType>(contentType, classType);
+            }).ToArray();
+
+        console.log(types);
+
+        return types;
     }
 
     public static getFiles(idFiles: string, idClassTypes: string): bioCADFile[] {
