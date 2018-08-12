@@ -47,6 +47,7 @@ declare class bioCADFile {
      * 文件的格式信息描述
     */
     mime: bioCADmimeType;
+    constructor(data: object, types: Dictionary<bioCADmimeType>);
     toString(): string;
 }
 declare class bioCADmimeType {
@@ -62,7 +63,7 @@ declare class bioCADmimeType {
      * 详细的描述信息
     */
     description: string;
-    constructor(data: any);
+    constructor(data: object);
     toString(): string;
 }
 declare const containerClassName: string;
@@ -79,6 +80,7 @@ declare class Explorer {
      * @param icons 将文件的mime type转换为大分类的映射数组
     */
     static show(divId: string, files: bioCADFile[], icons?: Map<string, bioClassType>[]): Explorer;
+    static getFiles(idFiles: string, idClassTypes: string): bioCADFile[];
 }
 /**
  * 将文件呈现给用户的UI代码部分

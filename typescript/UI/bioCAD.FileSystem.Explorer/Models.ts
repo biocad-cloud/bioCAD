@@ -20,6 +20,13 @@ class bioCADFile {
     */
     public mime: bioCADmimeType;
 
+    constructor(data: object, types: Dictionary<bioCADmimeType>) {
+        this.id = data["id"];
+        this.fileName = data["name"];
+        this.size = data["size"];
+        this.mime = types.Item(<string>data["content_type"]);
+    }
+
     public toString(): string {
         return this.fileName;
     }
@@ -40,10 +47,10 @@ class bioCADmimeType {
     */
     public description: string;
 
-    constructor(data: any) {
-        this.classID = data.classID;
-        this.contentType = data.type;
-        this.description = data.descript;
+    constructor(data: object) {
+        this.classID = data["id"];
+        this.contentType = data["content_type"];
+        this.description = data["description"];
     }
 
     public toString(): string {

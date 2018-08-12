@@ -6,6 +6,8 @@
 <head>
     <meta name="viewport" content="width=800, user-scalable=no"> ${../includes/head.html} ${../includes/avgrund.html}
 
+    <script type="text/javascript" src="/javascript/linq.js"></script>
+    <script type="text/javascript" src="/javascript/bioCAD.FileSystem.Explorer.js"></script>
     <script type="text/javascript">
         
         // 客户的数据库编号，以及是否注册？
@@ -13,6 +15,7 @@
         var is_certified = (user_id == -1);
 
     </script>
+
     <script id="file-list" type="application/json">{$files}</script>
     <script id="bioClassType" type="application/json">{$bioClassType}</script>
 </head>
@@ -64,6 +67,12 @@
             <div id="file-explorer-display" class="large-12 columns">
                 
             </div>
+
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    
+                });                
+            </script>
         </div>
     </div>
 

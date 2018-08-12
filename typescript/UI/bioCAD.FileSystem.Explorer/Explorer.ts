@@ -46,4 +46,22 @@ class Explorer {
 
         return new Explorer(div, fileHandles.ToArray());
     }
+
+    public static getFiles(idFiles: string, idClassTypes: string): bioCADFile[] {
+        var types: Dictionary<bioCADmimeType> = From(LoadJson(idClassTypes))
+            .ToDictionary(
+                c => <string>c["id"],
+                c => {
+                    var type = new bioCADmimeType(c);
+                    return type;
+                });
+        var files: bioCADFile[] = From(LoadJson(idFiles))
+            .Select(a => {
+                return new bioCADFile(a, types);
+            }).ToArray();
+
+        console.log(files);
+
+        return files;
+    }
 }
