@@ -7,16 +7,19 @@
         switch (cls) {
 
             case bioClassType.text:
-                return ["fa", "fa-file-text-o", "text-info"];
+                return ["fa", "fa-file-alt", "text-info"];
 
             case bioClassType.image:
-                return ["fa", "fa-file-photo-o", "text-danger"];
+                return ["fa", "fa-file-image", "text-danger"];
 
             case bioClassType.matrix:
-                return [""];
+                return ["fa", "fa-file-excel", "text-info"];
+
+            case bioClassType.bioSequence:
+                return ["fa", "fa-dna", "text-info"];
 
             default:
-                return [];
+                return ["fa", "fa-question-square", "text-info"];
         }
     }
 }
