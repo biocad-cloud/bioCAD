@@ -79,9 +79,11 @@ class FileHandle {
                         <div class="kv-preview-data file-preview-other-frame" style="width:auto;height:auto;max-width:100%;max-height:100%;">
                             <div class="file-preview-other">
                                 <span class="file-other-icon">
-                                    <div style="width: 128px; height: 128px; color: ${color};">
-                                        ${svg}
-                                    </div>
+                                    <center>
+                                        <div style="width: 128px; height: 128px; color: ${color};">
+                                            ${svg}
+                                        </div>
+                                    </center>
                                 </span>
                             </div>
                         </div>
