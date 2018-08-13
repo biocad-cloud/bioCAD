@@ -41,7 +41,9 @@ ${imports.html}
 					function doRegister() {
 						var msg = login_script.register("{<platform>user/register}", md5);
 
-						console.log(msg);
+						if (msg.code == 0) {
+							
+						}
 					}
 				</script>
 			</form>

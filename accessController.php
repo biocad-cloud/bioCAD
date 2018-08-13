@@ -2,6 +2,9 @@
 
 Imports("MVC.controller");
 
+/**
+ * 用户访问权限控制器
+*/
 class accessController extends controller {
 
     public function accessControl() {       
