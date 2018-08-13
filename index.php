@@ -35,13 +35,17 @@ class app {
 		View::Display();
 	}
 
+	/**
+	 * bioCAD Applications
+	 * 
+	 * @uses view
+	*/
 	public function apps() {		
-		$vars["title"]      = "bioCAD Applications";
-		$vars["breadcrumb"] = [
+		$breadcrumb = [
 			["link" => "{index/apps}", "icon" => "fa-project-diagram", "title" => "Applications"]
 		];
 
-		View::Display($vars);
+		View::Display(["breadcrumb" => $breadcrumb]);
 	}
 
 	/**
@@ -84,6 +88,11 @@ class app {
 		View::Display();
 	}
 
+	/**
+	 * Search Result
+	 * 
+	 * @uses view
+	*/
 	public function search() {
 		$term = $_GET["q"];
 		$result = "";
@@ -94,8 +103,7 @@ class app {
 			$result = $this->searchInternal($term);
 		}
 			
-		View::Display([
-			"title"  => "Search Result", 
+		View::Display([			
 			"result" => $result
 		]);
 	}

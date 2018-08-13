@@ -25,7 +25,8 @@ class accessController extends controller {
      * 假若没有权限的话，会执行这个函数进行重定向
     */
     public function Redirect() {
-        Redirect("{<platform>passport/portal}");
+        $url = urlencode($_SERVER["REQUEST_URI"]);
+        Redirect("{<platform>passport/portal}&back=$url");
     }   
 }
 ?>
