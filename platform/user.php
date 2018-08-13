@@ -10,17 +10,25 @@ Imports("Microsoft.VisualBasic.Strings");
 dotnet::AutoLoad("../etc/config.php");
 dotnet::HandleRequest(new user());
 
+/**
+ * 网站用户API模块
+*/
 class user {
 
 	const CredentialVerifyError = "User not found or invalid credential information provided!";
 
-    // 用户登录验证
+    /**
+     * 用户登录验证
+     * 
+     * @access *
+     * @uses api
+    */ 
     public function login() {
 
         // {account/email, password_md5}
         $credential = $_POST;
-        $account = $credential["account"];
-        $assert = "";
+        $account    = $credential["account"];
+        $assert     = "";
 
         if (Strings::InStr($account, "@") > 0) {
             # 是电子邮件来的？
@@ -37,38 +45,58 @@ class user {
             # 没有找到对应的记录
             echo dotnet::errorMsg(self::CredentialVerifyError);
             die;
-
+        
+        } else if ($user["status"] == 0) {
+            echo dotnet::errorMsg("User not actived yet!");
+            die;
+        } else if ($user["status"] == 403) {
+            echo dotnet::errorMsg("User banned!");
+            die;
         } else {
 
             // 向session之中写入用户的记录信息，然后返回成功消息
-            // 从数据库之中读取用户的配置数据信息
-            $configs = new Table("user_settings");
-            $settings = $configs->where(array("user_id" => $user["id"]))->find();
-
-            if (!$settings) {
-
-                # 没有从数据库之中找到对应的配置信息？？？
-                # 则加载默认的用户配置信息数据，然后保存到数据库之中
-                $settings = include "../etc/default_user_settings.php";
-                $settings["user_id"] = $user["id"];
-
-                $configs->add($settings);
-
-            }
-
             $_SESSION["user"]     = $user;
-            $_SESSION["settings"] = $settings;
+            $_SESSION["settings"] = self::GetUserSettings($user["id"]);
 
             echo dotnet::successMsg("success");
 
         }
     }
 
+    /**
+     * 从数据库之中读取用户的配置数据信息 
+    */ 
+    private static function GetUserSettings($user_id) {
+        $configs = new Table("user_settings");
+        $settings = $configs->where(["user_id" => $user_id])->find();
+
+        if (!$settings) {
+
+            # 没有从数据库之中找到对应的配置信息？？？
+            # 则加载默认的用户配置信息数据，然后保存到数据库之中
+            $settings = include "../etc/default_user_settings.php";
+            $settings["user_id"] = $user_id;
+
+            $configs->add($settings);
+        }
+
+        return $settings;
+    }
+    
+    /**
+     * User register api
+     * 
+     * @access *
+     * @uses api
+    */
     public function register() {
         $id = (new Table("user"))->add([
-            "account"  => $_POST["username"],
-            "email"    => $_POST["email"], 
-            "password" => $_POST["password"]
+            "account"     => $_POST["username"],
+            "email"       => $_POST["email"], 
+            "password"    => $_POST["password"],
+            "role"        => 0,
+            "status"      => 0,
+            "create_time" => Utils::Now()
         ]);
 
         if (!empty($id) && $id !== false) {
@@ -78,6 +106,11 @@ class user {
         }        
     }
 
+    /**
+     * User modify password
+     * 
+     * 
+    */
     public function modifyPassword() {
         $user     = $_SESSION["password"];
         $password = $_POST["password"];
@@ -100,7 +133,7 @@ class user {
     public function logout() {
 
         // 清除session信息之后对用户进行重定向至首页
-        $_SESSION["user"] = NULL;
+        $_SESSION["user"]     = NULL;
         $_SESSION["settings"] = NULL;
 
         unset($_SESSION);
@@ -109,6 +142,10 @@ class user {
         Redirect("/");        
     }
 
+    /**
+     * @access *
+     * @uses api
+    */
     public function dataprotection() {
         $_SESSION["dismiss_banner"] = "true";
         echo dotnet::successMsg("dismiss");
