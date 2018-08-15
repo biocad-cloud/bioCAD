@@ -130,9 +130,15 @@ class user {
 
     }
 
-    public function logout() {
-
-        // 清除session信息之后对用户进行重定向至首页
+    /**
+     * logout
+     * 
+     * 清除session信息之后对用户进行重定向至首页
+     * 
+     * @access *
+     * @uses api
+    */
+    public function logout() {    
         $_SESSION["user"]     = NULL;
         $_SESSION["settings"] = NULL;
 

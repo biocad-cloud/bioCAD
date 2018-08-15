@@ -37,13 +37,14 @@ ${imports.html}
 						var strMsg = response.info;
 						
 						if (response.code == 0) {
-							var query = getAllUrlParams();
-							var back = decodeURIComponent( query["goto"]);
+							var query = getAllUrlParams(parent.window.location.href);
+							var back = decodeURIComponent(query.Item("goto"));
 
-							console.log(back);
-
-							window.location.href = back;
-
+							if (StringEmpty(back, true)) {
+								parent.gotoURL("/");
+							} else {
+								parent.gotoURL(back);
+							}							
 						} else {
 							parent.msgbox(strMsg, 1);
 						}						

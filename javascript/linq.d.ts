@@ -131,6 +131,7 @@ declare function From<T>(source: T[]): IEnumerator<T>;
  * @param array 如果这个数组对象是空值或者未定义，都会被判定为空，如果长度为零，则同样也会被判定为空值
 */
 declare function IsNullOrEmpty<T>(array: T[]): boolean;
+declare function StringEmpty(str: string, stringAsFactor?: boolean): boolean;
 /**
  * HTML/Javascript: how to access JSON data loaded in a script tag.
 */
