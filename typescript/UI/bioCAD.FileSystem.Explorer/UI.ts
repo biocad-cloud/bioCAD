@@ -80,7 +80,7 @@ class FileHandle {
                             <div class="file-preview-other">
                                 <span class="file-other-icon">
                                     <center>
-                                        <div style="width: 128px; height: 128px; color: ${color};">
+                                        <div style="max-width: 128px; height: 50px; color: ${color};">
                                             ${svg}
                                         </div>
                                     </center>

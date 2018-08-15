@@ -74,7 +74,7 @@
      * 填充svg图标的view box和path数据
     */
     function fillSVG(icon: string[]): string {
-        return `<svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="${icon[0]}" class="svg-inline--fa fa-w-12 fa-9x">
+        return `<svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="${icon[0]}" height="128" class="svg-inline--fa fa-w-12 fa-9x">
                     <path fill="currentColor" d="${icon[1]}">
                     </path>
                 </svg>`;
