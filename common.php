@@ -6,6 +6,7 @@ class Common {
 
     public static function DisplayDropDownMenu($vars) {
 
+		$vars["username"]      = $vars["account"];
         $vars["has_dropdown"]  = "has-dropdown";
         $vars["menu_dropdown"] = View::Load(dirname(__FILE__) . "/html/includes/menu_dropdown.html");
 
