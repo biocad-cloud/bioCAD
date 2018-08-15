@@ -37,7 +37,13 @@ ${imports.html}
 						var strMsg = response.info;
 						
 						if (response.code == 0) {
-							
+							var query = getAllUrlParams();
+							var back = decodeURIComponent( query["goto"]);
+
+							console.log(back);
+
+							window.location.href = back;
+
 						} else {
 							parent.msgbox(strMsg, 1);
 						}						

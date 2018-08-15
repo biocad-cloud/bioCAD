@@ -136,9 +136,18 @@ declare function IsNullOrEmpty<T>(array: T[]): boolean;
 */
 declare function LoadJson(id: string): any;
 /**
+ * Quick Tip: Get URL Parameters with JavaScript
+ *
+ * > https://www.sitepoint.com/get-url-parameters-with-javascript/
+ *
+ * @param url get query string from url (optional) or window
+*/
+declare function getAllUrlParams(url?: string): Dictionary<string>;
+/**
  * 通用数据拓展函数集合
 */
 declare module DataExtensions {
+    function parseQueryString(queryString: string, lowerName?: boolean): object;
     /**
      * 尝试将任意类型的目标对象转换为数值类型
     */
@@ -256,6 +265,8 @@ declare class Map<K, V> {
 declare class Dictionary<V> extends IEnumerator<Map<string, V>> {
     private maps;
     Item(key: string): V;
+    readonly Keys: IEnumerator<string>;
+    readonly Values: IEnumerator<V>;
     /**
      * 将目标对象转换为一个类型约束的映射序列集合
     */
