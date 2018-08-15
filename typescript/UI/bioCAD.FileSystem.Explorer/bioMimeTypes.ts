@@ -52,24 +52,21 @@
 
     /**
      * bio class type to font-awsome icon name
+     * 
+     * ## 2018-08-15 typescript 的枚举类型目前还不可以使用select进行选择
+     * 所以在这里使用if进行数据的获取
     */
     export function classToFontAwsome(cls: bioClassType): string[] {
-        switch (cls) {
-
-            case bioClassType.text:
-                return [fillSVG(iconText), "green"];
-
-            case bioClassType.image:
-                return [fillSVG(iconImage), "red"];
-
-            case bioClassType.matrix:
-                return [fillSVG(iconExcel), "blue"];
-
-            case bioClassType.bioSequence:
-                return [fillSVG(iconDNA), "green"];
-
-            default:
-                return [fillSVG(iconUnknown), "gray"];
+        if (cls == bioClassType.text) {
+            return [fillSVG(iconText), "green"];
+        } else if (cls == bioClassType.image) {
+            return [fillSVG(iconImage), "red"];
+        } else if (cls == bioClassType.matrix) {
+            return [fillSVG(iconExcel), "darkgreen"];
+        } else if (cls == bioClassType.bioSequence) {
+            return [fillSVG(iconDNA), "lightblue"];
+        } else {
+            return [fillSVG(iconUnknown), "gray"];
         }
     }
 

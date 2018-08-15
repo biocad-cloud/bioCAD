@@ -24,6 +24,9 @@ declare enum bioClassType {
 declare module bioMimeTypes {
     /**
      * bio class type to font-awsome icon name
+     *
+     * ## 2018-08-15 typescript 的枚举类型目前还不可以使用select进行选择
+     * 所以在这里使用if进行数据的获取
     */
     function classToFontAwsome(cls: bioClassType): string[];
 }
