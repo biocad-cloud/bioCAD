@@ -5,7 +5,7 @@
     "lib": [ "dom", "es5", "dom.iterable", "scripthost" ],
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
-    "outFile": "../../javascript/login_script.js",
+    "outFile": "../../../javascript/login_script.js",
     "declaration": true
   },
   "exclude": [

@@ -5,7 +5,7 @@
     "lib": [ "dom", "es5", "dom.iterable", "scripthost" ],
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
-    "outFile": "../../javascript/changelog.bootstrap.js",
+    "outFile": "../../../../javascript/changelog.bootstrap.js",
     "declaration": true
   },
   "exclude": [
