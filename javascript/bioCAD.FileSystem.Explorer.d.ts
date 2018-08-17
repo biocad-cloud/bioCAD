@@ -1,4 +1,5 @@
 /// <reference path="linq.d.ts" />
+/// <reference path="bioCAD.core.d.ts" />
 declare enum bioClassType {
     /**
      * The unknown class type
@@ -144,6 +145,7 @@ declare namespace DisplayAdapters {
     class Fasta extends IDisplay {
         colors: Dictionary<string>;
         show(div: string, file: string): void;
+        private: any;
         static NuclFasta(): Fasta;
         static ProtColors(): Fasta;
     }

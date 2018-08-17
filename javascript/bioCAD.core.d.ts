@@ -1,3 +1,12 @@
+/// <reference path="linq.d.ts" />
+/**
+ * The fasta sequence parser and data model
+*/
+declare class FastaSeq {
+    headers: string[];
+    sequence: string;
+    static ParseFile(stream: string): FastaSeq[];
+}
 declare module Utils {
     /**
      * Create a callback function handler for refresh the image

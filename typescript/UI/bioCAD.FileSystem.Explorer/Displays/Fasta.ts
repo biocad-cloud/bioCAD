@@ -1,4 +1,7 @@
-﻿namespace DisplayAdapters {
+﻿/// <reference path="../../../../javascript/linq.d.ts" />
+/// <reference path="../../../../javascript/bioCAD.core.d.ts" />
+
+namespace DisplayAdapters {
 
     export class Fasta extends IDisplay {
 
