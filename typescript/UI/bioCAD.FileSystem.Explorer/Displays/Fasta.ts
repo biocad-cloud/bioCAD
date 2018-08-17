@@ -8,6 +8,8 @@
             throw new Error("Method not implemented.");
         }
 
+        private
+
         public static NuclFasta(): Fasta {
             return <Fasta>{
                 colors: new Dictionary<string>({
