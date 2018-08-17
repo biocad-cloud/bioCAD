@@ -1,9 +1,6 @@
 [submodule "modules/dotnet"]
 	path = modules/dotnet
 	url = https://github.com/GCModeller-Cloud/php-dotnet.git
-[submodule "typescript/Linq.ts"]
-	path = typescript/Linq.ts
-	url = https://github.com/GCModeller-Cloud/data.ts
 [submodule "modules/bootstrap-fileinput"]
 	path = modules/bootstrap-fileinput
 	url = https://github.com/kartik-v/bootstrap-fileinput.git
