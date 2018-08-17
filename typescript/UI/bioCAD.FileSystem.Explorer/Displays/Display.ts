@@ -7,6 +7,6 @@
          * 
          * @param div The id of the div element
         */
-        public abstract show(div: string): void;
+        public abstract show(div: string, file: string): void;
     }
 }
