@@ -130,6 +130,36 @@ declare class FileHandle {
     */
     toString(): string;
 }
+declare namespace DisplayAdapters {
+    abstract class IDisplay {
+        /**
+         * Show on a specific div element
+         *
+         * @param div The id of the div element
+        */
+        abstract show(div: string): void;
+    }
+}
+declare namespace DisplayAdapters {
+    class Fasta extends IDisplay {
+        show(div: string): void;
+    }
+}
+declare namespace DisplayAdapters {
+    class Image extends IDisplay {
+        show(div: string): void;
+    }
+}
+declare namespace DisplayAdapters {
+    class Matrix extends IDisplay {
+        show(div: string): void;
+    }
+}
+declare namespace DisplayAdapters {
+    class Text extends IDisplay {
+        show(div: string): void;
+    }
+}
 declare module Browser {
     /**
      * Feature detection for drag&drop upload
