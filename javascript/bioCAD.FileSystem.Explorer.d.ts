@@ -137,6 +137,7 @@ declare namespace DisplayAdapters {
          * Show on a specific div element
          *
          * @param div The id of the div element
+         * @param file 需要进行显示的文件的网络资源URL
         */
         abstract show(div: string, file: string): void;
     }
@@ -145,7 +146,14 @@ declare namespace DisplayAdapters {
     class Fasta extends IDisplay {
         colors: Dictionary<string>;
         show(div: string, file: string): void;
-        private: any;
+        /**
+         * 将颜色配置数据转换为用于支持颜色高亮的CSS样式
+        */
+        private colorCSS();
+        /**
+         * 将fasta数据模型对象转换为对每一个符号进行颜色高亮的html代码
+        */
+        private renderOne(fa);
         static NuclFasta(): Fasta;
         static ProtColors(): Fasta;
     }

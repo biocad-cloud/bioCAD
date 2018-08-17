@@ -148,6 +148,13 @@ declare function getAllUrlParams(url?: string): Dictionary<string>;
  * 通用数据拓展函数集合
 */
 declare module DataExtensions {
+    /**
+     * 将字符串转换为字符数组
+     *
+     * > https://jsperf.com/convert-string-to-char-code-array/9
+     * 经过测试，使用数组push的效率最高
+    */
+    function ToCharArray(str: string): string[];
     function parseQueryString(queryString: string, lowerName?: boolean): object;
     /**
      * 尝试将任意类型的目标对象转换为数值类型
