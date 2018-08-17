@@ -131,6 +131,11 @@ declare function From<T>(source: T[]): IEnumerator<T>;
  * @param array 如果这个数组对象是空值或者未定义，都会被判定为空，如果长度为零，则同样也会被判定为空值
 */
 declare function IsNullOrEmpty<T>(array: T[]): boolean;
+/**
+ * 判断给定的字符串是否是空值？
+ *
+ * @param stringAsFactor 假若这个参数为真的话，那么字符串``undefined``也将会被当作为空值处理
+*/
 declare function StringEmpty(str: string, stringAsFactor?: boolean): boolean;
 /**
  * HTML/Javascript: how to access JSON data loaded in a script tag.
@@ -155,9 +160,19 @@ declare module DataExtensions {
      * 经过测试，使用数组push的效率最高
     */
     function ToCharArray(str: string): string[];
+    /**
+     * 将URL查询字符串解析为字典对象
+     *
+     * @param queryString URL查询参数
+     * @param lowerName 是否将所有的参数名称转换为小写形式？
+     *
+     * @returns 键值对形式的字典对象
+    */
     function parseQueryString(queryString: string, lowerName?: boolean): object;
     /**
      * 尝试将任意类型的目标对象转换为数值类型
+     *
+     * @returns 一个数值
     */
     function as_numeric(obj: any): number;
 }
