@@ -1,4 +1,4 @@
-/// <reference path="linq.d.ts" />
+/// <reference path="../../javascript/linq.d.ts" />
 declare function makeSuggestions(terms: term[], div: string, click: (term: term) => void, top?: number, caseInsensitive?: boolean): (input: string) => void;
 declare function showSuggestions(suggestion: suggestion, input: string, div: string, click: (term: term) => void, top?: number, caseInsensitive?: boolean): void;
 declare function listItem(term: term, click: (term: term) => void): HTMLElement;

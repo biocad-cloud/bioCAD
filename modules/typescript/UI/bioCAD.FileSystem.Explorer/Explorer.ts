@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../javascript/linq.d.ts" />
+﻿/// <reference path="../../../../javascript/linq.d.ts" />
 /// <reference path="./Models.ts" />
 
 const containerClassName: string = "file-preview-thumbnails";
