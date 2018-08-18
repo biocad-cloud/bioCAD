@@ -110,9 +110,12 @@ declare class IEnumerator<T> implements IEnumerable<T> {
     */
     ForEach(callbackfn: (x: T, index: number) => void): void;
     /**
-     * Contract the sequence to string
+     * Contract the data sequence to string
+     *
+     * @param deli Delimiter string that using for the string.join function
+     * @param toString A lambda that describ how to convert the generic type object to string token
     */
-    JoinBy(deli: string, toString?: (x: T) => String): string;
+    JoinBy(deli: string, toString?: (x: T) => string): string;
     /**
      * This function returns a clone copy of the source sequence.
     */
@@ -254,6 +257,23 @@ declare class node<T, V> {
     left: node<T, V>;
     right: node<T, V>;
     constructor(key: T, value?: V, left?: node<T, V>, right?: node<T, V>);
+}
+declare namespace csv {
+    /**
+     * ``csv``文件模型
+    */
+    class dataframe {
+    }
+}
+declare namespace csv {
+    class row {
+        columns: string[];
+        /**
+         * 这个只读属性仅用于生成csv文件
+        */
+        readonly rowLine: string;
+        private static autoEscape;
+    }
 }
 interface IEnumerable<T> {
     readonly Count: number;
