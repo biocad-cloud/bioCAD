@@ -14,7 +14,10 @@ declare class IEnumerator<T> implements IEnumerable<T> {
      * The data sequence with specific type.
     */
     protected sequence: T[];
-    constructor(source: T[]);
+    /**
+     * 可以从一个数组或者枚举器构建出一个Linq序列
+    */
+    constructor(source: T[] | IEnumerator<T>);
     /**
      * Get the first element in this sequence
     */
@@ -121,19 +124,20 @@ declare class IEnumerator<T> implements IEnumerable<T> {
     */
     ToArray(): T[];
     ToDictionary<K, V>(keySelector: (x: T) => string, elementSelector?: (x: T) => V): Dictionary<V>;
+    ToPointer(): Pointer<T>;
 }
 /**
  * Linq数据流程管线的起始函数
  *
  * @param source 需要进行数据加工的集合对象
 */
-declare function From<T>(source: T[]): IEnumerator<T>;
+declare function From<T>(source: T[] | IEnumerator<T>): IEnumerator<T>;
 /**
  * 判断目标对象集合是否是空的？
  *
  * @param array 如果这个数组对象是空值或者未定义，都会被判定为空，如果长度为零，则同样也会被判定为空值
 */
-declare function IsNullOrEmpty<T>(array: T[]): boolean;
+declare function IsNullOrEmpty<T>(array: T[] | IEnumerator<T>): boolean;
 /**
  * 判断给定的字符串是否是空值？
  *
@@ -178,6 +182,23 @@ declare module DataExtensions {
      * @returns 一个数值
     */
     function as_numeric(obj: any): number;
+}
+declare module HttpHelpers {
+    /**
+     * 这个函数只会返回200成功代码的响应内容，对于其他的状态代码都会返回null
+    */
+    function GET(url: string): string;
+    function GetAsyn(url: string, callback: (response: string, code: number) => void): void;
+    function POST(url: string, postData: PostData, callback: (response: string, code: number) => void): void;
+    function UploadFile(url: string, postData: PostData, callback: (response: string, code: number) => void): void;
+    class PostData {
+        /**
+         * content type
+        */
+        type: string;
+        data: any;
+        toString(): string;
+    }
 }
 /**
  * 一个数值范围
@@ -258,22 +279,96 @@ declare class node<T, V> {
     right: node<T, V>;
     constructor(key: T, value?: V, left?: node<T, V>, right?: node<T, V>);
 }
+/**
+ * http://www.rfc-editor.org/rfc/rfc4180.txt
+*/
 declare namespace csv {
     /**
      * ``csv``文件模型
     */
-    class dataframe {
+    class dataframe extends IEnumerator<csv.row> {
+        /**
+         * Csv文件的第一行作为header
+        */
+        readonly headers: IEnumerator<string>;
+        constructor(rows: row[] | IEnumerator<row>);
+        buildDoc(): string;
+        Objects<T>(): IEnumerator<T>;
+        /**
+         * 使用ajax将csv文件保存到服务器
+         *
+         * @param url csv文件数据将会被通过post方法保存到这个url所指定的网络资源上面
+         * @param callback ajax异步回调，默认是打印返回结果到终端之上
+         *
+        */
+        save(url: string, callback?: (response: string) => void): void;
+        /**
+         * 使用ajax GET加载csv文件数据，不推荐使用这个方法处理大型的csv文件数据
+         *
+         * @param callback 当这个异步回调为空值的时候，函数使用同步的方式工作，返回csv对象
+         *                 如果这个参数不是空值，则以异步的方式工作，此时函数会返回空值
+        */
+        static Load(url: string, callback?: (csv: dataframe) => void): dataframe;
+        static Parse(text: string): dataframe;
     }
 }
 declare namespace csv {
-    class row {
-        columns: string[];
+    /**
+     * 一行数据
+    */
+    class row extends IEnumerator<string> {
+        /**
+         * 当前的这一个行对象的列数据集合
+         *
+         * 注意，你无法通过直接修改这个数组之中的元素来达到修改这个行之中的值的目的
+         * 因为这个属性会返回这个行的数组值的复制对象
+        */
+        readonly columns: string[];
         /**
          * 这个只读属性仅用于生成csv文件
         */
         readonly rowLine: string;
+        constructor(cells: string[]);
+        ProjectObject(headers: string[] | IEnumerator<string>): object;
         private static autoEscape;
+        static Parse(line: string): row;
     }
+}
+/**
+ * A data sequence object with a internal index pointer.
+*/
+declare class Pointer<T> extends IEnumerator<T> {
+    /**
+     * The index pointer of the current data sequence.
+    */
+    i: number;
+    /**
+     * The index pointer is at the end of the data sequence?
+    */
+    readonly EndRead: boolean;
+    /**
+     * Get the element value in current location i;
+    */
+    readonly Current: T;
+    /**
+     * Get current index element value and then move the pointer
+     * to next position.
+    */
+    readonly Next: T;
+    constructor(src: T[] | IEnumerator<T>);
+    /**
+     * Just move the pointer to the next position and then
+     * returns current pointer object.
+    */
+    MoveNext(): Pointer<T>;
+}
+declare namespace csv {
+    /**
+     * 通过Chars枚举来解析域，分隔符默认为逗号
+     * > https://github.com/xieguigang/sciBASIC/blame/701f9d0e6307a779bb4149c57a22a71572f1e40b/Data/DataFrame/IO/csv/Tokenizer.vb#L97
+     *
+    */
+    function CharsParser(s: string, delimiter?: string, quot?: string): string[];
 }
 interface IEnumerable<T> {
     readonly Count: number;
