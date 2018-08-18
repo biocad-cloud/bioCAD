@@ -3,6 +3,9 @@
 
 namespace DisplayAdapters {
 
+    /**
+     * 不适合显示超大的fasta序列文件
+    */
     export class Fasta extends IDisplay {
 
         public colors: Dictionary<string>;
@@ -13,6 +16,13 @@ namespace DisplayAdapters {
                 var html: string = From(seq)
                     .Select(this.renderOne)
                     .JoinBy("\n");
+
+                html = `<style>
+                            ${this.colorCSS()}
+                        </style>
+                        <div>
+                            ${html}
+                        </div>`
 
                 $(div).html(html);
             });

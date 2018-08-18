@@ -1,9 +1,12 @@
 ﻿namespace DisplayAdapters {
 
+    /**
+     * 在div之中显示图像
+    */
     export class Image extends IDisplay {
 
         show(div: string, file: string): void {
-            throw new Error("Method not implemented.");
+            $(div).html(`<img src="${file}" style="width: 100%;" />`);
         }
     }
 }
