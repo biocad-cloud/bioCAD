@@ -143,6 +143,9 @@ declare namespace DisplayAdapters {
     }
 }
 declare namespace DisplayAdapters {
+    /**
+     * 不适合显示超大的fasta序列文件
+    */
     class Fasta extends IDisplay {
         colors: Dictionary<string>;
         show(div: string, file: string): void;
@@ -159,6 +162,9 @@ declare namespace DisplayAdapters {
     }
 }
 declare namespace DisplayAdapters {
+    /**
+     * 在div之中显示图像
+    */
     class Image extends IDisplay {
         show(div: string, file: string): void;
     }
@@ -169,6 +175,9 @@ declare namespace DisplayAdapters {
     }
 }
 declare namespace DisplayAdapters {
+    /**
+     * 读取文本文件然后显示出来
+    */
     class Text extends IDisplay {
         show(div: string, file: string): void;
     }
