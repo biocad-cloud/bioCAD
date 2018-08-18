@@ -7,7 +7,7 @@ class Update {
     */
     public commit_hash: string;
     public date: Date;
-    public updates: updateItem[];
+    public updates: updateLog[];
 
     public get HTML(): string {
         return `
@@ -21,46 +21,3 @@ class Update {
     }
 }
 
-class updateItem {
-
-    public tag: updateTypes;
-    public note: string;
-
-    constructor(tag: updateTypes, note: string) {
-        this.tag = tag;
-        this.note = note;
-    }
-
-    public get bootstrapItem(): string {
-        var tag: string = null;
-        var title: string = null;
-
-        switch (this.tag) {
-            case updateTypes.Bugfix:
-                tag = "label-warning";
-                title = "Bugfix";
-            case updateTypes.Improvement:
-                tag = "label-info";
-                title = "Improvement";
-            case updateTypes.New:
-                tag = "label-success";
-                title = "New";
-            case updateTypes.Removes:
-                tag = "label-warning";
-                title = "Remove";
-            default:
-                tag = "label-info";
-                title = "Undefined";
-        }
-
-        return `<span class="label ${tag}">${title}</span> ${this.note}`;
-    }
-
-    public toString(): string {
-        return this.bootstrapItem;
-    }
-}
-
-enum updateTypes {
-    New, Improvement, Bugfix, Removes
-}
