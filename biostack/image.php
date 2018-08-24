@@ -1,20 +1,12 @@
 <?php
 
-include "../modules/dotnet/package.php";
-include "../common.php";
-include "../platform/task.php";
-
-Imports("Microsoft.VisualBasic.Strings");
-Imports("php.Utils");
-
 /**
  * Biostack webapp的html文件的文件夹相对路径
 */
 define("WEB_APP", "../html/Application");
 define("APP_PATH", dirname(dirname(__FILE__)));
 
-dotnet::AutoLoad("../etc/config.php");
-dotnet::HandleRequest(new biostack(), WEB_APP);
+include "../bootstrap.php";
 
 class biostack {
 

@@ -1,24 +1,6 @@
 <?php
 
-# home page
-
-session_start();
-
-define("APP_PATH", dirname(__FILE__));
-define("APP_DEBUG", true);
-
-include "./modules/dotnet/package.php";
-include "./common.php";
-include "./accessController.php";
-
-Imports("MVC.view");
-Imports("MVC.router");
-
-View::Push("dismiss_banner", Common::BannerDismissStatus());
-View::Push("*", Common::getUserInfo());
-
-dotnet::AutoLoad("./etc/config.php");
-dotnet::HandleRequest(new app(), new accessController());
+include "./bootstrap.php";
 
 /**
  * 在这里的所有的页面都不需要进行身份验证	

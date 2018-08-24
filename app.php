@@ -1,27 +1,6 @@
 <?php
 
-session_start();
-
-define("APP_PATH", dirname(__FILE__));
-define("APP_DEBUG", true);
-
-include "./modules/dotnet/package.php";
-include "./common.php";
-include "./accessController.php";
-
-Imports("System.Linq.Enumerable");
-Imports("System.Text.StringBuilder");
-Imports("Microsoft.VisualBasic.Conversion");
-Imports("Microsoft.VisualBasic.Strings");
-
-Imports("MVC.view");
-Imports("MVC.router");
-
-View::Push("dismiss_banner", Common::BannerDismissStatus());
-View::Push("*", Common::getUserInfo());
-
-dotnet::AutoLoad("./etc/config.php");
-dotnet::HandleRequest(new app(), "./html/Application", new accessController());
+include "./bootstrap.php";
 
 /**
  * Module file for handling HTML user interface

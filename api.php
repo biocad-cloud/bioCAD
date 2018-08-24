@@ -1,17 +1,6 @@
 <?php
 
-include "./modules/dotnet/package.php";
-include "./common.php";
-include "./accessController.php";
-
-session_start();
-
-Imports("System.DateTime");
-Imports("Microsoft.VisualBasic.Strings");
-Imports("php.Utils");
-
-dotnet::AutoLoad("./etc/config.php");
-dotnet::HandleRequest(new api(), new accessController());
+include "./bootstrap.php";
 
 /**
  * Module file for handling biostack data analysis API

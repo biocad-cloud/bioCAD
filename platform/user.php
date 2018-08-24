@@ -1,14 +1,6 @@
 <?php
 
-session_start();
-
-# Module file for handling biostack data analysis API
-include "../modules/dotnet/package.php";
-
-Imports("Microsoft.VisualBasic.Strings");
-
-dotnet::AutoLoad("../etc/config.php");
-dotnet::HandleRequest(new user());
+include "../bootstrap.php";
 
 /**
  * 网站用户API模块

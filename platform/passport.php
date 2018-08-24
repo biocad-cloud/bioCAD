@@ -1,22 +1,6 @@
 <?php
 
-session_start();
-
-define("APP_PATH", dirname(dirname(__FILE__)));
-define("APP_DEBUG", true);
-
-include "../modules/dotnet/package.php";
-include "../common.php";
-include "../accessController.php";
-
-Imports("MVC.view");
-Imports("MVC.router");
-
-View::Push("dismiss_banner", Common::BannerDismissStatus());
-View::Push("*", Common::getUserInfo());
-
-dotnet::AutoLoad("../etc/config.php");
-dotnet::HandleRequest(new app(), APP_PATH . "/html/user/", new accessController());
+include "../bootstrap.php";
 
 /**
  * 用户登录界面

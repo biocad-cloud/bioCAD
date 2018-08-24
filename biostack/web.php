@@ -1,13 +1,5 @@
 <?php
 
-include "../modules/dotnet/package.php";
-include "../common.php";
-include "../platform/task.php";
-
-Imports("Microsoft.VisualBasic.Strings");
-Imports("MVC.view");
-Imports("php.Utils");
-
 /**
  * Biostack webapp的html文件的文件夹相对路径
 */
@@ -16,13 +8,8 @@ define("WEB_APP", "../html/Application");
  * 公共框架页面文件
 */
 define("BOOTSTRAP", WEB_APP . "/analysis/bootstrap.html");
-define("APP_PATH", dirname(dirname(__FILE__)));
 
-View::Push("dismiss_banner", Common::BannerDismissStatus());
-View::Push("*", Common::getUserInfo());
-
-dotnet::AutoLoad("../etc/config.php");
-dotnet::HandleRequest(new biostack(), WEB_APP . "/analysis/");
+include "../bootstrap.php";
 
 /**
  * 数据分析模块的用户界面
