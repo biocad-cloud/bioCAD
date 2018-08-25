@@ -5,7 +5,7 @@ include "./bootstrap.php";
 /**
  * Module file for handling biostack data analysis API
 */
-class api {
+class app {
 
     const OSS        = "bioCAD_OSS";
     const OSSDefault = "D:/temp/";

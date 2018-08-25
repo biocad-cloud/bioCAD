@@ -8,7 +8,7 @@ define("APP_PATH", dirname(dirname(__FILE__)));
 
 include "../bootstrap.php";
 
-class biostack {
+class app {
 
     /**
      * 创建一个基因列表富集分析的后台任务

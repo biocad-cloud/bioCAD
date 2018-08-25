@@ -8,7 +8,7 @@ define("APP_PATH", dirname(dirname(__FILE__)));
 
 include "../bootstrap.php";
 
-class biostack {
+class app {
 
     public function enrichment() {
         $task_id   = $_GET["id"];

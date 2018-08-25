@@ -14,7 +14,7 @@ include "../bootstrap.php";
 /**
  * 数据分析模块的用户界面
 */
-class biostack {
+class app {
 
     public function index() {
 
