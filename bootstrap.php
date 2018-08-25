@@ -5,8 +5,8 @@ define("APP_DEBUG", true);
 
 session_start();
 
-include "./modules/dotnet/package.php";
-include "./accessController.php";
+include APP_PATH . "/modules/dotnet/package.php";
+include APP_PATH . "/accessController.php";
 
 Imports("System.Linq.Enumerable");
 Imports("System.Text.StringBuilder");
@@ -19,7 +19,7 @@ Imports("MVC.router");
 View::Push("dismiss_banner", Common::BannerDismissStatus());
 View::Push("*", Common::getUserInfo());
 
-dotnet::AutoLoad("./etc/config.php");
+dotnet::AutoLoad(APP_PATH . "/etc/config.php");
 dotnet::HandleRequest(new app(), new accessController());
 
 class Common {
@@ -28,7 +28,7 @@ class Common {
 
 		$vars["username"]      = $vars["account"];
         $vars["has_dropdown"]  = "has-dropdown";
-        $vars["menu_dropdown"] = View::Load(dirname(__FILE__) . "/html/includes/menu_dropdown.html");
+        $vars["menu_dropdown"] = View::Load(APP_PATH . "/html/includes/menu_dropdown.html");
 
         return $vars;
     }
