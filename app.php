@@ -44,7 +44,7 @@ class app {
 	*/
     public function project() {		
 		# 当前的页面的编号
-		$action = $_GET["action"];
+		$action = Utils::ReadValue($_GET, "action");
 		$page = $_COOKIE["project_page"];
 		# 每一个分页的所显示的项目数量
 		$pagen = 3;
