@@ -20,6 +20,7 @@ return [
     "CACHE"   => false,
     "APP_NAME" => "bioCAD",
     "MVC_VIEW_ROOT" => [
-        "passport" => "./html/user/"
+        "passport" => "./html/user/",
+        "app" => "./html/Application/"
     ]
 ];
