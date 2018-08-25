@@ -5,7 +5,7 @@ include "../bootstrap.php";
 /**
  * 网站用户API模块
 */
-class user {
+class app {
 
 	const CredentialVerifyError = "User not found or invalid credential information provided!";
 
