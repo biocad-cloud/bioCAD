@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../../../javascript/linq.d.ts" />
+﻿/// <reference path="../../../../build/linq.d.ts" />
 /// <reference path="../../../../../javascript/bioCAD.core.d.ts" />
 
 namespace DisplayAdapters {

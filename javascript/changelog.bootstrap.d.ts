@@ -1,4 +1,4 @@
-/// <reference path="linq.d.ts" />
+/// <reference path="../modules/build/linq.d.ts" />
 declare module markdownParser {
 }
 declare class Update {

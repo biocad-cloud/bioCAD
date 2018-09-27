@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../javascript/linq.d.ts" />
+﻿/// <reference path="../../build/linq.d.ts" />
 
 /**
  * The fasta sequence parser and data model

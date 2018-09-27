@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{75E11EF5-5
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "bioCAD.FileSystem.Explorer", "UI\bioCAD.FileSystem.Explorer\bioCAD.FileSystem.Explorer.njsproj", "{BEA6E886-0D95-4940-8F33-54D5338269BC}"
 EndProject
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Linq.ts", "..\Linq\Linq.ts.njsproj", "{E0AEC189-6D05-47E4-9F69-DAFE43AC8398}"
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Linq.ts", "..\Linq\Linq.ts\Linq.ts.njsproj", "{E0AEC189-6D05-47E4-9F69-DAFE43AC8398}"
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "changelog.bootstrap", "UI\changelog.bootstrap\changelog.bootstrap.njsproj", "{AF178377-8115-4DBC-976C-A1326AC49C12}"
 EndProject
