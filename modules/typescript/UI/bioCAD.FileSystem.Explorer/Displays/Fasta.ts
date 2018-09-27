@@ -56,7 +56,7 @@ namespace DisplayAdapters {
             var continues: string = "";
             var seqHtml: string = "";
 
-            DataExtensions
+            Strings
                 .ToCharArray(fa.sequence.toUpperCase())
                 .forEach(c => {
                     if (oneChar != c) {
