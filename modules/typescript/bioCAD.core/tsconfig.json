@@ -5,7 +5,7 @@
     "lib": [ "dom", "es5", "dom.iterable", "scripthost" ],
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
-    "outFile": "../../../javascript/bioCAD.core.js",
+    "outFile": "../../build/bioCAD.core.js",
     "declaration": true
   },
   "exclude": [
