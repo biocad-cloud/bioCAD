@@ -19,6 +19,7 @@ return [
     "RFC7231" => "html/http_errors",
     "CACHE"   => true,
     "APP_NAME" => "bioCAD",
+	"APP_VERSION" => "0.222.56-alpha",
     "MVC_VIEW_ROOT" => [
         "passport" => "./html/user/",
         "app" => "./html/Application/"
