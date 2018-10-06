@@ -1,4 +1,4 @@
-/// <reference path="linq.d.ts" />
+/// <reference path="../modules/build/linq.d.ts" />
 /// <reference path="bioCAD.core.d.ts" />
 declare enum bioClassType {
     /**

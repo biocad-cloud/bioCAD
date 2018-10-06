@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../javascript/linq.d.ts" />
+﻿/// <reference path="../../build/linq.d.ts" />
 
 /**
  * The fasta sequence parser and data model
@@ -12,11 +12,11 @@ class FastaSeq {
         var seq: FastaSeq[] = [];
         // 使用正则表达式进行切割并去除空白行
         var lines: string[] = From(stream.split(/\n/))
-            .Where(l => !StringEmpty(l, true))
+            .Where(l => !Strings.Empty(l, true))
             .ToArray();
         var header: string;
         var seqBuffer: string = "";
-        var isnull: () => boolean = () => StringEmpty(header) && StringEmpty(seqBuffer);
+        var isnull: () => boolean = () => Strings.Empty(header) && Strings.Empty(seqBuffer);
 
         for (var i: number = 0; i < lines.length; i++) {
             var line: string = lines[i];

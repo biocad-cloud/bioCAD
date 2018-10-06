@@ -1,4 +1,4 @@
-/// <reference path="linq.d.ts" />
+/// <reference path="../modules/build/linq.d.ts" />
 /**
  * The fasta sequence parser and data model
 */

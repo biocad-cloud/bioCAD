@@ -1,4 +1,4 @@
-﻿/// <reference path="../../../../../javascript/linq.d.ts" />
+﻿/// <reference path="../../../../build/linq.d.ts" />
 /// <reference path="../../../../../javascript/bioCAD.core.d.ts" />
 
 namespace DisplayAdapters {
@@ -56,7 +56,7 @@ namespace DisplayAdapters {
             var continues: string = "";
             var seqHtml: string = "";
 
-            DataExtensions
+            Strings
                 .ToCharArray(fa.sequence.toUpperCase())
                 .forEach(c => {
                     if (oneChar != c) {
