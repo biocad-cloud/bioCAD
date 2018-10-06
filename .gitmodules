@@ -1,3 +1,6 @@
 [submodule "./modules/Linq"]
 	path = modules/Linq
 	url = https://github.com/GCModeller-Cloud/data.ts.git
+[submodule "modules/dotnet"]
+	path = modules/dotnet
+	url = https://github.com/GCModeller-Cloud/php-dotnet.git
