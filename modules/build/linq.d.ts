@@ -36,7 +36,7 @@ declare namespace data.sprintf {
      *
     */
     const placeholder: RegExp;
-    function parseFormat(string: string, arguments: string[]): {
+    function parseFormat(string: string, arguments: any[]): {
         matches: match[];
         convCount: number;
         strings: string[];
@@ -54,7 +54,7 @@ declare namespace data.sprintf {
      * string formatted by the usual printf conventions. See below for more details.
      * You must specify the string and how to format the variables in it.
     */
-    function doFormat(format: string, ...argv: string[]): string;
+    function doFormat(format: string, ...argv: any[]): string;
     /**
      * 进行格式化占位符对格式化参数的字符串替换操作
     */
@@ -103,6 +103,17 @@ declare class IEnumerator<T> {
      * Get the last element in this sequence
     */
     readonly Last: T;
+    /**
+     * 两个序列求总和
+    */
+    Union<U, K, V>(another: IEnumerator<U> | U[], tKey: (x: T) => K, uKey: (x: U) => K, compare: (a: K, b: K) => number, project?: (x: T, y: U) => V): IEnumerator<V>;
+    /**
+     * 如果在another序列之中找不到对应的对象，则当前序列会和一个空对象合并
+     * 如果another序列之中有多余的元素，即该元素在当前序列之中找不到的元素，会被扔弃
+     *
+     * @param project 如果这个参数被忽略掉了的话，将会直接进行属性的合并
+    */
+    Join<U, K, V>(another: IEnumerator<U> | U[], tKey: (x: T) => K, uKey: (x: U) => K, compare: (a: K, b: K) => number, project?: (x: T, y: U) => V): IEnumerator<V>;
     /**
      * Projects each element of a sequence into a new form.
      *
@@ -268,19 +279,19 @@ declare namespace Linq.TsQuery {
         array: () => arrayEval<{}>;
     };
     interface IEval<T> {
-        doEval(expr: T, type: TypeInfo): any;
+        doEval(expr: T, type: TypeInfo, args: object): any;
     }
     /**
      * 字符串格式的值意味着对html文档节点的查询
     */
     class stringEval implements IEval<string> {
-        doEval(expr: string, type: TypeInfo): any;
+        doEval(expr: string, type: TypeInfo, args: object): any;
     }
     /**
      * Create a Linq Enumerator
     */
     class arrayEval<V> implements IEval<V[]> {
-        doEval(expr: V[], type: TypeInfo): any;
+        doEval(expr: V[], type: TypeInfo, args: object): any;
     }
 }
 /**
@@ -289,7 +300,7 @@ declare namespace Linq.TsQuery {
 declare module DataExtensions {
     function getCook(cookiename: string): string;
     /**
-     * 将URL查询字符串解析为字典对象
+     * 将URL查询字符串解析为字典对象，所传递的查询字符串应该是查询参数部分，即问号之后的部分，而非完整的url
      *
      * @param queryString URL查询参数
      * @param lowerName 是否将所有的参数名称转换为小写形式？
@@ -404,8 +415,17 @@ declare class TypeInfo {
      * 是否是js之中的基础类型？
     */
     readonly IsPrimitive: boolean;
+    /**
+     * 是否是一个数组集合对象？
+    */
     readonly IsArray: boolean;
+    /**
+     * 是否是一个枚举器集合对象？
+    */
     readonly IsEnumerator: boolean;
+    /**
+     * 当前的对象是某种类型的数组集合对象
+    */
     IsArrayOf(genericType: string): boolean;
     /**
      * 获取某一个对象的类型信息
@@ -435,7 +455,7 @@ declare class TypeInfo {
 /**
  * 对于这个函数的返回值还需要做类型转换
 */
-declare function $ts<T>(any: (() => void) | T | T[]): IEnumerator<T> & any;
+declare function $ts<T>(any: (() => void) | T | T[], args?: object): IEnumerator<T> & any;
 /**
  * ### Javascript sprintf
  *
@@ -738,6 +758,41 @@ declare class StringBuilder {
     toString(): string;
 }
 declare namespace TsLinq {
+    class URL {
+        /**
+         * 域名
+        */
+        origin: string;
+        /**
+         * 页面的路径
+        */
+        path: string;
+        /**
+         * URL查询参数
+        */
+        query: NamedValue<string>[];
+        /**
+         * 不带拓展名的文件名称
+        */
+        fileName: string;
+        hash: string;
+        protocol: string;
+        constructor(url: string);
+        static UrlQuery(args: string): object;
+        static basename(fileName: string): string;
+        static WindowLocation(): URL;
+        /**
+         * 对bytes数值进行格式自动优化显示
+         *
+         * @param bytes
+         *
+         * @return 经过自动格式优化过后的大小显示字符串
+        */
+        static Lanudry(bytes: number): string;
+        toString(): string;
+    }
+}
+declare namespace TsLinq {
     /**
      * 性能计数器
     */
@@ -810,6 +865,35 @@ declare module HttpHelpers {
         toString(): string;
     }
 }
+declare namespace Linq {
+    function EnsureCollection<T>(data: T | T[] | IEnumerator<T>, n?: number): IEnumerator<T>;
+    /**
+     * @param data 如果这个参数是一个数组，则在这个函数之中会执行复制操作
+     * @param n 如果data数据序列长度不足，则会使用null进行补充，n为任何小于data长度的正实数都不会进行补充操作，
+     *     相反只会返回前n个元素，如果n是负数，则不进行任何操作
+    */
+    function EnsureArray<T>(data: T | T[] | IEnumerator<T>, n?: number): T[];
+}
+/**
+ * 路由器模块
+*/
+declare module Router {
+    function iFrame(app: string): HTMLIFrameElement;
+    function queryKey(argName: string): (link: string) => string;
+    function moduleName(): (link: string) => string;
+    /**
+     * 父容器页面注册视图容器对象
+    */
+    function register(appId?: string, hashKey?: string | ((link: string) => string), frameRegister?: boolean): void;
+    /**
+     * 当前的堆栈环境是否是最顶层的堆栈？
+    */
+    function IsTopWindowStack(): boolean;
+    /**
+     * 因为link之中可能存在查询参数，所以必须要在web服务器上面测试
+    */
+    function goto(link: string, appId: string, hashKey: (link: string) => string, stack?: Window): void;
+}
 /**
  * 序列之中的元素下标的操作方法集合
 */
@@ -850,6 +934,8 @@ declare namespace Which {
 declare namespace algorithm.BTree {
     /**
      * 用于进行数据分组所需要的最基础的二叉树数据结构
+     *
+     * ``{key => value}``
     */
     class binaryTree<T, V> {
         /**
@@ -1006,6 +1092,18 @@ declare module Enumerable {
      * Implements a ``group by`` operation by binary tree data structure.
     */
     function GroupBy<T, TKey>(source: T[], getKey: (e: T) => TKey, compares: (a: TKey, b: TKey) => number): IEnumerator<Group<TKey, T>>;
+    function AllKeys<T>(sequence: T[]): string[];
+    class JoinHelper<T, U> {
+        private xset;
+        private yset;
+        private keysT;
+        private keysU;
+        constructor(x: T[], y: U[]);
+        JoinProject<V>(x: T, y: U): V;
+        Union<K, V>(tKey: (x: T) => K, uKey: (x: U) => K, compare: (a: K, b: K) => number, project?: (x: T, y: U) => V): IEnumerator<V>;
+        private buildUtree;
+        LeftJoin<K, V>(tKey: (x: T) => K, uKey: (x: U) => K, compare: (a: K, b: K) => number, project?: (x: T, y: U) => V): IEnumerator<V>;
+    }
 }
 /**
  * 按照某一个键值进行分组的集合对象
@@ -1093,6 +1191,7 @@ declare class NamedValue<T> {
  * HTML文档操作帮助函数
 */
 declare namespace Linq.DOM {
+    function clientSize(): number[];
     /**
      * 向指定id编号的div添加select标签的组件
     */
@@ -1123,16 +1222,42 @@ declare namespace Linq.DOM {
 declare namespace Linq.DOM {
     class DOMEnumerator<T extends HTMLElement> extends IEnumerator<T> {
         constructor(elements: T[] | IEnumerator<T> | NodeListOf<T>);
+        /**
+         * 这个函数确保所传递进来的集合总是输出一个数组，方便当前的集合对象向其基类型传递数据源
+        */
         private static ensureElements;
         /**
+         * 使用这个函数进行节点值的设置或者获取
+         *
          * @param value 如果需要批量清除节点之中的值的话，需要传递一个空字符串，而非空值
         */
         val(value?: string | string[] | IEnumerator<string>): IEnumerator<string>;
+        /**
+         * 使用这个函数设置或者获取属性值
+         *
+         * @param attrName 属性名称
+         * @param val + 如果为字符串值，则当前的结合之中的所有的节点的指定属性都将设置为相同的属性值
+         *            + 如果为字符串集合或者字符串数组，则会分别设置对应的index的属性值
+         *            + 如果是一个函数，则会设置根据该节点所生成的字符串为属性值
+         *
+         * @returns 函数总是会返回所设置的或者读取得到的属性值的字符串集合
+        */
+        attr(attrName: string, val?: string | IEnumerator<string> | string[] | ((x: T) => string)): IEnumerator<string>;
         AddClass(className: string): DOMEnumerator<T>;
-        AddEvent(eventName: string, handler: (event: Event) => void): void;
-        onChange(handler: (event: Event) => void): void;
+        AddEvent(eventName: string, handler: (sender: T, event: Event) => void): void;
+        onChange(handler: (sender: T, event: Event) => void): void;
+        /**
+         * 为当前的html节点集合添加鼠标点击事件处理函数
+        */
+        onClick(handler: (sender: T, event: MouseEvent) => void): void;
         RemoveClass(className: string): DOMEnumerator<T>;
+        /**
+         * 通过设置css之中的display值来将集合之中的所有的节点元素都隐藏掉
+        */
         hide(): DOMEnumerator<T>;
+        /**
+         * 通过设置css之中的display值来将集合之中的所有的节点元素都显示出来
+        */
         show(): DOMEnumerator<T>;
         /**
          * 将所选定的节点批量删除
