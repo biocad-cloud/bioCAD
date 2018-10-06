@@ -284,6 +284,9 @@ var IEnumerator = /** @class */ (function () {
         }
         return this.sequence[index];
     };
+    IEnumerator.prototype.indexOf = function (x) {
+        return this.sequence.indexOf(x);
+    };
     Object.defineProperty(IEnumerator.prototype, "First", {
         /**
          * Get the first element in this sequence
@@ -1723,6 +1726,65 @@ var TsLinq;
         return MetaReader;
     }());
     TsLinq.MetaReader = MetaReader;
+})(TsLinq || (TsLinq = {}));
+var TsLinq;
+(function (TsLinq) {
+    var PriorityQueue = /** @class */ (function (_super) {
+        __extends(PriorityQueue, _super);
+        function PriorityQueue(events) {
+            var _this = _super.call(this, []) || this;
+            _this.events = events;
+            return _this;
+        }
+        Object.defineProperty(PriorityQueue.prototype, "Q", {
+            /**
+             * 队列元素
+            */
+            get: function () {
+                return this.sequence;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        PriorityQueue.prototype.enqueue = function (obj) {
+            var last = this.Last;
+            var q = this.Q;
+            var x = new QueueItem(obj);
+            q.push(x);
+            if (last) {
+                last.below = x;
+                x.above = last;
+            }
+        };
+        PriorityQueue.prototype.extract = function (i) {
+            var q = this.Q;
+            var x_above = q[i - 1];
+            var x_below = q[i + 1];
+            var x = q.splice(i, 1)[0];
+            if (x_above) {
+                x_above.below = x_below;
+            }
+            if (x_below) {
+                x_below.above = x_above;
+            }
+            return x;
+        };
+        PriorityQueue.prototype.dequeue = function () {
+            return this.extract(0);
+        };
+        return PriorityQueue;
+    }(IEnumerator));
+    TsLinq.PriorityQueue = PriorityQueue;
+    var QueueItem = /** @class */ (function () {
+        function QueueItem(x) {
+            this.value = x;
+        }
+        QueueItem.prototype.toString = function () {
+            return this.value.toString();
+        };
+        return QueueItem;
+    }());
+    TsLinq.QueueItem = QueueItem;
 })(TsLinq || (TsLinq = {}));
 var data;
 (function (data_1) {

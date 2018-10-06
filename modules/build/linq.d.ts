@@ -94,6 +94,7 @@ declare class IEnumerator<T> {
      *       a sequence copy action on this given data source sequence at here.
     */
     constructor(source: T[] | IEnumerator<T>);
+    indexOf(x: T): number;
     /**
      * Get the first element in this sequence
     */
@@ -653,6 +654,26 @@ declare namespace TsLinq {
          * > https://stackoverflow.com/questions/280389/how-do-you-find-out-the-caller-function-in-javascript
         */
         GetValue(key?: string): any;
+    }
+}
+declare namespace TsLinq {
+    class PriorityQueue<T> extends IEnumerator<QueueItem<T>> {
+        private events;
+        /**
+         * 队列元素
+        */
+        readonly Q: QueueItem<T>[];
+        constructor(events: any);
+        enqueue(obj: T): void;
+        extract(i: number): QueueItem<T>;
+        dequeue(): QueueItem<T>;
+    }
+    class QueueItem<T> {
+        value: T;
+        below: QueueItem<T>;
+        above: QueueItem<T>;
+        constructor(x: T);
+        toString(): string;
     }
 }
 declare namespace data {
