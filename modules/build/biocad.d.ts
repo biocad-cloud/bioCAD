@@ -16,3 +16,5 @@ declare namespace bioCAD.WebApp {
         static accountRecover(): void;
     }
 }
+declare var dev: Console;
+declare var logo: string[];
