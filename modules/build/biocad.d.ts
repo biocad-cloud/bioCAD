@@ -10,4 +10,9 @@ declare namespace bioCAD.WebApp {
         protected init(): void;
         static register(): void;
     }
+    class RecoverScript extends Bootstrap {
+        readonly appName: string;
+        protected init(): void;
+        static accountRecover(): void;
+    }
 }

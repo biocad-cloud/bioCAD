@@ -73,4 +73,19 @@
             }
         }
     }
+
+    export class RecoverScript extends Bootstrap {
+
+        public get appName(): string {
+            return "recover";
+        }
+
+        protected init(): void {
+            $ts("#doRecover").onclick = RecoverScript.accountRecover;
+        }
+
+        public static accountRecover() {
+
+        }
+    }
 }
