@@ -23,6 +23,8 @@ Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Linq.ts", "..\Linq\Linq.ts\
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "changelog.bootstrap", "UI\changelog.bootstrap\changelog.bootstrap.njsproj", "{AF178377-8115-4DBC-976C-A1326AC49C12}"
 EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "bioCADweb", "bioCADweb\bioCADweb.njsproj", "{EA11F515-1B72-4294-88EE-5ECE658E8DB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{AF178377-8115-4DBC-976C-A1326AC49C12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF178377-8115-4DBC-976C-A1326AC49C12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF178377-8115-4DBC-976C-A1326AC49C12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA11F515-1B72-4294-88EE-5ECE658E8DB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA11F515-1B72-4294-88EE-5ECE658E8DB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA11F515-1B72-4294-88EE-5ECE658E8DB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA11F515-1B72-4294-88EE-5ECE658E8DB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
