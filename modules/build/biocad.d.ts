@@ -4,6 +4,10 @@ declare namespace bioCAD.WebApp {
         readonly appName: string;
         protected init(): void;
         static login(): void;
+    }
+    class RegisterScript extends Bootstrap {
+        readonly appName: string;
+        protected init(): void;
         static register(): void;
     }
 }

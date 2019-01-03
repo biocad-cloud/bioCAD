@@ -8,7 +8,6 @@
 
         protected init(): void {
             $ts("#login").onclick = LogInScript.login;
-            $ts("#doRegister").onclick = LogInScript.register;
         }
 
         static login() {
@@ -32,6 +31,17 @@
                     (<any>parent).msgbox(result.info, 1);
                 }
             });
+        }
+    }
+
+    export class RegisterScript extends Bootstrap {
+
+        public get appName(): string {
+            return "register";
+        }
+
+        protected init(): void {
+            $ts("#doRegister").onclick = RegisterScript.register;
         }
 
         public static register() {
