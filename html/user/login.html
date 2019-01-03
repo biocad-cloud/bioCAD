@@ -30,26 +30,6 @@ ${imports.html}
 				<div class="if-have">
 					<a href="#" onclick="gotoRegister();">New to bioCAD Cloud? Sign up.</a>
 				</div>
-
-				<script type="text/javascript">
-					function doLogin() {
-						var response = login_script.login("{<platform>user/login}", md5);
-						var strMsg = response.info;
-						
-						if (response.code == 0) {
-							var query = getAllUrlParams(parent.window.location.href);
-							var back = decodeURIComponent(query.Item("goto"));
-
-							if (Strings.Empty(back, true)) {
-								parent.gotoURL("/");
-							} else {
-								parent.gotoURL(back);
-							}							
-						} else {
-							parent.msgbox(strMsg, 1);
-						}						
-					}
-				</script>
 			</form>
 			${footer.html}
 		</div>
