@@ -40,7 +40,7 @@ ${imports.html}
 							var query = getAllUrlParams(parent.window.location.href);
 							var back = decodeURIComponent(query.Item("goto"));
 
-							if (StringEmpty(back, true)) {
+							if (Strings.Empty(back, true)) {
 								parent.gotoURL("/");
 							} else {
 								parent.gotoURL(back);
