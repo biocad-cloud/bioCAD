@@ -65,7 +65,7 @@ declare class tableEditor {
     */
     constructor(headers: string[], id: string, style?: string, className?: string, tdWidth?: string[], warning?: () => void, showRowNumber?: boolean);
     addNew(): editor;
-    private addNewInternal();
+    private addNewInternal;
     TableData(): Object[];
 }
 declare module template {

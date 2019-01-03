@@ -29,7 +29,7 @@ declare enum updateTypes {
     /**
      * 移除了一个旧功能
     */
-    Removes = 3,
+    Removes = 3
 }
 declare class updateLog {
     /**

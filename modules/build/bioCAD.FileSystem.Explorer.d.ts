@@ -20,7 +20,7 @@ declare enum bioClassType {
     /**
      * The biological sequence data type, like fasta sequence file.
     */
-    bioSequence = 4,
+    bioSequence = 4
 }
 declare module bioMimeTypes {
     /**
@@ -124,8 +124,8 @@ declare class FileHandle {
     readonly fileId: string;
     constructor(file: bioCADFile, icon: string[]);
     static classNames: string[];
-    private footer();
-    private actionButtons();
+    private footer;
+    private actionButtons;
     /**
      * @returns UI html string
     */
@@ -152,11 +152,11 @@ declare namespace DisplayAdapters {
         /**
          * 将颜色配置数据转换为用于支持颜色高亮的CSS样式
         */
-        private colorCSS();
+        private colorCSS;
         /**
          * 将fasta数据模型对象转换为对每一个符号进行颜色高亮的html代码
         */
-        private renderOne(fa);
+        private renderOne;
         static NuclFasta(): Fasta;
         static ProtColors(): Fasta;
     }

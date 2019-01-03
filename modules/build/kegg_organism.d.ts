@@ -4,13 +4,13 @@ declare class organismTerm {
     name: string;
     lineage: string[];
     constructor(name: string, lineage: string[]);
-    private static calcCode(codeText);
+    private static calcCode;
 }
 declare class JsonTreeParser {
     /**
      * 通过递归来获取树
     */
     static parseTree(tree: any): organismTerm[];
-    private static parseInternal(node, lineage);
+    private static parseInternal;
 }
 declare function loadKEGGOrganism(jsonURL: string, load: (terms: organismTerm[]) => void): void;

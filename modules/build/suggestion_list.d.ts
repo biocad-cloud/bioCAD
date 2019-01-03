@@ -10,7 +10,7 @@ declare function listItem(term: term, click: (term: term) => void): HTMLElement;
 */
 declare class leven {
     static compute(a: string, b: string): number;
-    private static levelInternal(a, b, aLen, bLen, start);
+    private static levelInternal;
 }
 declare class suggestion {
     private terms;
@@ -19,7 +19,7 @@ declare class suggestion {
      * 返回最相似的前5个结果
     */
     populateSuggestion(input: string, top?: number, caseInsensitive?: boolean): term[];
-    private static getScore(q, input, lowerInput, caseInsensitive);
+    private static getScore;
 }
 declare const NA: number;
 /**
