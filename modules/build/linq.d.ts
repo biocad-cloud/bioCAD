@@ -107,6 +107,10 @@ declare class IEnumerator<T> {
     */
     readonly Last: T;
     /**
+     * If the sequence length is zero, then returns the default value.
+    */
+    FirstOrDefault(Default?: T): T;
+    /**
      * 两个序列求总和
     */
     Union<U, K, V>(another: IEnumerator<U> | U[], tKey: (x: T) => K, uKey: (x: U) => K, compare: (a: K, b: K) => number, project?: (x: T, y: U) => V): IEnumerator<V>;
@@ -822,7 +826,7 @@ declare namespace TsLinq {
         /**
          * URL查询参数
         */
-        query: NamedValue<string>[];
+        readonly query: NamedValue<string>[];
         /**
          * 不带拓展名的文件名称
         */
@@ -835,10 +839,12 @@ declare namespace TsLinq {
          * 网络协议名称
         */
         protocol: string;
+        private queryArguments;
         /**
          * 在这里解析一个URL字符串
         */
         constructor(url: string);
+        getArgument(queryName: string, caseSensitive?: boolean, Default?: string): string;
         /**
          * 将URL之中的query部分解析为字典对象
         */
@@ -1029,6 +1035,7 @@ declare class Dictionary<V> extends IEnumerator<MapTuple<string, V>> {
     constructor(maps?: object | MapTuple<string, V>[] | IEnumerator<MapTuple<string, V>>);
     static FromMaps<V>(maps: MapTuple<string, V>[] | IEnumerator<MapTuple<string, V>>): Dictionary<V>;
     static FromNamedValues<V>(values: NamedValue<V>[] | IEnumerator<NamedValue<V>>): Dictionary<V>;
+    static MapSequence<V>(maps: object | MapTuple<string, V>[] | IEnumerator<MapTuple<string, V>>): IEnumerator<MapTuple<string, V>>;
     /**
      * 将目标对象转换为一个类型约束的映射序列集合
     */
@@ -2229,6 +2236,7 @@ interface IMsg<T> {
      * 当code不等于零的时候，表示发生错误，则这个时候的错误消息将会以字符串的形式返回
     */
     info: string | T;
+    url: string;
 }
 declare namespace HttpHelpers {
     const contentTypes: {
