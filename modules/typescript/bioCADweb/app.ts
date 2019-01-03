@@ -4,4 +4,5 @@
 
 Router.AddAppHandler(new bioCAD.WebApp.LogInScript(), "passport");
 
+$ts.FrameworkDebug = true;
 $ts(() => Router.RunApp($ts.windowLocation().fileName));
