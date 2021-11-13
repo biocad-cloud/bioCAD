@@ -23,6 +23,7 @@ return [
     "MVC_VIEW_ROOT" => [
         "passport" => APP_PATH . "/views/user/",
         "app" => APP_PATH . "/views/Application/",
-        "index" => APP_PATH . "/views/"
+        "index" => APP_PATH . "/views/",
+        "pathway_design" => APP_PATH . "/views/Application/pathway_designer/"
     ]
 ];
