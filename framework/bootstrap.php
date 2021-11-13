@@ -1,25 +1,25 @@
 <?php
 
-define("APP_PATH", dirname(__FILE__));
+define("APP_PATH", dirname(__DIR__));
 define("APP_DEBUG", true);
 
 session_start();
 
-include APP_PATH . "/modules/dotnet/package.php";
-include APP_PATH . "/accessController.php";
+include "/opt/runtime/package.php";
+include APP_PATH . "/framework/accessController.php";
 
-Imports("System.Linq.Enumerable");
-Imports("System.Text.StringBuilder");
-Imports("Microsoft.VisualBasic.Conversion");
-Imports("Microsoft.VisualBasic.Strings");
+imports("System.Linq.Enumerable");
+imports("System.Text.StringBuilder");
+imports("Microsoft.VisualBasic.Conversion");
+imports("Microsoft.VisualBasic.Strings");
 
-Imports("MVC.view");
-Imports("MVC.router");
+imports("MVC.view");
+imports("MVC.router");
 
 View::Push("dismiss_banner", Common::BannerDismissStatus());
 View::Push("*", Common::getUserInfo());
 
-dotnet::AutoLoad(APP_PATH . "/etc/config.php");
+dotnet::AutoLoad(APP_PATH . "/.etc/config.php");
 dotnet::HandleRequest(new app(), new accessController());
 
 class Common {
@@ -87,5 +87,3 @@ class Common {
 		return "false";
 	}
 }
-
-?>

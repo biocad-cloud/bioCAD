@@ -1,6 +1,6 @@
 <?php
 
-include "./bootstrap.php";
+include __DIR__ . "/../framework/bootstrap.php";
 
 /**
  * 在这里的所有的页面都不需要进行身份验证	
