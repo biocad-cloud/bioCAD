@@ -145,6 +145,7 @@ class app {
      * 
      * @access *
      * @uses api
+     * @method POST
     */
     public function dataprotection() {
         $_SESSION["dismiss_banner"] = "true";
