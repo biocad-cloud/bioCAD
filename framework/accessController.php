@@ -1,6 +1,6 @@
 <?php
 
-Imports("MVC.controller");
+imports("MVC.controller");
 
 /**
  * 用户访问权限控制器
@@ -29,4 +29,3 @@ class accessController extends controller {
         Redirect("{<platform>passport/portal}&goto=$url");
     }   
 }
-?>
