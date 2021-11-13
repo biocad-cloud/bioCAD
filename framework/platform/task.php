@@ -21,4 +21,3 @@ class taskMgr {
         return "/data/upload/$userID/$appID/$taskID/";
     }
 }
-?>

@@ -1,6 +1,6 @@
 <?php
 
-include "../bootstrap.php";
+include __DIR__ . "/../../framework/bootstrap.php";
 
 /**
  * 网站用户API模块

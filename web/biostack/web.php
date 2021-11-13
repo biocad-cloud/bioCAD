@@ -9,7 +9,7 @@ define("WEB_APP", "../html/Application");
 */
 define("BOOTSTRAP", WEB_APP . "/analysis/bootstrap.html");
 
-include "../bootstrap.php";
+include __DIR__ . "/../../framework/bootstrap.php";
 
 /**
  * 数据分析模块的用户界面

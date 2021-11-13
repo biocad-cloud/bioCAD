@@ -1,6 +1,6 @@
 <?php
 
-include "./bootstrap.php";
+include __DIR__ . "/../framework/bootstrap.php";
 
 /**
  * Module file for handling biostack data analysis API

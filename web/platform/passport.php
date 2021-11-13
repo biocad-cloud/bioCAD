@@ -1,6 +1,6 @@
 <?php
 
-include "../bootstrap.php";
+include __DIR__ . "/../../framework/bootstrap.php";
 
 /**
  * 用户登录界面

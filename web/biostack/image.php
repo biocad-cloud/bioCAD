@@ -6,7 +6,7 @@
 define("WEB_APP", "../html/Application");
 define("APP_PATH", dirname(dirname(__FILE__)));
 
-include "../bootstrap.php";
+include __DIR__ . "/../../framework/bootstrap.php";
 
 class app {
 
