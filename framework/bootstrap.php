@@ -3,6 +3,8 @@
 define("APP_PATH", dirname(__DIR__));
 define("APP_DEBUG", true);
 
+define("YEAR", date("Y"));
+
 session_start();
 
 include "/opt/runtime/package.php";
