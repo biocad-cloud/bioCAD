@@ -3,6 +3,10 @@
 
 <head>
     ${../../includes/head.html}
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jstree@3.3.12/dist/jstree.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jstree@3.3.12/dist/themes/default/style.min.css" />
+    
 </head>
 
 <body class="index">
@@ -20,7 +24,7 @@
         <br />
 
         <div class="row">
-            <div class="column-3-large">
+            <div class="column-3-large" id="kegg_brite">
                 <!-- left: view kegg pathway maps brite -->
             </div>
             <div class="column-9-large">
@@ -31,6 +35,20 @@
     </div>
 
     ${../../includes/footer.html}
+
+    <script>
+        $('#kegg_brite').jstree({
+  'core' : {
+    'data' : {
+      'url' : 'ajax_nodes.html',
+      'data' : function (node) {
+        return { 'id' : node.id };
+      }
+    }
+  }
+});
+
+    </script>
 
 </body>
 
