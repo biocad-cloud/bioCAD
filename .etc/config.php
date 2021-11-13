@@ -21,7 +21,8 @@ return [
     "APP_NAME" => "bioCAD",
 	"APP_VERSION" => "0.222.58-alpha",
     "MVC_VIEW_ROOT" => [
-        "passport" => "./html/user/",
-        "app" => "./html/Application/"
+        "passport" => APP_PATH . "/views/user/",
+        "app" => APP_PATH . "/views/Application/",
+        "index" => APP_PATH . "/views/"
     ]
 ];
