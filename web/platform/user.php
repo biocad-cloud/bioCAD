@@ -141,12 +141,13 @@ class app {
     }
 
     /**
+     * Confirm cookie
+     * 
      * @access *
      * @uses api
     */
     public function dataprotection() {
         $_SESSION["dismiss_banner"] = "true";
-        echo dotnet::successMsg("dismiss");
+        controller::success("dismiss");
     }
 }
-?>
