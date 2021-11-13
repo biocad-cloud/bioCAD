@@ -19,4 +19,3 @@ class app {
         Utils::PushDownload($png, -1, "image/png");
     }
 }
-?>

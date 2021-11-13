@@ -176,5 +176,3 @@ class app {
 		View::Display();
 	}
 }
-
-?>

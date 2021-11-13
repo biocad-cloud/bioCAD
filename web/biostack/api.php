@@ -84,4 +84,3 @@ class app {
         $workspace = taskMgr::GetTaskWorkspace($task_id);
     }
 }
-?>

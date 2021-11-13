@@ -55,4 +55,3 @@ class app {
         View::Display();
     }
 }
-?>

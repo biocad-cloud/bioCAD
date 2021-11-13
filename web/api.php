@@ -126,5 +126,3 @@ class app {
         echo dotnet::successMsg("Added!");
     }
 }
-
-?>
