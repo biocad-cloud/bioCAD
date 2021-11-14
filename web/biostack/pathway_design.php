@@ -13,7 +13,9 @@ class app {
      * @access *
     */
     public function index($guid = NULL) {
-        View::Display();
+        View::Display([
+            "graph" => "/resources/vendor/Cola/SucroseBreakdownDicots.json"
+        ]);
     }
 
     /**
