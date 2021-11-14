@@ -2,6 +2,10 @@
 <html lang="en">
 
 <head>
+    <meta name="data:repository" content="https://cdn.biodeep.cn/assets/ko00001.json" />
+    <meta name="app:explorer" content="explorer" />
+    <meta name="app" content="Pathway_explorer" />
+
     ${../../includes/head.html}
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jstree@3.3.12/dist/jstree.min.js"></script>
@@ -30,7 +34,7 @@
         <br />
 
         <div class="row">
-            <div class="column-3-large" id="kegg_brite">
+            <div class="column-3-large" id="explorer">
                 <!-- left: view kegg pathway maps brite -->
             </div>
             <div class="column-9-large">
@@ -42,20 +46,8 @@
 
     ${../../includes/footer.html}
 
-    <script>
-        $('#kegg_brite').jstree({
-            'core': {
-                'data': {
-                    'url': 'ajax_nodes.html',
-                    'data': function (node) {
-                        return { 'id': node.id };
-                    }
-                }
-            }
-        });
-
-    </script>
-
 </body>
+
+<script src="/resources/typescripts/Metabolic_pathway.js"></script>
 
 </html>
