@@ -5,6 +5,9 @@
     <meta name="data:repository" content="https://cdn.biodeep.cn/assets/ko00001.json" />
     <meta name="app:explorer" content="explorer" />
     <meta name="app" content="Pathway_explorer" />
+    <meta name="width" content="1200" />
+    <meta name="height" content="800" />
+    <meta name="graph" content="{$graph}" />
 
     ${../../includes/head.html}
 
@@ -17,6 +20,41 @@
         }
     </style>
 
+    <style>
+        .background {
+            stroke: white;
+            stroke-width: 1px;
+            fill: white;
+        }
+
+        .node {
+            stroke: black;
+            stroke-width: 1px;
+            cursor: move;
+            fill: beige;
+        }
+
+        .link {
+            fill: none;
+            stroke: #000;
+            stroke-width: 3px;
+            opacity: 0.7;
+            marker-end: url(#end-arrow);
+        }
+
+        .label {
+            fill: black;
+            font-family: Verdana;
+            font-size: 25px;
+            text-anchor: middle;
+            cursor: move;
+        }
+
+        .guideline {
+            stroke: orangered;
+            stroke-width: 4px;
+        }
+    </style>
 </head>
 
 <body class="index">
@@ -39,6 +77,21 @@
             </div>
             <div style="float: right; width: 100%;">
                 <!-- right: show pathway graph -->
+
+                <div style="width: 100%; text-align: center; margin-top: 10px;">
+                    <center>
+                        <div id="canvas"></div>
+                    </center>
+
+                    <div>
+                        <strong>
+                            <i class="fa fa-cloud-download" aria-hidden="true"></i> <a id="savePng"
+                                href="javascript:void(0);">{$savePng}</a> |
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> <a
+                                href="/Metabolic_pathway/">{$back}</a>
+                        </strong>
+                    </div>
+                </div>
             </div>
         </div>
 
