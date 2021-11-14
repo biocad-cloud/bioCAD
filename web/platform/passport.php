@@ -17,10 +17,8 @@ class app {
      * @access *
      * @uses view
     */
-    public function portal() {
-        $type = Utils::ReadValue($_GET, "type", "login");
-
-        View::Show(APP_PATH . "/html/login.html", [
+    public function portal($type = "login") {       
+        View::Show(APP_PATH . "/views/login.html", [
             "iframe" => "{<platform>passport/$type}"
         ]);
     }
