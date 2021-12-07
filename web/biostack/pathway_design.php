@@ -19,6 +19,16 @@ class app {
     }
 
     /**
+     * Flow network editor for systems dynamics analysis
+     * 
+     * @uses view
+     * @access * 
+    */
+    public function flowEditor($guid = NULL) {
+        View::Display();
+    }
+
+    /**
      * KEGG repository
      * 
      * @access *

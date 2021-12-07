@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="app" content="Pathway_explorer" />
+
+    ${../../includes/head.html}
+
+    <script src="/resources/vendor/Gojs/go.js"></script>
+    <script src="/resources/vendor/Gojs/extensions/Figures.js"></script>
+    <script src="/resources/vendor/Gojs/extensions/NodeLabelDraggingTool.js"></script>
+
+</head>
+
+<body class="index">
+    ${../../includes/nav.html}
+
+    <div id="wrapper">
+
+        <br />
+        <br />
+        <div class="row">
+            <div class="column-12-large">
+                <h1>Pathway Designer</h1>
+
+                <div id="sample">
+                    <div id="myDiagram" style="width:600px; height:500px; border:solid 1px black"></div>
+                    <button id="pointer_button" class="pointer_selected"
+                        onclick="setMode('pointer','pointer');">Pointer</button>
+                    <button id="stock_button" class="node_normal" onclick="setMode('node','stock');"
+                        style="margin-left:20px;">Stock</button>
+                    <button id="cloud_button" class="node_normal" onclick="setMode('node','cloud');">Cloud</button>
+                    <button id="variable_button" class="node_normal"
+                        onclick="setMode('node','variable');">Variable</button>
+                    <button id="flow_button" class="link_normal" onclick="setMode('link','flow');"
+                        style="margin-left:20px;">Flow</button>
+                    <button id="influence_button" class="link_normal"
+                        onclick="setMode('link','influence');">Influence</button>
+                    <p>
+                        A <em>system dynamics diagram</em> shows the storages (stocks) and flows of material in some
+                        system,
+                        and the factors that influence the rates of flow.
+                        It is usually a cosmetic interface for building mathematical models --
+                        you provide values and equations for the stocks and flows,
+                        and appropriate software can then simulate the system's behaiour.
+                    </p>
+                    <p>
+                        The diagram has two types of link: flow links and influence links.
+                        In additon to the node attached to each flow, there are 3 types of node:
+                    <ul>
+                        <li><b>stocks</b>, the amount of some substance</li>
+                        <li><b>clouds</b>, like stocks, but outside the system of interest</li>
+                        <li><b>variables</b>, either numeric constants or calculated from other elements</li>
+                    </ul>
+                    </p>
+                    <p>
+                        The conventional user interface for building system dynamics diagrams is modal --
+                        you select a tool in the toolbar, then either click in an empty part of the diagram to add a
+                        node
+                        or drag from one node to another to add a link.
+                        That is the approach used in this example, accomplished with the <a>clickCreatingTool</a> and
+                        <a>linkingTool</a>.
+                        Note that you need to click on the Pointer tool to revert to the normal mode.
+                    </p>
+                    <p>
+                        In addition to the above, the diagram also installs the <a
+                            href="../extensions/NodeLabelDragging.html">NodeLabelDraggingTool</a>
+                        extension into <a>ToolManager.mouseMoveTools</a>.
+                    </p>
+                    <p>
+                        This sample is based on a prototype developed by Robert Muetzelfeldt.
+                    </p>
+                    <div>
+                        <div>
+                            <button id="SaveButton" onclick="save()">Save</button>
+                            <button onclick="load()">Load</button>
+                            Diagram Model saved in JSON format:
+                        </div>
+                        <textarea id="mySavedModel" style="width:100%; height:400px">
+                { "class": "go.GraphLinksModel",
+                  "linkLabelKeysProperty": "labelKeys",
+                  "nodeDataArray": [
+                {"key":"grass", "category":"stock", "label":"Grass", "loc":"30 220", "label_offset":"0.5 0.5 0 30"},
+                {"key":"cloud1", "category":"cloud", "loc":"200 220"},
+                {"key":"sheep", "category":"stock", "label":"Sheep", "loc":"30 20","label_offset":"0.5 0.5 0 -30"},
+                {"key":"cloud2", "category":"cloud", "loc":"200 20"},
+                {"key":"cloud3", "category":"cloud", "loc":"-150 220"},
+                {"key":"grass_loss", "category":"valve", "label":"grass_loss","label_offset":"0.5 0.5 0 20" },
+                {"key":"grazing", "category":"valve", "label":"grazing","label_offset":"0.5 0.5 45 0" },
+                {"key":"growth", "category":"valve", "label":"growth","label_offset":"0.5 0.5 0 20" },
+                {"key":"sheep_loss", "category":"valve",  "label":"sheep_loss","label_offset":"0.5 0.5 0 20" },
+                {"key":"k1", "category":"variable",  "label":"good weather", "loc": "-80 100"},
+                {"key":"k2", "category":"variable",  "label":"bad weather", "loc": "100 150"},
+                {"key":"k3", "category":"variable",  "label":"wolves", "loc": "150 -40"}
+                  ],
+                  "linkDataArray": [
+                {"from":"grass", "to":"cloud1", "category":"flow", "labelKeys":[ "grass_loss" ]},
+                {"from":"sheep", "to":"cloud2", "category":"flow", "labelKeys":[ "sheep_loss" ]},
+                {"from":"grass", "to":"sheep", "category":"flow", "labelKeys":[ "grazing" ]},
+                {"from":"cloud3", "to":"grass", "category":"flow", "labelKeys":[ "growth" ]},
+                {"from":"grass", "to":"grass_loss", "category":"influence"},
+                {"from":"sheep", "to":"sheep_loss", "category":"influence"},
+                {"from":"grass", "to":"growth", "category":"influence"},
+                {"from":"grass", "to":"grazing", "category":"influence"},
+                {"from":"sheep", "to":"grazing", "category":"influence"},
+                {"from":"k1", "to":"growth", "category":"influence"},
+                {"from":"k1", "to":"grazing", "category":"influence"},
+                {"from":"k2", "to":"grass_loss", "category":"influence"},
+                {"from":"k3", "to":"sheep_loss", "category":"influence"}
+                  ]
+                }
+                      </textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    ${../../includes/footer.html}
+
+</body>
+
+<script type="text/javascript" src="/resources/typescripts/Metabolic_pathway.min.js"></script>
+
+</html>
