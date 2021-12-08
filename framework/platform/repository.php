@@ -49,7 +49,7 @@ class DataRepository {
         if (Utils::isDbNull(self::$repo)) {
             self::$repo = new DataRepository();
         }
-
+breakpoint("create data repo");
         return self::$repo;
     }
 
