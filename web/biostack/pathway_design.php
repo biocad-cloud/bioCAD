@@ -81,7 +81,7 @@ class app {
             if (!Utils::isDbNull($guid)) {
                 controller::success($guid);
             } else {
-                controller::error("database error...");
+                controller::error("database error...", 1, DataRepository::getLastMySql());
             }
         } else {
             controller::success(session_id());
