@@ -18,6 +18,8 @@ class app {
     }
 
     /**
+     * Flow network editor
+     * 
      * Flow network editor for systems dynamics analysis
      * 
      * @uses view
@@ -58,6 +60,31 @@ class app {
      * @method POST
     */
     public function save($model, $guid = NULL) {
-        breakpoint($model);
+        $json  = json_encode($model);
+        $usrId = System::getUserId();
+        $dir   = bioCAD::getUserDir();
+        $name  = "flow_" . Utils::Now() . ".json";
+        $uniqName = Utils::UnixTimeStamp();
+        $filepath = "{$dir}/{$uniqName}";
+
+        FileSystem::WriteAllText($filepath, $json);
+
+        if ($usrId <> -1) {
+            // save to database
+            if (!Utils::isDbNull($guid)) {
+                // update
+            } else {
+                // add new
+                $guid = DataRepository::getRepo()->addFile($name, $filepath);
+            }    
+            
+            if (!Utils::isDbNull($guid)) {
+                controller::success($guid);
+            } else {
+                controller::error("database error...");
+            }
+        } else {
+            controller::success(session_id());
+        }
     }
 }

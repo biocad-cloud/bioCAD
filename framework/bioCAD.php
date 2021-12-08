@@ -13,6 +13,9 @@ class bioCAD {
 
     /**
      * get the root dir for current user to store data files.
+     * 
+     * @return the current php session id will be used as unique
+     *    id if the user is not login.
     */
     public static function getUserDir() {
         $id = System::getUserId();
