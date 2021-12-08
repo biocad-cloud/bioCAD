@@ -16,7 +16,6 @@ class app {
      * @uses api
     */ 
     public function login() {
-
         // {account/email, password_md5}
         $credential = $_POST;
         $account    = $credential["account"];
@@ -33,25 +32,18 @@ class app {
         $user = (new Table("user"))->where($assert)->find();
 
         if (!$user || $user["password"] != $credential["password"]) {
-
             # 没有找到对应的记录
-            echo dotnet::errorMsg(self::CredentialVerifyError);
-            die;
-        
+            controller::error(self::CredentialVerifyError);                  
         } else if ($user["status"] == 0) {
-            echo dotnet::errorMsg("User not actived yet!");
-            die;
+            controller::error("User not actived yet!");            
         } else if ($user["status"] == 403) {
-            echo dotnet::errorMsg("User banned!");
-            die;
+            controller::error("User banned!");            
         } else {
-
             // 向session之中写入用户的记录信息，然后返回成功消息
             $_SESSION["user"]     = $user;
             $_SESSION["settings"] = self::GetUserSettings($user["id"]);
 
-            echo dotnet::successMsg("success");
-
+            controller::success("success");
         }
     }
 
@@ -80,35 +72,37 @@ class app {
      * 
      * @access *
      * @uses api
+     * @method POST
     */
-    public function register() {
+    public function register($username, $email, $password) {
         $id = (new Table("user"))->add([
-            "account"     => $_POST["username"],
-            "email"       => $_POST["email"], 
-            "password"    => $_POST["password"],
+            "account"     => $username,
+            "email"       => $email, 
+            "password"    => $password,
             "role"        => 0,
             "status"      => 0,
             "create_time" => Utils::Now()
         ]);
 
-        if (!empty($id) && $id !== false) {
-            echo dotnet::successMsg("add=$id!");
+        if (Utils::isDbNull($id)) {
+            controller::success("add=$id!");
         } else {
-            echo dotnet::errorMsg("Not working!");
+            controller::error("Not working!");
         }        
     }
 
     /**
      * User modify password
      * 
-     * 
+     * @uses api
+     * @method POST
     */
     public function modifyPassword() {
         $user     = $_SESSION["password"];
         $password = $_POST["password"];
 
         if (!$user || $user["password"] != $password) {
-            echo dotnet::errorMsg(self::CredentialVerifyError);
+            controller::error(self::CredentialVerifyError);
             die;
         } else {
             # 发送电子邮件
