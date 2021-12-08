@@ -10,7 +10,6 @@ class app {
      * KEGG pathway designer
      * 
      * @uses view
-     * @access *
     */
     public function index($guid = NULL) {
         View::Display([
@@ -22,7 +21,6 @@ class app {
      * Flow network editor for systems dynamics analysis
      * 
      * @uses view
-     * @access * 
     */
     public function flowEditor($guid = NULL) {
         View::Display();
