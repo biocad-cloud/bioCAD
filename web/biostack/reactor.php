@@ -4,9 +4,9 @@ include __DIR__ . "/../../framework/bootstrap.php";
 
 class app {
 
-    public function index($run = NULL) {
-        if (!Utils::isDbNull($run)) {
-            $this->runModel($run);
+    public function index($id) {
+        if (!Utils::isDbNull($id)) {
+            $this->runModel($id);
         }
     }
 
