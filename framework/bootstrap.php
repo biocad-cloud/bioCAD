@@ -9,6 +9,7 @@ session_start();
 
 include "/opt/runtime/package.php";
 include APP_PATH . "/framework/accessController.php";
+include APP_PATH . "/framework/bioCAD.php";
 
 imports("System.Linq.Enumerable");
 imports("System.Text.StringBuilder");

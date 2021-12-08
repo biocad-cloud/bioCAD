@@ -1,5 +1,7 @@
 <?php
 
+imports("Microsoft.VisualBasic.FileIO.FileSystem");
+
 /**
  * A data directory that contains the user files, examples
  * as expression matrix files, system model files which are
@@ -27,7 +29,7 @@ class bioCAD {
             $dir = "/tmp/anonymous/$ssid/";
         }
 
-        
+        FileSystem::CreateDirectory($dir);
 
         return $dir;
     }
