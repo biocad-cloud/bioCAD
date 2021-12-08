@@ -31,6 +31,9 @@ RewriteRule ^blog/markdown/(.+)$ /api.php?app=content&id=$1
 RewriteRule ^blog/$ /blog.php?app=index
 RewriteRule ^blog/(.+)$ /blog.php?app=$1
 
+RewriteRule ^biostack/(.+)/(.+)$ /biostack/$1.php?app=$2
+
 RewriteRule ^([a-zA-Z_0-9]+)$ /index.php?app=$1
 
 RewriteRule ^typescripts/(.+)$ /proxy.php?app=typescripts&file=$1
+
