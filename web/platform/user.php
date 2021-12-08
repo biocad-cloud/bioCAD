@@ -14,12 +14,11 @@ class app {
      * 
      * @access *
      * @uses api
+     * @method POST
     */ 
-    public function login() {
-        // {account/email, password_md5}
-        $credential = $_POST;
-        $account    = $credential["account"];
-        $assert     = "";
+    public function login($account, $password) {
+        // {account/email, password_md5}        
+        $assert = "";
 
         if (Strings::InStr($account, "@") > 0) {
             # 是电子邮件来的？
@@ -31,7 +30,7 @@ class app {
         // account或者account都应该是唯一的，所以在这里查找出来的用户信息也应该是唯一的
         $user = (new Table("user"))->where($assert)->find();
 
-        if (!$user || $user["password"] != $credential["password"]) {
+        if (!$user || $user["password"] != $password) {
             # 没有找到对应的记录
             controller::error(self::CredentialVerifyError);                  
         } else if ($user["status"] == 0) {
