@@ -17,12 +17,18 @@ class TaskMgr {
     */
     public $task;
     /**
+     * @var Table
+    */
+    public $app;
+
+    /**
      * @var TaskMgr
     */
     private $mgr;
 
     function __construct() {
         $this->task = new Table("task");
+        $this->app = new Table("analysis_app");
     }
 
     /**
@@ -36,7 +42,10 @@ class TaskMgr {
         return self::$mgr;
     }   
 
-    public static function addTask($app_id, $title, $args, $project_id = -1) {
+    /**
+     * @param args file id, project id all store in this data pack.
+    */
+    public static function addTask($app_id, $title, $args) {
         imports("php.BEncode.autoload");
 
         $sha  = md5(Utils::Now() . $title . System::getUserId());
@@ -44,8 +53,7 @@ class TaskMgr {
 
         return self::getTaskMgr()->task->add([
             "sha1" => $sha,
-            "user_id" => System::getUserId(),
-            "project_id" => $project_id,
+            "user_id" => System::getUserId(),            
             "app_id" => $app_id,
             "title" => $title,
             "create_time" => Utils::Now(),
@@ -55,15 +63,26 @@ class TaskMgr {
         ]);
     }
 
-    public static function GetTaskWorkspace($task_id) {        
-        $task = (new Table("task"))
+    public static function getApp($ref) {
+        $mgr = self::getTaskMgr();
+        $app = $mgr->app->where(["name" => $ref])->find();
+
+        return $app;
+    }
+
+    /**
+     * Get workspace of the task
+    */
+    public static function getTaskWorkDir($task_id) {        
+        $task = self::getTaskMgr()
+            ->task
             ->where(["id|sha1" => $task_id])
             ->find();
             
         $appID  = $task["app_id"];
-        $userID = $task["user_id"];
-        $taskID = $task["id"];
+        $userID = System::getUserId();
+        $taskID = $task["sha1"];
 
-        return "/data/upload/$userID/$appID/$taskID/";
+        return "/tmp/biocad_workspace/$userID/$appID/$taskID/";
     }
 }
