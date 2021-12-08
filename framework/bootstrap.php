@@ -11,6 +11,7 @@ include "/opt/runtime/package.php";
 include APP_PATH . "/framework/accessController.php";
 include APP_PATH . "/framework/bioCAD.php";
 include APP_PATH . "/framework/platform/repository.php";
+include APP_PATH . "/framework/platform/taskMgr.php";
 
 imports("System.Linq.Enumerable");
 imports("System.Text.StringBuilder");

@@ -3,7 +3,7 @@
 /**
  * user task manager
 */
-class taskMgr {
+class TaskMgr {
 
     public static $status = [
         "0"   => "pending",
@@ -11,6 +11,30 @@ class taskMgr {
         "200" => "success",
         "500" => "failure"
     ];
+
+    /**
+     * @var Table
+    */
+    public $task;
+    /**
+     * @var TaskMgr
+    */
+    private $mgr;
+
+    function __construct() {
+        $this->task = new Table("task");
+    }
+
+    /**
+     * @return TaskMgr
+    */
+    public static function getTaskMgr() {
+        if (Utils::isDbNull(self::$mgr)) {
+            self::$mgr = new TaskMgr();
+        }
+
+        return self::$mgr;
+    }   
 
     public static function GetTaskWorkspace($task_id) {        
         $task = (new Table("task"))
