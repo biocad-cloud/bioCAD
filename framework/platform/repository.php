@@ -24,8 +24,22 @@ class DataRepository {
      * 
      * @return returns the file id
     */
-    public function addFile($name, $file) {
+    public function addFile($name, $file, $info = "") {
+        return $this->data_files->add([
+            "user_id" => System::getUserId(),
+            "name" => $name,
+            "suffix" => end(explode(".", $name)),
+            "content_type" => 1,
+            "uri" => $file,
+            "size" => filesize($file),
+            "upload_time" => Utils::Now(),
+            "md5" => md5_file($file),
+            "description" => $info
+        ]);
+    }
 
+    public static function getLastMySql() {
+        return self::getRepo()->data_files->getLastMySql();
     }
 
     /**
