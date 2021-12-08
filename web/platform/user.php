@@ -84,7 +84,7 @@ class app {
             "create_time" => Utils::Now()
         ]);
 
-        if (Utils::isDbNull($id)) {
+        if (!Utils::isDbNull($id)) {
             controller::success("add=$id!");
         } else {
             controller::error("Not working!");
