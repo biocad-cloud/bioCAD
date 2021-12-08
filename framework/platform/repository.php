@@ -26,7 +26,7 @@ class DataRepository {
     */
     public function addFile($name, $file, $info = "") {
         $suffix = end(explode(".", $name));
-breakpoint($suffix);
+
         return $this->data_files->add([
             "user_id" => System::getUserId(),
             "name" => $name,
