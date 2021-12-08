@@ -16,6 +16,7 @@ class app {
      * 
      * @access *
      * @uses view
+     * @debug off
     */
     public function portal($type = "login") {       
         View::Show(APP_PATH . "/views/login.html", [
@@ -28,6 +29,7 @@ class app {
      * 
      * @access *
      * @uses view
+     * @debug off
     */
 	public function login() {
 		View::Display();
@@ -38,6 +40,7 @@ class app {
      * 
      * @access *
      * @uses view
+     * @debug off
     */
     public function register() {
         View::Display();
@@ -48,6 +51,7 @@ class app {
      * 
      * @access *
      * @uses view
+     * @debug off
     */
     public function recover() {
         View::Display();
