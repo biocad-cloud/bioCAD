@@ -21,7 +21,7 @@ class app {
     }
 
     public function log2FC() {
-        $vars           = Common::getUserInfo();
+        $vars           = System::getUserInfo();
 		$vars["title"]  = "Expression FoldChange Analysis";       
 
 		View::Display($vars);
@@ -32,7 +32,7 @@ class app {
     }
 
     public function bootstrap() {
-        $vars           = Common::getUserInfo();
+        $vars           = System::getUserInfo();
         $loading        = Utils::ReadValue($_GET, "loading");
         
         if (empty($loading)) {
@@ -47,7 +47,7 @@ class app {
     }
 
     public function iTraq() {
-        $vars           = Common::getUserInfo();
+        $vars           = System::getUserInfo();
 		$vars["title"]  = "iTraq data";		
 		
 		View::Show(WEB_APP . "/proteomics/iTraq.html", $vars);
@@ -56,7 +56,7 @@ class app {
     public function enrichment() {
         $type           = Utils::ReadValue($_GET, "type", "input");
         $task_ID        = Utils::ReadValue($_GET, "id", "");
-        $vars           = Common::getUserInfo();
+        $vars           = System::getUserInfo();
 		$vars["title"]  = "GeneSet Enrichment Analysis";        
         $vars["iframe"] = Router::AssignController("{<biostack>web/enrichment_$type}&id=$task_ID"); 
 

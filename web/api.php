@@ -19,7 +19,7 @@ class app {
         $projID    = Utils::ReadValue($_GET, "project", -1);
 
         // 所上传的文件都被统一的放置在用户的文件池之中
-        $user_id   = Common::getUserId();        
+        $user_id   = System::getUserId();        
         $yy = System\DateTime::year();
         $mm = System\DateTime::month();
         $dd = System\DateTime::day();

@@ -18,19 +18,21 @@ imports("Microsoft.VisualBasic.Strings");
 imports("MVC.view");
 imports("MVC.router");
 
-View::Push("dismiss_banner", Common::BannerDismissStatus());
-View::Push("*", Common::getUserInfo());
+View::Push("dismiss_banner", System::BannerDismissStatus());
+View::Push("*", System::getUserInfo());
 
 dotnet::AutoLoad(APP_PATH . "/.etc/config.php");
 dotnet::HandleRequest(new app(), new accessController());
 
-class Common {
+/**
+ * The platform system module.
+*/
+class System {
 
     public static function DisplayDropDownMenu($vars) {
-
 		$vars["username"]      = $vars["account"];
         $vars["has_dropdown"]  = "has-dropdown";
-        $vars["menu_dropdown"] = View::Load(APP_PATH . "/html/includes/menu_dropdown.html");
+        $vars["menu_dropdown"] = View::Load(APP_PATH . "/views/includes/menu_dropdown.html");
 
         return $vars;
     }
@@ -62,6 +64,10 @@ class Common {
 		return $user;
 	}
 
+	/**
+	 * Get the user id of current login user. the user id of 
+	 * the anonymous user is -1.
+	*/
 	public static function getUserId() {
 		if (!isset($_SESSION)) {
 			return -1;
@@ -73,6 +79,9 @@ class Common {
 		}
 	}
 
+	/**
+	 * Check the status of the cookie banner dismiss.
+	*/
 	public static function BannerDismissStatus() {
 		$hasOption = array_key_exists("dismiss_banner", $_SESSION);
 

@@ -50,8 +50,12 @@ class app {
     /**
      * Save model json as file
      * 
+     * save the model json into a unify system's data repository.
+     * 
      * @param $guid the unique reference id for the model,
      *    default NULL means create new model in the platform.
+     * @param $model the model json object, for save as 
+     *    model file
      * 
      * @method POST
     */

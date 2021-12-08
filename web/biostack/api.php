@@ -17,7 +17,7 @@ class app {
         $orgID   = $_POST["org_id"];
         $orgName = $_POST["org_name"];
         $geneSet = $_POST["geneSet"];
-        $user    = Common::getUserInfo();
+        $user    = System::getUserInfo();
         $userID  = 0;
 
         # echo var_dump($user);

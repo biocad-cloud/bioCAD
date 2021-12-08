@@ -114,7 +114,7 @@ class app {
 	 * @uses view
 	*/
 	public function explorer() {		
-		$user_id    = Common::getUserId();
+		$user_id    = System::getUserId();
 		$project_id = Utils::ReadValue($_GET, "project_id", -1);
         $types      = (new Table("content_types"))
             ->left_join("file_class")->on([

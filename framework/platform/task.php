@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * user task manager
+*/
 class taskMgr {
 
     public static $status = [
