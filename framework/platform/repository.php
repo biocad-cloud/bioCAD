@@ -25,11 +25,12 @@ class DataRepository {
      * @return returns the file id
     */
     public function addFile($name, $file, $info = "") {
-        breakpoint("add file");
+        $suffix = end(explode(".", $name));
+breakpoint($suffix);
         return $this->data_files->add([
             "user_id" => System::getUserId(),
             "name" => $name,
-            "suffix" => end(explode(".", $name)),
+            "suffix" => $suffix,
             "content_type" => 1,
             "uri" => $file,
             "size" => filesize($file),
