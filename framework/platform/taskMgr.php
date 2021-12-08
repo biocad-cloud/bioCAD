@@ -36,6 +36,25 @@ class TaskMgr {
         return self::$mgr;
     }   
 
+    public static function addTask($app_id, $title, $args, $project_id = -1) {
+        imports("php.BEncode.autoload");
+
+        $sha  = md5(Utils::Now() . $title . System::getUserId());
+        $args = Rych\Bencode::encode($args);
+
+        return self::getTaskMgr()->task->add([
+            "sha1" => $sha,
+            "user_id" => System::getUserId(),
+            "project_id" => $project_id,
+            "app_id" => $app_id,
+            "title" => $title,
+            "create_time" => Utils::Now(),
+            "status" => 0,
+            "note" => "",
+            "parameters" => $args
+        ]);
+    }
+
     public static function GetTaskWorkspace($task_id) {        
         $task = (new Table("task"))
             ->where(["id|sha1" => $task_id])
