@@ -25,6 +25,7 @@ class DataRepository {
      * @return returns the file id
     */
     public function addFile($name, $file, $info = "") {
+        breakpoint("add file");
         return $this->data_files->add([
             "user_id" => System::getUserId(),
             "name" => $name,
@@ -49,7 +50,7 @@ class DataRepository {
         if (Utils::isDbNull(self::$repo)) {
             self::$repo = new DataRepository();
         }
-breakpoint("create data repo");
+
         return self::$repo;
     }
 
