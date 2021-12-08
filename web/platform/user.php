@@ -31,7 +31,7 @@ class app {
         // {account/email, password_md5}
         // account或者account都应该是唯一的，所以在这里查找出来的用户信息也应该是唯一的
         $user = $this->user->where(["email|account" => strtolower($account)])->find();
-
+breakpoint($user);
         if (Utils::isDbNull($user) || $user["password"] != $password) {
             # 没有找到对应的记录
             controller::error(CredentialVerifyError);                  
