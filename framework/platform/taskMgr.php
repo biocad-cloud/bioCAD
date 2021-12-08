@@ -50,7 +50,7 @@ class TaskMgr {
 
         $sha  = md5(Utils::Now() . $title . System::getUserId());
         $args = Rych\Bencode::encode($args);
-
+breakpoint($args);
         return self::getTaskMgr()->task->add([
             "sha1" => $sha,
             "user_id" => System::getUserId(),            
