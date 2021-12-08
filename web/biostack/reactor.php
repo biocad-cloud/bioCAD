@@ -13,7 +13,8 @@ class app {
         $app = TaskMgr::getApp("Systems_Dynamics");
         $app_id = $app["id"];    
         $args = [
-            "resolution" => 10000
+            "resolution" => 10000,
+            "model" => $id
         ];
         $id = TaskMgr::addTask($app_id, "Run Systems Dynamics", $args);
 
