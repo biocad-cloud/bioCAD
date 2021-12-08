@@ -10,7 +10,7 @@ class app {
      * @method POST
     */
     public function run($id) {    
-        $app = TaskMgr::getApp("Systems_Dynamics");breakpoint("get app id");
+        $app = TaskMgr::getApp("Systems_Dynamics");
         $app_id = $app["id"];    
         $args = [
             "resolution" => 10000

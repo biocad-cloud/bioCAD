@@ -24,7 +24,7 @@ class TaskMgr {
     /**
      * @var TaskMgr
     */
-    private $mgr;
+    private static $mgr;
 
     function __construct() {
         $this->task = new Table("task");
