@@ -16,7 +16,7 @@ class DataRepository {
     private static $repo;
 
     function __construct() {
-        $this->user = new Table("data_files");
+        $this->data_files = new Table("data_files");
     }
 
     /**
