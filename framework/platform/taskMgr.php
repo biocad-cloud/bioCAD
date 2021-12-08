@@ -47,7 +47,7 @@ class TaskMgr {
     */
     public static function addTask($app_id, $title, $args) {
         imports("php.BEncode.autoload");
-        breakpoint($args);
+
         $sha  = md5(Utils::Now() . $title . System::getUserId());
         $args = Rych\Bencode::encode($args);
 
