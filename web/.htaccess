@@ -27,7 +27,7 @@ Header set Cache-Control: "max-age=0, no-store"
 
 # ErrorDocument 404 /index.php?app=custom_errors&error=404
 
-# RewriteRule ^biostack/reactor/?(.+)=(.+)$ /biostack/reactor.php?app=$1&id=$2
+RewriteRule ^biostack/reactor/?(.+)=(.+)$ /biostack/reactor.php?app=$1&id=$2
 RewriteRule ^biostack/(.+)/(.+)$ /biostack/$1.php?app=$2
 
 RewriteRule ^([a-zA-Z_0-9]+)$ /index.php?app=$1
