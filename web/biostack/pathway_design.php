@@ -65,9 +65,13 @@ class app {
         $dir   = bioCAD::getUserDir();
         $name  = "flow_" . Utils::Now() . ".json";
         $uniqName = Utils::UnixTimeStamp();
-        $filepath = "{$dir}/{$uniqName}";
+        $filepath = str_replace("//", "/", "{$dir}/{$uniqName}");
 
         FileSystem::WriteAllText($filepath, $json);
+
+        if (!file_exists($filepath)) {
+            controller::error("File System Error!",1, $filepath);
+        }
 
         if ($usrId <> -1) {
             // save to database
