@@ -4,16 +4,12 @@ include __DIR__ . "/../../framework/bootstrap.php";
 
 class app {
 
-    public function index($id) {
-        if (!Utils::isDbNull($id)) {
-            $this->runModel($id);
-        }
-    }
-
     /**
      * Create a task that run the dynamics model
+     * 
+     * @method POST
     */
-    private function runModel($id) {    
+    public function run($id) {    
         $app_id = TaskMgr::getApp("Systems_Dynamics")["id"];    
         $args = [
             "resolution" => 10000
