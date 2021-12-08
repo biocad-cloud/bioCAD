@@ -46,4 +46,16 @@ class app {
             controller::success($file);
         }
     }
+
+    /**
+     * Save model json as file
+     * 
+     * @param $guid the unique reference id for the model,
+     *    default NULL means create new model in the platform.
+     * 
+     * @method POST
+    */
+    public function save($model, $guid = NULL) {
+        breakpoint($model);
+    }
 }
