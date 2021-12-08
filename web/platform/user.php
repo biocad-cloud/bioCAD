@@ -2,12 +2,23 @@
 
 include __DIR__ . "/../../framework/bootstrap.php";
 
+define("CredentialVerifyError", "User not found or invalid credential information provided!");
+
 /**
  * 网站用户API模块
 */
 class app {
 
-	const CredentialVerifyError = "User not found or invalid credential information provided!";
+    /**
+     * the user table
+     * 
+     * @var Table
+    */
+    private $user;
+
+    function __construct() {
+        $this->user = new Table("user");
+    }
 
     /**
      * 用户登录验证
@@ -17,22 +28,13 @@ class app {
      * @method POST
     */ 
     public function login($account, $password) {
-        // {account/email, password_md5}        
-        $assert = "";
-
-        if (Strings::InStr($account, "@") > 0) {
-            # 是电子邮件来的？
-            $assert = "lower(`email`)   = lower('$account')";
-        } else {
-            $assert = "lower(`account`) = lower('$account')";
-        }
-
+        // {account/email, password_md5}
         // account或者account都应该是唯一的，所以在这里查找出来的用户信息也应该是唯一的
-        $user = (new Table("user"))->where($assert)->find();
+        $user = $this->user->where(["email|account" => strtolower($account)])->find();
 
-        if (!$user || $user["password"] != $password) {
+        if (Utils::isDbNull($user) || $user["password"] != $password) {
             # 没有找到对应的记录
-            controller::error(self::CredentialVerifyError);                  
+            controller::error(CredentialVerifyError);                  
         } else if ($user["status"] == 0) {
             controller::error("User not actived yet!");            
         } else if ($user["status"] == 403) {
@@ -101,7 +103,7 @@ class app {
         $password = $_POST["password"];
 
         if (!$user || $user["password"] != $password) {
-            controller::error(self::CredentialVerifyError);
+            controller::error(CredentialVerifyError);
             die;
         } else {
             # 发送电子邮件
