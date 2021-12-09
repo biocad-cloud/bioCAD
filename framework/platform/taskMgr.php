@@ -50,6 +50,11 @@ class TaskMgr {
         $mgr = self::getTaskMgr();
         $m = ($page - 1) * $page_size + 1;
         $list = $mgr->task
+            ->left_join("analysis_app")
+            ->on([
+                "analysis_app" => "id",
+                "task" => "app_id"
+            ])
             ->where(["user_id" => System::getUserId()])
             ->order_by("id desc")
             ->limit($m, $page_size)
