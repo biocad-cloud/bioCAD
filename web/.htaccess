@@ -31,6 +31,7 @@ RewriteRule ^biostack/reactor/run/(.+)$ /biostack/reactor.php?app=run&id=$1
 RewriteRule ^biostack/(.+)/(.+)$ /biostack/$1.php?app=$2
 RewriteRule ^app/(.+)$ /app.php?app=$1
 RewriteRule ^admin/(.+)$ /admin.php?app=$1
+RewriteRule ^admin$ /admin.php?app=index
 
 RewriteRule ^([a-zA-Z_0-9]+)$ /index.php?app=$1
 
