@@ -168,7 +168,7 @@ class app {
 	*/
     public function task() {
 		$breadcrumb = [
-			["link" => "{apps/task}", "icon" => "fa-project-diagram", "title" => "Web Task"]
+			["link" => "{task/index}", "icon" => "fa-project-diagram", "title" => "Web Task"]
 		];
 
         View::Display([
