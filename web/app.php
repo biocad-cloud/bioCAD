@@ -167,8 +167,13 @@ class app {
 	 * @uses view
 	*/
     public function task() {
+		$breadcrumb = [
+			["link" => "{apps/task}", "icon" => "fa-project-diagram", "title" => "Web Task"]
+		];
+
         View::Display([
-			"totals" => TaskMgr::getTaskTotalNumber()
+			"totals" => TaskMgr::getTaskTotalNumber(),
+			"breadcrumb" => $breadcrumb
 		]);
     }
 
