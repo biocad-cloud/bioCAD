@@ -24,6 +24,7 @@ return [
         "passport"       => APP_PATH . "/views/user/",
         "app"            => APP_PATH . "/views/Application/",
         "index"          => APP_PATH . "/views/",
-        "pathway_design" => APP_PATH . "/views/Application/pathway_designer/"
+        "pathway_design" => APP_PATH . "/views/Application/pathway_designer/",
+        "admin"          => APP_PATH . "/views/admin/"
     ]
 ];
