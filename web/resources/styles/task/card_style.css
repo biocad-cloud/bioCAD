@@ -271,28 +271,6 @@ h3,
     }
 }
 
-.row {
-    display: flex;
-    margin-right: -15px;
-    margin-left: -15px;
-    flex-wrap: wrap;
-}
-
-.col,
-.col-xl-6 {
-    position: relative;
-    width: 100%;
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
-}
-
-.col {
-    max-width: 100%;
-    flex-basis: 0;
-    flex-grow: 1;
-}
-
 @media (min-width: 1200px) {
 
     .col-xl-6 {
