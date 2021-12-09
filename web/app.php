@@ -160,11 +160,14 @@ class app {
 		View::Display($_GET);
 	}
 
-	# 一些需要执行比较久的数据分析任务的列表
-	# 功能富集
-	# 功能注释
+
+	/**
+	 * bioCAD Task
+	 * 
+	 * @uses view
+	*/
     public function task() {
-        
+        View::Display();
     }
 
     /**
