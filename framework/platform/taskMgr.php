@@ -55,8 +55,8 @@ class TaskMgr {
                 "analysis_app" => "id",
                 "task" => "app_id"
             ])
-            ->where(["user_id" => System::getUserId()])
-            ->order_by("id desc")
+            ->where(["`task`.`user_id`" => System::getUserId()])
+            ->order_by("`task`.`id`", TRUE)
             ->limit($m, $page_size)
             ->select();
 
