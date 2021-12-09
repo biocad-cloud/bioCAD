@@ -167,7 +167,9 @@ class app {
 	 * @uses view
 	*/
     public function task() {
-        View::Display();
+        View::Display([
+			"totals" => TaskMgr::getTaskTotalNumber()
+		]);
     }
 
     /**

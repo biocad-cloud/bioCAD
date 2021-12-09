@@ -42,6 +42,28 @@ class TaskMgr {
         return self::$mgr;
     }   
 
+    public static function getTaskList($page, $page_size = 5) {
+        $mgr = self::getTaskMgr();
+        $m = ($page - 1) * $page_size + 1;
+        $list = $mgr->task
+            ->where(["user_id" => System::getUserId()])
+            ->order_by("id desc")
+            ->limit($m, $page_size);
+
+        return $list;
+    }
+
+    public static function getTaskTotalNumber() {
+        $mgr = self::getTaskMgr();
+        $n = $mgr->task
+            ->where(["user_id" => System::getUserId()])
+            ->order_by("id desc")
+            ->limit(99)
+            ->count();
+
+        return $n;
+    }
+
     /**
      * @param args file id, project id all store in this data pack.
     */
