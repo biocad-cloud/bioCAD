@@ -13,6 +13,9 @@ class app {
      * @uses api
     */
     public function fetch($page = 1, $page_size = 5) {
-        controller::success(TaskMgr::getTaskList($page, $page_size), TaskMgr::getLastMySql());
+        $data  = TaskMgr::getTaskList($page, $page_size);
+        $debug = TaskMgr::getLastMySql();
+breakpoint($debug);
+        controller::success($data, $debug);
     }
 }
