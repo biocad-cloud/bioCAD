@@ -48,7 +48,7 @@ class TaskMgr {
 
     public static function getTaskList($page, $page_size = 5) {
         $mgr = self::getTaskMgr();
-        $m = ($page - 1) * $page_size + 1;
+        $m = ($page - 1) * $page_size;
         $list = $mgr->task
             ->left_join("analysis_app")
             ->on([
