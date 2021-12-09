@@ -31,6 +31,10 @@ class TaskMgr {
         $this->app = new Table("analysis_app");
     }
 
+    public static function getLastMySql() {
+        return self::getTaskMgr()->task->getLastMySql();
+    }
+
     /**
      * @return TaskMgr
     */
