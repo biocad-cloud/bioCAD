@@ -29,6 +29,9 @@ Header set Cache-Control: "max-age=0, no-store"
 
 RewriteRule ^biostack/reactor/run/(.+)$ /biostack/reactor.php?app=run&id=$1
 RewriteRule ^biostack/(.+)/(.+)$ /biostack/$1.php?app=$2
+
+RewriteRule ^apps/task/(.+)$ /task.php?app=$1
+
 RewriteRule ^app/(.+)$ /app.php?app=$1
 RewriteRule ^apps/(.+)$ /app.php?app=$1
 RewriteRule ^admin/(.+)$ /admin.php?app=$1
