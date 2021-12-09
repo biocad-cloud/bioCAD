@@ -53,7 +53,7 @@ class TaskMgr {
             ->where(["user_id" => System::getUserId()])
             ->order_by("id desc")
             ->limit($m, $page_size);
-
+breakpoint($mgr->task->getLastMySql());
         return $list;
     }
 
