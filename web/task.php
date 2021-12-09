@@ -15,7 +15,7 @@ class app {
     public function fetch($page = 1, $page_size = 5) {
         $data  = TaskMgr::getTaskList($page, $page_size);
         $debug = TaskMgr::getLastMySql();
-breakpoint($debug);
+
         controller::success($data, $debug);
     }
 }
