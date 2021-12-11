@@ -41,10 +41,11 @@ class accessController extends controller {
         (new Table("user_activity"))->add([
             "ssid" => session_id(),
             "ip" => $ipv4,
-            "api" => "$uri [$msg]",
+            "api" => $uri,
             "method" => $_SERVER["REQUEST_METHOD"],
             "status_code" => $code,
-            "time" => Utils::Now()
+            "time" => Utils::Now(),
+            "message" => $msg
         ]);
 
         return $result;
