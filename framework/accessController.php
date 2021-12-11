@@ -17,7 +17,7 @@ class usageLogger implements logger {
     public function log($code, $message) {
         $uri = $_SERVER["REQUEST_URI"];
         $ipv4 = Utils::UserIPAddress();
-        breakpoint($message);
+
         if (is_bool($message)) {
             $result = $message;
             $message = "";
