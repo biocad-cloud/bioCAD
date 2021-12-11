@@ -34,11 +34,14 @@ class accessController extends controller {
      * record user activity for application 
      * usage data analysis
     */
-    private static function log($code, $result) {
+    private static function log($code, $result, $msg = "n/a") {
+        $uri = $_SERVER["REQUEST_URI"];
+        $ipv4 = Utils::UserIPAddress();
+
         (new Table("user_activity"))->add([
             "ssid" => session_id(),
-            "ip" => Utils::UserIPAddress(),
-            "api" => $_SERVER["REQUEST_URI"],
+            "ip" => $ipv4,
+            "api" => "$uri [$msg]",
             "method" => $_SERVER["REQUEST_METHOD"],
             "status_code" => $code,
             "time" => Utils::Now()
