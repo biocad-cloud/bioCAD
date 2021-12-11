@@ -20,7 +20,7 @@ class app {
     */
     public function index($rpc) {
         imports("php.taskhost.jsonRPC");
-
+        
         # handle json rpc
         jsonRPC::handleRPC($this, $rpc);
     }
