@@ -9,16 +9,33 @@ class accessController extends controller {
 
     public function accessControl() {       
         if ($this->AccessByEveryOne()) {
-            return true;
+            return self::log(200, true);
         }
 
         if (!empty($_SESSION)) {
             if (array_key_exists("user", $_SESSION)) {
-                return true;
+                return self::log(200, true);
             }
         }
 
-        return false;
+        return self::log(403, false);
+    }
+
+    /**
+     * record user activity for application 
+     * usage data analysis
+    */
+    private static function log($code, $result) {
+        (new Table("user_activity"))->add([
+            "ssid" => session_id(),
+            "ip" => Utils::UserIPAddress(),
+            "api" => $_SERVER["REQUEST_URI"],
+            "method" => $_SERVER["REQUEST_METHOD"],
+            "status_code" => $code,
+            "time" => Utils::Now()
+        ]);
+
+        return $result;
     }
 
     /**
@@ -26,6 +43,8 @@ class accessController extends controller {
     */
     public function Redirect($code) {
         $url = urlencode(Utils::URL());
-        Redirect("{<platform>passport/portal}&goto=$url");
+        $url = "{<platform>passport/portal}&goto=$url";
+
+        \Redirect($url);
     }   
 }
