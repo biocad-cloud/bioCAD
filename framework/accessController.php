@@ -25,7 +25,8 @@ class usageLogger implements logger {
             $result = $code == 200;
         }
 
-        (new Table("user_activity"))->add([
+        $user_activity = new Table("user_activity");
+        $d = $user_activity->add([
             "ssid" => session_id(),
             "ip" => $ipv4,
             "api" => $uri,
@@ -34,6 +35,10 @@ class usageLogger implements logger {
             "time" => Utils::Now(),
             "message" => $message
         ]);
+
+        if ($d == false) {
+            breakpoint($user_activity->getLastMySql());
+        }
 
         return $result;
     }
