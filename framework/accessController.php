@@ -63,16 +63,16 @@ class accessController extends controller {
 
     public function accessControl() {       
         if ($this->AccessByEveryOne()) {
-            return $this->log(200, true);
+            return $this->logger->log(200, true);
         }
 
         if (!empty($_SESSION)) {
             if (array_key_exists("user", $_SESSION)) {
-                return $this->log(200, true);
+                return $this->logger->log(200, true);
             }
         }
 
-        return $this->log(403, false);
+        return $this->logger->log(403, false);
     }
 
     /**
