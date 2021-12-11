@@ -9,6 +9,10 @@ imports("RFC7231.logger");
 */
 class usageLogger extends logger {
 
+    function __construct() {
+        
+    }
+
     public function log($code, $message) {
         $uri = $_SERVER["REQUEST_URI"];
         $ipv4 = Utils::UserIPAddress();
