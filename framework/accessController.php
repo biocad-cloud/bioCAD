@@ -7,6 +7,15 @@ imports("MVC.controller");
 */
 class accessController extends controller {
 
+    function __construct() {
+        parent::__construct();
+
+        # set callback handler
+        \RFC7231Error::$log = function($code, $msg) {
+            self::log($code, false, $msg);
+        };
+    }
+
     public function accessControl() {       
         if ($this->AccessByEveryOne()) {
             return self::log(200, true);
