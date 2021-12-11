@@ -34,11 +34,23 @@ class app {
         jsonRPC::handleRPC($this, $rpc);
     }
 
-    public function setTaskStatus($guid, $status) {
-
+    public function setTaskStatus($guid, $status, $rpc) {
+        $result = $this->task
+          ->where([
+            "id|sha1" => $guid
+        ])->limit(1)
+          ->save(["status" => $status]);
+          
+        if ($result) {
+            jsonRPC::success(true, $rpc["id"]);
+        } else {
+            jsonRPC::error([
+                "debug" => $this->task->getLastMySql()
+            ]);
+        }
     }
 
-    public function setTaskProgress($guid, $progress) {
+    public function setTaskProgress($guid, $progress, $rpc) {
         
     }
 }
