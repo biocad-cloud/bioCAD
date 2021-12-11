@@ -2,15 +2,16 @@
 
 imports("MVC.controller");
 imports("RFC7231.logger");
+imports("RFC7231.index");
 
 /**
  * record user activity for application 
  * usage data analysis
 */
-class usageLogger extends logger {
+class usageLogger implements logger {
 
     function __construct() {
-        
+
     }
 
     public function log($code, $message) {
