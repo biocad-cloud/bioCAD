@@ -17,6 +17,13 @@ class usageLogger implements logger {
     public function log($code, $message) {
         $uri = $_SERVER["REQUEST_URI"];
         $ipv4 = Utils::UserIPAddress();
+        
+        if (is_bool($message)) {
+            $result = $message;
+            $message = "";
+        } else {
+            $result = $code == 200;
+        }
 
         (new Table("user_activity"))->add([
             "ssid" => session_id(),
@@ -25,7 +32,7 @@ class usageLogger implements logger {
             "method" => $_SERVER["REQUEST_METHOD"],
             "status_code" => $code,
             "time" => Utils::Now(),
-            "message" => $msg
+            "message" => $message
         ]);
 
         return $result;
