@@ -19,10 +19,17 @@ class app {
      * @accept 127.0.0.1|localhost|8.210.29.117
     */
     public function index($rpc) {
+        imports("php.taskhost.jsonRPC");
+
+        # handle json rpc
+        jsonRPC::handleRPC($this, $rpc);
+    }
+
+    public function setTaskStatus($guid, $status) {
 
     }
 
-    public function setTaskStatus() {
-
+    public function setTaskProgress($guid, $progress) {
+        
     }
 }
