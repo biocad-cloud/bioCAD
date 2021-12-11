@@ -1,40 +1,15 @@
 <?php
 
 imports("MVC.controller");
+imports("RFC7231.logger");
 
 /**
- * 用户访问权限控制器
+ * record user activity for application 
+ * usage data analysis
 */
-class accessController extends controller {
+class usageLogger extends logger {
 
-    function __construct() {
-        parent::__construct();
-
-        # set callback handler
-        \RFC7231Error::$log = function($code, $msg) {
-            self::log($code, false, $msg);
-        };
-    }
-
-    public function accessControl() {       
-        if ($this->AccessByEveryOne()) {
-            return self::log(200, true);
-        }
-
-        if (!empty($_SESSION)) {
-            if (array_key_exists("user", $_SESSION)) {
-                return self::log(200, true);
-            }
-        }
-
-        return self::log(403, false);
-    }
-
-    /**
-     * record user activity for application 
-     * usage data analysis
-    */
-    private static function log($code, $result, $msg = "n/a") {
+    public function log($code, $message) {
         $uri = $_SERVER["REQUEST_URI"];
         $ipv4 = Utils::UserIPAddress();
 
@@ -49,6 +24,38 @@ class accessController extends controller {
         ]);
 
         return $result;
+    }
+}
+
+/**
+ * 用户访问权限控制器
+*/
+class accessController extends controller {
+
+    /**
+     * @var usageLogger
+    */
+    private $logger;
+
+    function __construct() {
+        parent::__construct();
+
+        # set callback handler
+        \RFC7231Error::$logger = $this->logger = new usageLogger();
+    }
+
+    public function accessControl() {       
+        if ($this->AccessByEveryOne()) {
+            return $this->log(200, true);
+        }
+
+        if (!empty($_SESSION)) {
+            if (array_key_exists("user", $_SESSION)) {
+                return $this->log(200, true);
+            }
+        }
+
+        return $this->log(403, false);
     }
 
     /**
