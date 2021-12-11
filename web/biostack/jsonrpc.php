@@ -10,6 +10,15 @@ include __DIR__ . "/../../framework/bootstrap.php";
 class app {
 
     /**
+     * @var Table
+    */
+    private $task;
+
+    function __construct() {
+        $this->task = new Table("task");
+    }
+
+    /**
      * jsonrpc exec
      * 
      * only allows RPC call locally.
@@ -20,7 +29,7 @@ class app {
     */
     public function index($rpc) {
         imports("php.taskhost.jsonRPC");
-        
+        # call methods
         # handle json rpc
         jsonRPC::handleRPC($this, $rpc);
     }
