@@ -27,7 +27,7 @@ Header set Cache-Control: "max-age=0, no-store"
 
 # ErrorDocument 404 /index.php?app=custom_errors&error=404
 
-RewriteRule ^biostack$ /biostack/
+RewriteRule ^biostack$ /index.php?app=biostack
 RewriteRule ^biostack/$ /index.php?app=biostack
 
 RewriteRule ^biostack/jsonrpc/$ /biostack/jsonrpc.php?app=index
