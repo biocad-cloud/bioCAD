@@ -143,7 +143,11 @@ class app {
 			"project_id"   => $project_id,
 			"user_id"      => $user_id,
 			"files"        => json_encode($project_files),
-			"bioClassType" => json_encode($types)
+			"bioClassType" => json_encode($types),
+			"breadcrumb" => [
+				["link" => "{index/apps}",  "icon" => "fa-project-diagram", "title" => "Applications"],
+				["link" => "{app/explorer}", "icon" => "fa-project-diagram", "title" => "File Explorer"]
+			]
 		];
 
 		View::Display($vars);
