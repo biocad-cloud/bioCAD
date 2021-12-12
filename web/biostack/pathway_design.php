@@ -96,16 +96,26 @@ class app {
         $uniqName = Utils::UnixTimeStamp();
         $filepath = str_replace("//", "/", "{$dir}/{$uniqName}");
 
-        FileSystem::WriteAllText($filepath, $json);
+        if (!Utils::isDbNull($guid)) {
+            FileSystem::WriteAllText($filepath, $json);
 
-        if (!file_exists($filepath)) {
-            controller::error("File System Error!",1, $filepath);
+            if (!file_exists($filepath)) {
+                controller::error("File System Error!",1, $filepath);
+            }
         }
 
         if ($usrId <> -1) {
             // save to database
             if (!Utils::isDbNull($guid)) {
                 // update
+                $file = DataRepository::getModelFile($guid);
+
+                if (Utils::isDbNull($file)) {
+                    controller::error(MODEL_FILE_ACCESS_ERROR);
+                } else {
+                    FileSystem::WriteAllText($file["uri"], $json);
+                }
+
             } else {
                 // add new
                 $guid = DataRepository::getRepo()->addFile($name, $filepath);
