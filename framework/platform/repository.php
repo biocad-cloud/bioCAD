@@ -75,7 +75,7 @@ class DataRepository {
             $guid = $this->data_files->add([
                 "user_id" => System::getUserId(),
                 "name" => $name,
-                "suffix" => $suffix,
+                "suffix" => "json",
                 "content_type" => 1,
                 "uri" => $filepath,
                 "size" => filesize($filepath),
