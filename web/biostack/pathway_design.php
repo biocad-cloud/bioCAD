@@ -91,44 +91,31 @@ class app {
     public function save($model, $guid = NULL) {
         $json  = json_encode($model);
         $usrId = System::getUserId();
-        $dir   = bioCAD::getUserDir();
-        $name  = "flow_" . Utils::Now() . ".json";
-        $uniqName = Utils::UnixTimeStamp();
-        $filepath = str_replace("//", "/", "{$dir}/{$uniqName}");
+        
+        if ($usrId <> -1) {
+            $result = DataRepository::getRepo()->saveUserModel($json, $guid);
+            $guid = $result["guid"];
+            $filepath = $result["filepath"];
+            $write = $result["write"];
 
-        if (Utils::isDbNull($guid)) {
+            if (!file_exists($filepath)) {
+                controller::error("File System Error!",1, $filepath);
+            } else if (Utils::isDbNull($write)) {
+                controller::error("database error...", 1, DataRepository::getLastMySql());
+            } else {
+                controller::success($guid);
+            }
+        } else {
+            // temp path
+            $filepath = bioCAD::getUserDir() . "/" . session_id() . ".json";
             // add new file if the guid is nothing
             FileSystem::WriteAllText($filepath, $json);
 
             if (!file_exists($filepath)) {
                 controller::error("File System Error!",1, $filepath);
-            }
-        }
-
-        if ($usrId <> -1) {
-            // save to database
-            if (!Utils::isDbNull($guid)) {
-                // update
-                $file = DataRepository::getModelFile($guid);
-
-                if (Utils::isDbNull($file)) {
-                    controller::error(MODEL_FILE_ACCESS_ERROR);
-                } else {
-                    FileSystem::WriteAllText($file["uri"], $json);
-                }
-
             } else {
-                // add new
-                $guid = DataRepository::getRepo()->addFile($name, $filepath);
-            }    
-            
-            if (!Utils::isDbNull($guid)) {
-                controller::success($guid);
-            } else {
-                controller::error("database error...", 1, DataRepository::getLastMySql());
+                controller::success(session_id());
             }
-        } else {
-            controller::success(session_id());
         }
     }
 }

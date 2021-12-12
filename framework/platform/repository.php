@@ -51,6 +51,64 @@ class DataRepository {
         ]);
     }
 
+    /**
+     * save the model file of the logged in user
+     * 
+     * @param $model the model object in json text
+    */
+    public function saveUserModel($model, $guid = NULL, $prefix = "flow_", $info = "") {
+        $version = Utils::UnixTimeStamp();
+
+        if (Utils::isDbNull($guid) || Strings::Empty($guid, true)) {
+            # add new model file
+            $dir   = bioCAD::getUserDir();
+            $name  = $prefix . Utils::RandomASCIIString(6) . ".json";
+            # Utils::RandomASCIIString(6) may generate duplicated id
+            $uniqName = Utils::UnixTimeStamp();    
+            $filepath = str_replace("//", "/", "{$dir}/{$uniqName}/{$version}.json");
+
+            // due to the reason of write database record needs some file 
+            // information, so we write file at first before write into db
+            // save versioned model file
+            FileSystem::WriteAllText($filepath, $model);
+
+            $guid = $this->data_files->add([
+                "user_id" => System::getUserId(),
+                "name" => $name,
+                "suffix" => $suffix,
+                "content_type" => 1,
+                "uri" => $filepath,
+                "size" => filesize($filepath),
+                "current_version" => $version,
+                "upload_time" => Utils::Now(),
+                "md5" => md5_file($filepath),
+                "description" => $info
+            ]);
+            $write = $guid;
+        } else {
+            # update current model version
+            $model = self::getModelFile($guid);
+            $dir = $model["uri"];
+            $filepath = str_replace("//", "/", "{$dir}/{$version}.json");
+
+            // save versioned model file
+            FileSystem::WriteAllText($filepath, $model);
+
+            $write = $this->data_files->where(["id" => $guid])->save([
+                "size" => filesize($filepath),
+                "current_version" => $version,
+                "upload_time" => Utils::Now(),
+                "md5" => md5_file($filepath)
+            ]);
+        }              
+
+        return [
+            "$guid" => $guid,
+            "filepath" => $filepath,
+            "write" => $write
+        ];
+    }
+
     public static function getLastMySql() {
         return self::getRepo()->data_files->getLastMySql();
     }
