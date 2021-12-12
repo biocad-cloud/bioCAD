@@ -22,12 +22,18 @@ class DataRepository {
     }
 
     public static function getModelFile($id) {
-        return self::getRepo()->data_files
+        $file = self::getRepo()->data_files
             ->where([
                 "id" => $id,
                 "user_id" => System::getUserId()
             ])
             ->find();
+
+        if (Utils::isDbNull($file)) {
+            return NULL;
+        } else {
+            return $file["uri"] . "/" . $file["current_version"] . ".json";
+        }        
     }
 
     /**

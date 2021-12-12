@@ -63,9 +63,7 @@ class app {
             $path = DataRepository::getModelFile($model_id);
 
             if (Utils::isDbNull($path)) {
-                dotnet::PageNotFound(MODEL_FILE_ACCESS_ERROR);
-            } else {
-                $path = $path["uri"];
+                dotnet::PageNotFound(MODEL_FILE_ACCESS_ERROR);            
             }
         }
 
