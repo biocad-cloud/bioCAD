@@ -96,7 +96,8 @@ class app {
         $uniqName = Utils::UnixTimeStamp();
         $filepath = str_replace("//", "/", "{$dir}/{$uniqName}");
 
-        if (!Utils::isDbNull($guid)) {
+        if (Utils::isDbNull($guid)) {
+            // add new file if the guid is nothing
             FileSystem::WriteAllText($filepath, $json);
 
             if (!file_exists($filepath)) {
