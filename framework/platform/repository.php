@@ -113,7 +113,7 @@ class DataRepository {
         }              
 
         return [
-            "$guid" => $guid,
+            "guid" => $guid,
             "filepath" => $filepath,
             "write" => $write
         ];
