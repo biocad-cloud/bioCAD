@@ -58,7 +58,7 @@ class app {
     */
     public function load($model_id = NULL) {
         if (Utils::isDbNull($model_id)) {
-            $path = APP_PATH . "/resources/vendor/Gojs/demo.json";
+            $path = APP_PATH . "/web/resources/vendor/Gojs/demo.json";
         } else {
             $path = DataRepository::getModelFile($model_id);
 

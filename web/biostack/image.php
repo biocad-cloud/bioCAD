@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Biostack webapp的html文件的文件夹相对路径
-*/
-define("WEB_APP", "../html/Application");
-define("APP_PATH", dirname(dirname(__FILE__)));
-
 include __DIR__ . "/../../framework/bootstrap.php";
 
 class app {
