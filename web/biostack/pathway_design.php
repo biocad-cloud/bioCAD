@@ -25,7 +25,9 @@ class app {
      * @uses view
     */
     public function flowEditor($guid = NULL) {
-        View::Display();
+        View::Display([
+            "model_id" => $guid
+        ]);
     }
 
     /**
@@ -45,6 +47,29 @@ class app {
 
             controller::success($file);
         }
+    }
+
+    /**
+     * Load model json file
+     * 
+     * @param $model_id the model id in the database, default value NULL of 
+     *    this parameter means returns the demo model json file.
+     * 
+    */
+    public function load($model_id = NULL) {
+        if (Utils::isDbNull($model_id)) {
+            $path = APP_PATH . "/resources/vendor/Gojs/demo.json";
+        } else {
+            $path = DataRepository::getModelFile($model_id);
+
+            if (Utils::isDbNull($path)) {
+                dotnet::PageNotFound(MODEL_FILE_ACCESS_ERROR);
+            } else {
+                $path = $path["uri"];
+            }
+        }
+
+        Utils::PushDownload($path);
     }
 
     /**
