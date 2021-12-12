@@ -77,7 +77,7 @@ class DataRepository {
                 "name" => $name,
                 "suffix" => "json",
                 "content_type" => 1,
-                "uri" => $filepath,
+                "uri" => dirname($filepath),
                 "size" => filesize($filepath),
                 "current_version" => $version,
                 "upload_time" => Utils::Now(),
