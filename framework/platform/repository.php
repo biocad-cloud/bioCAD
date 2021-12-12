@@ -21,13 +21,17 @@ class DataRepository {
         $this->data_files = new Table("data_files");
     }
 
-    public static function getModelFile($id) {
-        $file = self::getRepo()->data_files
+    public static function getModelData($id) {
+        return self::getRepo()->data_files
             ->where([
                 "id" => $id,
                 "user_id" => System::getUserId()
             ])
             ->find();
+    }
+
+    public static function getModelFile($id) {
+        $file = self::getModelData($id);
 
         if (Utils::isDbNull($file)) {
             return NULL;

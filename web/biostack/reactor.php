@@ -11,10 +11,12 @@ class app {
     */
     public function run($id) {    
         $app = TaskMgr::getApp("Systems_Dynamics");
-        $app_id = $app["id"];    
+        $app_id = $app["id"];     
+        # 尽量不要再数据库中存储太多冗余信息   
         $args = [
             "resolution" => 10000,
-            "model" => $id
+            "model" => $id,
+            "version" => DataRepository::getModelData($id)["current_version"]
         ];
         $id = TaskMgr::addTask($app_id, "Run Systems Dynamics", $args);
 
