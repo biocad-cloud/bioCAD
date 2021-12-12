@@ -29,6 +29,7 @@ class usageLogger implements logger {
         $d = $user_activity->add([
             "ssid" => session_id(),
             "ip" => $ipv4,
+            "UA" => $_SERVER['HTTP_USER_AGENT'],
             "api" => $uri,
             "method" => $_SERVER["REQUEST_METHOD"],
             "status_code" => $code,
