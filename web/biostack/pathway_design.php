@@ -69,7 +69,11 @@ class app {
             }
         }
 
-        Utils::PushDownload($path);
+        if (file_exists($path)) {
+            Utils::PushDownload($path);
+        } else {
+            dotnet::PageNotFound("Missing model file '{$path}' on server filesystem...");
+        }        
     }
 
     /**
