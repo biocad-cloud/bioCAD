@@ -36,6 +36,8 @@ RewriteRule ^biostack/(.+)/(.+)$ /biostack/$1.php?app=$2
 
 RewriteRule ^apps/task/(.+)$ /task.php?app=$1
 
+RewriteRule ^app/report$ /app.php?app=report
+RewriteRule ^app/report/$ /app.php?app=report
 RewriteRule ^app/(.+)$ /app.php?app=$1
 RewriteRule ^apps/(.+)$ /app.php?app=$1
 RewriteRule ^admin/(.+)$ /admin.php?app=$1
