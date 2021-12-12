@@ -93,8 +93,8 @@ class DataRepository {
             $write = $guid;
         } else {
             # update current model version
-            $model = self::getModelFile($guid);
-            $dir = $model["uri"];
+            $filepath = self::getModelFile($guid);
+            $dir = dirname($filepath);
             $filepath = str_replace("//", "/", "{$dir}/{$version}.json");
 
             // save versioned model file
