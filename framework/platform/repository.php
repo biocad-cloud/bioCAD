@@ -21,6 +21,9 @@ class DataRepository {
         $this->data_files = new Table("data_files");
     }
 
+    /**
+     * get model file info from database record
+    */
     public static function getModelData($id) {
         return self::getRepo()->data_files
             ->where([
@@ -30,6 +33,9 @@ class DataRepository {
             ->find();
     }
 
+    /**
+     * get file path of the model file
+    */
     public static function getModelFile($id) {
         $file = self::getModelData($id);
 

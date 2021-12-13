@@ -23,6 +23,7 @@ class app {
      * 
      * only allows RPC call locally.
      * 
+     * @method POST
      * @uses jsonrpc
      * @access *
      * @accept 127.0.0.1|localhost|8.210.29.117
@@ -32,6 +33,18 @@ class app {
         # call methods
         # handle json rpc
         jsonRPC::handleRPC($this, $rpc);
+    }
+
+    public function getModelFile($id) {
+        $result = DataRepository::getModelData($id);
+
+        if (Utils::isDbNull($result)) {
+            jsonRPC::error([
+                "debug" => $this->task->getLastMySql()
+            ]);
+        } else {
+            jsonRPC::success($result, $rpc["id"]);
+        }
     }
 
     public function setTaskStatus($guid, $status, $rpc) {
