@@ -23,16 +23,26 @@ class app {
      * 
      * only allows RPC call locally.
      * 
-     * @method POST
+     * @methodX POST
      * @uses jsonrpc
      * @access *
      * @acceptX 127.0.0.1|localhost|8.210.29.117
     */
-    public function index($rpc) {
+    public function index($rpc = NULL, $method = NULL) {
         imports("php.taskhost.jsonRPC");
-        # call methods
-        # handle json rpc
-        jsonRPC::handleRPC($this, $rpc);
+
+        if (!Utils::isDbNull($rpc)) {
+            # call methods
+            # handle json rpc
+            jsonRPC::handleRPC($this, $rpc);
+        } else {
+            # run debug test
+            jsonRPC::handleRPC($this, [
+                "jsonrpc" => "2.0",
+                "method" => $method,  
+                "id" => 0
+            ]);
+        }
     }
 
     public function getModelFile($id) {
