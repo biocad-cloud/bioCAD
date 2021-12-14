@@ -51,7 +51,7 @@ class app {
 
         if (Utils::isDbNull($result)) {
             jsonRPC::error([
-                "debug" => $this->task->getLastMySql()
+                "debug" => DataRepository::getLastMySql()
             ]);
         } else {
             jsonRPC::success($result, $rpc["id"]);
