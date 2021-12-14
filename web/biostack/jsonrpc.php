@@ -47,7 +47,7 @@ class app {
     }
 
     public function getModelFile($id) {
-        $result = DataRepository::getModelData($id);
+        $result = DataRepository::getModelData($id, FALSE);
 
         if (Utils::isDbNull($result)) {
             jsonRPC::error([
