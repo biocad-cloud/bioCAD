@@ -26,7 +26,7 @@ class app {
      * @method POST
      * @uses jsonrpc
      * @access *
-     * @accept 127.0.0.1|localhost|8.210.29.117
+     * @acceptX 127.0.0.1|localhost|8.210.29.117
     */
     public function index($rpc) {
         imports("php.taskhost.jsonRPC");
