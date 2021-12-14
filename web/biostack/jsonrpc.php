@@ -28,7 +28,7 @@ class app {
      * @access *
      * @acceptX 127.0.0.1|localhost|8.210.29.117
     */
-    public function index($rpc = NULL, $method = NULL) {
+    public function index($rpc = NULL) {
         imports("php.taskhost.jsonRPC");
 
         if (!Utils::isDbNull($rpc)) {
@@ -39,7 +39,8 @@ class app {
             # run debug test
             jsonRPC::handleRPC($this, [
                 "jsonrpc" => "2.0",
-                "method" => $method,  
+                "method" => WebRequest::get("method"),  
+                "params" => $_GET,
                 "id" => 0
             ]);
         }
