@@ -23,7 +23,7 @@ class app {
      * 
      * only allows RPC call locally.
      * 
-     * @methodX POST
+     * @method POST
      * @uses jsonrpc
      * @access *
      * @acceptX 127.0.0.1|localhost|8.210.29.117
