@@ -36,7 +36,7 @@ echo $rpc;
         }
         var_dump($rpc);
         if (!Utils::isDbNull($rpc)) {echo var_dump("$rpc");
-            echo "===========================";
+            echo "+++++++++++++++++++++++++++++++++++++";
             # call methods
             # handle json rpc
             jsonRPC::handleRPC($this, $rpc);
