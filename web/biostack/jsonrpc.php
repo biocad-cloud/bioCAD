@@ -32,7 +32,7 @@ class app {
         imports("php.taskhost.jsonRPC");
 
         if (is_string($rpc)) {
-            $rpc = json_decode($rpc);
+            $rpc = json_decode($rpc, TRUE);
         }
 
         if (!Utils::isDbNull($rpc)) {
