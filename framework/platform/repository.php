@@ -24,13 +24,21 @@ class DataRepository {
     /**
      * get model file info from database record
     */
-    public static function getModelData($id) {
-        return self::getRepo()->data_files
-            ->where([
-                "id" => $id,
-                "user_id" => System::getUserId()
-            ])
-            ->find();
+    public static function getModelData($id, $checkUsr = TRUE) {
+        if ($checkUsr) {
+            return self::getRepo()->data_files
+                ->where([
+                    "id" => $id,
+                    "user_id" => System::getUserId()
+                ])
+                ->find();
+        } else {
+            return self::getRepo()->data_files
+                ->where([
+                    "id" => $id                   
+                ])
+                ->find();
+        }
     }
 
     /**
