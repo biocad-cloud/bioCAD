@@ -30,7 +30,11 @@ class app {
     */
     public function index($rpc = NULL) {
         imports("php.taskhost.jsonRPC");
-breakpoint($rpc);
+
+        if (is_string($rpc)) {
+            $rpc = json_decode($rpc);
+        }
+        
         if (!Utils::isDbNull($rpc)) {
             # call methods
             # handle json rpc
