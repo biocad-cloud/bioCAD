@@ -34,7 +34,7 @@ class app {
         if (is_string($rpc)) {
             $rpc = json_decode($rpc);
         }
-        breakpoint($rpc);
+
         if (!Utils::isDbNull($rpc)) {
             # call methods
             # handle json rpc
