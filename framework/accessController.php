@@ -1,6 +1,4 @@
 <?php
-use GeoIp2\Database\Reader;
-
 imports("MVC.controller");
 imports("RFC7231.logger");
 imports("RFC7231.index");
@@ -26,7 +24,7 @@ class usageLogger implements logger {
         // lookups.
         $geodb = DotNetRegistry::Read("MAXMIND_GEOIP");
 
-        $this->maxmindDb = new Reader($geodb);
+        $this->maxmindDb = new \GeoIp2\Database\Reader($geodb);
         $this->user_activity = new Table("user_activity");breakpoint("create reader");
     }
 
@@ -49,7 +47,7 @@ class usageLogger implements logger {
 
         // Replace "city" with the appropriate method for your database, e.g.,
         // "country".
-        $record = $reader->city($ipv4);breakpoint("get city");
+        $record = $this->maxmindDb->city($ipv4);breakpoint("get city");
         $geoip = "{$record->country->isoCode}:{$record->city->name}";breakpoint("get info");
         $d = $this->user_activity->add([
             "ssid" => session_id(),
