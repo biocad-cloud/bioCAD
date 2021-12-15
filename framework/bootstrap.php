@@ -9,6 +9,8 @@ define("YEAR", date("Y"));
 session_start();
 
 include "/opt/runtime/package.php";
+include "/opt/vendor/MaxMind/autoload.php";
+
 include APP_PATH . "/framework/accessController.php";
 include APP_PATH . "/framework/system.php";
 include APP_PATH . "/framework/bioCAD.php";

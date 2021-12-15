@@ -1,7 +1,4 @@
 <?php
-breakpoint(WEB_ROOT);
-require_once WEB_ROOT . '/framework/MaxMind/autoload.php';
-
 use GeoIp2\Database\Reader;
 
 imports("MVC.controller");
