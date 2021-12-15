@@ -1,5 +1,9 @@
 <?php
 
+require_once WEB_ROOT . '/framework/MaxMind/autoload.php';
+
+use GeoIp2\Database\Reader;
+
 imports("MVC.controller");
 imports("RFC7231.logger");
 imports("RFC7231.index");
@@ -10,8 +14,23 @@ imports("RFC7231.index");
 */
 class usageLogger implements logger {
 
-    function __construct() {
+    /**
+     * @var GeoIp2\Database\Reader
+    */
+    private $maxmindDb;
 
+    /**
+     * @var Table
+    */
+    private $user_activity;
+
+    function __construct() {
+        // This creates the Reader object, which should be reused across
+        // lookups.
+        $geodb = DotNetRegistry::Read("MAXMIND_GEOIP");
+
+        $this->maxmindDb = new Reader($geodb);
+        $this->user_activity = new Table("user_activity");
     }
 
     public function log($code, $message) {
@@ -23,10 +42,19 @@ class usageLogger implements logger {
             $message = "";
         } else {
             $result = $code == 200;
+        }        
+
+        // filter out server jsonrpc services
+        // components
+        if ($ipv4 == "8.210.29.117") {
+            return $result;
         }
 
-        $user_activity = new Table("user_activity");
-        $d = $user_activity->add([
+        // Replace "city" with the appropriate method for your database, e.g.,
+        // "country".
+        $record = $reader->city($ipv4);
+        $geoip = "{$record->country->isoCode}:{$record->city->name}";
+        $d = $this->user_activity->add([
             "ssid" => session_id(),
             "ip" => $ipv4,
             "UA" => $_SERVER['HTTP_USER_AGENT'],
@@ -34,7 +62,8 @@ class usageLogger implements logger {
             "method" => $_SERVER["REQUEST_METHOD"],
             "status_code" => $code,
             "time" => Utils::Now(),
-            "message" => $message
+            "message" => $message,
+            "geo_location" => $geoip
         ]);
 
         if ($d == false) {
