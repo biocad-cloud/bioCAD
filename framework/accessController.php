@@ -25,7 +25,7 @@ class usageLogger implements logger {
         // This creates the Reader object, which should be reused across
         // lookups.
         $geodb = DotNetRegistry::Read("MAXMIND_GEOIP");
-breakpoint($geodb);
+
         $this->maxmindDb = new Reader($geodb);
         $this->user_activity = new Table("user_activity");
     }
