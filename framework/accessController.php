@@ -25,7 +25,7 @@ class usageLogger implements logger {
         $geodb = DotNetRegistry::Read("MAXMIND_GEOIP");
 
         # $this->maxmindDb = new \GeoIp2\Database\Reader($geodb);
-        $this->user_activity = new Table("user_activity");breakpoint("create reader");
+        $this->user_activity = new Table("user_activity");
     }
 
     public function log($code, $message) {
