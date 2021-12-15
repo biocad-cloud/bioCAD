@@ -27,7 +27,7 @@ class usageLogger implements logger {
         $geodb = DotNetRegistry::Read("MAXMIND_GEOIP");
 
         $this->maxmindDb = new Reader($geodb);
-        $this->user_activity = new Table("user_activity");
+        $this->user_activity = new Table("user_activity");breakpoint("create reader");
     }
 
     public function log($code, $message) {
@@ -49,8 +49,8 @@ class usageLogger implements logger {
 
         // Replace "city" with the appropriate method for your database, e.g.,
         // "country".
-        $record = $reader->city($ipv4);
-        $geoip = "{$record->country->isoCode}:{$record->city->name}";
+        $record = $reader->city($ipv4);breakpoint("get city");
+        $geoip = "{$record->country->isoCode}:{$record->city->name}";breakpoint("get info");
         $d = $this->user_activity->add([
             "ssid" => session_id(),
             "ip" => $ipv4,
