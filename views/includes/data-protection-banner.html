@@ -47,17 +47,19 @@
 
 <div id="data-protection-banner" class="data-protection-banner banner-wrapper">
   <div class="row">
-    <div class="columns medium-8 large-9">This website requires cookies, and the limited processing of your personal data in order to function. By using the site
+    <div class="columns medium-8 large-9">This website requires cookies, and the limited processing of your personal
+      data in order to function. By using the site
       you are agreeing to this as outlined in our
       <a target="_blank" href="{index/privacy_policy}" class="white-color">Privacy Notice</a> and
-      <a target="_blank" href="{index/terms_of_use}" class="white-color">Terms of Use</a>.</div>
+      <a target="_blank" href="{index/terms_of_use}" class="white-color">Terms of Use</a>.
+    </div>
     <div class="columns medium-4 large-3 text-right white-color">
       <a id="data-protection-agree" href="#" onclick="dismiss();">I agree, dismiss this banner</a>
 
       <script type="text/javascript">
-        function dismiss() {          
-          $("#data-protection-banner").hide();  
-          $.post("{<platform>user/dataprotection}");        
+        function dismiss() {
+          $("#data-protection-banner").hide();
+          $.post("{<platform>user/dataprotection}");
         }
       </script>
     </div>
