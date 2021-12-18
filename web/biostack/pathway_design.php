@@ -26,16 +26,19 @@ class app {
         if (Utils::isDbNull($guid)) {
             $url = "/resources/vendor/Cola/SucroseBreakdownDicots.json";
             $name = "SucroseBreakdownDicots.json";
+            $time = Utils::Now();
         } else {
             $url = "/biostack/pathway_design/load?model_id=$guid";
-            $name = DataRepository::getModelData($guid);
-            $name = $name["name"];
+            $data = DataRepository::getModelData($guid);
+            $name = $data["name"];
+            $time = $data["upload_time"];
         }
 
         View::Display([
             "model_id" => $guid,
             "graph" => $url,
-            "model_name" => $name
+            "model_name" => $name,
+            "time" => $time
         ]);
     }
 
