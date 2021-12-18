@@ -3,8 +3,8 @@
 </div>
 
 <div class="contain-to-grid" role="navigation">
-    <nav class="navbar navbar-default" data-topbar="" role="navigation">
-        <div class="container-fluid">
+    <nav class="navbar navbar-default navbar-fixed-top" data-topbar="" role="navigation">
+        <div class="container-fluid container">
 
             <div class="navbar-header">
                 <h1 style="font-size: 42px;">
@@ -15,22 +15,21 @@
 
             <section class="top-bar-section">
                 <!-- Right Nav Section -->
-                <ul class="right nav navbar-nav">
-                    <li>
+                <ul class="right nav navbar-nav navbar-right">
+                    <li class="nav-item">
                         <a href="/apps">Application</a>
                     </li>
-                    <li>
+                    <li class="nav-item">
                         <a href="/biostack">Biostack</a>
                     </li>
-                    <li>
+                    <li class="nav-item">
                         <a href="/about">About</a>
                     </li>
-                    <li class="has-form">
+                    <li class="has-form nav-item form-group">
                         <form action="{index/search}" method="get">
-                            <div class="row collapse">
-                                <div class="large-8 small-9 columns">
-                                    <input type="text" name="app" value="search" style="display:none;">
-                                    <input type="text" name="q" placeholder="Search..">
+                            <div class="row collapse input-group stylish-input-group" style="position: relative">
+                                <div class="large-8 small-9 columns">                                    
+                                    <input type="text" name="q" class="form-control" focuse placeholder="Search..">
                                 </div>
                                 <div class="large-4 small-3 columns">
                                     <input type="submit" class="success button expand" value="Search">
