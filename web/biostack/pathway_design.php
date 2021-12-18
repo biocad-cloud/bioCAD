@@ -25,13 +25,17 @@ class app {
     public function view($guid = NULL) {
         if (Utils::isDbNull($guid)) {
             $url = "/resources/vendor/Cola/SucroseBreakdownDicots.json";
+            $name = "SucroseBreakdownDicots.json";
         } else {
             $url = "/biostack/pathway_design/load?model_id=$guid";
+            $name = DataRepository::getModelData($guid);
+            $name = $name["name"];
         }
 
         View::Display([
             "model_id" => $guid,
-            "graph" => $url
+            "graph" => $url,
+            "model_name" => $name
         ]);
     }
 
