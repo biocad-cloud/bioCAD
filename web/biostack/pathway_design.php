@@ -27,18 +27,21 @@ class app {
             $url = "/resources/vendor/Cola/SucroseBreakdownDicots.json";
             $name = "SucroseBreakdownDicots.json";
             $time = Utils::Now();
+            $note = "Demo model";
         } else {
             $url = "/biostack/pathway_design/load?model_id=$guid";
             $data = DataRepository::getModelData($guid);
             $name = $data["name"];
             $time = $data["upload_time"];
+            $note = $data["description"];
         }
 
         View::Display([
             "model_id" => $guid,
             "graph" => $url,
             "model_name" => $name,
-            "time" => $time
+            "time" => $time,
+            "note" => $note
         ]);
     }
 
