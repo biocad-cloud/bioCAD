@@ -23,8 +23,15 @@ class app {
      * @uses view
     */
     public function view($guid = NULL) {
+        if (Utils::isDbNull($guid)) {
+            $url = "/resources/vendor/Cola/SucroseBreakdownDicots.json";
+        } else {
+            $url = "/biostack/pathway_design/load?model_id=$guid";
+        }
+
         View::Display([
-            "model_id" => $guid
+            "model_id" => $guid,
+            "graph" => $url
         ]);
     }
 
