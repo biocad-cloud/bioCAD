@@ -1,52 +1,53 @@
 <div class="contain-to-grid">
-    <nav class="top-bar" data-topbar="">
-        <ul class="title-area">
-            <li class="name">
+    <nav class="navbar navbar-default" data-topbar="" role="navigation">
+        <div class="container-fluid">
+
+            <div class="navbar-header">
                 <h1 style="font-size: 42px;">
-                    <a href="/">
+                    <a class="navbar-brand" href="/">
                         <img src="/resources/images/header_logo.png" class="logo" style="height:72px;" /> bioCAD</a>
                 </h1>
-            </li>
-        </ul>
+            </div>
 
-        <section class="top-bar-section">
-            <!-- Right Nav Section -->
-            <ul class="right">
-                <li class="">
-                    <a href="/apps">Application</a>
-                </li>
-                <li class="">
-                    <a href="/biostack">Biostack</a>
-                </li>
-                <li class="">
-                    <a href="/about">About</a>
-                </li>
-                <li class="has-form">
-                    <form action="{index/search}" method="get">
-                        <div class="row collapse">
-                            <div class="large-8 small-9 columns">
-                                <input type="text" name="app" value="search" style="display:none;">
-                                <input type="text" name="q" placeholder="Search..">
+            <section class="top-bar-section">
+                <!-- Right Nav Section -->
+                <ul class="right nav navbar-nav">
+                    <li>
+                        <a href="/apps">Application</a>
+                    </li>
+                    <li>
+                        <a href="/biostack">Biostack</a>
+                    </li>
+                    <li>
+                        <a href="/about">About</a>
+                    </li>
+                    <li class="has-form">
+                        <form action="{index/search}" method="get">
+                            <div class="row collapse">
+                                <div class="large-8 small-9 columns">
+                                    <input type="text" name="app" value="search" style="display:none;">
+                                    <input type="text" name="q" placeholder="Search..">
+                                </div>
+                                <div class="large-4 small-3 columns">
+                                    <input type="submit" class="success button expand" value="Search">
+                                </div>
                             </div>
-                            <div class="large-4 small-3 columns">
-                                <input type="submit" class="success button expand" value="Search">
-                            </div>
-                        </div>
-                    </form>
-                </li>
+                        </form>
+                    </li>
 
-                <!-- has-dropdown -->
+                    <!-- has-dropdown -->
 
-                <li id="user-menu" class="{$has_dropdown} not-click">
-                    <a href="{<platform>passport/portal}">
-                        <i class="fa fa-user"></i> {$username}
-                    </a>
+                    <li id="user-menu" class="dropdown {$has_dropdown} not-click">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="{<platform>passport/portal}">
+                            <i class="fa fa-user"></i> {$username}
+                        </a>
 
-                    {$menu_dropdown}
+                        {$menu_dropdown}
 
-                </li>
+                    </li>
 
-            </ul>
-        </section>
+                </ul>
+            </section>
+        </div>
     </nav>
 </div>
