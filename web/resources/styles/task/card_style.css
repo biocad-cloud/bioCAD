@@ -229,6 +229,7 @@ h3,
     color: #32325d;
 }
 
+/*
 h2,
 .h2 {
     font-size: 1.25rem;
@@ -270,7 +271,7 @@ h3,
         max-width: 1140px;
     }
 }
-
+*/
 @media (min-width: 1200px) {
 
     .col-xl-6 {
