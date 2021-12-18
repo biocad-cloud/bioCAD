@@ -29,7 +29,7 @@
                         <a href="/about" style="color: white;">About</a>
                     </li>
                     <li class="has-form nav-item form-group">
-                        <form action="{index/search}" class="navbar-form navbar-left" method="get">
+                        <!-- <form action="{index/search}" class="navbar-form navbar-left" method="get">
                             <div class="row collapse input-group stylish-input-group" style="position: relative">
                                 <div class="large-8 small-9 columns">
                                     <input type="text" name="q" class="form-control" focuse placeholder="Search..">
@@ -38,7 +38,23 @@
                                     <input type="submit" class="success button expand" value="Search">
                                 </div>
                             </div>
-                        </form>
+                        </form> -->
+
+                        <div class="form-group ng-scope" ng-controller="globalSearchController"
+                            style="display: inline-table; margin-left: 5px;">
+                            <div class="input-group stylish-input-group" style="position: relative">
+                                <span class="fa fa-search" style="margin-left:-15px"></span>
+                                <input type="text" class="form-control ng-pristine ng-valid ng-empty ng-touched"
+                                    ng-model="asyncSelected" data-animation="am-flip-x" data-min-length="3"
+                                    data-limit="10" select-on-click="" data-auto-select="true" data-on-show="showed()"
+                                    data-on-select="onPartSelected()"
+                                    bs-options="result as result.formatted_string for result in doLiveSearch($viewValue)"
+                                    placeholder="search on biocad.cloud"
+                                    style="width: 350px; margin-top: -10px; padding-bottom: 0px !important;"
+                                    bs-typeahead="" focuse="" autocomplete="off">
+
+                            </div>
+                        </div>
                     </li>
 
                     <!-- has-dropdown -->
