@@ -60,41 +60,41 @@
 <body class="index">
     ${../../includes/nav.html}
 
-    <div id="wrapper">
+    <div class="container" id="wrapper" style="height: 100%; min-height: 600px;">
 
-        <br />
-        <br />
+        <br /> <br /> <br /> <br /> <br />
         <div class="row">
-            <div class="column-12-large">
+            <div class="col-lg-12">
                 <h1>Pathway Designer</h1>
             </div>
         </div>
         <br />
 
         <div class="row" style="width: 90% !important;">
-            <div style="float: left;" id="explorer">
-                <!-- left: view kegg pathway maps brite -->
-            </div>
-            <div style="float: right;">
-                <!-- right: show pathway graph -->
+            <div class="col-lg-12">
+                <div style="float: left;" id="explorer">
+                    <!-- left: view kegg pathway maps brite -->
+                </div>
+                <div style="float: right;">
+                    <!-- right: show pathway graph -->
 
-                <div style="width: 100%; text-align: center; margin-top: 10px;">
-                    <center>
-                        <div id="canvas"></div>
-                    </center>
+                    <div style="width: 100%; text-align: center; margin-top: 10px;">
+                        <center>
+                            <div id="canvas"></div>
+                        </center>
 
-                    <div>
-                        <strong>
-                            <i class="fa fa-cloud-download" aria-hidden="true"></i> <a id="savePng"
-                                href="javascript:void(0);">{$savePng}</a> |
-                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> <a
-                                href="/Metabolic_pathway/">{$back}</a>
-                        </strong>
+                        <div>
+                            <strong>
+                                <i class="fa fa-cloud-download" aria-hidden="true"></i> <a id="savePng"
+                                    href="javascript:void(0);">{$savePng}</a> |
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i> <a
+                                    href="/Metabolic_pathway/">{$back}</a>
+                            </strong>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
     ${../../includes/footer.html}
