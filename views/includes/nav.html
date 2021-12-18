@@ -1,4 +1,8 @@
-<div class="contain-to-grid">
+<div ng-show="alertShow" class="text-center" style="font-weight: bold">
+    <uib-alert type="{{alertType}}" close="alertShow=false">{{alertMsg}}</uib-alert>
+</div>
+
+<div class="contain-to-grid" role="navigation">
     <nav class="navbar navbar-default" data-topbar="" role="navigation">
         <div class="container-fluid">
 
