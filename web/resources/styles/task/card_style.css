@@ -1111,8 +1111,8 @@ a.text-light:focus {
 .avatar {
     font-size: 1rem;
     display: inline-flex;
-    width: 48px;
-    height: 48px;
+    width: 64px;
+    height: 64px;
     color: #fff;
     border-radius: 50%;
     background-color: #adb5bd;
