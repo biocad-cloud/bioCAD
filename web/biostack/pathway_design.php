@@ -18,6 +18,17 @@ class app {
     }
 
     /**
+     * Model Viewer
+     * 
+     * @uses view
+    */
+    public function view($guid = NULL) {
+        View::Display([
+            "model_id" => $guid
+        ]);
+    }
+
+    /**
      * Flow network editor
      * 
      * Flow network editor for systems dynamics analysis
