@@ -80,13 +80,13 @@ class app {
     /**
      * Download model file
      * 
-     * @param $model_id the integer guid of the target model
+     * @param $guid the integer guid of the target model
      * 
-     * @require model_id=i32
+     * @require guid=i32
      * @uses file
     */
-    public function download($model_id) {
-        $path = DataRepository::getModelFile($model_id);
+    public function download($guid) {
+        $path = DataRepository::getModelFile($guid);
 
         if (Utils::isDbNull($path)) {
             dotnet::PageNotFound(MODEL_FILE_ACCESS_ERROR);            
