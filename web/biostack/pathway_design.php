@@ -78,6 +78,28 @@ class app {
     }
 
     /**
+     * Download model file
+     * 
+     * @param $model_id the integer guid of the target model
+     * 
+     * @require model_id=i32
+     * @uses file
+    */
+    public function download($model_id) {
+        $path = DataRepository::getModelFile($model_id);
+
+        if (Utils::isDbNull($path)) {
+            dotnet::PageNotFound(MODEL_FILE_ACCESS_ERROR);            
+        }    
+
+        if (file_exists($path)) {
+            Utils::PushDownload($path);
+        } else {
+            dotnet::PageNotFound("Missing model file '{$path}' on server filesystem...");
+        }   
+    }
+
+    /**
      * Load model json file
      * 
      * @param $model_id the model id in the database, default value NULL of 
