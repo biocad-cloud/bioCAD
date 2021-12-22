@@ -18,4 +18,17 @@ class app {
 
         controller::success($data, $debug);
     }
+
+    /**
+     * View report
+     * 
+     * @param $q the task guid
+     * @uses view
+     * @require q=string
+    */
+    public function report($q) {
+        View::Display([
+            
+        ]);
+    }
 }

@@ -34,6 +34,7 @@ RewriteRule ^biostack/jsonrpc/$ /biostack/jsonrpc.php?app=index
 RewriteRule ^biostack/reactor/run/(.+)$ /biostack/reactor.php?app=run&id=$1
 RewriteRule ^biostack/(.+)/(.+)$ /biostack/$1.php?app=$2
 
+RewriteRule ^task/(.+)$ /task.php?app=$1
 RewriteRule ^apps/task/(.+)$ /task.php?app=$1
 
 RewriteRule ^app/report$ /app.php?app=report

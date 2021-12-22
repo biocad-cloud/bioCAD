@@ -26,6 +26,7 @@ return [
         "app"            => APP_PATH . "/views/Application/",
         "index"          => APP_PATH . "/views/",
         "pathway_design" => APP_PATH . "/views/Application/pathway_designer/",
-        "admin"          => APP_PATH . "/views/admin/"
+        "admin"          => APP_PATH . "/views/admin/",
+        "task"           => APP_PATH . "/views/Application/task"
     ]
 ];
