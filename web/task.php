@@ -19,6 +19,20 @@ class app {
         controller::success($data, $debug);
     }
 
+
+    /**
+     * Load data result table file
+     * 
+     * @param string $guid the task guid
+     * 
+     * @uses file
+     * @require guid=string
+    */
+    public function loadPLAS($guid) {
+        $model = TaskMgr::getTaskWorkDir($guid);
+        $dir = "${dirname(model$uri)}/trial_run/${guid}/";
+    }
+    
     /**
      * View report
      * 
@@ -28,7 +42,7 @@ class app {
     */
     public function report($q) {
         View::Display([
-            
+
         ]);
     }
 }

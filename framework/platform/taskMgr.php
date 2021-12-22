@@ -95,6 +95,28 @@ class TaskMgr {
         ]);
     }
 
+    /**
+     * get task by guid
+    */
+    public static function getTask($guid) {
+        return self::getTaskMgr()
+            ->task
+            ->where(self::taskQuery($guid))
+            ->find();
+    }
+
+    public static function taskQuery($guid) {
+        $guid = strval($guid);
+
+        if (StringHelpers::IsPattern($guid, "\\d+")) {
+            $query = ["id"   => $guid];
+        } else {
+            $query = ["sha1" => $guid];
+        }
+
+        return $query;
+    }
+
     public static function getApp($ref) {
         $mgr = self::getTaskMgr();
         $app = $mgr->app->where(["name" => $ref])->find();

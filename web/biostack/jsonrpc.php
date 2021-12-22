@@ -65,17 +65,9 @@ class app {
     /**
      * 
     */
-    public function setTaskStatus($guid, $status, $rpc) {
-        $guid = strval($guid);
-
-        if (StringHelpers::IsPattern($guid, "\\d+")) {
-            $query = ["id"   => $guid];
-        } else {
-            $query = ["sha1" => $guid];
-        }
-
+    public function setTaskStatus($guid, $status, $rpc) {        
         $result = $this->task
-          ->where($query)
+          ->where(TaskMgr::taskQuery($guid))
           ->limit(1)
           ->save(["status" => $status]);
           
