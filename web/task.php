@@ -48,7 +48,7 @@ class app {
     */
     public function report($q) {
         View::Display([
-
+            "model_id" => $q
         ]);
     }
 }
