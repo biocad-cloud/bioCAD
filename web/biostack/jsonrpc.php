@@ -62,6 +62,9 @@ class app {
         }
     }
 
+    /**
+     * 
+    */
     public function setTaskStatus($guid, $status, $rpc) {
         $result = $this->task
           ->where([
