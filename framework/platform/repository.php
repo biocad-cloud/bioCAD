@@ -1,6 +1,7 @@
 <?php
 
 define("MODEL_FILE_ACCESS_ERROR", "Sorry, the required model file is not existed in data repository or it does not under control in current user domain!");
+define("RESULT_FILE_ACCESS_ERROR", "Sorry, the required result file is not existed in data repository or it does not under control in current user domain!");
 
 /**
  * The data repository system of biocad.cloud platform

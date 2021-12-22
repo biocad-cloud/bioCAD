@@ -29,8 +29,14 @@ class app {
      * @require guid=string
     */
     public function loadPLAS($guid) {
-        $model = TaskMgr::getTaskWorkDir($guid);
-        $dir = "${dirname(model$uri)}/trial_run/${guid}/";
+        $dir  = TaskMgr::getTaskWorkDir($guid);
+        $file = "$dir/PLAS.csv";
+
+        if (file_exists($file)) {
+            Utils::PushDownload($file);
+        } else {
+            dotnet::PageNotFound(RESULT_FILE_ACCESS_ERROR);
+        }
     }
     
     /**

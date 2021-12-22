@@ -28,7 +28,7 @@ class TaskMgr {
 
     function __construct() {
         $this->task = new Table("task");
-        $this->app = new Table("analysis_app");
+        $this->app  = new Table("analysis_app");
     }
 
     public static function getLastMySql() {
@@ -47,13 +47,13 @@ class TaskMgr {
     }   
 
     public static function getTaskList($page, $page_size = 5) {
-        $mgr = self::getTaskMgr();
-        $m = ($page - 1) * $page_size;
+        $mgr  = self::getTaskMgr();
+        $m    = ($page - 1) * $page_size;
         $list = $mgr->task
             ->left_join("analysis_app")
             ->on([
                 "analysis_app" => "id",
-                "task" => "app_id"
+                "task"         => "app_id"
             ])
             ->where(["`task`.`user_id`" => System::getUserId()])
             ->order_by("`task`.`id`", TRUE)
@@ -84,14 +84,14 @@ class TaskMgr {
         $args = Rych\Bencode::encode($args);
 
         return self::getTaskMgr()->task->add([
-            "sha1" => $sha,
-            "user_id" => System::getUserId(),            
-            "app_id" => $app_id,
-            "title" => $title,
+            "sha1"        => $sha,
+            "user_id"     => System::getUserId(),            
+            "app_id"      => $app_id,
+            "title"       => $title,
             "create_time" => Utils::Now(),
-            "status" => 0,
-            "note" => "",
-            "parameters" => $args
+            "status"      => 0,
+            "note"        => "",
+            "parameters"  => $args
         ]);
     }
 
@@ -103,6 +103,15 @@ class TaskMgr {
             ->task
             ->where(self::taskQuery($guid))
             ->find();
+    }
+
+    public static function getTaskArguments($guid) {
+        imports("php.BEncode.autoload");
+
+        $args = self::getTask($guid)["parameters"];
+        $args = Rych\Bencode::decode($args);
+
+        return $args;
     }
 
     public static function taskQuery($guid) {
@@ -128,15 +137,11 @@ class TaskMgr {
      * Get workspace of the task
     */
     public static function getTaskWorkDir($task_id) {        
-        $task = self::getTaskMgr()
-            ->task
-            ->where(["id|sha1" => $task_id])
-            ->find();
-            
-        $appID  = $task["app_id"];
-        $userID = System::getUserId();
-        $taskID = $task["sha1"];
+        $task = self::getTask($task_id);
+        $sha1 = $task["sha1"];
+        $base = bioCAD::getUserDir();
+        $workdir = "$base/trial_run/$sha1/";
 
-        return "/tmp/biocad_workspace/$userID/$appID/$taskID/";
+        return $workdir;
     }
 }
