@@ -4,6 +4,7 @@
 <head>
     <meta name="app" content="reportViewer" />
     <meta name="data:PLAS" content="/task/loadPLAS?guid={$model_id}" />
+    <meta name="url:graph" content="{$graph}" />
 
     <script src="/resources/vendor/echarts/echarts.min.js" type="text/javascript"></script>
 
@@ -65,6 +66,14 @@
         <br />
 
         <div class="row" style="width: 90% !important;">
+
+            <div class="col-lg-12">
+                <form>
+                    <select id="pathway_list">
+
+                    </select>
+                </form>
+            </div>
 
             <div id="main" style="width: 1920px; height: 850px; position: relative; left: -25%;">
             </div>

@@ -105,6 +105,12 @@ class TaskMgr {
             ->find();
     }
 
+    /**
+     * get parameters by task guid
+     * 
+     * @param string $guid the required task guid
+     * @return object an object that contains the task parameters
+    */
     public static function getTaskArguments($guid) {
         imports("php.BEncode.autoload");
 

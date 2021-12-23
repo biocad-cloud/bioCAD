@@ -19,7 +19,6 @@ class app {
         controller::success($data, $debug);
     }
 
-
     /**
      * Load data result table file
      * 
@@ -31,7 +30,7 @@ class app {
     public function loadPLAS($guid) {
         $dir  = TaskMgr::getTaskWorkDir($guid);
         $file = "$dir/PLAS.csv";
-
+        
         if (file_exists($file)) {
             Utils::PushDownload($file);
         } else {
@@ -42,13 +41,18 @@ class app {
     /**
      * View report
      * 
-     * @param $q the task guid
+     * @param string $q the task guid
      * @uses view
      * @require q=string
     */
     public function report($q) {
+        $args = TaskMgr::getTaskArguments($q);
+        $guid = $args["model"];
+        $url = "/biostack/pathway_design/load?model_id=$guid";
+
         View::Display([
-            "model_id" => $q
+            "model_id" => $q,
+            "graph" => $url
         ]);
     }
 }
