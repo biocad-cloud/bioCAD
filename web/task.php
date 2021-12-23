@@ -52,7 +52,8 @@ class app {
 
         View::Display([
             "model_id" => $q,
-            "graph" => $url
+            "graph" => $url,
+            "args" => $args
         ]);
     }
 }
