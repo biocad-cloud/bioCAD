@@ -104,13 +104,14 @@ class app {
      * 
      * @param $model_id the model id in the database, default value NULL of 
      *    this parameter means returns the demo model json file.
-     * 
+     * @param string $version the model's version number. if this parameter
+     *    is missing, then will returns the latest version of user's model.
     */
-    public function load($model_id = NULL) {
+    public function load($model_id = NULL, $version = NULL) {
         if (Utils::isDbNull($model_id) || Strings::Empty($model_id, TRUE)) {
             $path = APP_PATH . "/web/resources/vendor/Gojs/demo.json";
         } else {
-            $path = DataRepository::getModelFile($model_id);
+            $path = DataRepository::getModelFile($model_id, $version);
 
             if (Utils::isDbNull($path)) {
                 dotnet::PageNotFound(MODEL_FILE_ACCESS_ERROR);            

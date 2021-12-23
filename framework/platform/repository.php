@@ -44,14 +44,17 @@ class DataRepository {
 
     /**
      * get file path of the model file
+     * 
+     * @param string $id the model file id
+     * @param string $version the model file version
     */
-    public static function getModelFile($id) {
+    public static function getModelFile($id, $version = NULL) {
         $file = self::getModelData($id);
 
         if (Utils::isDbNull($file)) {
             return NULL;
         } else {
-            return $file["uri"] . "/" . $file["current_version"] . ".json";
+            return $file["uri"] . "/" . (Strings::Empty($version, true) ? $file["current_version"] : $version) . ".json";
         }        
     }
 

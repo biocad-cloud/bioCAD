@@ -48,7 +48,8 @@ class app {
     public function report($q) {
         $args = TaskMgr::getTaskArguments($q);
         $guid = $args["model"];
-        $url = "/biostack/pathway_design/load?model_id=$guid";
+        $ver = $args["version"];
+        $url = "/biostack/pathway_design/load?model_id=$guid&version=$ver";
 
         View::Display([
             "model_id" => $q,
