@@ -9,9 +9,9 @@
     <script type="text/javascript" src="/modules/build/linq.js"></script>
     <script type="text/javascript" src="/modules/build/bioCAD.FileSystem.Explorer.js"></script>
     <script type="text/javascript">
-        
+
         // 客户的数据库编号，以及是否注册？
-        var user_id = {$user_id};
+        var user_id = { $user_id };
         var is_certified = (user_id == -1);
 
     </script>
@@ -77,11 +77,11 @@
 
         <div class="row">
             <div id="file-explorer-display" class="large-12 columns">
-                
+
             </div>
 
             <script type="text/javascript">
-                $(document).ready(function() {
+                $(document).ready(function () {
                     var files = Explorer.getFiles("file-list", "bioClassType");
                     var classes = Explorer.getFaMaps("bioClassType");
 
@@ -95,8 +95,8 @@
 
     <aside id="default-popup" class="avgrund-popup" style="display:none;">
         <div style="position: absolute;left:0;top:0;">
-            <iframe width="750" height="500" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"
-                src="{app/upload}&project_id={$project_id}">
+            <iframe width="750" height="500" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"
+                allowtransparency="yes" src="{app/upload}&project_id={$project_id}">
             </iframe>
         </div>
         <br />
@@ -107,9 +107,10 @@
         height: 30px;
         cursor: pointer;
         z-index: 8040;">
-            <svg data-prefix="far" data-icon="times-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-times-circle fa-w-16 fa-9x"
-                fill="white">
-                <path fill="black" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm101.8-262.2L295.6 256l62.2 62.2c4.7 4.7 4.7 12.3 0 17l-22.6 22.6c-4.7 4.7-12.3 4.7-17 0L256 295.6l-62.2 62.2c-4.7 4.7-12.3 4.7-17 0l-22.6-22.6c-4.7-4.7-4.7-12.3 0-17l62.2-62.2-62.2-62.2c-4.7-4.7-4.7-12.3 0-17l22.6-22.6c4.7-4.7 12.3-4.7 17 0l62.2 62.2 62.2-62.2c4.7-4.7 12.3-4.7 17 0l22.6 22.6c4.7 4.7 4.7 12.3 0 17z"
+            <svg data-prefix="far" data-icon="times-circle" role="img" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512" class="svg-inline--fa fa-times-circle fa-w-16 fa-9x" fill="white">
+                <path fill="black"
+                    d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm101.8-262.2L295.6 256l62.2 62.2c4.7 4.7 4.7 12.3 0 17l-22.6 22.6c-4.7 4.7-12.3 4.7-17 0L256 295.6l-62.2 62.2c-4.7 4.7-12.3 4.7-17 0l-22.6-22.6c-4.7-4.7-4.7-12.3 0-17l62.2-62.2-62.2-62.2c-4.7-4.7-4.7-12.3 0-17l22.6-22.6c4.7-4.7 12.3-4.7 17 0l62.2 62.2 62.2-62.2c4.7-4.7 12.3-4.7 17 0l22.6 22.6c4.7 4.7 4.7 12.3 0 17z"
                     class=""></path>
             </svg>
         </a>
