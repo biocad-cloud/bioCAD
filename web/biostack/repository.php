@@ -15,7 +15,7 @@ class app {
     /**
      * get my model files
      * 
-     * @require page=i32|page_size=i32
+     * @require page=i32
      * 
      * @uses api
      * @method GET
