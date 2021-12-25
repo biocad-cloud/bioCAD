@@ -42,6 +42,13 @@ class DataRepository {
         }
     }
 
+    public static function getMyModelFiles($page, $page_size = 25) {
+        return self::getRepo()->data_files
+            ->where(["user_id" => System::getUserId()])
+            ->limit(($page - 1) * $page_size + 1, $page_size)
+            ->select();
+    }
+
     /**
      * get file path of the model file
      * 
