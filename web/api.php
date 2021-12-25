@@ -89,20 +89,7 @@ class app {
         }
     }
 
-    /**
-     * @access *
-     * @uses api
-    */
-    public function bioClassType() {
-        $types = (new Table("content_types"))
-            ->left_join("file_class")->on([
-                "file_class"    => "classId", 
-                "content_types" => "class"
-            ])
-            ->select();
 
-        echo json_encode($types);
-    }
 
     
     /**

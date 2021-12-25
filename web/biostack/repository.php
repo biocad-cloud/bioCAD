@@ -26,4 +26,21 @@ class app {
 
         controller::success($files, $query);
     }
+
+    /**
+     * get all mime type in database
+     * 
+     * @access *
+     * @uses api
+    */
+    public function bio_mimetypes() {
+        // read version data from system configuration table
+        $version = 1;
+        $all = (new Table("content_types"))->all();
+
+        controller::success([
+            "content_types" => $all,
+            "version" => $version
+        ]);
+    }
 }
