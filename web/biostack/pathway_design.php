@@ -36,6 +36,7 @@ class app {
             $note = $data["description"];
         }
 
+        $view_iframe = APP_PATH . "/views/Application/pathway_designer/view_dialog.html";
         $render = [
             "model_id" => $guid,
             "graph" => $url,
@@ -45,7 +46,7 @@ class app {
         ];
 
         if ($iframe) {
-            View::Show(APP_PATH . "/views/Application/pathway_designer/view_dialog.html", $render);
+            View::Show($view_iframe, $render, NULL, WebRequest::getBool("debugger"));
         } else {
             View::Display($render);
         }
