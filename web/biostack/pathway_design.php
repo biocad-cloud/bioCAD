@@ -22,7 +22,7 @@ class app {
      * 
      * @uses view
     */
-    public function view($guid = NULL) {
+    public function view($guid = NULL, $iframe = false) {
         if (Utils::isDbNull($guid)) {
             $url = "/resources/vendor/Cola/SucroseBreakdownDicots.json";
             $name = "SucroseBreakdownDicots.json";
@@ -36,13 +36,19 @@ class app {
             $note = $data["description"];
         }
 
-        View::Display([
+        $render = [
             "model_id" => $guid,
             "graph" => $url,
             "model_name" => $name,
             "time" => $time,
             "note" => $note
-        ]);
+        ];
+
+        if ($iframe) {
+            View::Show(APP_PATH . "/views/Application/pathway_designer/view_dialog.html", $render);
+        } else {
+            View::Display($render);
+        }
     }
 
     /**
