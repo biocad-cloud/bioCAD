@@ -4,17 +4,9 @@
 <html lang="en">
 
 <head>
-    <meta name="viewport" content="width=800, user-scalable=no"> ${../includes/head.html} ${../includes/avgrund.html}
-
-    <script type="text/javascript" src="/modules/build/linq.js"></script>
-    <script type="text/javascript" src="/modules/build/bioCAD.FileSystem.Explorer.js"></script>
-    <script type="text/javascript">
-
-        // 客户的数据库编号，以及是否注册？
-        var user_id = { $user_id };
-        var is_certified = (user_id == -1);
-
-    </script>
+    <meta name="viewport" content="width=800, user-scalable=no">
+    ${../includes/head.html}
+    ${../includes/avgrund.html}
 
     <script id="file-list" type="application/json">{$files}</script>
     <script id="bioClassType" type="application/json">{$bioClassType}</script>
@@ -25,7 +17,7 @@
 <body class="index">
     ${../includes/nav.html}
 
-    <div id="wrapper">
+    <div id="container">
 
         <br />
         <br />
@@ -38,30 +30,7 @@
 
         <div class="hero">
             <div class="row">
-                <div class="large-12 columns">
-
-                    <!-- 
-                       对于注册用户而言，项目是持久性存在的，因为可以从数据库之中找得到一个永久的唯一标识符来标记项目的关系 
-                       但是对于非注册用户而言，项目与用户的关联主要是依赖于session数据，所以假若非注册客户将浏览器的cookie
-                       清除掉了的话则会丢失前面所建立的所有的分析项目。
-
-                       如果是非注册用户的话，在这里给出一条警告信息
-                    -->
-
-                    <script type="text/javascript">
-                        $(function () {
-
-                            if (!is_certified) {
-                                // warning to non-certified user, if the setting turn on the warning option.
-                            }
-
-                        })
-                    </script>
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="large-12 columns">
+                <div class="col-lg-12">
                     <span style="font-size:2em;">
                         <a href="#" onclick="javascript:openDialog();">
                             <i class="fa fa-cloud-upload"></i> Upload</a>
@@ -76,7 +45,7 @@
         </div>
 
         <div class="row">
-            <div id="file-explorer-display" class="large-12 columns">
+            <div id="file-explorer-display" class="col-lg-12">
 
             </div>
 
