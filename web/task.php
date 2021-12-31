@@ -77,7 +77,7 @@ class app {
      * @uses view
      * @require q=string
     */
-    public function view($q) {
+    public function report_view($q) {
         View::Display([
             "guid" => $q
         ]);

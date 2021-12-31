@@ -35,6 +35,7 @@ RewriteRule ^biostack/reactor/run/(.+)$ /biostack/reactor.php?app=run&id=$1
 RewriteRule ^biostack/(.+)/(.+)$ /biostack/$1.php?app=$2
 
 RewriteRule ^task/report/pdf$ /task.php?app=report_pdf
+RewriteRule ^task/report/view$ /task.php?app=report_view
 RewriteRule ^task/report/$ /task.php?app=report
 
 RewriteRule ^task/(.+)$ /task.php?app=$1
