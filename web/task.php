@@ -86,11 +86,11 @@ class app {
     public function pdf_viewer($q, $load) {
         if ($load == "js") {
             $url = "/task/report/pdf?q=$q";
-            $js = APP_PATH . "/resources/vendor/pdfjs-2.12.313-dist/web/viewer.js";
+            $js = APP_PATH . "/web/resources/vendor/pdfjs-2.12.313-dist/web/viewer.js";
             $js = file_get_contents($js);
             $str = str_replace("{$pdf_url}", $url, $js);
         } else {
-            $html = APP_PATH . "/resources/vendor/pdfjs-2.12.313-dist/web/viewer.html"; breakpoint($html);
+            $html = APP_PATH . "/web/resources/vendor/pdfjs-2.12.313-dist/web/viewer.html"; breakpoint($html);
             $html = file_get_contents($html);
             $str = str_replace("{$model_id}", $q, $html);
         }
