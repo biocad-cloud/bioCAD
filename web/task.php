@@ -90,7 +90,7 @@ class app {
             $js = file_get_contents($js);
             $str = str_replace("{$pdf_url}", $url, $js);
         } else {
-            $html = APP_PATH . "/resources/vendor/pdfjs-2.12.313-dist/web/viewer.html";
+            $html = APP_PATH . "/resources/vendor/pdfjs-2.12.313-dist/web/viewer.html"; breakpoint($html);
             $html = file_get_contents($html);
             $str = str_replace("{$model_id}", $q, $html);
         }
