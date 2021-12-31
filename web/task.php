@@ -72,4 +72,14 @@ class app {
             dotnet::PageNotFound(RESULT_FILE_ACCESS_ERROR);
         }
     }
+
+    /**
+     * @uses view
+     * @require q=string
+    */
+    public function view($q) {
+        View::Display([
+            "guid" => $q
+        ]);
+    }
 }
