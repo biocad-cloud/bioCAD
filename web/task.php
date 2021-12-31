@@ -57,4 +57,19 @@ class app {
             "args" => $args
         ]);
     }
+
+    /**
+     * @uses file
+     * @require q=string
+    */
+    public function report_pdf($q) {
+        $dir  = TaskMgr::getTaskWorkDir($q);
+        $file = "$dir/report.pdf";
+        
+        if (file_exists($file)) {
+            Utils::PushDownload($file);
+        } else {
+            dotnet::PageNotFound(RESULT_FILE_ACCESS_ERROR);
+        }
+    }
 }
