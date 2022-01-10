@@ -22,6 +22,7 @@ class app {
      * KEGG network builder
      * 
      * @uses view
+	 * @access *
     */
     public function kegg_builder() {
         View::Display();
