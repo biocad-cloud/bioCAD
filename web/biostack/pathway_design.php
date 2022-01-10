@@ -1,6 +1,7 @@
 <?php
 
 define("KEGG_REPOSITORY", "/opt/repository");
+define("DEMO_GRAPH", "/resources/vendor/Cola/SucroseBreakdownDicots.json");
 
 include __DIR__ . "/../../framework/bootstrap.php";
 
@@ -13,8 +14,17 @@ class app {
     */
     public function index($guid = NULL) {
         View::Display([
-            "graph" => "/resources/vendor/Cola/SucroseBreakdownDicots.json"
+            "graph" => DEMO_GRAPH
         ]);
+    }
+
+    /**
+     * KEGG network builder
+     * 
+     * @uses view
+    */
+    public function kegg_builder() {
+        View::Display();
     }
 
     /**
