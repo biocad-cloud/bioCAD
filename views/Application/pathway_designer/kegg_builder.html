@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+    <meta name="app" content="kegg_network" />
+
     ${../../includes/head.html}
 </head>
 
@@ -21,7 +23,19 @@
         <div class="row">
             <div class="large-12 columns">
 
-
+                <form>
+                    <div>
+                        <h5>Search KEGG component:</h5>
+                        <p>
+                            Search: <input type="text" id="sample_search" class="form-control"></input>
+                        </p>
+                        <p>
+                            <select id="pathway_list" class="form-control">
+                            </select>
+                        </p>
+                        <div id="sample_suggests"></div>
+                    </div>
+                </form>
 
             </div>
         </div>
@@ -32,5 +46,7 @@
     ${../../includes/footer.html}
 
 </body>
+
+<script type="text/javascript" src="/resources/typescripts/Metabolic_pathway.min.js"></script>
 
 </html>
