@@ -29,6 +29,17 @@ class app {
     }
 
     /**
+     * 
+     * @uses view
+    */
+    public function kegg_template($id) {
+        $url  = "http://localhost:8847/KeggMap?id=$id";
+        $html = file_get_contents($url);
+        
+        echo $html;
+    }
+
+    /**
      * Model Viewer
      * 
      * @uses view

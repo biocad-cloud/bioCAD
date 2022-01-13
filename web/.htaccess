@@ -30,9 +30,13 @@ Header set Cache-Control: "max-age=0, no-store"
 RewriteRule ^biostack$ /index.php?app=biostack
 RewriteRule ^biostack/$ /index.php?app=biostack
 
+RewriteRule ^biostack/pathway_design/kegg_template/(.+)$ /biostack/pathway_design.php?app=kegg_template&id=$1
+
 RewriteRule ^biostack/jsonrpc/$ /biostack/jsonrpc.php?app=index
 RewriteRule ^biostack/reactor/run/(.+)$ /biostack/reactor.php?app=run&id=$1
 RewriteRule ^biostack/(.+)/(.+)$ /biostack/$1.php?app=$2
+
+
 
 RewriteRule ^resources/vendor/pdfjs-2.12.313-dist/web/viewer.js$ /task.php?app=pdf_viewer&load=js
 RewriteRule ^resources/vendor/pdfjs-2.12.313-dist/web/viewer.html$ /task.php?app=pdf_viewer&load=html
