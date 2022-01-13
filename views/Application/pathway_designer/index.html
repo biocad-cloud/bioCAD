@@ -8,6 +8,7 @@
     <meta name="width" content="1200" />
     <meta name="height" content="800" />
     <meta name="url:graph" content="{$graph}" />
+    <meta name="url:readmap" content="/biostack/pathway_design/kegg_template">
 
     ${../../includes/head.html}
 
@@ -79,18 +80,7 @@
                     <!-- right: show pathway graph -->
 
                     <div style="width: 100%; text-align: center; margin-top: 10px;">
-                        <center>
-                            <div id="canvas"></div>
-                        </center>
-
-                        <div>
-                            <strong>
-                                <i class="fa fa-cloud-download" aria-hidden="true"></i> <a id="savePng"
-                                    href="javascript:void(0);">{$savePng}</a> |
-                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i> <a
-                                    href="/Metabolic_pathway/">{$back}</a>
-                            </strong>
-                        </div>
+                        <div id="canvas"></div>
                     </div>
                 </div>
             </div>
