@@ -112,4 +112,11 @@ class app {
 	public function change_log() {		
 		View::Display();
 	}
+
+	/**
+	 * 
+	*/
+	public function phpinfo() {
+		echo \phpinfo();
+	}
 }
