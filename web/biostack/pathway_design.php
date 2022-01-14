@@ -33,8 +33,10 @@ class app {
      * @uses view
     */
     public function kegg_template($id) {
+        imports("Microsoft.VisualBasic.Net.CURL");
+
         $url  = "http://localhost:8847/KeggMap?id=$id";
-        $html = file_get_contents($url);
+        $html = CURLExtensions::GET($url);
         
         echo $url . "\n";
         echo $html;
