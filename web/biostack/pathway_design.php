@@ -36,6 +36,7 @@ class app {
         $url  = "http://localhost:8847/KeggMap?id=$id";
         $html = file_get_contents($url);
         
+        echo $url . "\n";
         echo $html;
     }
 
