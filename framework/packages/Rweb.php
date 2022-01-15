@@ -12,7 +12,7 @@ class RWeb {
      * 
     */
     public static function run($app, $args) {
-        include_once __DIR__ . "/Rscript/$app.php";breakpoint("load");
+        include_once __DIR__ . "/Rscript/$app.php";
         return (new \biocad\Rscript())->exec($args);
     }
 
