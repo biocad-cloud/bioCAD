@@ -12,7 +12,7 @@ class RWeb {
      * 
     */
     public static function run($app, $args) {
-        include_once __DIR__ . "/Rscript/$app.php";
+        include_once __DIR__ . "/Rscript/$app.php";breakpoint("load");
         return (new \biocad\Rscript())->exec($args);
     }
 
@@ -28,10 +28,10 @@ class RWeb {
         $kv = [];
 
         foreach($args as $name => $val) {
-            $val = urlencode($val);
-            array_push($kv, "$name=$val");
+            $val = \urlencode($val);
+            \array_push($kv, "$name=$val");
         }
 
-        return implode("&", $kv);
+        return \implode("&", $kv);
     }
 }
