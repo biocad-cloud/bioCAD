@@ -48,7 +48,15 @@ class app {
      * @uses api
     */
     public function create_map($mapid) {
+        $template_id = md5($mapid);
+        $temp = "/tmp/$template_id";
+        $open = "/biostack/pathway_design/flowEditor?template=$template_id";
 
+        if (!file_exists($temp)) {
+            FileSystem::WriteAllText($temp, RWeb::run("KeggGraph", ["id" => $mapid]));
+        }
+        
+        controller::success($open);
     }
 
     /**
