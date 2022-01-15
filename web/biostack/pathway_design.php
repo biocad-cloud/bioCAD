@@ -198,6 +198,11 @@ class app {
         $json  = json_encode($model);
         $usrId = System::getUserId();
         
+        if ((!Strings::Empty($guid, TRUE)) && ($guid == "#graph_payload")) {
+            # create from kegg template
+            $guid = NULL;
+        }
+
         if ($usrId <> -1) {
             $result = DataRepository::getRepo()->saveUserModel($json, $guid);
             $guid = $result["guid"];
