@@ -42,6 +42,15 @@ class app {
     }
 
     /**
+     * Create model from kegg template
+     * 
+     * @uses api
+    */
+    public function create_map($mapid) {
+        
+    }
+
+    /**
      * Model Viewer
      * 
      * @uses view
@@ -83,7 +92,7 @@ class app {
      * 
      * @uses view
     */
-    public function flowEditor($guid = NULL) {
+    public function flowEditor($guid = NULL, $template = NULL) {
         View::Display([
             "model_id" => $guid
         ]);
