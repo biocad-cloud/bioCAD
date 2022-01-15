@@ -1,7 +1,5 @@
 <?php
 
-imports("Microsoft.VisualBasic.Net.CURL");
-
 define("RWEB", "http://172.18.123.247:8847");
 
 class RWeb {
@@ -21,7 +19,7 @@ class RWeb {
     public static function exec($app, $url_query) {
         $url_query = self::urlQuery($url_query);
         $url       = RWEB . "/{$app}?{$url_query}";
-        $html      = CURLExtensions::GET($url);
+        $html      = \file_get_contents($url);
 
         return $html;
     }
