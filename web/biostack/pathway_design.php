@@ -44,10 +44,11 @@ class app {
     /**
      * Create model from kegg template
      * 
+     * @method POST
      * @uses api
     */
     public function create_map($mapid) {
-        
+
     }
 
     /**
