@@ -102,8 +102,16 @@ class app {
      * @uses view
     */
     public function flowEditor($guid = NULL, $template = NULL) {
+        if (!Strings::Empty($template, TRUE)) {
+            $guid = "#graph_payload";
+            $graph_payload = file_get_contents("/tmp/$template");
+        } else {
+            $graph_payload = "";
+        }
+
         View::Display([
-            "model_id" => $guid
+            "model_id"      => $guid,
+            "graph_payload" => $graph_payload
         ]);
     }
 
