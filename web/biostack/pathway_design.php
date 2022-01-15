@@ -7,6 +7,10 @@ include __DIR__ . "/../../framework/bootstrap.php";
 
 class app {
 
+    public function __construct(){
+        include_once APP_PATH . "/framework/packages/Rweb.php";
+    }
+
     /**
      * KEGG pathway designer
      * 
@@ -29,17 +33,12 @@ class app {
     }
 
     /**
+     * Get kegg pathway maps
      * 
      * @uses view
     */
     public function kegg_template($id) {
-        imports("Microsoft.VisualBasic.Net.CURL");
-
-        $url  = "http://localhost:8847/KeggMap?id=$id";
-        $html = CURLExtensions::GET($url);
-        
-        echo $url . "\n";
-        echo $html;
+        echo RWeb::run("KeggMap", ["id" => $id]);
     }
 
     /**
