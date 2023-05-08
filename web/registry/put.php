@@ -7,4 +7,12 @@ include __DIR__ . "/../../framework/bootstrap.php";
 */
 class app {
 
+    /**
+     * put new taxonomic group data into registry
+     * 
+     * @method POST
+    */
+    public function taxonomic($name, $note = "") {
+
+    }
 }
