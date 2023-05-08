@@ -1,5 +1,7 @@
 <?php
 
+# rename this file to config.php to run this website
+
 // 网站的配置数据
 return [
     'DB_TYPE' => 'mysql',
@@ -8,7 +10,16 @@ return [
     'DB_USER' => 'biocad_rds',
     'DB_PWD'  => '12345',
     'DB_PORT' => '3306',
-    // 'DB_PREFIX' => 'xcms_',
+    
+    "cad_registry" => [
+        'DB_TYPE' => 'mysql',
+        'DB_HOST' => '127.0.0.1',
+        'DB_NAME' => 'biocad_rds',
+        'DB_USER' => 'biocad_rds',
+        'DB_PWD'  => '12345',
+        'DB_PORT' => '3306'
+    ],
+
     //密钥
     "AUTHCODE" => 'A2f0qS78ttR9HpqeOT',
     //cookies
