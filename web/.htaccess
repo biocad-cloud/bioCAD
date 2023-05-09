@@ -36,7 +36,8 @@ RewriteRule ^biostack/jsonrpc/$ /biostack/jsonrpc.php?app=index
 RewriteRule ^biostack/reactor/run/(.+)$ /biostack/reactor.php?app=run&id=$1
 RewriteRule ^biostack/(.+)/(.+)$ /biostack/$1.php?app=$2
 
-
+RewriteRule ^registry/pull/(.+)/$ /registry/pull.php?app=$1
+RewriteRule ^registry/put/(.+)/$ /registry/put.php?app=$1
 
 RewriteRule ^resources/vendor/pdfjs-2.12.313-dist/web/viewer.js$ /task.php?app=pdf_viewer&load=js
 RewriteRule ^resources/vendor/pdfjs-2.12.313-dist/web/viewer.html$ /task.php?app=pdf_viewer&load=html
