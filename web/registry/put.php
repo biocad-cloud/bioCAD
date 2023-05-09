@@ -15,6 +15,8 @@ class app {
     */
     public function taxonomic($name, $note = "") {
         $tax = new Table(["cad_registry" => "taxonomic"]);
+        $name = trim($name, '"\s');
+        $note = trim($note, '"\s');
         # check data is exists or not
         $check = $tax->where(["name" => urldecode($name)])->find();
 
@@ -28,7 +30,7 @@ class app {
             controller::success(["id" => $id], $tax->getLastMySql());
         } else {
             // data is already exists
-            controller::error(["id" => $check["id"], "exist_data" => $check]);
+            controller::success(["id" => $check["id"], "exist_data" => $check]);
         }
     }
 }
