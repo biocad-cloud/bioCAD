@@ -11,6 +11,7 @@ class app {
      * put new taxonomic group data into registry
      * 
      * @method POST
+     * @access *
     */
     public function taxonomic($name, $note = "") {
         $tax = new Table(["cad_registry" => "taxonomic"]);
