@@ -75,14 +75,13 @@ class app {
 	 * 
 	 * @uses view
 	*/
-	public function search() {
-		$term = $_GET["q"];
+	public function search($q) {		
 		$result = "";
 
-		if (!$term) {
+		if (!$q) {
 			$result = "No term provided!";
 		} else {
-			$result = $this->searchInternal($term);
+			$result = $this->searchInternal($q);
 		}
 			
 		View::Display([			

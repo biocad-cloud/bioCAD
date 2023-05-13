@@ -42,9 +42,8 @@ class app {
 	 * 
 	 * @uses view
 	*/
-    public function project() {		
+    public function project($action = null) {		
 		# 当前的页面的编号
-		$action = Utils::ReadValue($_GET, "action");
 		$page = $_COOKIE["project_page"];
 		# 每一个分页的所显示的项目数量
 		$pagen = 3;
@@ -113,9 +112,8 @@ class app {
 	 * 
 	 * @uses view
 	*/
-	public function explorer() {		
-		$user_id    = System::getUserId();
-		$project_id = Utils::ReadValue($_GET, "project_id", -1);
+	public function explorer($project_id = -1) {		
+		$user_id    = System::getUserId();	
         $types      = (new Table("content_types"))
             ->left_join("file_class")->on([
                 "file_class"    => "classId", 
